@@ -25,7 +25,7 @@ def import_abundance(datafile, comments = '#'):
                       delimiter = ",")
 return raw_data
 
-def model_comparisons(raw_data, dataset_name, data_dir = './data/', cutoff = 9):
+def model_comparisons(raw_data, dataset_name, data_dir = './sad-data/', cutoff = 9):
     """ Uses raw species abundance data to compare predicted vs. empirical species abundance distributions (SAD) and output results in csv files. 
     
     Keyword arguments:
@@ -45,7 +45,49 @@ def model_comparisons(raw_data, dataset_name, data_dir = './data/', cutoff = 9):
     Neutral theory ()
     
     """
-
+    usites = np.sort(list(set(raw_data["site"])))
+    
+    
+    for i in range(0, len(usites)):
+        subsites = raw_data["site"][raw_data["site"] == usites[i]]        
+        subabundance = raw_data["ab"][raw_data["site"] == usites[i]]
+        N = sum(subabundance) # N = total abundance for a site
+        S = len(subsites) # S = species richness at a site
+        if S > cutoff:
+            print("%s, Site %s, S=%s, N=%s" % (dataset_name, i, S, N))
+            # Generate predicted values and p (e ** -beta) based on METE:
+            mete_pred = mete.get_mete_rad(int(S), int(N))
+            pred = np.array(mete_pred[0])
+            p = mete_pred[1]
+            p_untruncated = exp(-mete.get_beta(S, N, version='untruncated'))
+            obsab = np.sort(subab)[::-1]
+            # Calculate Akaike weight of log-series:
+            L_logser = md.logser_ll(obsab, p)
+            L_logser_untruncated = md.logser_ll(obsab, p_untruncated)
+            mu, sigma = md.pln_solver(obsab)
+            L_pln = md.pln_ll(mu,sigma,obsab)        
+            k1 = 1
+            k2 = 2    
+            AICc_logser = macroecotools.AICc(k1, L_logser, S)
+            AICc_logser_untruncated = macroecotools.AICc(k1, L_logser_untruncated, S)
+            AICc_pln = macroecotools.AICc(k2, L_pln, S)
+            weight = macroecotools.aic_weight(AICc_logser, AICc_pln, S, cutoff = 4)
+            weight_untruncated = macroecotools.aic_weight(AICc_logser_untruncated,
+                                                     AICc_pln, S, cutoff = 4)
+            
+            # Format results for output
+            results = ((np.column_stack((subsites, obsab, pred))))
+            results2 = ((np.column_stack((np.array(usites[i], dtype='S20'),
+                                                   S, N, p, weight,
+                                                   p_untruncated,
+                                                   weight_untruncated))))
+            
+            # Save results to a csv file:
+            output1 = csv.writer(open(data_dir + dataset_name + '_obs_pred.csv','wb'))
+            output2 = csv.writer(open(data_dir + dataset_name + '_dist_test.csv','wb'))   
+            
+            output1.writerows(results)
+            output2.writerows(results2)
 
 """ Function to see which predicted model fits best with the empirical data for each community. """
 
