@@ -18,12 +18,11 @@ import mete
 import macroecotools
 import macroeco_distributions as md
 
-def import_abundance(datafile, comments = '#'):
+def import_abundance(datafile):
     """Imports raw species abundance .csv files in the form: Site, Year, Species, Abundance."""
     raw_data = np.genfromtxt(datafile, dtype = "S15,i8,S10,i8",
-                      names = ['site','year','sp','ab'], 
-                      delimiter = ",")
-return raw_data
+                      names = ['site','year','sp','ab'], delimiter = ",")
+    return raw_data
 
 def model_comparisons(raw_data, dataset_name, data_dir, cutoff = 9):
     """ Uses raw species abundance data to compare predicted vs. empirical species abundance distributions (SAD) and output results in csv files. 
@@ -65,10 +64,10 @@ def model_comparisons(raw_data, dataset_name, data_dir, cutoff = 9):
             obsabundance = np.sort(subabundance)[::-1]
             
             # Calculate Akaike weight of log-series:
-            L_logser = md.logser_ll(obsab, p)
-            L_logser_untruncated = md.logser_ll(obsab, p_untruncated)
-            mu, sigma = md.pln_solver(obsab)
-            L_pln = md.pln_ll(mu,sigma,obsab)        
+            L_logser = md.logser_ll(obsabundance, p)
+            L_logser_untruncated = md.logser_ll(obsabundance, p_untruncated)
+            mu, sigma = md.pln_solver(obsabundance)
+            L_pln = md.pln_ll(mu,sigma,obsabundance)        
             k1 = 1
             k2 = 2    
             AICc_logser = macroecotools.AICc(k1, L_logser, S)
@@ -79,7 +78,7 @@ def model_comparisons(raw_data, dataset_name, data_dir, cutoff = 9):
                                                      AICc_pln, S, cutoff = 4)
             
             # Format results for output
-            results = ((np.column_stack((subsites, obsab, pred))))
+            results = ((np.column_stack((subsites, obsabundance, pred))))
             results2 = ((np.column_stack((np.array(usites[i], dtype='S20'),
                                                    S, N, p, weight,
                                                    p_untruncated,
@@ -106,9 +105,8 @@ datasets = ['bbs', 'cbc', 'fia', 'gentry', 'mcdb', 'naba'] # Dataset ID codes
 # Starts actual analyses for each dataset in turn.
 for dataset in datasets:
     datafile = data_dir + dataset + testing_ext
-    dataset_name == dataset
-    
-    
-    raw_data = import_abundance(datafile, comments = '#') # Import data
+    dataset_name = dataset
+        
+    raw_data = import_abundance(datafile) # Import data
     
     model_comparisons(raw_data, dataset_name, data_dir, cutoff = 9) # Run analyses on data
