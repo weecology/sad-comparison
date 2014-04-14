@@ -25,7 +25,7 @@ def import_abundance(datafile, comments = '#'):
                       delimiter = ",")
 return raw_data
 
-def model_comparisons(raw_data, dataset_name, data_dir = './sad-data/', cutoff = 9):
+def model_comparisons(raw_data, dataset_name, data_dir, cutoff = 9):
     """ Uses raw species abundance data to compare predicted vs. empirical species abundance distributions (SAD) and output results in csv files. 
     
     Keyword arguments:
@@ -35,18 +35,19 @@ def model_comparisons(raw_data, dataset_name, data_dir = './sad-data/', cutoff =
     cutoff: minimum number of species required to run -1.
     
     SAD models and packages used:
-    Poisson lognormal (macroecotools/macroecodistributions)
+    Maximum Entropy Theory of Ecology (METE) (METE)
+    
     Logseries (macroecotools/macroecodistributions)
+    Poisson lognormal (macroecotools/macroecodistributions)
     Geometric (macroecotools/macroecodistributions)
     Sugihara (macroeco/distributions)
     Negative binomial (macroeco/distributions)
-    Maximum Entropy Theory of Ecology (METE) (METE)
+    
     
     Neutral theory ()
     
     """
     usites = np.sort(list(set(raw_data["site"])))
-    
     
     for i in range(0, len(usites)):
         subsites = raw_data["site"][raw_data["site"] == usites[i]]        
@@ -55,12 +56,14 @@ def model_comparisons(raw_data, dataset_name, data_dir = './sad-data/', cutoff =
         S = len(subsites) # S = species richness at a site
         if S > cutoff:
             print("%s, Site %s, S=%s, N=%s" % (dataset_name, i, S, N))
+            
             # Generate predicted values and p (e ** -beta) based on METE:
             mete_pred = mete.get_mete_rad(int(S), int(N))
             pred = np.array(mete_pred[0])
             p = mete_pred[1]
             p_untruncated = exp(-mete.get_beta(S, N, version='untruncated'))
-            obsab = np.sort(subab)[::-1]
+            obsabundance = np.sort(subabundance)[::-1]
+            
             # Calculate Akaike weight of log-series:
             L_logser = md.logser_ll(obsab, p)
             L_logser_untruncated = md.logser_ll(obsab, p_untruncated)
@@ -92,3 +95,20 @@ def model_comparisons(raw_data, dataset_name, data_dir = './sad-data/', cutoff =
 """ Function to see which predicted model fits best with the empirical data for each community. """
 
 """ Plotting functions."""
+
+# Set up analysis parameters
+data_dir = './sad-data/' # path to data directory
+analysis_ext = '_spab.csv' # Extension for raw species abundance files
+testing_ext = '_spab_testing.csv'
+
+datasets = ['bbs', 'cbc', 'fia', 'gentry', 'mcdb', 'naba'] # Dataset ID codes
+
+# Starts actual analyses for each dataset in turn.
+for dataset in datasets:
+    datafile = data_dir + dataset + testing_ext
+    dataset_name == dataset
+    
+    
+    raw_data = import_abundance(datafile, comments = '#') # Import data
+    
+    model_comparisons(raw_data, dataset_name, data_dir, cutoff = 9) # Run analyses on data
