@@ -40,9 +40,8 @@ def model_comparisons(raw_data, dataset_name, data_dir, cutoff = 9):
     Logseries (macroecotools/macroecodistributions)
     Poisson lognormal (macroecotools/macroecodistributions)
     Geometric (macroecotools/macroecodistributions)
-    Sugihara (macroeco/distributions)
-    Negative binomial (macroeco/distributions)
-    
+    Negative binomial (macroecotools/macroecodistributions)
+    Sugihara (macroeco/distributions) 
     
     Neutral theory ()
     
@@ -64,11 +63,23 @@ def model_comparisons(raw_data, dataset_name, data_dir, cutoff = 9):
             p_untruncated = exp(-mete.get_beta(S, N, version='untruncated'))
             obsabundance = np.sort(subabundance)[::-1]
             
-            # Calculate Akaike weight of log-series:
-            L_logser = md.logser_ll(obsabundance, p)
-            L_logser_untruncated = md.logser_ll(obsabundance, p_untruncated)
+            # Calculate log-likelihoods of species abundance models:
+            # Logseries
+            L_logser = md.logser_ll(obsabundance, p) # Log-likelihood of truncated logseries
+            L_logser_untruncated = md.logser_ll(obsabundance, p_untruncated) # Log-likelihood of untruncated logseries
+            
+            # Poisson lognormal
             mu, sigma = md.pln_solver(obsabundance)
-            L_pln = md.pln_ll(mu,sigma,obsabundance)        
+            L_pln = md.pln_ll(mu,sigma,obsabundance) # Log-likelihood of Poisson lognormal
+            
+            # Geometric series
+            L_geometric = md.geom_ll(obsabundance, p) # Log-likelihood of geometric series
+            
+            # Negative binomial
+            n0, p0 = md.negbin_solver(obsabundance)
+            L_negative_binomial = md.negbin_ll(obsabundance, n0, p0) # Log-likelihood of negative binomial
+            
+            # Calculate Akaike weight of species abundance models:
             k1 = 1
             k2 = 2    
             AICc_logser = macroecotools.AICc(k1, L_logser, S)
