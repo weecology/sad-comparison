@@ -54,7 +54,7 @@ def model_comparisons(raw_data, dataset_name, data_dir, cutoff = 9):
         N = sum(subabundance) # N = total abundance for a site
         S = len(subsites) # S = species richness at a site
         if S > cutoff:
-            print("%s, Site %s, S=%s, N=%s" % (dataset_name, i, S, N))
+            print("%s, Site %s, S=%s, N=%s" % (dataset_name, site, S, N))
             
             # Generate predicted values and p (e ** -beta) based on METE:
             mete_pred = mete.get_mete_rad(int(S), int(N))
@@ -77,21 +77,28 @@ def model_comparisons(raw_data, dataset_name, data_dir, cutoff = 9):
             
             # Negative binomial
             n0, p0 = md.negbin_solver(obsabundance)
-            L_negative_binomial = md.negbin_ll(obsabundance, n0, p0) # Log-likelihood of negative binomial
+            L_negbin = md.negbin_ll(obsabundance, n0, p0) # Log-likelihood of negative binomial
+            
             
             # Calculate Akaike weight of species abundance models:
+            # Parameter k is the number of fitted parameters
             k1 = 1
-            k2 = 2    
-            AICc_logser = macroecotools.AICc(k1, L_logser, S)
-            AICc_logser_untruncated = macroecotools.AICc(k1, L_logser_untruncated, S)
-            AICc_pln = macroecotools.AICc(k2, L_pln, S)
+            k2 = 2
+            
+            #Calculate AICc values
+            AICc_logser = macroecotools.AICc(k1, L_logser, S) # AICc logseries
+            AICc_logser_untruncated = macroecotools.AICc(k1, L_logser_untruncated, S) # AICc logseries untruncated
+            AICc_pln = macroecotools.AICc(k2, L_pln, S) # AICc Poisson lognormal
+            AICc_geometric = macroecotools.AICc(k1, L_geometric, S) # AICc geometric series
+            AICc_negbin = macroecotools.AICc(k2, L_negbin, S)# AICc negative binomial
+            
             weight = macroecotools.aic_weight(AICc_logser, AICc_pln, S, cutoff = 4)
             weight_untruncated = macroecotools.aic_weight(AICc_logser_untruncated,
                                                      AICc_pln, S, cutoff = 4)
             
             # Format results for output
             results = ((np.column_stack((subsites, obsabundance, pred))))
-            results2 = ((np.column_stack((np.array(usites[i], dtype='S20'),
+            results2 = ((np.column_stack((np.array(site, dtype='S20'),
                                                    S, N, p, weight,
                                                    p_untruncated,
                                                    weight_untruncated))))
