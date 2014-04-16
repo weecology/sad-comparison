@@ -40,6 +40,7 @@ def model_comparisons(raw_data, dataset_name, data_dir, cutoff = 9):
     Poisson lognormal (macroecotools/macroecodistributions)
     Geometric (macroecotools/macroecodistributions)
     Negative binomial (macroecotools/macroecodistributions)
+    Generalized Yule (macroecotools/macroecodistributions)
     
     
     Neutral theory ()
@@ -84,16 +85,19 @@ def model_comparisons(raw_data, dataset_name, data_dir, cutoff = 9):
             k1 = 1
             k2 = 2
             
-            #Calculate AICc values
+            # Calculate AICc values
             AICc_logser = macroecotools.AICc(k1, L_logser, S) # AICc logseries
             AICc_logser_untruncated = macroecotools.AICc(k1, L_logser_untruncated, S) # AICc logseries untruncated
             AICc_pln = macroecotools.AICc(k2, L_pln, S) # AICc Poisson lognormal
             AICc_geometric = macroecotools.AICc(k1, L_geometric, S) # AICc geometric series
             AICc_negbin = macroecotools.AICc(k2, L_negbin, S)# AICc negative binomial
             
-            weight = macroecotools.aic_weight(AICc_logser, AICc_pln, S, cutoff = 4)
-            weight_untruncated = macroecotools.aic_weight(AICc_logser_untruncated,
-                                                     AICc_pln, S, cutoff = 4)
+            # Make list of AICc values
+            AICc_list = [AICc_logser, AICc_logser_untruncated, AICc_pln, AICc_geometric, AICc_negbin]
+            
+            
+            # Calulate AICc weight
+            weight = macroecotools.aic_weight(AICc_list, S, cutoff = 4)
             
             # Format results for output
             results = ((np.column_stack((subsites, obsabundance, pred))))
