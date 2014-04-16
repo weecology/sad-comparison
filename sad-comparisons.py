@@ -17,7 +17,6 @@ from mpl_toolkits.axes_grid.inset_locator import inset_axes
 import mete # https://github.com/weecology/METE.git
 import macroecotools # https://github.com/weecology/macroecotools.git
 import macroeco_distributions as md
-import macroeco # https://github.com/jkitzes/macroeco.git
 
 def import_abundance(datafile):
     """Imports raw species abundance .csv files in the form: Site, Year, Species, Abundance."""
@@ -41,7 +40,7 @@ def model_comparisons(raw_data, dataset_name, data_dir, cutoff = 9):
     Poisson lognormal (macroecotools/macroecodistributions)
     Geometric (macroecotools/macroecodistributions)
     Negative binomial (macroecotools/macroecodistributions)
-    Sugihara (macroeco/distributions) 
+    
     
     Neutral theory ()
     
