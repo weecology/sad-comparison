@@ -41,6 +41,7 @@ def model_comparisons(raw_data, dataset_name, data_dir, cutoff = 9):
     Geometric (macroecotools/macroecodistributions)
     Negative binomial (macroecotools/macroecodistributions)
     Generalized Yule (macroecotools/macroecodistributions)
+    Pareto (Power) distribution (macroecotools/macroecodistributions)
     
     
     Neutral theory ()
@@ -70,7 +71,7 @@ def model_comparisons(raw_data, dataset_name, data_dir, cutoff = 9):
             
             # Poisson lognormal
             mu, sigma = md.pln_solver(obsabundance)
-            L_pln = md.pln_ll(mu,sigma,obsabundance) # Log-likelihood of Poisson lognormal
+            L_pln = md.pln_ll(obsabundance, mu,sigma) # Log-likelihood of Poisson lognormal
             
             # Geometric series
             L_geometric = md.geom_ll(obsabundance, p) # Log-likelihood of geometric series
@@ -78,6 +79,13 @@ def model_comparisons(raw_data, dataset_name, data_dir, cutoff = 9):
             # Negative binomial
             n0, p0 = md.negbin_solver(obsabundance)
             L_negbin = md.negbin_ll(obsabundance, n0, p0) # Log-likelihood of negative binomial
+            
+            # Generalized Yule
+            list_obsabundance = obsabundance.tolist() # Yule solver uses list method incompatible with NumPy array.
+            a, b = md.gen_yule_solver(list_obsabundance)
+            L_gen_yule = md.gen_yule_ll(obsabundance, a, b)
+            
+            # Pareto distribution
             
             
             # Calculate Akaike weight of species abundance models:
@@ -91,9 +99,11 @@ def model_comparisons(raw_data, dataset_name, data_dir, cutoff = 9):
             AICc_pln = macroecotools.AICc(k2, L_pln, S) # AICc Poisson lognormal
             AICc_geometric = macroecotools.AICc(k1, L_geometric, S) # AICc geometric series
             AICc_negbin = macroecotools.AICc(k2, L_negbin, S)# AICc negative binomial
+            AICc_gen_yule = macroecotools.AICc(k2, L_gen_yule, S)
             
             # Make list of AICc values
-            AICc_list = [AICc_logser, AICc_logser_untruncated, AICc_pln, AICc_geometric, AICc_negbin]
+            AICc_list = [AICc_logser, AICc_logser_untruncated, AICc_pln, AICc_geometric, AICc_negbin, AICc_gen_yule]
+            print(AICc_list)
             
             
             # Calulate AICc weight
@@ -102,9 +112,8 @@ def model_comparisons(raw_data, dataset_name, data_dir, cutoff = 9):
             # Format results for output
             results = ((np.column_stack((subsites, obsabundance, pred))))
             results2 = ((np.column_stack((np.array(site, dtype='S20'),
-                                                   S, N, p, weight,
-                                                   p_untruncated,
-                                                   weight_untruncated))))
+                                                   S, N, p, weight
+                                                   ))))
             
             # Save results to a csv file:
             output1 = csv.writer(open(data_dir + dataset_name + '_obs_pred.csv','wb'))
