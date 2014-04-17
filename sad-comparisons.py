@@ -38,9 +38,9 @@ def model_comparisons(raw_data, dataset_name, data_dir, cutoff = 9):
     
     Logseries (macroecotools/macroecodistributions)
     Poisson lognormal (macroecotools/macroecodistributions)
-    Geometric (macroecotools/macroecodistributions)
     Negative binomial (macroecotools/macroecodistributions)
     Generalized Yule (macroecotools/macroecodistributions)
+    Geometric (macroecotools/macroecodistributions)
     Pareto (Power) distribution (macroecotools/macroecodistributions)
     
     
@@ -73,9 +73,7 @@ def model_comparisons(raw_data, dataset_name, data_dir, cutoff = 9):
             mu, sigma = md.pln_solver(obsabundance)
             L_pln = md.pln_ll(obsabundance, mu,sigma) # Log-likelihood of Poisson lognormal
             
-            # Geometric series
-            L_geometric = md.geom_ll(obsabundance, p) # Log-likelihood of geometric series
-            
+           
             # Negative binomial
             n0, p0 = md.negbin_solver(obsabundance)
             L_negbin = md.negbin_ll(obsabundance, n0, p0) # Log-likelihood of negative binomial
@@ -84,6 +82,10 @@ def model_comparisons(raw_data, dataset_name, data_dir, cutoff = 9):
             list_obsabundance = obsabundance.tolist() # Yule solver uses list method incompatible with NumPy array.
             a, b = md.gen_yule_solver(list_obsabundance)
             L_gen_yule = md.gen_yule_ll(obsabundance, a, b)
+            
+            # Geometric series
+            # Needs solver before implementing
+            # L_geometric = md.geom_ll(obsabundance, p) # Log-likelihood of geometric series            
             
             # Pareto distribution
             
@@ -97,24 +99,23 @@ def model_comparisons(raw_data, dataset_name, data_dir, cutoff = 9):
             AICc_logser = macroecotools.AICc(k1, L_logser, S) # AICc logseries
             AICc_logser_untruncated = macroecotools.AICc(k1, L_logser_untruncated, S) # AICc logseries untruncated
             AICc_pln = macroecotools.AICc(k2, L_pln, S) # AICc Poisson lognormal
-            AICc_geometric = macroecotools.AICc(k1, L_geometric, S) # AICc geometric series
             AICc_negbin = macroecotools.AICc(k2, L_negbin, S)# AICc negative binomial
             AICc_gen_yule = macroecotools.AICc(k2, L_gen_yule, S)
+            # AICc_geometric = macroecotools.AICc(k1, L_geometric, S) # AICc geometric series
+            # AICc_pareto = macroecotools.AICc(k1, L_pareto, S) # AICc Pareto
             
             # Make list of AICc values
-            AICc_list = [AICc_logser, AICc_logser_untruncated, AICc_pln, AICc_geometric, AICc_negbin, AICc_gen_yule]
-            print(AICc_list)
+            AICc_list = [AICc_logser, AICc_logser_untruncated, AICc_pln, AICc_negbin, AICc_gen_yule]
             
             
-            # Calulate AICc weight
+            # Calulate AICc weight            
             weight = macroecotools.aic_weight(AICc_list, S, cutoff = 4)
+                        
             
             # Format results for output
             results = ((np.column_stack((subsites, obsabundance, pred))))
-            results2 = ((np.column_stack((np.array(site, dtype='S20'),
-                                                   S, N, p, weight
-                                                   ))))
-            
+            results2 = ((np.column_stack(([site, S, N, p] + weight.tolist()))))
+                                         
             # Save results to a csv file:
             output1 = csv.writer(open(data_dir + dataset_name + '_obs_pred.csv','wb'))
             output2 = csv.writer(open(data_dir + dataset_name + '_dist_test.csv','wb'))   
