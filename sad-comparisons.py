@@ -96,7 +96,7 @@ def model_comparisons(raw_data, dataset_name, data_dir, cutoff = 9):
             k2 = 2
             
             # Calculate AICc values
-            AICc_logser = macroecotools.AICc(k1, L_logser, S) # AICc logseries
+            AICc_logser = macroecotools.AICc(k2, L_logser, S) # AICc logseries
             AICc_logser_untruncated = macroecotools.AICc(k1, L_logser_untruncated, S) # AICc logseries untruncated
             AICc_pln = macroecotools.AICc(k2, L_pln, S) # AICc Poisson lognormal
             AICc_negbin = macroecotools.AICc(k2, L_negbin, S)# AICc negative binomial
