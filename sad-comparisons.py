@@ -17,7 +17,6 @@ from mpl_toolkits.axes_grid.inset_locator import inset_axes
 import mete # https://github.com/weecology/METE.git
 import macroecotools # https://github.com/weecology/macroecotools.git
 import macroeco_distributions as md
-import macroeco # https://github.com/jkitzes/macroeco.git
 
 def import_abundance(datafile):
     """Imports raw species abundance .csv files in the form: Site, Year, Species, Abundance."""
@@ -39,9 +38,10 @@ def model_comparisons(raw_data, dataset_name, data_dir, cutoff = 9):
     
     Logseries (macroecotools/macroecodistributions)
     Poisson lognormal (macroecotools/macroecodistributions)
+    Negative binomial (macroecotools/macroecodistributions)
+    Generalized Yule (macroecotools/macroecodistributions)
     Geometric (macroecotools/macroecodistributions)
-    Sugihara (macroeco/distributions)
-    Negative binomial (macroeco/distributions)
+    Pareto (Power) distribution (macroecotools/macroecodistributions)
     
     
     Neutral theory ()
@@ -49,13 +49,13 @@ def model_comparisons(raw_data, dataset_name, data_dir, cutoff = 9):
     """
     usites = np.sort(list(set(raw_data["site"])))
     
-    for i in range(0, len(usites)):
-        subsites = raw_data["site"][raw_data["site"] == usites[i]]        
-        subabundance = raw_data["ab"][raw_data["site"] == usites[i]]
+    for site in usites:
+        subsites = raw_data["site"][raw_data["site"] == site]        
+        subabundance = raw_data["ab"][raw_data["site"] == site]
         N = sum(subabundance) # N = total abundance for a site
         S = len(subsites) # S = species richness at a site
         if S > cutoff:
-            print("%s, Site %s, S=%s, N=%s" % (dataset_name, i, S, N))
+            print("%s, Site %s, S=%s, N=%s" % (dataset_name, site, S, N))
             
             # Generate predicted values and p (e ** -beta) based on METE:
             mete_pred = mete.get_mete_rad(int(S), int(N))
@@ -64,27 +64,58 @@ def model_comparisons(raw_data, dataset_name, data_dir, cutoff = 9):
             p_untruncated = exp(-mete.get_beta(S, N, version='untruncated'))
             obsabundance = np.sort(subabundance)[::-1]
             
-            # Calculate Akaike weight of log-series:
-            L_logser = md.logser_ll(obsabundance, p)
-            L_logser_untruncated = md.logser_ll(obsabundance, p_untruncated)
+            # Calculate log-likelihoods of species abundance models:
+            # Logseries
+            L_logser = md.logser_ll(obsabundance, p) # Log-likelihood of truncated logseries
+            L_logser_untruncated = md.logser_ll(obsabundance, p_untruncated) # Log-likelihood of untruncated logseries
+            
+            # Poisson lognormal
             mu, sigma = md.pln_solver(obsabundance)
-            L_pln = md.pln_ll(mu,sigma,obsabundance)        
+            L_pln = md.pln_ll(obsabundance, mu,sigma) # Log-likelihood of Poisson lognormal
+            
+           
+            # Negative binomial
+            n0, p0 = md.negbin_solver(obsabundance)
+            L_negbin = md.negbin_ll(obsabundance, n0, p0) # Log-likelihood of negative binomial
+            
+            # Generalized Yule
+            list_obsabundance = obsabundance.tolist() # Yule solver uses list method incompatible with NumPy array.
+            a, b = md.gen_yule_solver(list_obsabundance)
+            L_gen_yule = md.gen_yule_ll(obsabundance, a, b)
+            
+            # Geometric series
+            # Needs solver before implementing
+            # L_geometric = md.geom_ll(obsabundance, p) # Log-likelihood of geometric series            
+            
+            # Pareto distribution
+            
+            
+            # Calculate Akaike weight of species abundance models:
+            # Parameter k is the number of fitted parameters
             k1 = 1
-            k2 = 2    
-            AICc_logser = macroecotools.AICc(k1, L_logser, S)
-            AICc_logser_untruncated = macroecotools.AICc(k1, L_logser_untruncated, S)
-            AICc_pln = macroecotools.AICc(k2, L_pln, S)
-            weight = macroecotools.aic_weight(AICc_logser, AICc_pln, S, cutoff = 4)
-            weight_untruncated = macroecotools.aic_weight(AICc_logser_untruncated,
-                                                     AICc_pln, S, cutoff = 4)
+            k2 = 2
+            
+            # Calculate AICc values
+            AICc_logser = macroecotools.AICc(k2, L_logser, S) # AICc logseries
+            AICc_logser_untruncated = macroecotools.AICc(k1, L_logser_untruncated, S) # AICc logseries untruncated
+            AICc_pln = macroecotools.AICc(k2, L_pln, S) # AICc Poisson lognormal
+            AICc_negbin = macroecotools.AICc(k2, L_negbin, S)# AICc negative binomial
+            AICc_gen_yule = macroecotools.AICc(k2, L_gen_yule, S)
+            # AICc_geometric = macroecotools.AICc(k1, L_geometric, S) # AICc geometric series
+            # AICc_pareto = macroecotools.AICc(k1, L_pareto, S) # AICc Pareto
+            
+            # Make list of AICc values
+            AICc_list = [AICc_logser, AICc_logser_untruncated, AICc_pln, AICc_negbin, AICc_gen_yule]
+            
+            
+            # Calulate AICc weight            
+            weight = macroecotools.aic_weight(AICc_list, S, cutoff = 4)
+                        
             
             # Format results for output
             results = ((np.column_stack((subsites, obsabundance, pred))))
-            results2 = ((np.column_stack((np.array(usites[i], dtype='S20'),
-                                                   S, N, p, weight,
-                                                   p_untruncated,
-                                                   weight_untruncated))))
-            
+            results2 = ((np.column_stack(([site, S, N, p] + weight.tolist()))))
+                                         
             # Save results to a csv file:
             output1 = csv.writer(open(data_dir + dataset_name + '_obs_pred.csv','wb'))
             output2 = csv.writer(open(data_dir + dataset_name + '_dist_test.csv','wb'))   
