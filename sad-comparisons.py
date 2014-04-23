@@ -41,7 +41,9 @@ def model_comparisons(raw_data, dataset_name, data_dir, cutoff = 9):
     Negative binomial (macroecotools/macroecodistributions)
     Generalized Yule (macroecotools/macroecodistributions)
     Geometric (macroecotools/macroecodistributions)
-    Pareto (Power) distribution (macroecotools/macroecodistributions)
+    
+    
+    Zipf (Power) distribution ()
     
     
     Neutral theory ()
@@ -84,10 +86,11 @@ def model_comparisons(raw_data, dataset_name, data_dir, cutoff = 9):
             L_gen_yule = md.gen_yule_ll(obsabundance, a, b)
             
             # Geometric series
-            # Needs solver before implementing
-            # L_geometric = md.geom_ll(obsabundance, p) # Log-likelihood of geometric series            
+            upper_bound = max(obsabundance)
+            p = md.trunc_geom_solver(obsabundance, upper_bound)
+            L_geometric = md.geom_ll(obsabundance, p) # Log-likelihood of geometric series            
             
-            # Pareto distribution
+            # Zipf distribution
             
             
             # Calculate Akaike weight of species abundance models:
@@ -101,11 +104,11 @@ def model_comparisons(raw_data, dataset_name, data_dir, cutoff = 9):
             AICc_pln = macroecotools.AICc(k2, L_pln, S) # AICc Poisson lognormal
             AICc_negbin = macroecotools.AICc(k2, L_negbin, S)# AICc negative binomial
             AICc_gen_yule = macroecotools.AICc(k2, L_gen_yule, S)
-            # AICc_geometric = macroecotools.AICc(k1, L_geometric, S) # AICc geometric series
-            # AICc_pareto = macroecotools.AICc(k1, L_pareto, S) # AICc Pareto
+            AICc_geometric = macroecotools.AICc(k1, L_geometric, S) # AICc geometric series
+            
             
             # Make list of AICc values
-            AICc_list = [AICc_logser, AICc_logser_untruncated, AICc_pln, AICc_negbin, AICc_gen_yule]
+            AICc_list = [AICc_logser, AICc_logser_untruncated, AICc_pln, AICc_negbin, AICc_gen_yule, AICc_geometric]
             
             
             # Calulate AICc weight            
