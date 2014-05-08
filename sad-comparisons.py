@@ -86,8 +86,7 @@ def model_comparisons(raw_data, dataset_name, data_dir, cutoff = 9):
             L_gen_yule = md.gen_yule_ll(obsabundance, a, b)
             
             # Geometric series
-            upper_bound = max(obsabundance)
-            p = md.trunc_geom_solver(obsabundance, upper_bound)
+            p = md.trunc_geom_solver(obsabundance, N) # For the upper bound, we are using the total community abundance
             L_geometric = md.geom_ll(obsabundance, p) # Log-likelihood of geometric series            
             
             # Zipf distribution
