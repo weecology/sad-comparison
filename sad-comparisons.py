@@ -46,7 +46,7 @@ def model_comparisons(raw_data, dataset_name, data_dir, cutoff = 9):
     Zipf (Power) distribution ()
     
     
-    Neutral theory ()
+    Neutral theory: Neutral theory predicts the negative binomial distribution (Connolly et al. 2014. Commonness and rarity in the marine biosphere. PNAS 111: 8524-8529. http://www.pnas.org/content/111/23/8524.abstract
     
     """
     usites = np.sort(list(set(raw_data["site"])))
