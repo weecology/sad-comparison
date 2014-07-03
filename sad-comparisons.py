@@ -139,8 +139,8 @@ datasets = ['bbs', 'cbc', 'fia', 'gentry', 'mcdb', 'naba'] # Dataset ID codes
 # Starts actual analyses for each dataset in turn.
 for dataset in datasets:
     datafile = data_dir + dataset + testing_ext
-    dataset_name = dataset
+    print(dataset)
         
     raw_data = import_abundance(datafile) # Import data
     
-    model_comparisons(raw_data, dataset_name, data_dir, cutoff = 9) # Run analyses on data
+    model_comparisons(raw_data, dataset, data_dir, cutoff = 9) # Run analyses on data
