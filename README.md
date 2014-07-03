@@ -11,7 +11,16 @@ METE: https://github.com/weecology/METE.git
 macroecotools: https://github.com/weecology/macroecotools.git  
 matplotlib  
 numpy  
-scipy  
+scipy 
+
+The METE module and the macroecotools module can be installed from the command line (with appropriate permissions)  
+git clone https://github.com/weecology/METE.git  
+cd METE  
+python setup.py install (sudo python setup.py install on Linux)  
+cd ..  
+git clone https://github.com/weecology/macroecotools.git  
+cd macroecotools  
+python setup.py install (with sudo for Linux)    
 
 
 #####SAD models tested and packages used:  
