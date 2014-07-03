@@ -9,8 +9,6 @@ Community data the same as used in White EP, Thibault KM, Xiao X.  2012.  Charac
 #####Python dependencies:  
 METE: https://github.com/weecology/METE.git  
 macroecotools: https://github.com/weecology/macroecotools.git  
-macroeco: https://github.com/jkitzes/macroeco.git  
-mpmath: https://github.com/fredrik-johansson/mpmath.git  
 matplotlib  
 numpy  
 scipy  
@@ -18,13 +16,15 @@ scipy
 
 #####SAD models tested and packages used:  
 Maximum Entropy Theory of Ecology (METE) (METE)  
-    
 Logseries (macroecotools/macroecodistributions)  
 Poisson lognormal (macroecotools/macroecodistributions)  
+Negative binomial (macroecotools/macroecodistributions)  
+Generalized Yule (macroecotools/macroecodistributions)  
 Geometric (macroecotools/macroecodistributions)  
-Sugihara (macroeco/distributions)  
-Negative binomial (macroeco/distributions)  
     
-
-Neutral theory ()
+    
+Zipf (Power) distribution ()  
+    
+    
+Neutral theory: Because neutral theory predicts the negative binomial distribution at the local scale (Connolly et al. 2014. Commonness and rarity in the marine biosphere. PNAS 111: 8524-8529. http://www.pnas.org/content/111/23/8524.abstract), we used the prediction for the negative binomial distribution (macroecotools/macroecodistributions) instead of fitting the neutral theory model directly.  The AICc for neutral theory was calculated with the appropriate number of parameters for neutral theory.
 
