@@ -47,6 +47,10 @@ def model_comparisons(raw_data, dataset_name, data_dir, cutoff = 9):
     """
     usites = np.sort(list(set(raw_data["site"])))
     
+    # Open output files
+    output1 = csv.writer(open(data_dir + dataset_name + '_obs_pred.csv','wb'))
+    output2 = csv.writer(open(data_dir + dataset_name + '_dist_test.csv','wb'))     
+    
     for site in usites:
         subsites = raw_data["site"][raw_data["site"] == site]        
         subabundance = raw_data["ab"][raw_data["site"] == site]
@@ -93,7 +97,7 @@ def model_comparisons(raw_data, dataset_name, data_dir, cutoff = 9):
             AICc_logser_untruncated = macroecotools.AICc(k1, L_logser_untruncated, S) # AICc logseries untruncated
             AICc_pln = macroecotools.AICc(k2, L_pln, S) # AICc Poisson lognormal
             AICc_negbin = macroecotools.AICc(k2, L_negbin, S)# AICc negative binomial
-            AICc_gen_yule = macroecotools.AICc(k2, L_gen_yule, S)
+            AICc_gen_yule = macroecotools.AICc(k2, L_gen_yule, S)# AICc generalized Yule
                         
             
             # Make list of AICc values
@@ -107,11 +111,9 @@ def model_comparisons(raw_data, dataset_name, data_dir, cutoff = 9):
             # Format results for output
             results = ((np.column_stack((subsites, obsabundance, pred))))
             results2 = ((np.column_stack(([site, S, N, p] + weight.tolist()))))
+            print(results2)
                                          
-            # Save results to a csv file:
-            output1 = csv.writer(open(data_dir + dataset_name + '_obs_pred.csv','wb'))
-            output2 = csv.writer(open(data_dir + dataset_name + '_dist_test.csv','wb'))   
-            
+            # Save results to a csv file:            
             output1.writerows(results)
             output2.writerows(results2)
 
@@ -124,12 +126,11 @@ data_dir = './sad-data/' # path to data directory
 analysis_ext = '_spab.csv' # Extension for raw species abundance files
 testing_ext = '_spab_testing.csv'
 
-datasets = ['bbs', 'cbc', 'fia', 'gentry', 'mcdb', 'naba'] # Dataset ID codes
+datasets = ['bbs'] # Dataset ID codes
 
 # Starts actual analyses for each dataset in turn.
 for dataset in datasets:
     datafile = data_dir + dataset + testing_ext
-    print(dataset)
         
     raw_data = import_abundance(datafile) # Import data
     
