@@ -111,11 +111,11 @@ def model_comparisons(raw_data, dataset_name, data_dir, cutoff = 9):
             # Format results for output
             results = ((np.column_stack((subsites, obsabundance, pred))))
             results2 = ((np.column_stack(([site, S, N, p] + weight.tolist()))))
-            print(results2)
-                                         
+                                            
             # Save results to a csv file:            
             output1.writerows(results)
             output2.writerows(results2)
+
 
 """ Function to see which predicted model fits best with the empirical data for each community. """
 
@@ -126,7 +126,7 @@ data_dir = './sad-data/' # path to data directory
 analysis_ext = '_spab.csv' # Extension for raw species abundance files
 testing_ext = '_spab_testing.csv'
 
-datasets = ['bbs'] # Dataset ID codes
+datasets = ['bbs', 'cbc', 'fia', 'mcdb', 'gentry', 'naba'] # Dataset ID codes
 
 # Starts actual analyses for each dataset in turn.
 for dataset in datasets:
