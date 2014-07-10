@@ -119,6 +119,7 @@ def model_comparisons(raw_data, dataset_name, data_dir, cutoff = 9):
             try:
                 L_gen_yule = md.gen_yule_ll(obsabundance, a, b)
                 AICc_gen_yule = macroecotools.AICc(k2, L_gen_yule, S) # AICc generalized Yule
+                gen_yule_blank = 1
             
             except AttributeError:
                 gen_yule_blank = 0 # If the distribution does not converge to a solution, the output AICc weight is blank.
