@@ -81,22 +81,36 @@ def model_comparisons(raw_data, dataset_name, data_dir, cutoff = 9):
             L_logser_untruncated = md.logser_ll(obsabundance, p_untruncated) # Log-likelihood of untruncated logseries
             AICc_logser = macroecotools.AICc(k2, L_logser, S) # AICc logseries
             AICc_logser_untruncated = macroecotools.AICc(k1, L_logser_untruncated, S) # AICc logseries untruncated
+            #Start making AICc list
+            AICc_list = [AICc_logser, AICc_logser_untruncated]
           
             
             # Poisson lognormal
             mu, sigma = md.pln_solver(obsabundance)
             L_pln = md.pln_ll(obsabundance, mu,sigma) # Log-likelihood of Poisson lognormal
             AICc_pln = macroecotools.AICc(k2, L_pln, S) # AICc Poisson lognormal
+            # Add to AICc list
+            AICc_list = AICc_list + [AICc_pln]
        
             # Negative binomial
             n0, p0 = md.negbin_solver(obsabundance)
             L_negbin = md.negbin_ll(obsabundance, n0, p0) # Log-likelihood of negative binomial
-            AICc_negbin = macroecotools.AICc(k2, L_negbin, S)# AICc negative binomial
+            if np.isnan(L_negbin):
+                negbin_blank = 1 # The negative binomial distribution sometimes fails to come to a solution before the maximum number of iterations.
+                
+            else:
+                AICc_negbin = macroecotools.AICc(k2, L_negbin, S)# AICc negative binomial
+                # Add to AICc list
+                AICc_list = AICc_list + [AICc_negbin]
+                negbin_blank = 0
+
             
             # Geometric series
             p = md.trunc_geom_solver(obsabundance, N) # For the upper bound, we are using the total community abundance
             L_geometric = md.geom_ll(obsabundance, p) # Log-likelihood of geometric series
             AICc_geometric = macroecotools.AICc(k1, L_geometric, S) # AICc geometric series
+            # Add to AICc list
+            AICc_list = AICc_list + [AICc_geometric]            
             
             # Generalized Yule
             list_obsabundance = obsabundance.tolist() # Yule solver uses list method incompatible with NumPy array.
@@ -105,22 +119,29 @@ def model_comparisons(raw_data, dataset_name, data_dir, cutoff = 9):
             try:
                 L_gen_yule = md.gen_yule_ll(obsabundance, a, b)
                 AICc_gen_yule = macroecotools.AICc(k2, L_gen_yule, S) # AICc generalized Yule
+                gen_yule_blank = 0
+                AICc_list = AICc_list + [AICc_gen_yule]
                 
-                # Make list of AICc values
-                AICc_list = [AICc_logser, AICc_logser_untruncated, AICc_pln, AICc_negbin, AICc_geometric, AICc_gen_yule]
             
             except AttributeError:
-                pass 
-                AICc_list = [AICc_logser, AICc_logser_untruncated, AICc_pln, AICc_negbin, AICc_geometric] # If the distribution does not converge to a solution, the AICc_value is left blank.            
+                gen_yule_blank = 0 # If the distribution does not converge to a solution, the AICc_value is left blank.
+      
             
             # Calulate AICc weight            
             weight = macroecotools.aic_weight(AICc_list, S, cutoff = 4)
             # Convert weight to list
             weights_output = weight.tolist()
+            if negbin_blank == 1:
+                weights_output. insert(3, '')
+                
+            if gen_yule_blank == 1:
+                weights_output.append('')
+                
                                     
             # Format results for output
             results = ((np.column_stack((subsites, obsabundance, pred))))
-            results2 = [[site, S, N] + weights_output]
+            for weight in weights_output:
+                results2 = [[site, S, N] + weights_output]
 
                                             
             # Save results to a csv file:            
