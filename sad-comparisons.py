@@ -54,7 +54,7 @@ def model_comparisons(raw_data, dataset_name, data_dir, cutoff = 9):
     
     # Insert header
     output1.writerow(['site', 'observed', 'predicted'])
-    output2.writerow(['site', 'S', 'N', 'AICc_logseries', 'AICc_logseries_untruncated', 'AICc_pln', 'AICc_negbin', 'AICc_gen_yule', 'AICc_geometric'])
+    output2.writerow(['site', 'S', 'N', 'AICc_logseries', 'AICc_logseries_untruncated', 'AICc_pln', 'AICc_negbin', 'AICc_geometric' ,'AICc_gen_yule'])
     
     for site in usites:
         subsites = raw_data["site"][raw_data["site"] == site]        
@@ -88,13 +88,16 @@ def model_comparisons(raw_data, dataset_name, data_dir, cutoff = 9):
             mu, sigma = md.pln_solver(obsabundance)
             L_pln = md.pln_ll(obsabundance, mu,sigma) # Log-likelihood of Poisson lognormal
             AICc_pln = macroecotools.AICc(k2, L_pln, S) # AICc Poisson lognormal
-              
        
             # Negative binomial
             n0, p0 = md.negbin_solver(obsabundance)
             L_negbin = md.negbin_ll(obsabundance, n0, p0) # Log-likelihood of negative binomial
             AICc_negbin = macroecotools.AICc(k2, L_negbin, S)# AICc negative binomial
-        
+            
+            # Geometric series
+            p = md.trunc_geom_solver(obsabundance, N) # For the upper bound, we are using the total community abundance
+            L_geometric = md.geom_ll(obsabundance, p) # Log-likelihood of geometric series
+            AICc_geometric = macroecotools.AICc(k1, L_geometric, S) # AICc geometric series
             
             # Generalized Yule
             list_obsabundance = obsabundance.tolist() # Yule solver uses list method incompatible with NumPy array.
@@ -102,23 +105,14 @@ def model_comparisons(raw_data, dataset_name, data_dir, cutoff = 9):
             # This distribution sometimes does not converge to a solution and returns none for a, b.
             try:
                 L_gen_yule = md.gen_yule_ll(obsabundance, a, b)
+                AICc_gen_yule = macroecotools.AICc(k2, L_gen_yule, S) # AICc generalized Yule
                 
+                # Make list of AICc values
+                AICc_list = [AICc_logser, AICc_logser_untruncated, AICc_pln, AICc_negbin, AICc_geometric, AICc_gen_yule]
+            
             except AttributeError:
-                continue # If the distribution does not converge to a solution, the site is skipped  
-                
-            AICc_gen_yule = macroecotools.AICc(k2, L_gen_yule, S) # AICc generalized Yule
-                
-               
-            
-            # Geometric series
-            p = md.trunc_geom_solver(obsabundance, N) # For the upper bound, we are using the total community abundance
-            L_geometric = md.geom_ll(obsabundance, p) # Log-likelihood of geometric series
-            AICc_geometric = macroecotools.AICc(k1, L_geometric, S) # AICc geometric series
-  
-            
-            # Make list of AICc values
-            AICc_list = [AICc_logser, AICc_logser_untruncated, AICc_pln, AICc_negbin, AICc_gen_yule, AICc_geometric]
-            
+                pass 
+                AICc_list = [AICc_logser, AICc_logser_untruncated, AICc_pln, AICc_negbin, AICc_geometric] # If the distribution does not converge to a solution, the AICc_value is left blank.            
             
             # Calulate AICc weight            
             weight = macroecotools.aic_weight(AICc_list, S, cutoff = 4)
