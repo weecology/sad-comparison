@@ -25,11 +25,12 @@ python setup.py install (with sudo for Linux)
 
 #####SAD models tested and packages used:  
 Maximum Entropy Theory of Ecology (METE) (METE)  
-Logseries (macroecotools/macroecodistributions)  
-Poisson lognormal (macroecotools/macroecodistributions)  
-Negative binomial (macroecotools/macroecodistributions)  
-Generalized Yule (macroecotools/macroecodistributions)    
-Geometric series (macroecotools/macroecodistributions)  
+Logseries (macroecotools/macroeco_distributions)  
+Poisson lognormal (macroecotools/macroeco_distributions)  
+Negative binomial (macroecotools/macroeco_distributions)
+Geometric series (macroecotools/macroeco_distributions)  
+Generalized Yule (macroecotools/macroeco_distributions)    
+Geometric series (macroecotools/macroeco_distributions)  
 
     
 Neutral theory: Because neutral theory predicts the negative binomial distribution at the local scale (Connolly et al. 2014. Commonness and rarity in the marine biosphere. PNAS 111: 8524-8529. http://www.pnas.org/content/111/23/8524.abstract), we used the prediction for the negative binomial distribution (macroecotools/macroecodistributions) instead of fitting the neutral theory model directly.  The AICc for neutral theory was calculated with the appropriate number of parameters for neutral theory.
