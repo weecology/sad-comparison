@@ -40,6 +40,7 @@ def model_comparisons(raw_data, dataset_name, data_dir, cutoff = 9):
     Poisson lognormal (macroecotools/macroecodistributions)
     Negative binomial (macroecotools/macroecodistributions)
     Generalized Yule (macroecotools/macroecodistributions)
+    Geometric series (macroecotools/macroecodistributions)
    
     
     Neutral theory: Neutral theory predicts the negative binomial distribution (Connolly et al. 2014. Commonness and rarity in the marine biosphere. PNAS 111: 8524-8529. http://www.pnas.org/content/111/23/8524.abstract
