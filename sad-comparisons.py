@@ -119,26 +119,21 @@ def model_comparisons(raw_data, dataset_name, data_dir, cutoff = 9):
             try:
                 L_gen_yule = md.gen_yule_ll(obsabundance, a, b)
                 AICc_gen_yule = macroecotools.AICc(k2, L_gen_yule, S) # AICc generalized Yule
-                
-                if AICc_gen_yule > 0:
-                    gen_yule_blank = 0
-                    AICc_list = AICc_list + [AICc_gen_yule]
-                    
-                else:
-                    gen_yule_blank = 1
-                
             
             except AttributeError:
-                gen_yule_blank = 0 # If the distribution does not converge to a solution, the AICc_value is left blank.
+                gen_yule_blank = 0 # If the distribution does not converge to a solution, the output AICc weight is blank.
       
             
             # Calulate AICc weight            
             weight = macroecotools.aic_weight(AICc_list, S, cutoff = 4)
             # Convert weight to list
             weights_output = weight.tolist()
+            
+            # Inserts a blank in the output if the negative binomial exceeded the max number of iterations
             if negbin_blank == 1:
                 weights_output. insert(3, '')
-                
+            
+            # Inserts a blank in the output if the generalized Yule failed to converge    
             if gen_yule_blank == 1:
                 weights_output.append('')
                 
@@ -167,7 +162,7 @@ datasets = ['bbs', 'cbc', 'fia', 'gentry', 'mcdb', 'naba'] # Dataset ID codes
 
 # Starts actual analyses for each dataset in turn.
 for dataset in datasets:
-    datafile = data_dir + dataset + testing_ext
+    datafile = data_dir + dataset + analysis_ext
         
     raw_data = import_abundance(datafile) # Import data
 
