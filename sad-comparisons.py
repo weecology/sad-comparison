@@ -120,7 +120,7 @@ def model_comparisons(raw_data, dataset_name, data_dir, cutoff = 9):
                 L_gen_yule = md.gen_yule_ll(obsabundance, a, b)
                 AICc_gen_yule = macroecotools.AICc(k2, L_gen_yule, S) # AICc generalized Yule
                 
-                if AICc_gen_yule < 0:
+                if AICc_gen_yule > 0:
                     gen_yule_blank = 0
                     AICc_list = AICc_list + [AICc_gen_yule]
                     
