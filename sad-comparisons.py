@@ -52,6 +52,10 @@ def model_comparisons(raw_data, dataset_name, data_dir, cutoff = 9):
     output1 = csv.writer(open(data_dir + dataset_name + '_obs_pred.csv','wb'))
     output2 = csv.writer(open(data_dir + dataset_name + '_dist_test.csv','wb')) 
     
+    # Insert header
+    output1.writerow(['site', 'observed', 'predicted'])
+    output2.writerow(['site', 'S', 'N', 'AICc_logseries', 'AICc_logseries_untruncated', 'AICc_pln', 'AICc_negbin', 'AICc_gen_yule', 'AICc_geometric'])
+    
     for site in usites:
         subsites = raw_data["site"][raw_data["site"] == site]        
         subabundance = raw_data["ab"][raw_data["site"] == site]
@@ -67,43 +71,50 @@ def model_comparisons(raw_data, dataset_name, data_dir, cutoff = 9):
             p_untruncated = exp(-mete.get_beta(S, N, version='untruncated'))
             obsabundance = np.sort(subabundance)[::-1]
             
-            # Calculate log-likelihoods of species abundance models:
+            # Calculate Akaike weight of species abundance models:
+            # Parameter k is the number of fitted parameters
+            k1 = 1
+            k2 = 2            
+            
+            # Calculate log-likelihoods of species abundance models and calculate AICc values:
             # Logseries
             L_logser = md.logser_ll(obsabundance, p) # Log-likelihood of truncated logseries
             L_logser_untruncated = md.logser_ll(obsabundance, p_untruncated) # Log-likelihood of untruncated logseries
+            AICc_logser = macroecotools.AICc(k2, L_logser, S) # AICc logseries
+            AICc_logser_untruncated = macroecotools.AICc(k1, L_logser_untruncated, S) # AICc logseries untruncated
+          
             
             # Poisson lognormal
             mu, sigma = md.pln_solver(obsabundance)
             L_pln = md.pln_ll(obsabundance, mu,sigma) # Log-likelihood of Poisson lognormal
+            AICc_pln = macroecotools.AICc(k2, L_pln, S) # AICc Poisson lognormal
+              
        
             # Negative binomial
             n0, p0 = md.negbin_solver(obsabundance)
             L_negbin = md.negbin_ll(obsabundance, n0, p0) # Log-likelihood of negative binomial
+            AICc_negbin = macroecotools.AICc(k2, L_negbin, S)# AICc negative binomial
+        
             
             # Generalized Yule
-            # This distribution sometimes does not converge to a solution and returns none for a, b.
             list_obsabundance = obsabundance.tolist() # Yule solver uses list method incompatible with NumPy array.
             a, b = md.gen_yule_solver(list_obsabundance)
-            L_gen_yule = md.gen_yule_ll(obsabundance, a, b)
+            # This distribution sometimes does not converge to a solution and returns none for a, b.
+            try:
+                L_gen_yule = md.gen_yule_ll(obsabundance, a, b)
+                
+            except AttributeError:
+                continue # If the distribution does not converge to a solution, the site is skipped  
+                
+            AICc_gen_yule = macroecotools.AICc(k2, L_gen_yule, S) # AICc generalized Yule
+                
+               
             
             # Geometric series
             p = md.trunc_geom_solver(obsabundance, N) # For the upper bound, we are using the total community abundance
-            L_geometric = md.geom_ll(obsabundance, p) # Log-likelihood of geometric series             
-    
-            
-            # Calculate Akaike weight of species abundance models:
-            # Parameter k is the number of fitted parameters
-            k1 = 1
-            k2 = 2
-            
-            # Calculate AICc values
-            AICc_logser = macroecotools.AICc(k2, L_logser, S) # AICc logseries
-            AICc_logser_untruncated = macroecotools.AICc(k1, L_logser_untruncated, S) # AICc logseries untruncated
-            AICc_pln = macroecotools.AICc(k2, L_pln, S) # AICc Poisson lognormal
-            AICc_negbin = macroecotools.AICc(k2, L_negbin, S)# AICc negative binomial
-            AICc_gen_yule = macroecotools.AICc(k2, L_gen_yule, S)# AICc generalized Yule
+            L_geometric = md.geom_ll(obsabundance, p) # Log-likelihood of geometric series
             AICc_geometric = macroecotools.AICc(k1, L_geometric, S) # AICc geometric series
-                        
+  
             
             # Make list of AICc values
             AICc_list = [AICc_logser, AICc_logser_untruncated, AICc_pln, AICc_negbin, AICc_gen_yule, AICc_geometric]
@@ -133,7 +144,7 @@ data_dir = './sad-data/' # path to data directory
 analysis_ext = '_spab.csv' # Extension for raw species abundance files
 testing_ext = '_spab_testing.csv'
 
-datasets = ['bbs'] # Dataset ID codes
+datasets = ['bbs', 'cbc', 'fia', 'gentry', 'mcdb', 'naba'] # Dataset ID codes
 
 # Starts actual analyses for each dataset in turn.
 for dataset in datasets:
