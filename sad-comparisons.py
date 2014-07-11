@@ -132,7 +132,7 @@ def model_comparisons(raw_data, dataset_name, data_dir, cutoff = 9):
             
             # Inserts a blank in the output if the negative binomial exceeded the max number of iterations
             if negbin_blank == 1:
-                weights_output. insert(3, '')
+                weights_output.insert(3, '')
             
             # Inserts a blank in the output if the generalized Yule failed to converge    
             if gen_yule_blank == 1:
