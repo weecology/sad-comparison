@@ -39,15 +39,21 @@ def model_comparisons(raw_data, dataset_name, data_dir, cutoff = 9):
     Logseries (macroecotools/macroecodistributions)
     Poisson lognormal (macroecotools/macroecodistributions)
     Negative binomial (macroecotools/macroecodistributions)
+    Geometric series (macroecotools/macroecodistributions)
     Generalized Yule (macroecotools/macroecodistributions)
-    Geometric (macroecotools/macroecodistributions)
-    Pareto (Power) distribution (macroecotools/macroecodistributions)
-    
-    
-    Neutral theory ()
+
+    Neutral theory: Neutral theory predicts the negative binomial distribution (Connolly et al. 2014. Commonness and rarity in the marine biosphere. PNAS 111: 8524-8529. http://www.pnas.org/content/111/23/8524.abstract
     
     """
     usites = np.sort(list(set(raw_data["site"])))
+    
+    # Open output files
+    output1 = csv.writer(open(data_dir + dataset_name + '_obs_pred.csv','wb'))
+    output2 = csv.writer(open(data_dir + dataset_name + '_dist_test.csv','wb')) 
+    
+    # Insert header
+    output1.writerow(['site', 'observed', 'predicted'])
+    output2.writerow(['site', 'S', 'N', 'AICc_logseries', 'AICc_logseries_untruncated', 'AICc_pln', 'AICc_negbin', 'AICc_geometric' ,'AICc_gen_yule'])
     
     for site in usites:
         subsites = raw_data["site"][raw_data["site"] == site]        
@@ -64,64 +70,85 @@ def model_comparisons(raw_data, dataset_name, data_dir, cutoff = 9):
             p_untruncated = exp(-mete.get_beta(S, N, version='untruncated'))
             obsabundance = np.sort(subabundance)[::-1]
             
-            # Calculate log-likelihoods of species abundance models:
+            # Calculate Akaike weight of species abundance models:
+            # Parameter k is the number of fitted parameters
+            k1 = 1
+            k2 = 2            
+            
+            # Calculate log-likelihoods of species abundance models and calculate AICc values:
             # Logseries
             L_logser = md.logser_ll(obsabundance, p) # Log-likelihood of truncated logseries
             L_logser_untruncated = md.logser_ll(obsabundance, p_untruncated) # Log-likelihood of untruncated logseries
+            AICc_logser = macroecotools.AICc(k2, L_logser, S) # AICc logseries
+            AICc_logser_untruncated = macroecotools.AICc(k1, L_logser_untruncated, S) # AICc logseries untruncated
+            #Start making AICc list
+            AICc_list = [AICc_logser, AICc_logser_untruncated]
+          
             
             # Poisson lognormal
             mu, sigma = md.pln_solver(obsabundance)
             L_pln = md.pln_ll(obsabundance, mu,sigma) # Log-likelihood of Poisson lognormal
-            
-           
+            AICc_pln = macroecotools.AICc(k2, L_pln, S) # AICc Poisson lognormal
+            # Add to AICc list
+            AICc_list = AICc_list + [AICc_pln]
+       
             # Negative binomial
             n0, p0 = md.negbin_solver(obsabundance)
             L_negbin = md.negbin_ll(obsabundance, n0, p0) # Log-likelihood of negative binomial
+            if np.isnan(L_negbin):
+                negbin_blank = 1 # The negative binomial distribution sometimes fails to come to a solution before the maximum number of iterations.
+                
+            else:
+                AICc_negbin = macroecotools.AICc(k2, L_negbin, S)# AICc negative binomial
+                # Add to AICc list
+                AICc_list = AICc_list + [AICc_negbin]
+                negbin_blank = 0
+
+            
+            # Geometric series
+            p = md.trunc_geom_solver(obsabundance, N) # For the upper bound, we are using the total community abundance
+            L_geometric = md.geom_ll(obsabundance, p) # Log-likelihood of geometric series
+            AICc_geometric = macroecotools.AICc(k1, L_geometric, S) # AICc geometric series
+            # Add to AICc list
+            AICc_list = AICc_list + [AICc_geometric]            
             
             # Generalized Yule
             list_obsabundance = obsabundance.tolist() # Yule solver uses list method incompatible with NumPy array.
             a, b = md.gen_yule_solver(list_obsabundance)
-            L_gen_yule = md.gen_yule_ll(obsabundance, a, b)
+            # This distribution sometimes does not converge to a solution and returns none for a, b.
+            try:
+                L_gen_yule = md.gen_yule_ll(obsabundance, a, b)
+                AICc_gen_yule = macroecotools.AICc(k2, L_gen_yule, S) # AICc generalized Yule
+                gen_yule_blank = 1
             
-            # Geometric series
-            # Needs solver before implementing
-            # L_geometric = md.geom_ll(obsabundance, p) # Log-likelihood of geometric series            
-            
-            # Pareto distribution
-            
-            
-            # Calculate Akaike weight of species abundance models:
-            # Parameter k is the number of fitted parameters
-            k1 = 1
-            k2 = 2
-            
-            # Calculate AICc values
-            AICc_logser = macroecotools.AICc(k2, L_logser, S) # AICc logseries
-            AICc_logser_untruncated = macroecotools.AICc(k1, L_logser_untruncated, S) # AICc logseries untruncated
-            AICc_pln = macroecotools.AICc(k2, L_pln, S) # AICc Poisson lognormal
-            AICc_negbin = macroecotools.AICc(k2, L_negbin, S)# AICc negative binomial
-            AICc_gen_yule = macroecotools.AICc(k2, L_gen_yule, S)
-            # AICc_geometric = macroecotools.AICc(k1, L_geometric, S) # AICc geometric series
-            # AICc_pareto = macroecotools.AICc(k1, L_pareto, S) # AICc Pareto
-            
-            # Make list of AICc values
-            AICc_list = [AICc_logser, AICc_logser_untruncated, AICc_pln, AICc_negbin, AICc_gen_yule]
-            
+            except AttributeError:
+                gen_yule_blank = 0 # If the distribution does not converge to a solution, the output AICc weight is blank.
+      
             
             # Calulate AICc weight            
             weight = macroecotools.aic_weight(AICc_list, S, cutoff = 4)
-                        
+            # Convert weight to list
+            weights_output = weight.tolist()
             
+            # Inserts a blank in the output if the negative binomial exceeded the max number of iterations
+            if negbin_blank == 1:
+                weights_output.insert(3, '')
+            
+            # Inserts a blank in the output if the generalized Yule failed to converge    
+            if gen_yule_blank == 1:
+                weights_output.append('')
+                
+                                    
             # Format results for output
             results = ((np.column_stack((subsites, obsabundance, pred))))
-            results2 = ((np.column_stack(([site, S, N, p] + weight.tolist()))))
-                                         
-            # Save results to a csv file:
-            output1 = csv.writer(open(data_dir + dataset_name + '_obs_pred.csv','wb'))
-            output2 = csv.writer(open(data_dir + dataset_name + '_dist_test.csv','wb'))   
-            
+            for weight in weights_output:
+                results2 = [[site, S, N] + weights_output]
+
+                                            
+            # Save results to a csv file:            
             output1.writerows(results)
             output2.writerows(results2)
+
 
 """ Function to see which predicted model fits best with the empirical data for each community. """
 
@@ -136,9 +163,8 @@ datasets = ['bbs', 'cbc', 'fia', 'gentry', 'mcdb', 'naba'] # Dataset ID codes
 
 # Starts actual analyses for each dataset in turn.
 for dataset in datasets:
-    datafile = data_dir + dataset + testing_ext
-    dataset_name = dataset
+    datafile = data_dir + dataset + analysis_ext
         
     raw_data = import_abundance(datafile) # Import data
-    
-    model_comparisons(raw_data, dataset_name, data_dir, cutoff = 9) # Run analyses on data
+
+    model_comparisons(raw_data, dataset, data_dir, cutoff = 9) # Run analyses on data
