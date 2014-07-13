@@ -98,13 +98,16 @@ def model_comparisons(raw_data, dataset_name, data_dir, cutoff = 9):
             if np.isnan(L_negbin):
                 negbin_blank = 1 # The negative binomial distribution sometimes fails to come to a solution before the maximum number of iterations.
                 
+            elif np.isinf(L_negbin):
+                negbin_blank = 1 # The negative binomial distribution returned -inf            
+                
             else:
                 AICc_negbin = macroecotools.AICc(k2, L_negbin, S)# AICc negative binomial
                 # Add to AICc list
                 AICc_list = AICc_list + [AICc_negbin]
                 negbin_blank = 0
+                
 
-            
             # Geometric series
             p = md.trunc_geom_solver(obsabundance, N) # For the upper bound, we are using the total community abundance
             L_geometric = md.geom_ll(obsabundance, p) # Log-likelihood of geometric series
@@ -169,7 +172,7 @@ datasets = ['bbs', 'cbc', 'fia', 'gentry', 'mcdb', 'naba'] # Dataset ID codes
 
 # Starts actual analyses for each dataset in turn.
 for dataset in datasets:
-    datafile = data_dir + dataset + analysis_ext
+    datafile = data_dir + dataset + testing_ext
         
     raw_data = import_abundance(datafile) # Import data
 
