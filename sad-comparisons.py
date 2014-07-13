@@ -114,7 +114,13 @@ def model_comparisons(raw_data, dataset_name, data_dir, cutoff = 9):
             
             # Generalized Yule
             list_obsabundance = obsabundance.tolist() # Yule solver uses list method incompatible with NumPy array.
-            a, b = md.gen_yule_solver(list_obsabundance)
+            # This distribution sometimes does not converge to a solution and throws a RuntimeError.
+            try:
+                a, b = md.gen_yule_solver(list_obsabundance)
+                
+            except RuntimeError:
+                gen_yule_blank = 0 # If the distribution does not converge to a solution, the output AICc weight is blank.
+                
             # This distribution sometimes does not converge to a solution and returns none for a, b.
             try:
                 L_gen_yule = md.gen_yule_ll(obsabundance, a, b)
