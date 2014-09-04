@@ -40,7 +40,6 @@ def model_comparisons(raw_data, dataset_name, data_dir, cutoff = 9):
     Poisson lognormal (macroecotools/macroecodistributions)
     Negative binomial (macroecotools/macroecodistributions)
     Geometric series (macroecotools/macroecodistributions)
-    Generalized Yule (macroecotools/macroecodistributions)
 
     Neutral theory: Neutral theory predicts the negative binomial distribution (Connolly et al. 2014. Commonness and rarity in the marine biosphere. PNAS 111: 8524-8529. http://www.pnas.org/content/111/23/8524.abstract
     
@@ -53,7 +52,7 @@ def model_comparisons(raw_data, dataset_name, data_dir, cutoff = 9):
     
     # Insert header
     output1.writerow(['site', 'observed', 'predicted'])
-    output2.writerow(['site', 'S', 'N', 'AICc_logseries', 'AICc_logseries_untruncated', 'AICc_pln', 'AICc_negbin', 'AICc_geometric' ,'AICc_gen_yule'])
+    output2.writerow(['site', 'S', 'N', 'AICc_logseries', 'AICc_logseries_untruncated', 'AICc_pln', 'AICc_negbin', 'AICc_geometric'])
     
     for site in usites:
         subsites = raw_data["site"][raw_data["site"] == site]        
@@ -115,24 +114,6 @@ def model_comparisons(raw_data, dataset_name, data_dir, cutoff = 9):
             # Add to AICc list
             AICc_list = AICc_list + [AICc_geometric]            
             
-            # Generalized Yule
-            list_obsabundance = obsabundance.tolist() # Yule solver uses list method incompatible with NumPy array.
-            # This distribution sometimes does not converge to a solution and throws a RuntimeError.
-            try:
-                a, b = md.gen_yule_solver(list_obsabundance)
-                
-            except RuntimeError:
-                gen_yule_blank = 0 # If the distribution does not converge to a solution, the output AICc weight is blank.
-                
-            # This distribution sometimes does not converge to a solution and returns none for a, b.
-            try:
-                L_gen_yule = md.gen_yule_ll(obsabundance, a, b)
-                AICc_gen_yule = macroecotools.AICc(k2, L_gen_yule, S) # AICc generalized Yule
-                gen_yule_blank = 1
-            
-            except AttributeError:
-                gen_yule_blank = 0 # If the distribution does not converge to a solution, the output AICc weight is blank.
-      
             
             # Calulate AICc weight            
             weight = macroecotools.aic_weight(AICc_list, S, cutoff = 4)
@@ -142,10 +123,6 @@ def model_comparisons(raw_data, dataset_name, data_dir, cutoff = 9):
             # Inserts a blank in the output if the negative binomial exceeded the max number of iterations
             if negbin_blank == 1:
                 weights_output.insert(3, '')
-            
-            # Inserts a blank in the output if the generalized Yule failed to converge    
-            if gen_yule_blank == 1:
-                weights_output.append('')
                 
                                     
             # Format results for output
@@ -166,13 +143,12 @@ def model_comparisons(raw_data, dataset_name, data_dir, cutoff = 9):
 # Set up analysis parameters
 data_dir = './sad-data/' # path to data directory
 analysis_ext = '_spab.csv' # Extension for raw species abundance files
-testing_ext = '_spab_testing.csv'
 
 datasets = ['bbs', 'cbc', 'fia', 'gentry', 'mcdb', 'naba'] # Dataset ID codes
 
 # Starts actual analyses for each dataset in turn.
 for dataset in datasets:
-    datafile = data_dir + dataset + testing_ext
+    datafile = data_dir + dataset + analysis_ext
         
     raw_data = import_abundance(datafile) # Import data
 
