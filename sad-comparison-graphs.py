@@ -62,7 +62,7 @@ def winning_model(data_dir, dataset_name, results):
         # 4 = Geometric series
 
         # Format results for output
-        processed_results = [[dataset_name] + [site_ID] + [S] + [N] + [winning_model] + [AICc_min_weight]]
+        processed_results = [dataset_name] + [site_ID] + [S] + [N] + [winning_model] + [AICc_min_weight]
         print(processed_results)
         
                                         
@@ -82,7 +82,7 @@ def winning_model(data_dir, dataset_name, results):
         con.commit()        
         
         
-        return processed_results
+    return processed_results
         
 # Summarize the number of wins for each model/dataset
 def count_wins(raw_wins):
