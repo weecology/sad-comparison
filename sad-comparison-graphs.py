@@ -11,11 +11,23 @@ import matplotlib.pyplot as plt
 import numpy as np
 from math import log, exp
 from scipy import stats
+import sqlite3 as dbapi
 
 from mpl_toolkits.axes_grid.inset_locator import inset_axes
 
-# Function to import the AICc results.
+# Set up database capabilities 
+# Set up ability to query data
+con = dbapi.connect('SummarizedResults.sqlite')
+cur = con.cursor()
 
+# Switch con data type to string
+con.text_factory = str
+
+#Create database for simulated data """
+cur.execute("""DROP TABLE IF EXISTS RawResults""")
+con.commit()  
+
+# Function to import the AICc results.
 def import_results(datafile):
     """Imports raw result .csv files in the form: site, S, N, AICc_logseries, AICc_logseries_untruncated, AICc_pln, AICc_negbin, AICc_geometric."""
     raw_results = np.genfromtxt(datafile, dtype = "S15, i8, i8, f8, f8, f8, f8, f8", skip_header = 1,
@@ -30,7 +42,7 @@ def winning_model(data_dir, dataset_name, results):
     output_processed.writerow(["# 0 = Logseries, 1 = Untruncated logseries, 2 = Poisson lognormal, 3 = Negative binomial, 4 = Geometric series"])
     
     # Insert header
-    output_processed.writerow(['site', 'S', 'N', "model_code", "AICc_weight_model"])
+    output_processed.writerow(['dataset', 'site', 'S', 'N', "model_code", "AICc_weight_model"])
    
     for site in results:
         site_results = site.tolist()
@@ -50,44 +62,32 @@ def winning_model(data_dir, dataset_name, results):
         # 4 = Geometric series
 
         # Format results for output
-        processed_results = [[site_ID] + [S] + [N] + [winning_model] + [AICc_min_weight]]
+        processed_results = [[dataset_name] + [site_ID] + [S] + [N] + [winning_model] + [AICc_min_weight]]
+        print(processed_results)
+        
                                         
         # Save results to a csv file:            
         output_processed.writerows(processed_results)
+        
+        # Save results to sqlite database
+        cur.execute("""CREATE TABLE IF NOT EXISTS RawResults
+                        (dataset_code TEXT,
+                         site TEXT,
+                         S INTEGER,
+                         N INTEGER,
+                         model_code INTEGER, 
+                         AICc_weight_model FLOAT)""")
+           
+        cur.executemany("""INSERT INTO RawResults VALUES(?,?,?,?,?,?)""", processed_results)
+        con.commit()        
+        
         
         return processed_results
         
 # Summarize the number of wins for each model/dataset
 def count_wins(raw_wins):
-    logseries_wins = 0 # Counter for logseries
-    untruncated_logseries_wins = 0 # Counter for untruncated logseries
-    pln_wins = 0 # Counter for Poisson lognormal
-    neg_bin_wins = 0 # Counter for negative binomial
-    geometric_wins = 0 # Counter for geometric series
-   
-    for site in raw_wins:
-        model_ID = site[3]
-        if model_ID  == 0:
-            logseries_wins += 1
-             
-        elif model_ID  == 1:
-            untruncated_logseries_wins += 1
-        
-        elif model_ID  == 2:
-            pln_wins += 1
-            
-        elif model_ID  == 3:
-            neg_bin_wins += 1
-            
-        else:
-            geometric_wins = geometric_wins + 1
-            print(geometric_wins)
-            
-    count_wins = [logseries_wins] + [untruncated_logseries_wins] + [pln_wins] + [neg_bin_wins] + [geometric_wins] 
-    print(count_wins)
-
-        
-              
+    wins = ['a bunch']
+    return wins
 
 # Function to make histograms.
 
