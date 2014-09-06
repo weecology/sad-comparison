@@ -43,7 +43,7 @@ def winning_model(data_dir, dataset_name, results):
         AICc_min_weight = min(AICc_weights) # This will return the actual AICc_weight of the winning model, given that the winning model is the one with the lowest AICc weight.
 
         winning_model = AICc_weights.index(AICc_min_weight) # This will return the winning model, where the model is indicated by the index position
-        # 0 = Logseries'
+        # 0 = Logseries
         # 1 = Untruncated logseries
         # 2 = Poisson lognormal
         # 3 = Negative binomial
@@ -54,6 +54,39 @@ def winning_model(data_dir, dataset_name, results):
                                         
         # Save results to a csv file:            
         output_processed.writerows(processed_results)
+        
+        return processed_results
+        
+# Summarize the number of wins for each model/dataset
+def count_wins(raw_wins):
+    logseries_wins = 0 # Counter for logseries
+    untruncated_logseries_wins = 0 # Counter for untruncated logseries
+    pln_wins = 0 # Counter for Poisson lognormal
+    neg_bin_wins = 0 # Counter for negative binomial
+    geometric_wins = 0 # Counter for geometric series
+   
+    for site in raw_wins:
+        model_ID = site[3]
+        if model_ID  == 0:
+            logseries_wins += 1
+             
+        elif model_ID  == 1:
+            untruncated_logseries_wins += 1
+        
+        elif model_ID  == 2:
+            pln_wins += 1
+            
+        elif model_ID  == 3:
+            neg_bin_wins += 1
+            
+        else:
+            geometric_wins = geometric_wins + 1
+            print(geometric_wins)
+            
+    count_wins = [logseries_wins] + [untruncated_logseries_wins] + [pln_wins] + [neg_bin_wins] + [geometric_wins] 
+    print(count_wins)
+
+        
               
 
 # Function to make histograms.
@@ -71,3 +104,5 @@ for dataset in datasets:
     raw_results = import_results(datafile) # Import data
     
     processed_results = winning_model(data_dir, dataset, raw_results) # Find the winning model
+    
+    win_summary = count_wins(processed_results) # Counts the number of wins for each model
