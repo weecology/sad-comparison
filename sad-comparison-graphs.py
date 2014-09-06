@@ -26,8 +26,11 @@ def import_results(datafile):
 def winning_model(data_dir, dataset_name, results):
     # Open output files
     output_processed = csv.writer(open(data_dir + dataset_name + '_processed_results.csv','wb'))
+    # Insert comment line
+    output_processed.writerow(["# 0 = Logseries, 1 = Untruncated logseries, 2 = Poisson lognormal, 3 = Negative binomial, 4 = Geometric series"])
+    
     # Insert header
-    output_processed.writerow(['site', 'S', 'N', "model_number", "AICc_weight_model"])
+    output_processed.writerow(['site', 'S', 'N', "model_code", "AICc_weight_model"])
    
     for site in results:
         site_results = site.tolist()
@@ -47,7 +50,7 @@ def winning_model(data_dir, dataset_name, results):
         # 4 = Geometric series
 
         # Format results for output
-        processed_results = [[site_ID] + [S] + [N] + [AICc_min_weight]]
+        processed_results = [[site_ID] + [S] + [N] + [winning_model] + [AICc_min_weight]]
                                         
         # Save results to a csv file:            
         output_processed.writerows(processed_results)
