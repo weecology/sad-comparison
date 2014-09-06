@@ -62,7 +62,7 @@ def winning_model(data_dir, dataset_name, results):
         # 4 = Geometric series
 
         # Format results for output
-        processed_results = [dataset_name] + [site_ID] + [S] + [N] + [winning_model] + [AICc_min_weight]
+        processed_results = [[dataset_name] + [site_ID] + [S] + [N] + [winning_model] + [AICc_min_weight]]
         print(processed_results)
         
                                         
@@ -84,11 +84,7 @@ def winning_model(data_dir, dataset_name, results):
         
     return processed_results
         
-# Summarize the number of wins for each model/dataset
-def count_wins(raw_wins):
-    wins = ['a bunch']
-    return wins
-
+   
 # Function to make histograms.
 
 # Set up analysis parameters
@@ -106,3 +102,9 @@ for dataset in datasets:
     processed_results = winning_model(data_dir, dataset, raw_results) # Find the winning model
     
     win_summary = count_wins(processed_results) # Counts the number of wins for each model
+    
+    # Summarize the number of wins for each model/dataset
+    wins_by_dataset = cur.execute("""SELECT dataset_code, model_code, COUNT(model_code) AS total_wins FROM RawResults
+                                        GROUP BY dataset_code, model_code""")
+           
+    wins_by_dataset = cur.fetchall()     
