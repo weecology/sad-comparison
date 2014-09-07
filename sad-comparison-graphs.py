@@ -93,7 +93,8 @@ results_ext = '_dist_test.csv' # Extension for raw species abundance files
 
 datasets = ['bbs', 'cbc', 'fia', 'gentry', 'mcdb', 'naba'] # Dataset ID codes
 
-needs_processing = False # Toggle variable so I don't have to rerun all the setup if it is already processed. 
+# Asks for toggle variable so I don't have to rerun all the setup if it is already processed.
+needs_processing = input("Data needs to be processed into an sqlite database, True or False?  ")  
 
 # Starts actual processing for each set of results in turn.
 if needs_processing == True:
