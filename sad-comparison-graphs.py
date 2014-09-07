@@ -79,9 +79,7 @@ def winning_model(data_dir, dataset_name, results):
         cur.executemany("""INSERT INTO RawResults VALUES(?,?,?,?,?,?)""", processed_results)
         con.commit()
         
-        con.close()
-        
-        
+    con.close()
     return processed_results
         
    
