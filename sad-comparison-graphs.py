@@ -56,30 +56,19 @@ def winning_model(data_dir, dataset_name, results):
         # Save results to a csv file:            
         output_processed.writerows(processed_results)
         
-        # Save results to sqlite database
-        # Set up database capabilities 
-        # Set up ability to query data
-        con = dbapi.connect('SummarizedResults.sqlite')
-        cur = con.cursor()
-        
-        # Switch con data type to string
-        con.text_factory = str
-        
+        # Save results to sqlite database      
         #Create database for simulated data """
-        cur.execute("""DROP TABLE IF EXISTS RawResults""")
-        con.commit()          
         cur.execute("""CREATE TABLE IF NOT EXISTS RawResults
-                        (dataset_code TEXT,
-                         site TEXT,
-                         S INTEGER,
-                         N INTEGER,
-                         model_code INTEGER, 
-                         AICc_weight_model FLOAT)""")
+                       (dataset_code TEXT,
+                        site TEXT,
+                        S INTEGER,
+                        N INTEGER,
+                        model_code INTEGER, 
+                        AICc_weight_model FLOAT)""")
            
         cur.executemany("""INSERT INTO RawResults VALUES(?,?,?,?,?,?)""", processed_results)
         con.commit()
         
-    con.close()
     return processed_results
         
    
@@ -96,12 +85,25 @@ needs_processing = input("Data needs to be processed into an sqlite database, Tr
 
 # Starts actual processing for each set of results in turn.
 if needs_processing == True:
+    
+    # Set up database capabilities 
+    # Set up ability to query data
+    con = dbapi.connect('SummarizedResults.sqlite')
+    cur = con.cursor()
+    
+    # Switch con data type to string
+    con.text_factory = str    
+    cur.execute("""DROP TABLE IF EXISTS RawResults""")
+    con.commit()      
     for dataset in datasets:
         datafile = data_dir + dataset + results_ext
         
         raw_results = import_results(datafile) # Import data
 
         processed_results = winning_model(data_dir, dataset, raw_results) # Finds the winning model for each site
+    
+    #Close connection to database
+    con.close()    
 
 # Summarize the number of wins for each model/dataset
 # Set up database capabilities 
