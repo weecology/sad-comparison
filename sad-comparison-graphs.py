@@ -15,18 +15,6 @@ import sqlite3 as dbapi
 
 from mpl_toolkits.axes_grid.inset_locator import inset_axes
 
-# Set up database capabilities 
-# Set up ability to query data
-con = dbapi.connect('SummarizedResults.sqlite')
-cur = con.cursor()
-
-# Switch con data type to string
-con.text_factory = str
-
-#Create database for simulated data """
-cur.execute("""DROP TABLE IF EXISTS RawResults""")
-con.commit()  
-
 # Function to import the AICc results.
 def import_results(datafile):
     """Imports raw result .csv files in the form: site, S, N, AICc_logseries, AICc_logseries_untruncated, AICc_pln, AICc_negbin, AICc_geometric."""
@@ -69,6 +57,17 @@ def winning_model(data_dir, dataset_name, results):
         output_processed.writerows(processed_results)
         
         # Save results to sqlite database
+        # Set up database capabilities 
+        # Set up ability to query data
+        con = dbapi.connect('SummarizedResults.sqlite')
+        cur = con.cursor()
+        
+        # Switch con data type to string
+        con.text_factory = str
+        
+        #Create database for simulated data """
+        cur.execute("""DROP TABLE IF EXISTS RawResults""")
+        con.commit()          
         cur.execute("""CREATE TABLE IF NOT EXISTS RawResults
                         (dataset_code TEXT,
                          site TEXT,
@@ -78,7 +77,9 @@ def winning_model(data_dir, dataset_name, results):
                          AICc_weight_model FLOAT)""")
            
         cur.executemany("""INSERT INTO RawResults VALUES(?,?,?,?,?,?)""", processed_results)
-        con.commit()        
+        con.commit()
+        
+        con.close()
         
         
     return processed_results
@@ -92,17 +93,31 @@ results_ext = '_dist_test.csv' # Extension for raw species abundance files
 
 datasets = ['bbs', 'cbc', 'fia', 'gentry', 'mcdb', 'naba'] # Dataset ID codes
 
-# Starts actual processing for each set of results in turn.
-for dataset in datasets:
-    datafile = data_dir + dataset + results_ext
-        
-    raw_results = import_results(datafile) # Import data
-    
-    processed_results = winning_model(data_dir, dataset, raw_results) # Find the winning model
+needs_processing = False # Toggle variable so I don't have to rerun all the setup if it is already processed. 
 
-    # Summarize the number of wins for each model/dataset
-    wins_by_dataset = cur.execute("""SELECT dataset_code, model_code, COUNT(model_code) AS total_wins FROM RawResults
-                                        GROUP BY dataset_code, model_code""")
+# Starts actual processing for each set of results in turn.
+if needs_processing == True:
+    for dataset in datasets:
+        datafile = data_dir + dataset + results_ext
+        
+        raw_results = import_results(datafile) # Import data
+
+        processed_results = winning_model(data_dir, dataset, raw_results) # Finds the winning model for each site
+
+# Summarize the number of wins for each model/dataset
+# Set up database capabilities 
+# Set up ability to query data
+con = dbapi.connect('SummarizedResults.sqlite')
+cur = con.cursor()
+
+# Switch con data type to string
+con.text_factory = str
+wins_by_dataset = cur.execute("""SELECT dataset_code, model_code, COUNT(model_code) AS total_wins FROM RawResults
+                                 GROUP BY dataset_code, model_code""")
            
-    wins_by_dataset = cur.fetchall() 
-    print(wins_by_dataset)
+wins_by_dataset = cur.fetchall()
+
+con.close()
+
+
+print(wins_by_dataset)
