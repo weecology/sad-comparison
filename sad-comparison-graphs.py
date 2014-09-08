@@ -73,7 +73,17 @@ def winning_model(data_dir, dataset_name, results):
     return processed_results
         
    
-# Function to make histograms.
+# Format output for graphing
+def graphing_subsets(dataset, wins_by_dataset):
+    models_list = []
+    wins_count = []
+    for win in wins_by_dataset:
+        if win[0] == dataset:
+            models_list.append(win[1])
+            wins_count.append(win[2])     
+    
+    return models_list, wins_count
+
 
 # Set up analysis parameters
 data_dir = './sad-data/' # path to data directory
@@ -116,70 +126,40 @@ cur = con.cursor()
 con.text_factory = str
 
 # Extract number of wins for each model and dataset
-# bbs wins
-bbs_wins = cur.execute("""SELECT model_code, COUNT(model_code) AS total_wins FROM RawResults
-                                 WHERE dataset_code = 'bbs'                                 
-                                 GROUP BY  model_code""")
+wins_by_dataset = cur.execute("""SELECT dataset_code, model_code, COUNT(model_code) AS total_wins FROM RawResults
+                                 GROUP BY dataset_code, model_code""")
            
-bbs_wins = cur.fetchall()
-print(bbs_wins)
-
-# cbc wins
-cbc_wins = cur.execute("""SELECT model_code, COUNT(model_code) AS total_wins FROM RawResults
-                                 WHERE dataset_code = 'cbc'                                 
-                                 GROUP BY  model_code""")
-           
-cbc_wins = cur.fetchall()
-print(cbc_wins)
-
-# fia wins
-fia_wins = cur.execute("""SELECT model_code, COUNT(model_code) AS total_wins FROM RawResults
-                                 WHERE dataset_code = 'fia'                                 
-                                 GROUP BY  model_code""")
-           
-fia_wins = cur.fetchall()
-print(fia_wins)
-
-
-# Gentry wins
-gentry_wins = cur.execute("""SELECT model_code, COUNT(model_code) AS total_wins FROM RawResults
-                                 WHERE dataset_code = 'gentry'                                 
-                                 GROUP BY  model_code""")
-           
-gentry_wins = cur.fetchall()
-print(gentry_wins)
-
-
-# mcdb wins
-mcdb_wins = cur.execute("""SELECT model_code, COUNT(model_code) AS total_wins FROM RawResults
-                                 WHERE dataset_code = 'mcdb'                                 
-                                 GROUP BY  model_code""")
-           
-mcdb_wins = cur.fetchall()
-print(mcdb_wins)
-
-
-# naba wins
-naba_wins = cur.execute("""SELECT model_code, COUNT(model_code) AS total_wins FROM RawResults
-                                 WHERE dataset_code = 'naba'                                 
-                                 GROUP BY  model_code""")
-           
-mcdb_wins = cur.fetchall()
-print(naba_wins)
+wins_by_dataset = cur.fetchall()
 
 # Close connection
 con.close()
 
 
-
 # Make histogram
 # Set up figure
 fig1 = plt.figure()
-bbs_sub = fig1.add_subplot(111)
-cbc_sub = fig1.add_subplot(121)
-fia_sub = fig1.add_subplot(131)
-gentry_sub = fig1.add_subplot(141)
-mcdb_sub = fig1.add_subplot(151)
-naba_sub = fig1.add_subplot(161)
+ax = fig1.add_subplot(111)
+
+#Extract data by dataset
+bbs_models, bbs_wins = graphing_subsets('bbs', wins_by_dataset)
+cbc_models, cbc_wins = graphing_subsets('cbc', wins_by_dataset)
+fia_models, fia_wins = graphing_subsets('fia', wins_by_dataset)
+gentry_models, gentry_wins = graphing_subsets('gentry', wins_by_dataset)
+mcdb_models, mcdb_wins = graphing_subsets('mcdb', wins_by_dataset)
+naba_models, naba_wins = graphing_subsets('naba', wins_by_dataset)
+
+# Plot variables
+ind = np.arange(5)                # x locations for the groups
+width = 0.25                      # Width of bars
+print(bbs_wins)
+
+# Create bars
+bbs_bars = ax.bar(ind, bbs_wins, width, color = 'black')
+cbc_bars = ax.bar(ind+width, cbc_wins, width, color = 'gray')
+fia_bars = ax.bar(ind+width+width, fia_wins, width, color = 'darkgreen')
+gentry_bars = ax.bar(ind+width+width+width, gentry_wins, width, color = 'limegreen')
+mcdb_bars = ax.bar(ind+width+width+width+width, mcdb_wins, width, color = 'sienna')
+naba_bars = ax.bar(ind+width+width+width+width+width, naba_wins, width, color = 'goldenrod')
+
 
 
