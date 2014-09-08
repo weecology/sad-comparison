@@ -8,6 +8,7 @@ import multiprocessing
 import itertools
 import os
 import matplotlib.pyplot as plt
+import colorsys
 import numpy as np
 from math import log, exp
 from scipy import stats
@@ -113,12 +114,72 @@ cur = con.cursor()
 
 # Switch con data type to string
 con.text_factory = str
-wins_by_dataset = cur.execute("""SELECT dataset_code, model_code, COUNT(model_code) AS total_wins FROM RawResults
-                                 GROUP BY dataset_code, model_code""")
-           
-wins_by_dataset = cur.fetchall()
 
+# Extract number of wins for each model and dataset
+# bbs wins
+bbs_wins = cur.execute("""SELECT model_code, COUNT(model_code) AS total_wins FROM RawResults
+                                 WHERE dataset_code = 'bbs'                                 
+                                 GROUP BY  model_code""")
+           
+bbs_wins = cur.fetchall()
+print(bbs_wins)
+
+# cbc wins
+cbc_wins = cur.execute("""SELECT model_code, COUNT(model_code) AS total_wins FROM RawResults
+                                 WHERE dataset_code = 'cbc'                                 
+                                 GROUP BY  model_code""")
+           
+cbc_wins = cur.fetchall()
+print(cbc_wins)
+
+# fia wins
+fia_wins = cur.execute("""SELECT model_code, COUNT(model_code) AS total_wins FROM RawResults
+                                 WHERE dataset_code = 'fia'                                 
+                                 GROUP BY  model_code""")
+           
+fia_wins = cur.fetchall()
+print(fia_wins)
+
+
+# Gentry wins
+gentry_wins = cur.execute("""SELECT model_code, COUNT(model_code) AS total_wins FROM RawResults
+                                 WHERE dataset_code = 'gentry'                                 
+                                 GROUP BY  model_code""")
+           
+gentry_wins = cur.fetchall()
+print(gentry_wins)
+
+
+# mcdb wins
+mcdb_wins = cur.execute("""SELECT model_code, COUNT(model_code) AS total_wins FROM RawResults
+                                 WHERE dataset_code = 'mcdb'                                 
+                                 GROUP BY  model_code""")
+           
+mcdb_wins = cur.fetchall()
+print(mcdb_wins)
+
+
+# naba wins
+naba_wins = cur.execute("""SELECT model_code, COUNT(model_code) AS total_wins FROM RawResults
+                                 WHERE dataset_code = 'naba'                                 
+                                 GROUP BY  model_code""")
+           
+mcdb_wins = cur.fetchall()
+print(naba_wins)
+
+# Close connection
 con.close()
 
 
-print(wins_by_dataset)
+
+# Make histogram
+# Set up figure
+fig1 = plt.figure()
+bbs_sub = fig1.add_subplot(111)
+cbc_sub = fig1.add_subplot(121)
+fia_sub = fig1.add_subplot(131)
+gentry_sub = fig1.add_subplot(141)
+mcdb_sub = fig1.add_subplot(151)
+naba_sub = fig1.add_subplot(161)
+
+
