@@ -8,14 +8,178 @@ import multiprocessing
 import itertools
 import os
 import matplotlib.pyplot as plt
+import colorsys
 import numpy as np
 from math import log, exp
 from scipy import stats
+import sqlite3 as dbapi
 
 from mpl_toolkits.axes_grid.inset_locator import inset_axes
 
 # Function to import the AICc results.
+def import_results(datafile):
+    """Imports raw result .csv files in the form: site, S, N, AICc_logseries, AICc_logseries_untruncated, AICc_pln, AICc_negbin, AICc_geometric."""
+    raw_results = np.genfromtxt(datafile, dtype = "S15, i8, i8, f8, f8, f8, f8, f8", skip_header = 1,
+                      names = ['site', 'S', 'N', 'AICc_logseries', 'AICc_logseries_untruncated', 'AICc_pln', 'AICc_negbin', 'AICc_geometric'], delimiter = ",", missing_values = '', filling_values = '', )
+    return raw_results
 
 # Function to determine the winning model for each site.
+def winning_model(data_dir, dataset_name, results):
+    # Open output files
+    output_processed = csv.writer(open(data_dir + dataset_name + '_processed_results.csv','wb'))
+    # Insert comment line
+    output_processed.writerow(["# 0 = Logseries, 1 = Untruncated logseries, 2 = Poisson lognormal, 3 = Negative binomial, 4 = Geometric series"])
+    
+    # Insert header
+    output_processed.writerow(['dataset', 'site', 'S', 'N', "model_code", "AICc_weight_model"])
+   
+    for site in results:
+        site_results = site.tolist()
+        site_ID = site_results[0]
+        S = site_results[1]
+        N = site_results[2]
+        AICc_weights = site_results[3:]
 
+
+        AICc_min_weight = min(AICc_weights) # This will return the actual AICc_weight of the winning model, given that the winning model is the one with the lowest AICc weight.
+
+        winning_model = AICc_weights.index(AICc_min_weight) # This will return the winning model, where the model is indicated by the index position
+        # 0 = Logseries
+        # 1 = Untruncated logseries
+        # 2 = Poisson lognormal
+        # 3 = Negative binomial
+        # 4 = Geometric series
+
+        # Format results for output
+        processed_results = [[dataset_name] + [site_ID] + [S] + [N] + [winning_model] + [AICc_min_weight]]
+        
+                                        
+        # Save results to a csv file:            
+        output_processed.writerows(processed_results)
+        
+        # Save results to sqlite database      
+        #Create database for simulated data """
+        cur.execute("""CREATE TABLE IF NOT EXISTS RawResults
+                       (dataset_code TEXT,
+                        site TEXT,
+                        S INTEGER,
+                        N INTEGER,
+                        model_code INTEGER, 
+                        AICc_weight_model FLOAT)""")
+           
+        cur.executemany("""INSERT INTO RawResults VALUES(?,?,?,?,?,?)""", processed_results)
+        con.commit()
+        
+    return processed_results
+        
+   
 # Function to make histograms.
+
+# Set up analysis parameters
+data_dir = './sad-data/' # path to data directory
+results_ext = '_dist_test.csv' # Extension for raw species abundance files
+
+datasets = ['bbs', 'cbc', 'fia', 'gentry', 'mcdb', 'naba'] # Dataset ID codes
+
+# Asks for toggle variable so I don't have to rerun all the setup if it is already processed.
+needs_processing = input("Data needs to be processed into an sqlite database, True or False?  ")  
+needs_processing = False # THIS LINE IS TEMPORARY AND NEEDS TO BE DELETED IN THE FINAL PRODUCT.
+
+# Starts actual processing for each set of results in turn.
+if needs_processing == True:
+    # Set up database capabilities 
+    # Set up ability to query data
+    con = dbapi.connect('SummarizedResults.sqlite')
+    cur = con.cursor()
+    
+    # Switch con data type to string
+    con.text_factory = str    
+    cur.execute("""DROP TABLE IF EXISTS RawResults""")
+    con.commit()      
+    for dataset in datasets:
+        datafile = data_dir + dataset + results_ext
+        
+        raw_results = import_results(datafile) # Import data
+
+        processed_results = winning_model(data_dir, dataset, raw_results) # Finds the winning model for each site
+    
+    #Close connection to database
+    con.close()    
+
+# Summarize the number of wins for each model/dataset
+# Set up database capabilities 
+# Set up ability to query data
+con = dbapi.connect('SummarizedResults.sqlite')
+cur = con.cursor()
+
+# Switch con data type to string
+con.text_factory = str
+
+# Extract number of wins for each model and dataset
+# bbs wins
+bbs_wins = cur.execute("""SELECT model_code, COUNT(model_code) AS total_wins FROM RawResults
+                                 WHERE dataset_code = 'bbs'                                 
+                                 GROUP BY  model_code""")
+           
+bbs_wins = cur.fetchall()
+print(bbs_wins)
+
+# cbc wins
+cbc_wins = cur.execute("""SELECT model_code, COUNT(model_code) AS total_wins FROM RawResults
+                                 WHERE dataset_code = 'cbc'                                 
+                                 GROUP BY  model_code""")
+           
+cbc_wins = cur.fetchall()
+print(cbc_wins)
+
+# fia wins
+fia_wins = cur.execute("""SELECT model_code, COUNT(model_code) AS total_wins FROM RawResults
+                                 WHERE dataset_code = 'fia'                                 
+                                 GROUP BY  model_code""")
+           
+fia_wins = cur.fetchall()
+print(fia_wins)
+
+
+# Gentry wins
+gentry_wins = cur.execute("""SELECT model_code, COUNT(model_code) AS total_wins FROM RawResults
+                                 WHERE dataset_code = 'gentry'                                 
+                                 GROUP BY  model_code""")
+           
+gentry_wins = cur.fetchall()
+print(gentry_wins)
+
+
+# mcdb wins
+mcdb_wins = cur.execute("""SELECT model_code, COUNT(model_code) AS total_wins FROM RawResults
+                                 WHERE dataset_code = 'mcdb'                                 
+                                 GROUP BY  model_code""")
+           
+mcdb_wins = cur.fetchall()
+print(mcdb_wins)
+
+
+# naba wins
+naba_wins = cur.execute("""SELECT model_code, COUNT(model_code) AS total_wins FROM RawResults
+                                 WHERE dataset_code = 'naba'                                 
+                                 GROUP BY  model_code""")
+           
+mcdb_wins = cur.fetchall()
+print(naba_wins)
+
+# Close connection
+con.close()
+
+
+
+# Make histogram
+# Set up figure
+fig1 = plt.figure()
+bbs_sub = fig1.add_subplot(111)
+cbc_sub = fig1.add_subplot(121)
+fia_sub = fig1.add_subplot(131)
+gentry_sub = fig1.add_subplot(141)
+mcdb_sub = fig1.add_subplot(151)
+naba_sub = fig1.add_subplot(161)
+
+
