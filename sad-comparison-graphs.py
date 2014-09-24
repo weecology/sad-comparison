@@ -84,18 +84,6 @@ def winning_model(data_dir, dataset_name, results):
     return processed_results
         
    
-# Format output for graphing
-def graphing_subsets(dataset, wins_by_dataset):
-    models_list = []
-    wins_count = []
-    for win in wins_by_dataset:
-        if win[0] == dataset:
-            models_list.append(win[1])
-            wins_count.append(win[2])     
-    
-    return models_list, wins_count
-
-
 # Set up analysis parameters
 data_dir = './sad-data/' # path to data directory
 results_ext = '_dist_test.csv' # Extension for raw species abundance files
@@ -136,11 +124,6 @@ cur = con.cursor()
 # Switch con data type to string
 con.text_factory = str
 
-# Extract number of wins for each model and dataset
-wins_by_dataset = cur.execute("""SELECT dataset_code, model_name, COUNT(model_code) AS total_wins FROM RawResults
-                                 GROUP BY dataset_code, model_name""")
-           
-wins_by_dataset = cur.fetchall()
 
 # Extract number of wins for all datasets combined.
 total_wins = cur.execute("""SELECT model_name, COUNT(model_code) AS total_wins FROM RawResults
@@ -148,15 +131,9 @@ total_wins = cur.execute("""SELECT model_name, COUNT(model_code) AS total_wins F
 
 total_wins = cur.fetchall()
 
-
-# Close connection
-con.close()
-
-
 # Make histogram
 # Set up figure
 total_wins_fig= plt.figure()
-ax = total_wins_fig.add_subplot(111)
 
 
 # Plot variables for total wins
@@ -165,32 +142,155 @@ x = np.arange(1, N+1)
 y = [ num for (s, num) in total_wins ]
 labels = [ s for (s, num) in total_wins ]
 width = 1
-bar1 = plt.bar( x, y, width, color="y" )
+bar1 = plt.bar( x, y, width, color="grey" )
 plt.ylabel( 'Number of Wins' )
 plt.xticks(x + width/2.0, labels )
 plt.xlabel( 'Species abundance distribution models' )
 plt.show()
+
 
 #Output figure
 fileName = "total_wins.png"
 plt.savefig(fileName, format="png" )
 
 
-##Extract data by dataset
-#bbs_models, bbs_wins = graphing_subsets('bbs', wins_by_dataset)
-#cbc_models, cbc_wins = graphing_subsets('cbc', wins_by_dataset)
-#fia_models, fia_wins = graphing_subsets('fia', wins_by_dataset)
-#gentry_models, gentry_wins = graphing_subsets('gentry', wins_by_dataset)
-#mcdb_models, mcdb_wins = graphing_subsets('mcdb', wins_by_dataset)
-#naba_models, naba_wins = graphing_subsets('naba', wins_by_dataset)
+# Extract number of wins for each model and dataset
+# BBS
+bbs_wins  = cur.execute("""SELECT model_name, COUNT(model_code) AS total_wins FROM RawResults
+                                 WHERE dataset_code == 'bbs'
+                                 GROUP BY model_code""")
+           
+bbs_wins = cur.fetchall()
 
-## Create bars
-#bbs_bars = ax.bar(ind, bbs_wins, width, color = 'black')
-#cbc_bars = ax.bar(ind+width, cbc_wins, width, color = 'gray')
-#fia_bars = ax.bar(ind+width+width, fia_wins, width, color = 'darkgreen')
-#gentry_bars = ax.bar(ind+width+width+width, gentry_wins, width, color = 'limegreen')
-#mcdb_bars = ax.bar(ind+width+width+width+width, mcdb_wins, width, color = 'sienna')
-#naba_bars = ax.bar(ind+width+width+width+width+width, naba_wins, width, color = 'goldenrod')
+#CBC
+cbc_wins = g= cur.execute("""SELECT model_name, COUNT(model_code) AS total_wins FROM RawResults
+                                 WHERE dataset_code == 'cbc'
+                                 GROUP BY model_code""")
+           
+cbc_wins = cur.fetchall()
+
+#FIA
+fia_wins = cur.execute("""SELECT model_name, COUNT(model_code) AS total_wins FROM RawResults
+                                 WHERE dataset_code == 'fia'
+                                 GROUP BY model_code""")
+           
+fia_wins = cur.fetchall()
+
+#Gentry
+gentry_wins = cur.execute("""SELECT model_name, COUNT(model_code) AS total_wins FROM RawResults
+                                 WHERE dataset_code == 'gentry'
+                                 GROUP BY model_code""")
+           
+gentry_wins = cur.fetchall()
+
+#MCDB
+mcdb_wins = cur.execute("""SELECT model_name, COUNT(model_code) AS total_wins FROM RawResults
+                                 WHERE dataset_code == 'mcdb'
+                                 GROUP BY model_code""")
+           
+mcdb_wins = cur.fetchall()
+
+#NABA
+naba_wins = cur.execute("""SELECT model_name, COUNT(model_code) AS total_wins FROM RawResults
+                                 WHERE dataset_code == 'naba'
+                                 GROUP BY model_code""")
+           
+naba_wins = cur.fetchall()
+
+# Make histogram
+# Set up figure
+wins_by_dataset_fig = plt.figure()
 
 
+# Plot variables for bbs subplot
+plt.subplot(3,2,1)
+N = len(bbs_wins)
+x = np.arange(1, N+1)
+y = [ num for (s, num) in bbs_wins ]
+labels = [ s for (s, num) in bbs_wins ]
+width = 1
+bar1 = plt.bar( x, y, width, color="red" )
+plt.ylabel( 'Number of Wins' )
+plt.xticks(x + width/2.0, labels )
+plt.xlabel( 'BBS' )
+
+
+# Plot variables for cbc subplot
+plt.subplot(3,2,2)
+N = len(cbc_wins)
+x = np.arange(1, N+1)
+y = [ num for (s, num) in cbc_wins ]
+labels = [ s for (s, num) in cbc_wins ]
+width = 1
+bar1 = plt.bar( x, y, width, color="orange" )
+plt.ylabel( 'Number of Wins' )
+plt.xticks(x + width/2.0, labels )
+plt.xlabel( 'CBC' )
+
+
+# Plot variables for fia subplot
+plt.subplot(3,2,3)
+N = len(fia_wins)
+x = np.arange(1, N+1)
+y = [ num for (s, num) in fia_wins ]
+labels = [ s for (s, num) in fia_wins ]
+width = 1
+bar1 = plt.bar( x, y, width, color="green" )
+plt.ylabel( 'Number of Wins' )
+plt.xticks(x + width/2.0, labels )
+plt.xlabel( 'FIA' )
+
+
+# Plot variables for Gentry subplot
+plt.subplot(3,2,4)
+N = len(gentry_wins)
+x = np.arange(1, N+1)
+y = [ num for (s, num) in gentry_wins ]
+labels = [ s for (s, num) in gentry_wins ]
+width = 1
+bar1 = plt.bar( x, y, width, color="olivedrab" )
+plt.ylabel( 'Number of Wins' )
+plt.xticks(x + width/2.0, labels )
+plt.xlabel( 'Gentry' )
+
+
+# Plot variables for mcdb subplot
+plt.subplot(3,2,5)
+N = len(mcdb_wins)
+x = np.arange(1, N+1)
+y = [ num for (s, num) in mcdb_wins ]
+labels = [ s for (s, num) in mcdb_wins ]
+width = 1
+bar1 = plt.bar( x, y, width, color="sienna" )
+plt.ylabel( 'Number of Wins' )
+plt.xticks(x + width/2.0, labels )
+plt.xlabel( 'MCDB' )
+
+
+
+# Plot variables for NABA subplot
+plt.subplot(3,2,6)
+N = len(naba_wins)
+x = np.arange(1, N+1)
+y = [ num for (s, num) in naba_wins ]
+labels = [ s for (s, num) in naba_wins ]
+width = 1
+bar1 = plt.bar( x, y, width, color="blue" )
+plt.ylabel( 'Number of Wins' )
+plt.xticks(x + width/2.0, labels )
+plt.xlabel( 'NABA' )
+
+plt.tight_layout()
+plt.show()
+
+
+
+#Output figure
+fileName = "wins_by_dataset.png"
+plt.savefig(fileName, format="png" )
+
+
+
+# Close connection
+con.close()
 
