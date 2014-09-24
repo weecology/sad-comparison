@@ -131,6 +131,13 @@ wins_by_dataset = cur.execute("""SELECT dataset_code, model_code, COUNT(model_co
            
 wins_by_dataset = cur.fetchall()
 
+# Extract number of wins for all datasets combined.
+total_wins = cur.execute("""SELECT model_code, COUNT(model_code) AS total_wins FROM RawResults
+                            GROUP BY model_code""")
+
+total_wins = cur.fetchall()
+
+
 # Close connection
 con.close()
 
@@ -140,26 +147,35 @@ con.close()
 fig1 = plt.figure()
 ax = fig1.add_subplot(111)
 
-#Extract data by dataset
-bbs_models, bbs_wins = graphing_subsets('bbs', wins_by_dataset)
-cbc_models, cbc_wins = graphing_subsets('cbc', wins_by_dataset)
-fia_models, fia_wins = graphing_subsets('fia', wins_by_dataset)
-gentry_models, gentry_wins = graphing_subsets('gentry', wins_by_dataset)
-mcdb_models, mcdb_wins = graphing_subsets('mcdb', wins_by_dataset)
-naba_models, naba_wins = graphing_subsets('naba', wins_by_dataset)
 
 # Plot variables
-ind = np.arange(5)                # x locations for the groups
-width = 0.25                      # Width of bars
-print(bbs_wins)
+N = len(total_wins)
+x = np.arange(1, N+1)
+y = [ num for (s, num) in total_wins ]
+labels = [ s for (s, num) in total_wins ]
+width = 1
+bar1 = plt.bar( x, y, width, color="y" )
+plt.ylabel( 'Number of Wins' )
+plt.xticks(x + width/2.0, labels )
+plt.xlabel( 'Model ID' )
+plt.show()
 
-# Create bars
-bbs_bars = ax.bar(ind, bbs_wins, width, color = 'black')
-cbc_bars = ax.bar(ind+width, cbc_wins, width, color = 'gray')
-fia_bars = ax.bar(ind+width+width, fia_wins, width, color = 'darkgreen')
-gentry_bars = ax.bar(ind+width+width+width, gentry_wins, width, color = 'limegreen')
-mcdb_bars = ax.bar(ind+width+width+width+width, mcdb_wins, width, color = 'sienna')
-naba_bars = ax.bar(ind+width+width+width+width+width, naba_wins, width, color = 'goldenrod')
+
+##Extract data by dataset
+#bbs_models, bbs_wins = graphing_subsets('bbs', wins_by_dataset)
+#cbc_models, cbc_wins = graphing_subsets('cbc', wins_by_dataset)
+#fia_models, fia_wins = graphing_subsets('fia', wins_by_dataset)
+#gentry_models, gentry_wins = graphing_subsets('gentry', wins_by_dataset)
+#mcdb_models, mcdb_wins = graphing_subsets('mcdb', wins_by_dataset)
+#naba_models, naba_wins = graphing_subsets('naba', wins_by_dataset)
+
+## Create bars
+#bbs_bars = ax.bar(ind, bbs_wins, width, color = 'black')
+#cbc_bars = ax.bar(ind+width, cbc_wins, width, color = 'gray')
+#fia_bars = ax.bar(ind+width+width, fia_wins, width, color = 'darkgreen')
+#gentry_bars = ax.bar(ind+width+width+width, gentry_wins, width, color = 'limegreen')
+#mcdb_bars = ax.bar(ind+width+width+width+width, mcdb_wins, width, color = 'sienna')
+#naba_bars = ax.bar(ind+width+width+width+width+width, naba_wins, width, color = 'goldenrod')
 
 
 
