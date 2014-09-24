@@ -44,14 +44,24 @@ def winning_model(data_dir, dataset_name, results):
         AICc_min_weight = min(AICc_weights) # This will return the actual AICc_weight of the winning model, given that the winning model is the one with the lowest AICc weight.
 
         winning_model = AICc_weights.index(AICc_min_weight) # This will return the winning model, where the model is indicated by the index position
-        # 0 = Logseries
-        # 1 = Untruncated logseries
-        # 2 = Poisson lognormal
-        # 3 = Negative binomial
-        # 4 = Geometric series
+        
+        if winning_model == 0:
+            model_name = 'Logseries'
+            
+        elif winning_model == 1:
+            model_name = 'Untruncated logseries'
+            
+        elif winning_model == 2:
+            model_name = 'Poisson lognormal'
+            
+        elif winning_model == 3:
+            model_name = 'Negative binomial'
+            
+        else:
+            model_name = 'Geometric series'
 
         # Format results for output
-        processed_results = [[dataset_name] + [site_ID] + [S] + [N] + [winning_model] + [AICc_min_weight]]
+        processed_results = [[dataset_name] + [site_ID] + [S] + [N] + [winning_model] + [model_name] + [AICc_min_weight]]
         
                                         
         # Save results to a csv file:            
@@ -64,10 +74,11 @@ def winning_model(data_dir, dataset_name, results):
                         site TEXT,
                         S INTEGER,
                         N INTEGER,
-                        model_code INTEGER, 
+                        model_code INTEGER,
+                        model_name TEXT,
                         AICc_weight_model FLOAT)""")
            
-        cur.executemany("""INSERT INTO RawResults VALUES(?,?,?,?,?,?)""", processed_results)
+        cur.executemany("""INSERT INTO RawResults VALUES(?,?,?,?,?,?,?)""", processed_results)
         con.commit()
         
     return processed_results
@@ -126,13 +137,13 @@ cur = con.cursor()
 con.text_factory = str
 
 # Extract number of wins for each model and dataset
-wins_by_dataset = cur.execute("""SELECT dataset_code, model_code, COUNT(model_code) AS total_wins FROM RawResults
-                                 GROUP BY dataset_code, model_code""")
+wins_by_dataset = cur.execute("""SELECT dataset_code, model_name, COUNT(model_code) AS total_wins FROM RawResults
+                                 GROUP BY dataset_code, model_name""")
            
 wins_by_dataset = cur.fetchall()
 
 # Extract number of wins for all datasets combined.
-total_wins = cur.execute("""SELECT model_code, COUNT(model_code) AS total_wins FROM RawResults
+total_wins = cur.execute("""SELECT model_name, COUNT(model_code) AS total_wins FROM RawResults
                             GROUP BY model_code""")
 
 total_wins = cur.fetchall()
@@ -144,11 +155,11 @@ con.close()
 
 # Make histogram
 # Set up figure
-fig1 = plt.figure()
-ax = fig1.add_subplot(111)
+total_wins_fig= plt.figure()
+ax = total_wins_fig.add_subplot(111)
 
 
-# Plot variables
+# Plot variables for total wins
 N = len(total_wins)
 x = np.arange(1, N+1)
 y = [ num for (s, num) in total_wins ]
@@ -157,8 +168,12 @@ width = 1
 bar1 = plt.bar( x, y, width, color="y" )
 plt.ylabel( 'Number of Wins' )
 plt.xticks(x + width/2.0, labels )
-plt.xlabel( 'Model ID' )
+plt.xlabel( 'Species abundance distribution models' )
 plt.show()
+
+#Output figure
+fileName = "total_wins.png"
+plt.savefig(fileName, format="png" )
 
 
 ##Extract data by dataset
