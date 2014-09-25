@@ -98,7 +98,7 @@ needs_processing = input("Data needs to be processed into an sqlite database, Tr
 if needs_processing == True:
     # Set up database capabilities 
     # Set up ability to query data
-    con = dbapi.connect('SummarizedResults.sqlite')
+    con = dbapi.connect('./sad-data/SummarizedResults.sqlite')
     cur = con.cursor()
     
     # Switch con data type to string
@@ -118,7 +118,7 @@ if needs_processing == True:
 # Summarize the number of wins for each model/dataset
 # Set up database capabilities 
 # Set up ability to query data
-con = dbapi.connect('SummarizedResults.sqlite')
+con = dbapi.connect('./sad-data/SummarizedResults.sqlite')
 cur = con.cursor()
 
 # Switch con data type to string
@@ -150,7 +150,7 @@ plt.show()
 
 
 #Output figure
-fileName = "total_wins.png"
+fileName = "./sad-data/total_wins.png"
 plt.savefig(fileName, format="png" )
 
 
@@ -286,7 +286,7 @@ plt.show()
 
 
 #Output figure
-fileName = "wins_by_dataset.png"
+fileName = "./sad-data/wins_by_dataset.png"
 plt.savefig(fileName, format="png" )
 
 
