@@ -41,9 +41,9 @@ def winning_model(data_dir, dataset_name, results):
         AICc_weights = site_results[3:]
 
 
-        AICc_min_weight = min(AICc_weights) # This will return the actual AICc_weight of the winning model, given that the winning model is the one with the lowest AICc weight.
+        AICc_max_weight = max(AICc_weights) # This will return the actual AICc_weight of the winning model, given that the winning model is the one with the highest AICc weight.
 
-        winning_model = AICc_weights.index(AICc_min_weight) # This will return the winning model, where the model is indicated by the index position
+        winning_model = AICc_weights.index(AICc_max_weight) # This will return the winning model, where the model is indicated by the index position
         
         if winning_model == 0:
             model_name = 'Logseries'
@@ -61,7 +61,7 @@ def winning_model(data_dir, dataset_name, results):
             model_name = 'Geometric series'
 
         # Format results for output
-        processed_results = [[dataset_name] + [site_ID] + [S] + [N] + [winning_model] + [model_name] + [AICc_min_weight]]
+        processed_results = [[dataset_name] + [site_ID] + [S] + [N] + [winning_model] + [model_name] + [AICc_max_weight]]
         
                                         
         # Save results to a csv file:            
@@ -92,7 +92,7 @@ datasets = ['bbs', 'cbc', 'fia', 'gentry', 'mcdb', 'naba'] # Dataset ID codes
 
 # Asks for toggle variable so I don't have to rerun all the setup if it is already processed.
 needs_processing = input("Data needs to be processed into an sqlite database, True or False?  ")  
-needs_processing = False # THIS LINE IS TEMPORARY AND NEEDS TO BE DELETED IN THE FINAL PRODUCT.
+#needs_processing = False # THIS LINE IS TEMPORARY AND NEEDS TO BE DELETED IN THE FINAL PRODUCT.
 
 # Starts actual processing for each set of results in turn.
 if needs_processing == True:
