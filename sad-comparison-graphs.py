@@ -69,7 +69,7 @@ def winning_model(data_dir, dataset_name, results):
         
         # Save results to sqlite database      
         #Create database for simulated data """
-        cur.execute("""CREATE TABLE IF NOT EXISTS RawResults
+        cur.execute("""CREATE TABLE IF NOT EXISTS ResultsWin
                        (dataset_code TEXT,
                         site TEXT,
                         S INTEGER,
@@ -78,12 +78,57 @@ def winning_model(data_dir, dataset_name, results):
                         model_name TEXT,
                         AICc_weight_model FLOAT)""")
            
-        cur.executemany("""INSERT INTO RawResults VALUES(?,?,?,?,?,?,?)""", processed_results)
+        cur.executemany("""INSERT INTO ResultsWin VALUES(?,?,?,?,?,?,?)""", processed_results)
         con.commit()
         
     return processed_results
         
-   
+def process_AICcs(data_dir, dataset_name, results):
+    for site in results:
+        site_results = site.tolist()
+        site_ID = site_results[0]
+        S = site_results[1]
+        N = site_results[2]
+        AICc_weights = site_results[3:]
+        counter = 0
+        
+
+        for index, AICc_weight in enumerate(AICc_weights):
+            if index == 0:
+                model_name = 'Logseries'
+                processed_results = [[dataset_name] + [site_ID] + [S] + [N] + [index] + [model_name] + [AICc_weight]]
+            
+            elif index == 1:
+                model_name = 'Untruncated logseries'
+                processed_results = [[dataset_name] + [site_ID] + [S] + [N] + [index] + [model_name] + [AICc_weight]]
+            
+            elif index == 2:
+                model_name = 'Poisson lognormal'
+                processed_results = [[dataset_name] + [site_ID] + [S] + [N] + [index] + [model_name] + [AICc_weight]]
+            
+            elif index == 3:
+                model_name = 'Negative binomial'
+                processed_results = [[dataset_name] + [site_ID] + [S] + [N] + [index] + [model_name] + [AICc_weight]]
+            
+            else:
+                model_name = 'Geometric series'
+                processed_results = [[dataset_name] + [site_ID] + [S] + [N] + [index] + [model_name] + [AICc_weight]]
+
+            # Save results to sqlite database      
+            #Create database for simulated data """
+            cur.execute("""CREATE TABLE IF NOT EXISTS RawResults
+                       (dataset_code TEXT,
+                        site TEXT,
+                        S INTEGER,
+                        N INTEGER,
+                        model_code INTEGER,
+                        model_name TEXT,
+                        AICc_weight_model FLOAT)""")
+           
+            cur.executemany("""INSERT INTO RawResults VALUES(?,?,?,?,?,?,?)""", processed_results)
+            con.commit()
+        
+    return processed_results   
 # Set up analysis parameters
 data_dir = './sad-data/' # path to data directory
 results_ext = '_dist_test.csv' # Extension for raw species abundance files
@@ -92,7 +137,7 @@ datasets = ['bbs', 'cbc', 'fia', 'gentry', 'mcdb', 'naba'] # Dataset ID codes
 
 # Asks for toggle variable so I don't have to rerun all the setup if it is already processed.
 needs_processing = input("Data needs to be processed into an sqlite database, True or False?  ")  
-#needs_processing = False # THIS LINE IS TEMPORARY AND NEEDS TO BE DELETED IN THE FINAL PRODUCT.
+needs_processing = False # THIS LINE IS TEMPORARY AND NEEDS TO BE DELETED IN THE FINAL PRODUCT.
 
 # Starts actual processing for each set of results in turn.
 if needs_processing == True:
@@ -103,14 +148,17 @@ if needs_processing == True:
     
     # Switch con data type to string
     con.text_factory = str    
+    cur.execute("""DROP TABLE IF EXISTS ResultsWin""")
     cur.execute("""DROP TABLE IF EXISTS RawResults""")
-    con.commit()      
+    con.commit() 
     for dataset in datasets:
         datafile = data_dir + dataset + results_ext
         
         raw_results = import_results(datafile) # Import data
 
         processed_results = winning_model(data_dir, dataset, raw_results) # Finds the winning model for each site
+        
+        process_AICcs(data_dir, dataset, raw_results) #Turns the raw results into a database.
     
     #Close connection to database
     con.close()    
@@ -125,15 +173,17 @@ cur = con.cursor()
 con.text_factory = str
 
 
-# Extract number of wins for all datasets combined.
-total_wins = cur.execute("""SELECT model_name, COUNT(model_code) AS total_wins FROM RawResults
-                            GROUP BY model_code""")
 
-total_wins = cur.fetchall()
 
 # Make histogram
 # Set up figure
 total_wins_fig= plt.figure()
+
+# Extract number of wins for all datasets combined.
+total_wins = cur.execute("""SELECT model_name, COUNT(model_code) AS total_wins FROM ResultsWin
+                            GROUP BY model_code""")
+
+total_wins = cur.fetchall()
 
 
 # Plot variables for total wins
@@ -154,44 +204,46 @@ fileName = "./sad-data/total_wins.png"
 plt.savefig(fileName, format="png" )
 
 
+
+
 # Extract number of wins for each model and dataset
 # BBS
-bbs_wins  = cur.execute("""SELECT model_name, COUNT(model_code) AS total_wins FROM RawResults
+bbs_wins  = cur.execute("""SELECT model_name, COUNT(model_code) AS total_wins FROM ResultsWin
                                  WHERE dataset_code == 'bbs'
                                  GROUP BY model_code""")
            
 bbs_wins = cur.fetchall()
 
 #CBC
-cbc_wins = g= cur.execute("""SELECT model_name, COUNT(model_code) AS total_wins FROM RawResults
+cbc_wins = g= cur.execute("""SELECT model_name, COUNT(model_code) AS total_wins FROM ResultsWin
                                  WHERE dataset_code == 'cbc'
                                  GROUP BY model_code""")
            
 cbc_wins = cur.fetchall()
 
 #FIA
-fia_wins = cur.execute("""SELECT model_name, COUNT(model_code) AS total_wins FROM RawResults
+fia_wins = cur.execute("""SELECT model_name, COUNT(model_code) AS total_wins FROM ResultsWin
                                  WHERE dataset_code == 'fia'
                                  GROUP BY model_code""")
            
 fia_wins = cur.fetchall()
 
 #Gentry
-gentry_wins = cur.execute("""SELECT model_name, COUNT(model_code) AS total_wins FROM RawResults
+gentry_wins = cur.execute("""SELECT model_name, COUNT(model_code) AS total_wins FROM ResultsWin
                                  WHERE dataset_code == 'gentry'
                                  GROUP BY model_code""")
            
 gentry_wins = cur.fetchall()
 
 #MCDB
-mcdb_wins = cur.execute("""SELECT model_name, COUNT(model_code) AS total_wins FROM RawResults
+mcdb_wins = cur.execute("""SELECT model_name, COUNT(model_code) AS total_wins FROM ResultsWin
                                  WHERE dataset_code == 'mcdb'
                                  GROUP BY model_code""")
            
 mcdb_wins = cur.fetchall()
 
 #NABA
-naba_wins = cur.execute("""SELECT model_name, COUNT(model_code) AS total_wins FROM RawResults
+naba_wins = cur.execute("""SELECT model_name, COUNT(model_code) AS total_wins FROM ResultsWin
                                  WHERE dataset_code == 'naba'
                                  GROUP BY model_code""")
            
@@ -287,6 +339,52 @@ plt.show()
 
 #Output figure
 fileName = "./sad-data/wins_by_dataset.png"
+plt.savefig(fileName, format="png" )
+
+
+
+#AIC_c weight distributions graphs
+# Make histogram
+# Set up figure
+AIC_c_weights = plt.figure()
+
+# Extract AICc weights for each model.
+logseries = cur.execute("""SELECT AICc_weight_model FROM RawResults
+                            WHERE model_name == 'Logseries'""")
+logseries = cur.fetchall()
+
+
+untruncated_logseries = cur.execute("""SELECT AICc_weight_model FROM RawResults
+                            WHERE model_name =='Untruncated logseries'""")
+untruncated_logseries = cur.fetchall()
+
+
+pln = cur.execute("""SELECT AICc_weight_model FROM RawResults
+                            WHERE model_name =='Poisson lognormal'""")
+pln = cur.fetchall()                            
+                     
+                            
+                            
+neg_bin = cur.execute("""SELECT AICc_weight_model FROM RawResults
+                            WHERE model_name =='Negative binomial'""")
+neg_bin = cur.fetchall()
+
+                      
+                            
+geometric = cur.execute("""SELECT AICc_weight_model FROM RawResults
+                            WHERE model_name =='Geometric series'""")
+geometric = cur.fetchall()
+
+print(logseries)
+
+# Plot variables for weights
+plt.hist(logseries, bins = 50, normed = True)
+
+plt.tight_layout()
+plt.show()
+
+#Output figure
+fileName = "./sad-data/AICcs_geometric.png"
 plt.savefig(fileName, format="png" )
 
 
