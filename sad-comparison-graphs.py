@@ -350,43 +350,48 @@ AIC_c_weights = plt.figure()
 
 # Extract AICc weights for each model.
 logseries = cur.execute("""SELECT AICc_weight_model FROM RawResults
-                            WHERE model_name == 'Logseries'""")
+                            WHERE model_name == 'Logseries' AND AICc_weight_model IS NOT NULL
+                            ORDER BY AICc_weight_model""")
 logseries = cur.fetchall()
 
 
 untruncated_logseries = cur.execute("""SELECT AICc_weight_model FROM RawResults
-                            WHERE model_name =='Untruncated logseries'""")
+                            WHERE model_name =='Untruncated logseries'AND AICc_weight_model IS NOT NULL
+                            ORDER BY AICc_weight_model""")
 untruncated_logseries = cur.fetchall()
 
 
 pln = cur.execute("""SELECT AICc_weight_model FROM RawResults
-                            WHERE model_name =='Poisson lognormal'""")
+                            WHERE model_name =='Poisson lognormal'AND AICc_weight_model IS NOT NULL
+                            ORDER BY AICc_weight_model""")
 pln = cur.fetchall()                            
                      
                             
                             
 neg_bin = cur.execute("""SELECT AICc_weight_model FROM RawResults
-                            WHERE model_name =='Negative binomial'""")
+                            WHERE model_name =='Negative binomial'AND AICc_weight_model IS NOT NULL
+                            ORDER BY AICc_weight_model""")
 neg_bin = cur.fetchall()
 
                       
                             
 geometric = cur.execute("""SELECT AICc_weight_model FROM RawResults
-                            WHERE model_name =='Geometric series'""")
+                            WHERE model_name =='Geometric series'AND AICc_weight_model IS NOT NULL
+                            ORDER BY AICc_weight_model""")
 geometric = cur.fetchall()
 
-print(logseries)
-
 # Plot variables for weights
-plt.hist(logseries, bins = 50, normed = True)
+N = len(logseries)
+x = range( N )
+width = 1
+plt.bar( x, logseries, width, color="gray" )
 
 plt.tight_layout()
 plt.show()
 
 #Output figure
-fileName = "./sad-data/AICcs_geometric.png"
+fileName = "./sad-data/AICc_weights.png"
 plt.savefig(fileName, format="png" )
-
 
 
 # Close connection
