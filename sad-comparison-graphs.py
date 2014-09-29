@@ -349,42 +349,48 @@ plt.savefig(fileName, format="png" )
 AIC_c_weights = plt.figure()
 
 # Extract AICc weights for each model.
-logseries = cur.execute("""SELECT AICc_weight_model FROM RawResults
+logseries = cur.execute("""SELECT model_name, AICc_weight_model FROM RawResults
                             WHERE model_name == 'Logseries' AND AICc_weight_model IS NOT NULL
                             ORDER BY AICc_weight_model""")
 logseries = cur.fetchall()
 
 
-untruncated_logseries = cur.execute("""SELECT AICc_weight_model FROM RawResults
-                            WHERE model_name =='Untruncated logseries'AND AICc_weight_model IS NOT NULL
+untruncated_logseries = cur.execute("""SELECT model_name, AICc_weight_model FROM RawResults
+                            WHERE model_name =='Untruncated logseries' AND AICc_weight_model IS NOT NULL
                             ORDER BY AICc_weight_model""")
 untruncated_logseries = cur.fetchall()
+np.asarray(untruncated_logseries)
 
 
-pln = cur.execute("""SELECT AICc_weight_model FROM RawResults
+pln = cur.execute("""SELECT model_name, AICc_weight_model FROM RawResults
                             WHERE model_name =='Poisson lognormal'AND AICc_weight_model IS NOT NULL
                             ORDER BY AICc_weight_model""")
-pln = cur.fetchall()                            
+pln = cur.fetchall()
+np.asarray(pln)
                      
                             
                             
-neg_bin = cur.execute("""SELECT AICc_weight_model FROM RawResults
+neg_bin = cur.execute("""SELECT model_name, AICc_weight_model FROM RawResults
                             WHERE model_name =='Negative binomial'AND AICc_weight_model IS NOT NULL
                             ORDER BY AICc_weight_model""")
 neg_bin = cur.fetchall()
+np.asarray(neg_bin)
 
                       
                             
-geometric = cur.execute("""SELECT AICc_weight_model FROM RawResults
+geometric = cur.execute("""SELECT model_name, AICc_weight_model FROM RawResults
                             WHERE model_name =='Geometric series'AND AICc_weight_model IS NOT NULL
                             ORDER BY AICc_weight_model""")
 geometric = cur.fetchall()
+np.asarray(geometric)
+
 
 # Plot variables for weights
-N = len(logseries)
-x = range( N )
-width = 1
-plt.bar( x, logseries, width, color="gray" )
+y = [ num for (s, num) in logseries ]
+print(y)
+plt.hist(y)
+plt.xlabel("AICc_weight")
+plt.ylabel("Frequency")
 
 plt.tight_layout()
 plt.show()
