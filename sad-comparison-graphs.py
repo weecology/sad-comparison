@@ -387,29 +387,23 @@ np.asarray(geometric)
 
 # Plot variables for weights
 bins = 50
-# Logseries 
+
 model0 = [ num for (s, num) in logseries ]
 plt.hist(model0, bins, range = (0,1), facecolor = 'magenta', histtype="stepfilled", alpha=1, label = "Logseries")
-
 
 model1 = [ num for (s, num) in untruncated_logseries]
 plt.hist(model1, bins, range = (0,1), facecolor = 'orange', histtype="stepfilled", alpha=.7, label = "Untruncated logseries")
 
-
 model2 = [ num for (s, num) in pln]
 plt.hist(model2, bins, range = (0,1), facecolor = 'teal', histtype="stepfilled", alpha=.7, label = "Poisson lognormal")
-
-
 
 model3 = [ num for (s, num) in neg_bin]
 plt.hist(model3, bins, range = (0,1), facecolor = 'white', histtype="stepfilled", alpha=.7, label = "Negative binomial")
 
-
-
 model4 = [ num for (s, num) in geometric]
 plt.hist(model4, bins, range = (0,1), facecolor = 'olivedrab', histtype="stepfilled", alpha=.7, label = "Geometric")
 
-plt.legend(loc = 'upper right')
+plt.legend(loc = 'upper right', fontsize = 11)
 
 plt.xlabel("AICc weights")
 plt.ylabel("Frequency")
