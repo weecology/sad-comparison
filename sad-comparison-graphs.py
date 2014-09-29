@@ -194,7 +194,7 @@ labels = [ s for (s, num) in total_wins ]
 width = 1
 bar1 = plt.bar( x, y, width, color="grey" )
 plt.ylabel( 'Number of Wins' )
-plt.xticks(x + width/2.0, labels )
+plt.xticks(x + width/2.0, labels, fontsize = 'small' )
 plt.xlabel( 'Species abundance distribution models' )
 plt.show()
 
@@ -263,7 +263,7 @@ labels = [ s for (s, num) in bbs_wins ]
 width = 1
 bar1 = plt.bar( x, y, width, color="red" )
 plt.ylabel( 'Number of Wins' )
-plt.xticks(x + width/2.0, labels )
+plt.xticks(x + width/2.0, labels, fontsize = 5.9 )
 plt.xlabel( 'BBS' )
 
 
@@ -276,7 +276,7 @@ labels = [ s for (s, num) in cbc_wins ]
 width = 1
 bar1 = plt.bar( x, y, width, color="orange" )
 plt.ylabel( 'Number of Wins' )
-plt.xticks(x + width/2.0, labels )
+plt.xticks(x + width/2.0, labels, fontsize = 5.9  )
 plt.xlabel( 'CBC' )
 
 
@@ -289,7 +289,7 @@ labels = [ s for (s, num) in fia_wins ]
 width = 1
 bar1 = plt.bar( x, y, width, color="green" )
 plt.ylabel( 'Number of Wins' )
-plt.xticks(x + width/2.0, labels )
+plt.xticks(x + width/2.0, labels, fontsize = 5  )
 plt.xlabel( 'FIA' )
 
 
@@ -302,7 +302,7 @@ labels = [ s for (s, num) in gentry_wins ]
 width = 1
 bar1 = plt.bar( x, y, width, color="olivedrab" )
 plt.ylabel( 'Number of Wins' )
-plt.xticks(x + width/2.0, labels )
+plt.xticks(x + width/2.0, labels, fontsize = 5.9  )
 plt.xlabel( 'Gentry' )
 
 
@@ -315,7 +315,7 @@ labels = [ s for (s, num) in mcdb_wins ]
 width = 1
 bar1 = plt.bar( x, y, width, color="sienna" )
 plt.ylabel( 'Number of Wins' )
-plt.xticks(x + width/2.0, labels )
+plt.xticks(x + width/2.0, labels, fontsize = 5  )
 plt.xlabel( 'MCDB' )
 
 
@@ -329,7 +329,7 @@ labels = [ s for (s, num) in naba_wins ]
 width = 1
 bar1 = plt.bar( x, y, width, color="blue" )
 plt.ylabel( 'Number of Wins' )
-plt.xticks(x + width/2.0, labels )
+plt.xticks(x + width/2.0, labels, fontsize = 5.9  )
 plt.xlabel( 'NABA' )
 
 plt.tight_layout()
