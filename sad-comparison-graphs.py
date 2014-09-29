@@ -389,28 +389,27 @@ np.asarray(geometric)
 bins = 50
 # Logseries 
 model0 = [ num for (s, num) in logseries ]
-plt.hist(model0, bins, normed = True, facecolor = 'magenta', histtype="stepfilled", alpha=1, label = "Logseries")
+plt.hist(model0, bins, range = (0,1), facecolor = 'magenta', histtype="stepfilled", alpha=1, label = "Logseries")
 
 
 model1 = [ num for (s, num) in untruncated_logseries]
-plt.hist(model1, bins, normed = True, facecolor = 'orange', histtype="stepfilled", alpha=.7, label = "Untruncated logseries")
+plt.hist(model1, bins, range = (0,1), facecolor = 'orange', histtype="stepfilled", alpha=.7, label = "Untruncated logseries")
 
 
 model2 = [ num for (s, num) in pln]
-plt.hist(model2, bins, normed = True, facecolor = 'teal', histtype="stepfilled", alpha=.7, label = "Poisson lognormal")
+plt.hist(model2, bins, range = (0,1), facecolor = 'teal', histtype="stepfilled", alpha=.7, label = "Poisson lognormal")
 
 
 
 model3 = [ num for (s, num) in neg_bin]
-plt.hist(model3, bins, normed = True, facecolor = 'white', histtype="stepfilled", alpha=.7, label = "Negative binomial")
+plt.hist(model3, bins, range = (0,1), facecolor = 'white', histtype="stepfilled", alpha=.7, label = "Negative binomial")
 
 
 
 model4 = [ num for (s, num) in geometric]
-plt.hist(model4, bins, normed = True, facecolor = 'olivedrab', histtype="stepfilled", alpha=.7, label = "Geometric")
+plt.hist(model4, bins, range = (0,1), facecolor = 'olivedrab', histtype="stepfilled", alpha=.7, label = "Geometric")
 
 plt.legend(loc = 'upper right')
-
 
 plt.xlabel("AICc weights")
 plt.ylabel("Frequency")
