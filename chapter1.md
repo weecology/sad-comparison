@@ -1,11 +1,20 @@
 #Chapter 1
 
 # Introduction
+Very important first sentence.
 Proliferation of SAD models, no agreement about winners. (citations galore)
+
+
+
 Statistical descriptions of SAD distributions, vs. process based.
+Thingies in a process based model of species abundance distributions (SADs) provide a predicted form of a distribution, based on an assumption that the thingies that make the form of the distribution are biologically meaningful.  However, some species abundance distribution models are purely statistical descriptions of the shape of the distribution.  While the goal of a process based model is to identify pattern generating mechanisms, process based models can share the same forms as other process based models, or a purely statistical description of the abundance distribution.  Because of the model overlap, it can be difficult to identify potential mechanisms with any degree of certainty (if two models have an identical form, it is impossible to say which model is 'correct').
+
 Set up process and non process based model overlap (same form)
 
+
 No difference between models?  Maybe, but...
+
+Because of the difficulty involved in distinguishing between models, some have suggested that there is effectively no difference between models.  While there have been some studies that compete species abundance distribution models against one another, (citations including the Ulrich one) there has not yet been a comprehensive comparison across models using the most rigorous statistical approaches, large datasets, or across multiple taxonomic groups.
 
 No comprehensive comparision across models using the most rigorous statistical approaches, large datasets (plus across taxonomic groups).
 
