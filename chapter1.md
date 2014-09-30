@@ -37,12 +37,34 @@ The Mammal Community Database (MCDB) publicly available at Ecological Archives <
 The North American Butterfly Association data (NABA) is conducted by volunteers, details, not publicly available, MOU, (citation). Number of sites.
 
 ###Likelihood based statistical comparison (White et al 2008, Edwards et al 2007, 2008)
+I used a maximum likelihood approach because it is the best one for model comparison (citations).
+Used AICc (citations).
+Packages used to do analysis.
 
 
 ###Model selection (justification of why we chose those, justification for neutral theory, Neutral theory predicts the negative binomial distribution (Connolly et al. 2014. Commonness and rarity in the marine biosphere. PNAS 111: 8524-8529. http://www.pnas.org/content/111/23/8524.abstract)
+List of models used, packages used to implement code
+
+McGill (2007) classified models into several different families.  I attempted to test models from each of the separate families, excluding the population dynamic family and the spatial distribution of individuals family (McGill 2007), as these were not appropriate for testing with these data in this framework.  I had initially tried to test the generalized Yule model (branching process family), but this model proved difficult to fit to empirical data and failed to converge to a solution for many of the communities, so it was excluded from the final analyses.
+
+Ethan's paper about discrete distributions being better finds that discrete approximations are more appropriate choices for model selection that continuous version of the distribution.
+
+I tested the following distributions with the following packages: 
+
+Might make this into a table, like the infamous Table 2.
+
+Maximum Entropy Theory of Ecology (METE) <(METE)https://github.com/weecology/METE.git>
+Logseries (macroecotools/macroeco_distributions)<https://github.com/weecology/macroecotools.git>
+Untruncated logseries (macroecotools/macroeco_distributions)<https://github.com/weecology/macroecotools.git>
+Poisson lognormal (macroecotools/macroeco_distributions)<https://github.com/weecology/macroecotools.git>
+Negative binomial (macroecotools/macroeco_distributions)<https://github.com/weecology/macroecotools.git>
+Geometric series (macroecotools/macroeco_distributions)<https://github.com/weecology/macroecotools.git> 
+
+
+
 
 ###Link to code.
-Code neccessary to duplicate analyses is available at <https://github.com/weecology/sad-comparison>. The majority of the data are provided in the sad-data folder in the GitHub repository; however, the CBC datasets and NABA datasets are not publicly available and were not included.
+Code neccessary to duplicate analyses is available at <https://github.com/weecology/sad-comparison>. The majority of the raw data neccessary to duplicate the analyses are provided in the sad-data folder in the GitHub repository; however, the CBC datasets and NABA datasets are not publicly available and were not included.
 
 
 # Results
