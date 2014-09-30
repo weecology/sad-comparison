@@ -27,9 +27,7 @@ python setup.py install (with sudo for Linux)
 Maximum Entropy Theory of Ecology (METE) (METE)  
 Logseries (macroecotools/macroeco_distributions)  
 Poisson lognormal (macroecotools/macroeco_distributions)  
-Negative binomial (macroecotools/macroeco_distributions)
-Geometric series (macroecotools/macroeco_distributions)  
-Generalized Yule (macroecotools/macroeco_distributions)    
+Negative binomial (macroecotools/macroeco_distributions)  
 Geometric series (macroecotools/macroeco_distributions)  
 
     
