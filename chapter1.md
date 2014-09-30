@@ -2,37 +2,40 @@
 
 # Introduction
 Very important first sentence.
-Proliferation of SAD models, no agreement about winners. (citations galore)
+###Proliferation of SAD models, no agreement about winners. (citations galore)
 
 
 
 Statistical descriptions of SAD distributions, vs. process based.
 Thingies in a process based model of species abundance distributions (SADs) provide a predicted form of a distribution, based on an assumption that the thingies that make the form of the distribution are biologically meaningful.  However, some species abundance distribution models are purely statistical descriptions of the shape of the distribution.  While the goal of a process based model is to identify pattern generating mechanisms, process based models can share the same forms as other process based models, or a purely statistical description of the abundance distribution.  Because of the model overlap, it can be difficult to identify potential mechanisms with any degree of certainty (if two models have an identical form, it is impossible to say which model is 'correct').
 
-Set up process and non process based model overlap (same form)
+### Set up process and non process based model overlap (same form)
 
 
-No difference between models?  Maybe, but...
+###No difference between models?  Maybe, but...
 
 Because of the difficulty involved in distinguishing between models, some have suggested that there is effectively no difference between models.  While there have been some studies that compete species abundance distribution models against one another, (citations including the Ulrich one) there has not yet been a comprehensive comparison across models using the most rigorous statistical approaches, large datasets, or across multiple taxonomic groups.
 
-No comprehensive comparision across models using the most rigorous statistical approaches, large datasets (plus across taxonomic groups).
+###No comprehensive comparision across models using the most rigorous statistical approaches, large datasets (plus across taxonomic groups).
 
 
 # Methods
-Data, (from White et al 2012, minus the broken Gentry site 102 or something like that).
+###Data, (from White et al 2012, minus the broken Gentry site 102 or something like that).
 
 
-Likelihood based statistical comparison (White et al 2008, Edwards et al 2007, 2008)
+###Likelihood based statistical comparison (White et al 2008, Edwards et al 2007, 2008)
 
 
-Model selection (justification of why we chose those, justification for neutral theory, Neutral theory predicts the negative binomial distribution (Connolly et al. 2014. Commonness and rarity in the marine biosphere. PNAS 111: 8524-8529. http://www.pnas.org/content/111/23/8524.abstract)
+###Model selection (justification of why we chose those, justification for neutral theory, Neutral theory predicts the negative binomial distribution (Connolly et al. 2014. Commonness and rarity in the marine biosphere. PNAS 111: 8524-8529. http://www.pnas.org/content/111/23/8524.abstract)
 
-Link to code.
+###Link to code.
+Code neccessary to duplicate analyses is available at <https://github.com/weecology/sad-comparison>.
 
 
 # Results
-The geometric series did not do very well at all.
+The untruncated logseries had the best model fit in the majority of cases, for all datasets combined (Figure 1).  However, the pattern varied for each dataset individually.  For the BBS, CBC, FIA, MCDB, and NABA data, the untruncated logseries provided the best fit, while the Poisson lognormal provided the best model fit for the Gentry data, with the untruncated logseries coming in a close second (Figure 2).  The truncated logseries performed the worst for all datasets (Figure 1), and was never the best fit for the BBS, CBC, Gentry, and NABA datasets (Figure 2).  The negative binomial distribution failed to fit a small number of sites (get actual numbers).
+
+The actual distribution of AICc weights varied with each model.  The peaks of the AICc weights tended to overlap for the logseries, negative binomial, and Poisson lognormal (Figure 3), although the Poisson lognormal had an additional smaller peak around 1, indicating that it had very good model fit in the cases where it was the winning model (Figure 3).  The majority of the AICc weights for the geometric series were near zero (Figure 3).
 
 Assorted colorful graphs (check Post-It notes).
 
