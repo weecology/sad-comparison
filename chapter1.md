@@ -21,7 +21,20 @@ Because of the difficulty involved in distinguishing between models, some have s
 
 # Methods
 ###Data, (from White et al 2012, minus the broken Gentry site 102 or something like that).
+I used the data from White et al. 2012 for the analyses, but removed site 102 from the Gentry data set, due to a previously unidentified flaw in that site (one species had a decimal rather than integer abundance).  Total number of communities, four taxonomic groups over six large datasets.
 
+####BBS
+The North American Breeding Bird Survey (BBS) is a publicly available dataset, etc. etc.  available <link to BBS data> (citation). Number of sites.
+####CBC
+The Christmas Bird Count (CBC) is conducted by volunteers, etc. not publicly available, MOU, (citation). Number of sites.
+####Gentry
+The something Gentry tree data (Gentry) information about Gentry data (citation). Number of sites.
+####FIA
+The Forest Inventory Analysis (FIA) information, etc. (citation). Number of sites.
+####MCDB
+The Mammal Community Database (MCDB) publicly available at Ecological Archives <link> (Ernest et al. ). Number of sites.
+####NABA    
+The North American Butterfly Association data (NABA) is conducted by volunteers, details, not publicly available, MOU, (citation). Number of sites.
 
 ###Likelihood based statistical comparison (White et al 2008, Edwards et al 2007, 2008)
 
@@ -29,7 +42,7 @@ Because of the difficulty involved in distinguishing between models, some have s
 ###Model selection (justification of why we chose those, justification for neutral theory, Neutral theory predicts the negative binomial distribution (Connolly et al. 2014. Commonness and rarity in the marine biosphere. PNAS 111: 8524-8529. http://www.pnas.org/content/111/23/8524.abstract)
 
 ###Link to code.
-Code neccessary to duplicate analyses is available at <https://github.com/weecology/sad-comparison>.
+Code neccessary to duplicate analyses is available at <https://github.com/weecology/sad-comparison>. The majority of the data are provided in the sad-data folder in the GitHub repository; however, the CBC datasets and NABA datasets are not publicly available and were not included.
 
 
 # Results
