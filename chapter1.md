@@ -24,7 +24,8 @@ Because of the difficulty involved in distinguishing between models, some have s
 I used the data from White et al. 2012 for the analyses, but removed site 102 from the Gentry data set, due to a previously unidentified flaw in that site (one species had a decimal rather than integer abundance).  Total number of communities, four taxonomic groups over six large datasets.
 
 ####BBS
-The North American Breeding Bird Survey (BBS) is a publicly available dataset, etc. etc.  available <link to BBS data> (citation). Number of sites.
+The North American Breeding Bird Survey (BBS) is a publicly available dataset, etc. etc.  available <link to BBS data> (BBS,
+Sauer et al. 2011). Number of sites.
 ####CBC
 The Christmas Bird Count (CBC) is conducted by volunteers, etc. not publicly available, MOU, (citation). Number of sites.
 ####Gentry
@@ -32,9 +33,9 @@ The something Gentry tree data (Gentry) information about Gentry data (citation)
 ####FIA
 The Forest Inventory Analysis (FIA) information, etc. (citation). Number of sites.
 ####MCDB
-The Mammal Community Database (MCDB) publicly available at Ecological Archives <link> (Ernest et al. ). Number of sites.
+The Mammal Community Database (MCDB) publicly available at Ecological Archives <link> (MCDB, Thibault et al. 2011). Number of sites.
 ####NABA    
-The North American Butterfly Association data (NABA) is conducted by volunteers, details, not publicly available, MOU, (citation). Number of sites.
+The North American Butterfly Association data (NABA) is conducted by volunteers, details, not publicly available, MOU, (NABA, North American Butterfly Association 2009). Number of sites.
 
 ###Likelihood based statistical comparison (White et al 2008, Edwards et al 2007, 2008)
 I used a maximum likelihood approach because it is the best one for model comparison (citations).
@@ -42,7 +43,7 @@ Used AICc (citations).
 Packages used to do analysis.
 
 
-###Model selection (justification of why we chose those, justification for neutral theory, Neutral theory predicts the negative binomial distribution (Connolly et al. 2014. Commonness and rarity in the marine biosphere. PNAS 111: 8524-8529. http://www.pnas.org/content/111/23/8524.abstract)
+###Model selection (justification of why we chose those, justification for neutral theory, Neutral theory predicts the negative binomial distribution (Connolly et al. 2014.)
 List of models used, packages used to implement code
 
 McGill (2007) classified models into several different families.  I attempted to test models from each of the separate families, excluding the population dynamic family and the spatial distribution of individuals family (McGill 2007), as these were not appropriate for testing with these data in this framework.  I had initially tried to test the generalized Yule model (branching process family), but this model proved difficult to fit to empirical data and failed to converge to a solution for many of the communities, so it was excluded from the final analyses.
@@ -81,6 +82,21 @@ Statistical difference vs. biological relevance (i.e., is there enough differenc
 Different processes can generate identical models. (expansion of point from introduction)
 
 Paragraph on the Ulrich paper. (limitations of their approach)
+
+# References
+Connolly et al. 2014. Commonness and rarity in the marine biosphere. PNAS 111: 8524-8529.
+
+###Data
+North American Butterfly Association 2009. Butterfly Count Data, 2009.
+Sauer, J. R., J. E. Hines, J. E. Fallon, K. L. Pardieck, D. J. Ziolkowski, Jr., and Link, W. A. 2011. The
+North American Breeding Bird Survey, Results and Analysis 1966 - 2010. Version 12.07.2011
+USGS Patuxent Wildlife Research Center, Laurel, MD
+Thibault, K.M., Supp, S.R., Giffin, M., White, E.P, and Ernest, S.K.M. 2011. Species composition and
+abundance of mammalian communities. Ecology 92: 2316.
+Woudenberg, S.W., et al. 2010. The forest inventory and analysis database: database description and users
+guide version 4.0 for phase 2. Gen. Tech. Rep. RMRS-GTR-245. Fort Collins, CO: U.S.
+Department of Agriculture, Forest Service, Rocky Mountain Research Station. 336 p.
+
 
 
 
