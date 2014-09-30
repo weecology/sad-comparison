@@ -262,6 +262,7 @@ y = [ num for (s, num) in bbs_wins ]
 labels = [ s for (s, num) in bbs_wins ]
 width = 1
 bar1 = plt.bar( x, y, width, color="red" )
+plt.yticks(fontsize = 'small')
 plt.ylabel( 'Number of Wins', fontsize = 'small')
 plt.xticks(x + width/2.0, labels, fontsize = 5.9 )
 plt.xlabel( 'BBS' )
@@ -275,6 +276,7 @@ y = [ num for (s, num) in cbc_wins ]
 labels = [ s for (s, num) in cbc_wins ]
 width = 1
 bar1 = plt.bar( x, y, width, color="orange" )
+plt.yticks(fontsize = 'small')
 plt.ylabel( 'Number of Wins', fontsize = 'small' )
 plt.xticks(x + width/2.0, labels, fontsize = 5.9  )
 plt.xlabel( 'CBC' )
@@ -288,6 +290,7 @@ y = [ num for (s, num) in fia_wins ]
 labels = [ s for (s, num) in fia_wins ]
 width = 1
 bar1 = plt.bar( x, y, width, color="green" )
+plt.yticks(fontsize = 'small')
 plt.ylabel( 'Number of Wins', fontsize = 'small' )
 plt.xticks(x + width/2.0, labels, fontsize = 5  )
 plt.xlabel( 'FIA' )
@@ -301,6 +304,7 @@ y = [ num for (s, num) in gentry_wins ]
 labels = [ s for (s, num) in gentry_wins ]
 width = 1
 bar1 = plt.bar( x, y, width, color="olivedrab" )
+plt.yticks(fontsize = 'small')
 plt.ylabel( 'Number of Wins', fontsize = 'small' )
 plt.xticks(x + width/2.0, labels, fontsize = 5.9  )
 plt.xlabel( 'Gentry' )
@@ -314,6 +318,7 @@ y = [ num for (s, num) in mcdb_wins ]
 labels = [ s for (s, num) in mcdb_wins ]
 width = 1
 bar1 = plt.bar( x, y, width, color="sienna" )
+plt.yticks(fontsize = 'small')
 plt.ylabel( 'Number of Wins', fontsize = 'small' )
 plt.xticks(x + width/2.0, labels, fontsize = 5  )
 plt.xlabel( 'MCDB' )
@@ -328,6 +333,7 @@ y = [ num for (s, num) in naba_wins ]
 labels = [ s for (s, num) in naba_wins ]
 width = 1
 bar1 = plt.bar( x, y, width, color="blue" )
+plt.yticks(fontsize = 'small')
 plt.ylabel( 'Number of Wins', fontsize = 'small' )
 plt.xticks(x + width/2.0, labels, fontsize = 5.9  )
 plt.xlabel( 'NABA' )
