@@ -3,10 +3,11 @@
 # Introduction
 Very important first sentence.
 ###Proliferation of SAD models, no agreement about winners. (citations galore)
+A ubiquitous and fundamental ecological pattern is the presence of many rare species and few super abundant species within a community, forming a hollow curve distribution.  Because of the generality of this pattern, the species abundance distribution (SAD) has been one of the most widely studied patterns in ecology, leading to a proliferation of models that attempt to characterize the shape of the distribution and identify potential mechanisms for the pattern. The most recent comprehensive review and classification of species abundance distributions was given by McGill et al. 2007.
 
 
+###Statistical descriptions of SAD distributions, vs. process based.  
 
-Statistical descriptions of SAD distributions, vs. process based.
 Thingies in a process based model of species abundance distributions (SADs) provide a predicted form of a distribution, based on an assumption that the thingies that make the form of the distribution are biologically meaningful.  However, some species abundance distribution models are purely statistical descriptions of the shape of the distribution.  While the goal of a process based model is to identify pattern generating mechanisms, process based models can share the same forms as other process based models, or a purely statistical description of the abundance distribution.  Because of the model overlap, it can be difficult to identify potential mechanisms with any degree of certainty (if two models have an identical form, it is impossible to say which model is 'correct').
 
 ### Set up process and non process based model overlap (same form)
@@ -21,32 +22,37 @@ Because of the difficulty involved in distinguishing between models, some have s
 
 # Methods
 ###Data, (from White et al 2012, minus the broken Gentry site 102 or something like that).
-I used the data from White et al. 2012 for the analyses, but removed site 102 from the Gentry data set, due to a previously unidentified flaw in that site (one species had a decimal rather than integer abundance).  Total number of communities, four taxonomic groups over six large datasets.
+I used the following datasets used by White et al. 2012 to test the species abundance distribution models.  
 
 ####BBS
-The North American Breeding Bird Survey (BBS) is a publicly available dataset, etc. etc.  available <link to BBS data> (BBS,
+The North American Breeding Bird Survey (BBS) is a publicly available dataset, etc. etc.  available <link to BBS data> (BBS;
 Sauer et al. 2011). Number of sites.
 ####CBC
-The Christmas Bird Count (CBC) is conducted by volunteers, etc. not publicly available, MOU, (citation). Number of sites.
+The Christmas Bird Count (CBC) is conducted by volunteers, etc. not publicly available, MOU, (CBC; National Audubon Society 2002). Number of sites.
 ####Gentry
-The something Gentry tree data (Gentry) information about Gentry data (citation). Number of sites.
+The Alwyn Gentry’s Forest Transect dataset (Gentry) information about Gentry data (Gentry; Phillips and
+Miller 2002). Number of sites.
 ####FIA
-The Forest Inventory Analysis (FIA) information, etc. (citation). Number of sites.
+The Forest Inventory Analysis (FIA) information, etc. (FIA; USDA Forest Service 2010). Number of sites.
 ####MCDB
 The Mammal Community Database (MCDB) publicly available at Ecological Archives <link> (MCDB, Thibault et al. 2011). Number of sites.
 ####NABA    
-The North American Butterfly Association data (NABA) is conducted by volunteers, details, not publicly available, MOU, (NABA, North American Butterfly Association 2009). Number of sites.
+The North American Butterfly Count data (NABA) is conducted by volunteers, details, not publicly available, MOU, (NABA, North American Butterfly Association 2009). Number of sites.
+
+Gentry site 102 was culled from the dataset due to a previously unidentified flaw in that site (one species had a decimal rather than integer abundance).  In total, I used data for 15,847 communities across four taxonomic groups over six large datasets.  The data have a North American bias, as the BBS, CBC, and FIA data are restricted to North America.
 
 ###Likelihood based statistical comparison (White et al 2008, Edwards et al 2007, 2008)
 I used a maximum likelihood approach because it is the best one for model comparison (citations).
 Used AICc (citations).
 Packages used to do analysis.
 
+Also compared multiple datasets for multiple models because more rigorous (McGill et al. 2007)
+
 
 ###Model selection (justification of why we chose those, justification for neutral theory, Neutral theory predicts the negative binomial distribution (Connolly et al. 2014.)
 List of models used, packages used to implement code
 
-McGill (2007) classified models into several different families.  I attempted to test models from each of the separate families, excluding the population dynamic family and the spatial distribution of individuals family (McGill 2007), as these were not appropriate for testing with these data in this framework.  I had initially tried to test the generalized Yule model (branching process family), but this model proved difficult to fit to empirical data and failed to converge to a solution for many of the communities, so it was excluded from the final analyses.
+McGill et al. (2007) classified models into several different families.  I attempted to test models from each of the separate families, excluding the population dynamic family and the spatial distribution of individuals family (McGill et al. 2007), as these were not appropriate for testing with these data in this framework.  I had initially tried to test the generalized Yule model (branching process family), but this model proved difficult to fit to empirical data and failed to converge to a solution for many of the communities, so it was excluded from the final analyses.
 
 Ethan's paper about discrete distributions being better finds that discrete approximations are more appropriate choices for model selection that continuous version of the distribution.
 
@@ -85,17 +91,25 @@ Paragraph on the Ulrich paper. (limitations of their approach)
 
 # References
 Connolly et al. 2014. Commonness and rarity in the marine biosphere. PNAS 111: 8524-8529.
+McGill, B.J. et al. 2007. Species abundance distributions: moving beyond single prediction theories to integration within an ecological framework. Ecology Letters 10 995-1015.
 
 ###Data
-North American Butterfly Association 2009. Butterfly Count Data, 2009.
+National Audubon Society. 2002. The Christmas Bird Count
+historical results. National Audobon Society, New York,
+New York, USA. http://www.audubon.org/bird/cbc  
+North American Butterfly Association 2009. Butterfly Count Data, 2009.  
+Phillips, O., and J. S. Miller. 2002. Global patterns of plant
+diversity: Alwyn H. Gentry’s forest transect data set.
+Missouri Botanical Garden Press, St. Louis, Missouri, USA.  
 Sauer, J. R., J. E. Hines, J. E. Fallon, K. L. Pardieck, D. J. Ziolkowski, Jr., and Link, W. A. 2011. The
-North American Breeding Bird Survey, Results and Analysis 1966 - 2010. Version 12.07.2011
+North American Breeding Bird Survey, Results and Analysis 1966 - 2010. Version 12.07.2011  
 USGS Patuxent Wildlife Research Center, Laurel, MD
 Thibault, K.M., Supp, S.R., Giffin, M., White, E.P, and Ernest, S.K.M. 2011. Species composition and
-abundance of mammalian communities. Ecology 92: 2316.
-Woudenberg, S.W., et al. 2010. The forest inventory and analysis database: database description and users
-guide version 4.0 for phase 2. Gen. Tech. Rep. RMRS-GTR-245. Fort Collins, CO: U.S.
-Department of Agriculture, Forest Service, Rocky Mountain Research Station. 336 p.
+abundance of mammalian communities. Ecology 92: 2316.  
+USDA Forest Service. 2010. Forest inventory and analysis
+national core field guide (Phase 2 and 3). Version 4.0. USDA
+Forest Service, Forest Inventory and Analysis, Washington,
+D.C., USA.
 
 
 
