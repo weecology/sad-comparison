@@ -41,9 +41,9 @@ def winning_model(data_dir, dataset_name, results):
         AICc_weights = site_results[3:]
 
 
-        AICc_min_weight = min(AICc_weights) # This will return the actual AICc_weight of the winning model, given that the winning model is the one with the lowest AICc weight.
+        AICc_max_weight = max(AICc_weights) # This will return the actual AICc_weight of the winning model, given that the winning model is the one with the highest AICc weight.
 
-        winning_model = AICc_weights.index(AICc_min_weight) # This will return the winning model, where the model is indicated by the index position
+        winning_model = AICc_weights.index(AICc_max_weight) # This will return the winning model, where the model is indicated by the index position
         
         if winning_model == 0:
             model_name = 'Logseries'
@@ -61,7 +61,7 @@ def winning_model(data_dir, dataset_name, results):
             model_name = 'Geometric series'
 
         # Format results for output
-        processed_results = [[dataset_name] + [site_ID] + [S] + [N] + [winning_model] + [model_name] + [AICc_min_weight]]
+        processed_results = [[dataset_name] + [site_ID] + [S] + [N] + [winning_model] + [model_name] + [AICc_max_weight]]
         
                                         
         # Save results to a csv file:            
@@ -69,7 +69,7 @@ def winning_model(data_dir, dataset_name, results):
         
         # Save results to sqlite database      
         #Create database for simulated data """
-        cur.execute("""CREATE TABLE IF NOT EXISTS RawResults
+        cur.execute("""CREATE TABLE IF NOT EXISTS ResultsWin
                        (dataset_code TEXT,
                         site TEXT,
                         S INTEGER,
@@ -78,12 +78,57 @@ def winning_model(data_dir, dataset_name, results):
                         model_name TEXT,
                         AICc_weight_model FLOAT)""")
            
-        cur.executemany("""INSERT INTO RawResults VALUES(?,?,?,?,?,?,?)""", processed_results)
+        cur.executemany("""INSERT INTO ResultsWin VALUES(?,?,?,?,?,?,?)""", processed_results)
         con.commit()
         
     return processed_results
         
-   
+def process_AICcs(data_dir, dataset_name, results):
+    for site in results:
+        site_results = site.tolist()
+        site_ID = site_results[0]
+        S = site_results[1]
+        N = site_results[2]
+        AICc_weights = site_results[3:]
+        counter = 0
+        
+
+        for index, AICc_weight in enumerate(AICc_weights):
+            if index == 0:
+                model_name = 'Logseries'
+                processed_results = [[dataset_name] + [site_ID] + [S] + [N] + [index] + [model_name] + [AICc_weight]]
+            
+            elif index == 1:
+                model_name = 'Untruncated logseries'
+                processed_results = [[dataset_name] + [site_ID] + [S] + [N] + [index] + [model_name] + [AICc_weight]]
+            
+            elif index == 2:
+                model_name = 'Poisson lognormal'
+                processed_results = [[dataset_name] + [site_ID] + [S] + [N] + [index] + [model_name] + [AICc_weight]]
+            
+            elif index == 3:
+                model_name = 'Negative binomial'
+                processed_results = [[dataset_name] + [site_ID] + [S] + [N] + [index] + [model_name] + [AICc_weight]]
+            
+            else:
+                model_name = 'Geometric series'
+                processed_results = [[dataset_name] + [site_ID] + [S] + [N] + [index] + [model_name] + [AICc_weight]]
+
+            # Save results to sqlite database      
+            #Create database for simulated data """
+            cur.execute("""CREATE TABLE IF NOT EXISTS RawResults
+                       (dataset_code TEXT,
+                        site TEXT,
+                        S INTEGER,
+                        N INTEGER,
+                        model_code INTEGER,
+                        model_name TEXT,
+                        AICc_weight_model FLOAT)""")
+           
+            cur.executemany("""INSERT INTO RawResults VALUES(?,?,?,?,?,?,?)""", processed_results)
+            con.commit()
+        
+    return processed_results   
 # Set up analysis parameters
 data_dir = './sad-data/' # path to data directory
 results_ext = '_dist_test.csv' # Extension for raw species abundance files
@@ -98,19 +143,22 @@ needs_processing = False # THIS LINE IS TEMPORARY AND NEEDS TO BE DELETED IN THE
 if needs_processing == True:
     # Set up database capabilities 
     # Set up ability to query data
-    con = dbapi.connect('SummarizedResults.sqlite')
+    con = dbapi.connect('./sad-data/SummarizedResults.sqlite')
     cur = con.cursor()
     
     # Switch con data type to string
     con.text_factory = str    
+    cur.execute("""DROP TABLE IF EXISTS ResultsWin""")
     cur.execute("""DROP TABLE IF EXISTS RawResults""")
-    con.commit()      
+    con.commit() 
     for dataset in datasets:
         datafile = data_dir + dataset + results_ext
         
         raw_results = import_results(datafile) # Import data
 
         processed_results = winning_model(data_dir, dataset, raw_results) # Finds the winning model for each site
+        
+        process_AICcs(data_dir, dataset, raw_results) #Turns the raw results into a database.
     
     #Close connection to database
     con.close()    
@@ -118,22 +166,24 @@ if needs_processing == True:
 # Summarize the number of wins for each model/dataset
 # Set up database capabilities 
 # Set up ability to query data
-con = dbapi.connect('SummarizedResults.sqlite')
+con = dbapi.connect('./sad-data/SummarizedResults.sqlite')
 cur = con.cursor()
 
 # Switch con data type to string
 con.text_factory = str
 
 
-# Extract number of wins for all datasets combined.
-total_wins = cur.execute("""SELECT model_name, COUNT(model_code) AS total_wins FROM RawResults
-                            GROUP BY model_code""")
 
-total_wins = cur.fetchall()
 
 # Make histogram
 # Set up figure
 total_wins_fig= plt.figure()
+
+# Extract number of wins for all datasets combined.
+total_wins = cur.execute("""SELECT model_name, COUNT(model_code) AS total_wins FROM ResultsWin
+                            GROUP BY model_code""")
+
+total_wins = cur.fetchall()
 
 
 # Plot variables for total wins
@@ -144,54 +194,56 @@ labels = [ s for (s, num) in total_wins ]
 width = 1
 bar1 = plt.bar( x, y, width, color="grey" )
 plt.ylabel( 'Number of Wins' )
-plt.xticks(x + width/2.0, labels )
+plt.xticks(x + width/2.0, labels, fontsize = 'small' )
 plt.xlabel( 'Species abundance distribution models' )
 plt.show()
 
 
 #Output figure
-fileName = "total_wins.png"
+fileName = "./sad-data/total_wins.png"
 plt.savefig(fileName, format="png" )
+
+
 
 
 # Extract number of wins for each model and dataset
 # BBS
-bbs_wins  = cur.execute("""SELECT model_name, COUNT(model_code) AS total_wins FROM RawResults
+bbs_wins  = cur.execute("""SELECT model_name, COUNT(model_code) AS total_wins FROM ResultsWin
                                  WHERE dataset_code == 'bbs'
                                  GROUP BY model_code""")
            
 bbs_wins = cur.fetchall()
 
 #CBC
-cbc_wins = g= cur.execute("""SELECT model_name, COUNT(model_code) AS total_wins FROM RawResults
+cbc_wins = g= cur.execute("""SELECT model_name, COUNT(model_code) AS total_wins FROM ResultsWin
                                  WHERE dataset_code == 'cbc'
                                  GROUP BY model_code""")
            
 cbc_wins = cur.fetchall()
 
 #FIA
-fia_wins = cur.execute("""SELECT model_name, COUNT(model_code) AS total_wins FROM RawResults
+fia_wins = cur.execute("""SELECT model_name, COUNT(model_code) AS total_wins FROM ResultsWin
                                  WHERE dataset_code == 'fia'
                                  GROUP BY model_code""")
            
 fia_wins = cur.fetchall()
 
 #Gentry
-gentry_wins = cur.execute("""SELECT model_name, COUNT(model_code) AS total_wins FROM RawResults
+gentry_wins = cur.execute("""SELECT model_name, COUNT(model_code) AS total_wins FROM ResultsWin
                                  WHERE dataset_code == 'gentry'
                                  GROUP BY model_code""")
            
 gentry_wins = cur.fetchall()
 
 #MCDB
-mcdb_wins = cur.execute("""SELECT model_name, COUNT(model_code) AS total_wins FROM RawResults
+mcdb_wins = cur.execute("""SELECT model_name, COUNT(model_code) AS total_wins FROM ResultsWin
                                  WHERE dataset_code == 'mcdb'
                                  GROUP BY model_code""")
            
 mcdb_wins = cur.fetchall()
 
 #NABA
-naba_wins = cur.execute("""SELECT model_name, COUNT(model_code) AS total_wins FROM RawResults
+naba_wins = cur.execute("""SELECT model_name, COUNT(model_code) AS total_wins FROM ResultsWin
                                  WHERE dataset_code == 'naba'
                                  GROUP BY model_code""")
            
@@ -210,8 +262,9 @@ y = [ num for (s, num) in bbs_wins ]
 labels = [ s for (s, num) in bbs_wins ]
 width = 1
 bar1 = plt.bar( x, y, width, color="red" )
-plt.ylabel( 'Number of Wins' )
-plt.xticks(x + width/2.0, labels )
+plt.yticks(fontsize = 'small')
+plt.ylabel( 'Number of Wins', fontsize = 'small')
+plt.xticks(x + width/2.0, labels, fontsize = 5.9 )
 plt.xlabel( 'BBS' )
 
 
@@ -223,8 +276,9 @@ y = [ num for (s, num) in cbc_wins ]
 labels = [ s for (s, num) in cbc_wins ]
 width = 1
 bar1 = plt.bar( x, y, width, color="orange" )
-plt.ylabel( 'Number of Wins' )
-plt.xticks(x + width/2.0, labels )
+plt.yticks(fontsize = 'small')
+plt.ylabel( 'Number of Wins', fontsize = 'small' )
+plt.xticks(x + width/2.0, labels, fontsize = 5.9  )
 plt.xlabel( 'CBC' )
 
 
@@ -236,8 +290,9 @@ y = [ num for (s, num) in fia_wins ]
 labels = [ s for (s, num) in fia_wins ]
 width = 1
 bar1 = plt.bar( x, y, width, color="green" )
-plt.ylabel( 'Number of Wins' )
-plt.xticks(x + width/2.0, labels )
+plt.yticks(fontsize = 'small')
+plt.ylabel( 'Number of Wins', fontsize = 'small' )
+plt.xticks(x + width/2.0, labels, fontsize = 5  )
 plt.xlabel( 'FIA' )
 
 
@@ -249,8 +304,9 @@ y = [ num for (s, num) in gentry_wins ]
 labels = [ s for (s, num) in gentry_wins ]
 width = 1
 bar1 = plt.bar( x, y, width, color="olivedrab" )
-plt.ylabel( 'Number of Wins' )
-plt.xticks(x + width/2.0, labels )
+plt.yticks(fontsize = 'small')
+plt.ylabel( 'Number of Wins', fontsize = 'small' )
+plt.xticks(x + width/2.0, labels, fontsize = 5.9  )
 plt.xlabel( 'Gentry' )
 
 
@@ -262,8 +318,9 @@ y = [ num for (s, num) in mcdb_wins ]
 labels = [ s for (s, num) in mcdb_wins ]
 width = 1
 bar1 = plt.bar( x, y, width, color="sienna" )
-plt.ylabel( 'Number of Wins' )
-plt.xticks(x + width/2.0, labels )
+plt.yticks(fontsize = 'small')
+plt.ylabel( 'Number of Wins', fontsize = 'small' )
+plt.xticks(x + width/2.0, labels, fontsize = 5  )
 plt.xlabel( 'MCDB' )
 
 
@@ -276,8 +333,9 @@ y = [ num for (s, num) in naba_wins ]
 labels = [ s for (s, num) in naba_wins ]
 width = 1
 bar1 = plt.bar( x, y, width, color="blue" )
-plt.ylabel( 'Number of Wins' )
-plt.xticks(x + width/2.0, labels )
+plt.yticks(fontsize = 'small')
+plt.ylabel( 'Number of Wins', fontsize = 'small' )
+plt.xticks(x + width/2.0, labels, fontsize = 5.9  )
 plt.xlabel( 'NABA' )
 
 plt.tight_layout()
@@ -286,9 +344,82 @@ plt.show()
 
 
 #Output figure
-fileName = "wins_by_dataset.png"
+fileName = "./sad-data/wins_by_dataset.png"
 plt.savefig(fileName, format="png" )
 
+
+
+#AIC_c weight distributions graphs
+# Make histogram
+# Set up figure
+AIC_c_weights = plt.figure()
+
+# Extract AICc weights for each model.
+logseries = cur.execute("""SELECT model_name, AICc_weight_model FROM RawResults
+                            WHERE model_name == 'Logseries' AND AICc_weight_model IS NOT NULL
+                            ORDER BY AICc_weight_model""")
+logseries = cur.fetchall()
+
+
+untruncated_logseries = cur.execute("""SELECT model_name, AICc_weight_model FROM RawResults
+                            WHERE model_name =='Untruncated logseries' AND AICc_weight_model IS NOT NULL
+                            ORDER BY AICc_weight_model""")
+untruncated_logseries = cur.fetchall()
+np.asarray(untruncated_logseries)
+
+
+pln = cur.execute("""SELECT model_name, AICc_weight_model FROM RawResults
+                            WHERE model_name =='Poisson lognormal'AND AICc_weight_model IS NOT NULL
+                            ORDER BY AICc_weight_model""")
+pln = cur.fetchall()
+np.asarray(pln)
+                     
+                            
+                            
+neg_bin = cur.execute("""SELECT model_name, AICc_weight_model FROM RawResults
+                            WHERE model_name =='Negative binomial'AND AICc_weight_model IS NOT NULL
+                            ORDER BY AICc_weight_model""")
+neg_bin = cur.fetchall()
+np.asarray(neg_bin)
+
+                      
+                            
+geometric = cur.execute("""SELECT model_name, AICc_weight_model FROM RawResults
+                            WHERE model_name =='Geometric series'AND AICc_weight_model IS NOT NULL
+                            ORDER BY AICc_weight_model""")
+geometric = cur.fetchall()
+np.asarray(geometric)
+
+
+# Plot variables for weights
+bins = 50
+
+model0 = [ num for (s, num) in logseries ]
+plt.hist(model0, bins, range = (0,1), facecolor = 'magenta', histtype="stepfilled", alpha=1, label = "Logseries")
+
+model1 = [ num for (s, num) in untruncated_logseries]
+plt.hist(model1, bins, range = (0,1), facecolor = 'orange', histtype="stepfilled", alpha=.7, label = "Untruncated logseries")
+
+model2 = [ num for (s, num) in pln]
+plt.hist(model2, bins, range = (0,1), facecolor = 'teal', histtype="stepfilled", alpha=.7, label = "Poisson lognormal")
+
+model3 = [ num for (s, num) in neg_bin]
+plt.hist(model3, bins, range = (0,1), facecolor = 'white', histtype="stepfilled", alpha=.7, label = "Negative binomial")
+
+model4 = [ num for (s, num) in geometric]
+plt.hist(model4, bins, range = (0,1), facecolor = 'olivedrab', histtype="stepfilled", alpha=.7, label = "Geometric")
+
+plt.legend(loc = 'upper right', fontsize = 11)
+
+plt.xlabel("AICc weights")
+plt.ylabel("Frequency")
+
+plt.tight_layout()
+plt.show()
+
+#Output figure
+fileName = "./sad-data/AICc_weights.png"
+plt.savefig(fileName, format="png" )
 
 
 # Close connection
