@@ -83,7 +83,7 @@ def winning_model(data_dir, dataset_name, results):
         
     return processed_results
         
-def process_AICcs(data_dir, dataset_name, results):
+def process_results(data_dir, dataset_name, results):
     for site in results:
         site_results = site.tolist()
         site_ID = site_results[0]
@@ -131,7 +131,8 @@ def process_AICcs(data_dir, dataset_name, results):
     return processed_results   
 # Set up analysis parameters
 data_dir = './sad-data/' # path to data directory
-results_ext = '_dist_test.csv' # Extension for raw species abundance files
+results_ext = '_dist_test.csv' # Extension for raw model AICc results files
+likelihood_ext = '_likelihoods.csv' # Extension for raw model likelihood files
 
 datasets = ['bbs', 'cbc', 'fia', 'gentry', 'mcdb', 'naba'] # Dataset ID codes
 
@@ -153,12 +154,17 @@ if needs_processing == True:
     con.commit() 
     for dataset in datasets:
         datafile = data_dir + dataset + results_ext
+        datafile2 = data_dir + dataset + likelihood_ext
         
         raw_results = import_results(datafile) # Import data
-
-        processed_results = winning_model(data_dir, dataset, raw_results) # Finds the winning model for each site
         
-        process_AICcs(data_dir, dataset, raw_results) #Turns the raw results into a database.
+        raw_results_likelihood = import_results(datafile2) # Import data
+
+        winning_model(data_dir, dataset, raw_results) # Finds the winning model for each site
+        
+        process_results(data_dir, dataset, raw_results) #Turns the raw results into a database.
+        process_results(data_dir, dataset, raw_results_likelihood) #Turns the raw results into a database.
+        
     
     #Close connection to database
     con.close()    
