@@ -83,36 +83,36 @@ def winning_model(data_dir, dataset_name, results):
         
     return processed_results
         
-def process_results(data_dir, dataset_name, results):
+def process_results(data_dir, dataset_name, results, value_type):
     for site in results:
         site_results = site.tolist()
         site_ID = site_results[0]
         S = site_results[1]
         N = site_results[2]
-        AICc_weights = site_results[3:]
+        value = site_results[3:]
         counter = 0
         
 
         for index, AICc_weight in enumerate(AICc_weights):
             if index == 0:
                 model_name = 'Logseries'
-                processed_results = [[dataset_name] + [site_ID] + [S] + [N] + [index] + [model_name] + [AICc_weight]]
+                processed_results = [[dataset_name] + [site_ID] + [S] + [N] + [index] + [model_name] + [value_type] + [value]]
             
             elif index == 1:
                 model_name = 'Untruncated logseries'
-                processed_results = [[dataset_name] + [site_ID] + [S] + [N] + [index] + [model_name] + [AICc_weight]]
+                processed_results = [[dataset_name] + [site_ID] + [S] + [N] + [index] + [model_name] + [value_type] + [value]]
             
             elif index == 2:
                 model_name = 'Poisson lognormal'
-                processed_results = [[dataset_name] + [site_ID] + [S] + [N] + [index] + [model_name] + [AICc_weight]]
+                processed_results = [[dataset_name] + [site_ID] + [S] + [N] + [index] + [model_name] + [value_type] + [value]]
             
             elif index == 3:
                 model_name = 'Negative binomial'
-                processed_results = [[dataset_name] + [site_ID] + [S] + [N] + [index] + [model_name] + [AICc_weight]]
+                processed_results = [[dataset_name] + [site_ID] + [S] + [N] + [index] + [model_name] + [value_type] + [value]]
             
             else:
                 model_name = 'Geometric series'
-                processed_results = [[dataset_name] + [site_ID] + [S] + [N] + [index] + [model_name] + [AICc_weight]]
+                processed_results = [[dataset_name] + [site_ID] + [S] + [N] + [index] + [model_name] + [value_type] + [value]]
 
             # Save results to sqlite database      
             #Create database for simulated data """
@@ -123,9 +123,10 @@ def process_results(data_dir, dataset_name, results):
                         N INTEGER,
                         model_code INTEGER,
                         model_name TEXT,
-                        AICc_weight_model FLOAT)""")
+                        value_type TEXT,
+                        value FLOAT)""")
            
-            cur.executemany("""INSERT INTO RawResults VALUES(?,?,?,?,?,?,?)""", processed_results)
+            cur.executemany("""INSERT INTO RawResults VALUES(?,?,?,?,?,?,?,?)""", processed_results)
             con.commit()
         
     return processed_results   
@@ -162,8 +163,8 @@ if needs_processing == True:
 
         winning_model(data_dir, dataset, raw_results) # Finds the winning model for each site
         
-        process_results(data_dir, dataset, raw_results) #Turns the raw results into a database.
-        process_results(data_dir, dataset, raw_results_likelihood) #Turns the raw results into a database.
+        process_results(data_dir, dataset, raw_results, 'AICc weight') #Turns the raw results into a database.
+        process_results(data_dir, dataset, raw_results_likelihood, 'likelihood') #Turns the raw results into a database.
         
     
     #Close connection to database
@@ -362,39 +363,34 @@ AIC_c_weights = plt.figure()
 
 # Extract AICc weights for each model.
 logseries = cur.execute("""SELECT model_name, AICc_weight_model FROM RawResults
-                            WHERE model_name == 'Logseries' AND AICc_weight_model IS NOT NULL
+                            WHERE model_name == 'Logseries' AND value_type =='AICc weight' AND AICc_weight_model IS NOT NULL
                             ORDER BY AICc_weight_model""")
 logseries = cur.fetchall()
 
 
 untruncated_logseries = cur.execute("""SELECT model_name, AICc_weight_model FROM RawResults
-                            WHERE model_name =='Untruncated logseries' AND AICc_weight_model IS NOT NULL
+                            WHERE model_name =='Untruncated logseries' AND value_type =='AICc weight' AND AICc_weight_model IS NOT NULL
                             ORDER BY AICc_weight_model""")
 untruncated_logseries = cur.fetchall()
-np.asarray(untruncated_logseries)
 
 
 pln = cur.execute("""SELECT model_name, AICc_weight_model FROM RawResults
-                            WHERE model_name =='Poisson lognormal'AND AICc_weight_model IS NOT NULL
+                            WHERE model_name =='Poisson lognormal' AND value_type =='AICc weight' AND AICc_weight_model IS NOT NULL
                             ORDER BY AICc_weight_model""")
 pln = cur.fetchall()
-np.asarray(pln)
-                     
+                  
                             
                             
 neg_bin = cur.execute("""SELECT model_name, AICc_weight_model FROM RawResults
-                            WHERE model_name =='Negative binomial'AND AICc_weight_model IS NOT NULL
+                            WHERE model_name =='Negative binomial' AND value_type =='AICc weight' AND AICc_weight_model IS NOT NULL
                             ORDER BY AICc_weight_model""")
 neg_bin = cur.fetchall()
-np.asarray(neg_bin)
-
                       
                             
 geometric = cur.execute("""SELECT model_name, AICc_weight_model FROM RawResults
-                            WHERE model_name =='Geometric series'AND AICc_weight_model IS NOT NULL
+                            WHERE model_name =='Geometric series' AND value_type =='AICc weight' AND AICc_weight_model IS NOT NULL
                             ORDER BY AICc_weight_model""")
 geometric = cur.fetchall()
-np.asarray(geometric)
 
 
 # Plot variables for weights
@@ -425,6 +421,78 @@ plt.show()
 
 #Output figure
 fileName = "./sad-data/AICc_weights.png"
+plt.savefig(fileName, format="png" )
+
+#Likelihood graph
+# Make histogram
+# Set up figure
+l_likelihood = plt.figure()
+
+# Extract AICc weights for each model.
+ll_logseries = cur.execute("""SELECT model_name, AICc_weight_model FROM RawResults
+                            WHERE model_name == 'Logseries' AND value_type =='likelihood' AND AICc_weight_model IS NOT NULL
+                            ORDER BY AICc_weight_model""")
+ll_logseries = cur.fetchall()
+
+
+ll_untruncated_logseries = cur.execute("""SELECT model_name, AICc_weight_model FROM RawResults
+                            WHERE model_name =='Untruncated logseries' AND value_type ==''likelihood' AND AICc_weight_model IS NOT NULL
+                            ORDER BY AICc_weight_model""")
+ll_untruncated_logseries = cur.fetchall()
+
+
+
+ll_pln = cur.execute("""SELECT model_name, AICc_weight_model FROM RawResults
+                            WHERE model_name =='Poisson lognormal' AND value_type =='likelihood' AND AICc_weight_model IS NOT NULL
+                            ORDER BY AICc_weight_model""")
+ll_pln = cur.fetchall()
+
+                     
+                            
+                            
+ll_neg_bin = cur.execute("""SELECT model_name, AICc_weight_model FROM RawResults
+                            WHERE model_name =='Negative binomial' AND value_type =='likelihood' AND AICc_weight_model IS NOT NULL
+                            ORDER BY AICc_weight_model""")
+ll_neg_bin = cur.fetchall()
+
+
+                      
+                            
+ll_geometric = cur.execute("""SELECT model_name, AICc_weight_model FROM RawResults
+                            WHERE model_name =='Geometric series' AND value_type =='likelihood' AND AICc_weight_model IS NOT NULL
+                            ORDER BY AICc_weight_model""")
+ll_geometric = cur.fetchall()
+
+
+
+# Plot variables for weights
+bins = 50
+
+ll_model0 = [ num for (s, num) in ll_logseries ]
+plt.hist(ll_model0, bins, range = (0,1), facecolor = 'magenta', histtype="stepfilled", alpha=1, label = "Logseries")
+
+ll_model1 = [ num for (s, num) in ll_untruncated_logseries]
+plt.hist(ll_model1, bins, range = (0,1), facecolor = 'orange', histtype="stepfilled", alpha=.7, label = "Untruncated logseries")
+
+ll_model2 = [ num for (s, num) in ll_pln]
+plt.hist(ll_model2, bins, range = (0,1), facecolor = 'teal', histtype="stepfilled", alpha=.7, label = "Poisson lognormal")
+
+ll_model3 = [ num for (s, num) in ll_neg_bin]
+plt.hist(ll_model3, bins, range = (0,1), facecolor = 'white', histtype="stepfilled", alpha=.7, label = "Negative binomial")
+
+ll_model4 = [ num for (s, num) in ll_geometric]
+plt.hist(ll_model4, bins, range = (0,1), facecolor = 'olivedrab', histtype="stepfilled", alpha=.7, label = "Geometric")
+
+plt.legend(loc = 'upper right', fontsize = 11)
+
+plt.xlabel("Log-likelihood")
+plt.ylabel("Frequency")
+
+plt.tight_layout()
+plt.show()
+
+#Output figure
+fileName = "./sad-data/likelihoods.png"
 plt.savefig(fileName, format="png" )
 
 
