@@ -48,7 +48,8 @@ def model_comparisons(raw_data, dataset_name, data_dir, cutoff = 9):
     
     # Open output files
     output1 = csv.writer(open(data_dir + dataset_name + '_obs_pred.csv','wb'))
-    output2 = csv.writer(open(data_dir + dataset_name + '_dist_test.csv','wb')) 
+    output2 = csv.writer(open(data_dir + dataset_name + '_dist_test.csv','wb'))
+    output3 = csv.writer(open(data_dir + dataset_name + '_likelihoods.csv','wb')) 
     
     # Insert header
     output1.writerow(['site', 'observed', 'predicted'])
@@ -122,6 +123,7 @@ def model_comparisons(raw_data, dataset_name, data_dir, cutoff = 9):
             
             # Inserts a blank in the output if the negative binomial exceeded the max number of iterations
             if negbin_blank == 1:
+                AICc_list.insert(3, '')
                 weights_output.insert(3, '')
                 
                                     
@@ -129,11 +131,13 @@ def model_comparisons(raw_data, dataset_name, data_dir, cutoff = 9):
             results = ((np.column_stack((subsites, obsabundance, pred))))
             for weight in weights_output:
                 results2 = [[site, S, N] + weights_output]
+            results3 = [[site, S, N] + AICc_list]
 
                                             
             # Save results to a csv file:            
             output1.writerows(results)
             output2.writerows(results2)
+            output3.writerows(results3)
 
 
 """ Function to see which predicted model fits best with the empirical data for each community. """
