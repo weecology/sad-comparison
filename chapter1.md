@@ -19,10 +19,6 @@ Constraints in a process based model of species abundance distributions (SADs) p
 
 Because of the difficulty involved in distinguishing between models, some have suggested that there is effectively no difference between models.  While there have been some studies that compete species abundance distribution models against one another, (citations including the Ulrich one) there has not yet been a comprehensive comparison across models using the most rigorous statistical approaches, large datasets, or across multiple taxonomic groups.  
 
-Suspicious of this bit fitting in with the flow, but think that it might fit down here.
-
-Even if identification of mechanisms might be challenging, or potentially impossible, understanding which model best describes the species abundance distribution can still be valuable for making more accurate predictions of the distribution (citation).  Potential applications of the species abundance distribution for prediction (citations).
-
 
 ###No comprehensive comparision across models using the most rigorous statistical approaches, large datasets (plus across taxonomic groups).
 
