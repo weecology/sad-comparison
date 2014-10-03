@@ -443,11 +443,10 @@ ll_untruncated_logseries = cur.fetchall()
 
 
 
-ll_pln = cur.execute("""SELECT model_name, value FROM RawResults
-                            WHERE model_name =='Poisson lognormal' AND value_type =='likelihood' AND value IS NOT NULL
-                            ORDER BY value""")
-ll_pln = cur.fetchall()
-
+#ll_pln = cur.execute("""SELECT model_name, value FROM RawResults
+                            #WHERE model_name =='Poisson lognormal' AND value_type =='likelihood' AND value IS NOT NULL
+                            #ORDER BY value""")
+#ll_pln = cur.fetchall()
                      
                             
                             
@@ -470,14 +469,13 @@ ll_geometric = cur.fetchall()
 bins = 50
 
 ll_model0 = [ num for (s, num) in ll_logseries ]
-print(ll_model0)
 plt.hist(ll_model0, bins, facecolor = 'magenta', histtype="stepfilled", alpha=1, label = "Logseries")
 
 ll_model1 = [ num for (s, num) in ll_untruncated_logseries]
 plt.hist(ll_model1, bins, facecolor = 'orange', histtype="stepfilled", alpha=.7, label = "Untruncated logseries")
 
-ll_model2 = [ num for (s, num) in ll_pln]
-plt.hist(ll_model2, bins, range = (0,1), facecolor = 'teal', histtype="stepfilled", alpha=.7, label = "Poisson lognormal")
+#ll_model2 = [ num for (s, num) in ll_pln]
+#plt.hist(ll_model2, bins, range = (0,1), facecolor = 'teal', histtype="stepfilled", alpha=.7, label = "Poisson lognormal")
 
 ll_model3 = [ num for (s, num) in ll_neg_bin]
 plt.hist(ll_model3, bins, facecolor = 'white', histtype="stepfilled", alpha=.7, label = "Negative binomial")
