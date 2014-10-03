@@ -3,9 +3,9 @@
 # Introduction
 Very important first sentence.
 ###Proliferation of SAD models, no agreement about winners. (citations galore)
-A ubiquitous and fundamental ecological pattern is the presence of many rare species and few super abundant species within a community, forming a hollow curve distribution.  Because of the generality of this pattern, the species abundance distribution (SAD) has been one of the most widely studied patterns in ecology, leading to a proliferation of models that attempt to characterize the shape of the distribution and identify potential mechanisms for the pattern. The most recent comprehensive review and classification of species abundance distributions was given by McGill et al. 2007.
+A fundamental and ubiquitous ecological pattern is the presence of many rare species and few super abundant species within a community, forming a hollow curve distribution.  Because of the generality of this pattern, the species abundance distribution (SAD) has been one of the most widely studied patterns in ecology, leading to a proliferation of models that attempt to characterize the shape of the distribution and identify potential mechanisms for the pattern. The most recent comprehensive review and classification of species abundance distributions was given by McGill et al. 2007.
 
-Paragraph about the most robust ways to compare models, point out that that is how models should be compared.
+
 
 
 ###Statistical descriptions of SAD distributions, vs. process based.
@@ -13,11 +13,9 @@ Paragraph about the most robust ways to compare models, point out that that is h
 
 Constraints in a process based model of species abundance distributions (SADs) provide a predicted form of a distribution, based on an assumption that the constraints that produce the form of the distribution are biologically meaningful.  However, some species abundance distribution models are purely statistical descriptions of the shape of the distribution.  While the goal of a process based model is to identify pattern generating mechanisms, process based models can share the same forms as other process based models, or a purely statistical description of the abundance distribution.  Because of the model overlap, it can be difficult to identify potential mechanisms with any degree of certainty (if two models have an identical form, it is impossible to say which model is 'correct').  
 
-
-
 ###No difference between models?  Maybe, but...
 
-Because of the difficulty involved in distinguishing between models, some have suggested that there is effectively no difference between models.  While there have been some studies that compete species abundance distribution models against one another, (citations including the Ulrich one) there has not yet been a comprehensive comparison across models using the most rigorous statistical approaches, large datasets, or across multiple taxonomic groups.  
+Because of the difficulty involved in distinguishing between models, some have suggested that there is effectively no difference between models.  One of the McGill papers provides a conceptual framework for rigorous testing of alternative species distribution models. Details to follow.  One of the things is likelihoods, another of the things is multiple datasets. While there have been some studies that compete species abundance distribution models against one another, (citations including the Ulrich one) there has not yet been a comprehensive comparison across models using the most rigorous statistical approaches, large datasets, or across multiple taxonomic groups.  
 
 
 ###No comprehensive comparision across models using the most rigorous statistical approaches, large datasets (plus across taxonomic groups).
@@ -92,7 +90,9 @@ Statistical difference vs. biological relevance (i.e., is there enough differenc
 
 Different processes can generate identical models. (expansion of point from introduction)
 
-Paragraph on the Ulrich et al. 2010 paper. (limitations of their approachv)
+Paragraph on the Ulrich et al. 2010 paper. (limitations of their approach)
+
+Next steps: identify if there are explanatory patterns in winning model by taxonomic group or by space.
 
 # References
 Connolly et al. 2014. Commonness and rarity in the marine biosphere. PNAS 111: 8524-8529.
