@@ -93,7 +93,7 @@ def process_results(data_dir, dataset_name, results, value_type):
         counter = 0
         
 
-        for index, AICc_weight in enumerate(AICc_weights):
+        for index, result in enumerate(results):
             if index == 0:
                 model_name = 'Logseries'
                 processed_results = [[dataset_name] + [site_ID] + [S] + [N] + [index] + [model_name] + [value_type] + [value]]
@@ -139,7 +139,7 @@ datasets = ['bbs', 'cbc', 'fia', 'gentry', 'mcdb', 'naba'] # Dataset ID codes
 
 # Asks for toggle variable so I don't have to rerun all the setup if it is already processed.
 needs_processing = input("Data needs to be processed into an sqlite database, True or False?  ")  
-needs_processing = False # THIS LINE IS TEMPORARY AND NEEDS TO BE DELETED IN THE FINAL PRODUCT.
+#needs_processing = False # THIS LINE IS TEMPORARY AND NEEDS TO BE DELETED IN THE FINAL PRODUCT.
 
 # Starts actual processing for each set of results in turn.
 if needs_processing == True:
