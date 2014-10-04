@@ -140,7 +140,7 @@ datasets = ['bbs', 'cbc', 'fia', 'gentry', 'mcdb', 'naba'] # Dataset ID codes
 
 # Asks for toggle variable so I don't have to rerun all the setup if it is already processed.
 needs_processing = input("Data needs to be processed into an sqlite database, True or False?  ")  
-needs_processing = False # THIS LINE IS TEMPORARY AND NEEDS TO BE DELETED IN THE FINAL PRODUCT.
+#needs_processing = False # THIS LINE IS TEMPORARY AND NEEDS TO BE DELETED IN THE FINAL PRODUCT.
 
 # Starts actual processing for each set of results in turn.
 if needs_processing == True:
@@ -443,10 +443,10 @@ ll_untruncated_logseries = cur.fetchall()
 
 
 
-#ll_pln = cur.execute("""SELECT model_name, value FROM RawResults
-                            #WHERE model_name =='Poisson lognormal' AND value_type =='likelihood' AND value IS NOT NULL
-                            #ORDER BY value""")
-#ll_pln = cur.fetchall()
+ll_pln = cur.execute("""SELECT model_name, value FROM RawResults
+                            WHERE model_name =='Poisson lognormal' AND value_type =='likelihood' AND value IS NOT NULL
+                            ORDER BY value""")
+ll_pln = cur.fetchall()
                      
                             
                             
