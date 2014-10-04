@@ -10,12 +10,11 @@ A fundamental and ubiquitous ecological pattern is the presence of many rare spe
 
 ###Statistical descriptions of SAD distributions, vs. process based.
 ### Set up process and non process based model overlap (same form)  
-
-Constraints in a process based model of species abundance distributions (SADs) provide a predicted form of a distribution, based on an assumption that the constraints that produce the form of the distribution are biologically meaningful.  However, some species abundance distribution models are purely statistical descriptions of the shape of the distribution.  While the goal of a process based model is to identify pattern generating mechanisms, process based models can share the same forms as other process based models, or a purely statistical description of the abundance distribution.  Because of the model overlap, it can be difficult to identify potential mechanisms with any degree of certainty (if two models have an identical form, it is impossible to say which model is 'correct').  
+There are two classes of species abundance distribution models, process based models, and non-process based models.  Constraints in a process based model of species abundance distributions (SADs) provide a predicted form of a distribution, based on an assumption that the constraints that produce the form of the distribution are biologically meaningful(relevant?).  However, non-process based species abundance distribution models are purely statistical descriptions of the shape of the distribution, and do not infer any biological meaning to the constraints of the distribution.  While the goal of a process based model is to identify pattern generating mechanisms, process based models can share the same forms as other process based or non-process based species abundance distribution models.  Because of the overlap between/among models, it can be difficult to identify potential mechanisms with any degree of certainty (if two models have an identical form, it is impossible to say which model is 'correct').  
 
 ###No difference between models?  Maybe, but...
 
-Because of the difficulty involved in distinguishing between models, some have suggested that there is effectively no difference between models.  One of the McGill papers provides a conceptual framework for rigorous testing of alternative species distribution models. Details to follow.  One of the things is likelihoods, another of the things is multiple datasets. While there have been some studies that compete species abundance distribution models against one another, (citations including the Ulrich one) there has not yet been a comprehensive comparison across models using the most rigorous statistical approaches, large datasets, or across multiple taxonomic groups.  
+Some have suggested that there is effectively no difference between models because of the difficulty involved in distinguishing between models (citations).  While there have been some studies that compete species abundance distribution models against one another, (citations including the Ulrich one) there has not yet been a comprehensive comparison across models using the most rigorous statistical approaches, large datasets, or across multiple taxonomic groups.  One of the McGill papers provides a conceptual framework for rigorous testing of alternative species distribution models. Details to follow.  One of the things is likelihoods, another of the things is multiple datasets. 
 
 
 ###No comprehensive comparision across models using the most rigorous statistical approaches, large datasets (plus across taxonomic groups).
@@ -108,7 +107,7 @@ Phillips, O., and J. S. Miller. 2002. Global patterns of plant
 diversity: Alwyn H. Gentry’s forest transect data set.
 Missouri Botanical Garden Press, St. Louis, Missouri, USA.  
 Sauer, J. R., J. E. Hines, J. E. Fallon, K. L. Pardieck, D. J. Ziolkowski, Jr., and Link, W. A. 2011. The
-North American Breeding Bird Survey, Results and Analysis 1966 - 2010. Version 12.07.2011  
+North American Breeding Bird Survey, Results and Analysis 1966 - 2010. Version 12.07.2011    
 USGS Patuxent Wildlife Research Center, Laurel, MD
 Thibault, K.M., Supp, S.R., Giffin, M., White, E.P, and Ernest, S.K.M. 2011. Species composition and
 abundance of mammalian communities. Ecology 92: 2316.  
