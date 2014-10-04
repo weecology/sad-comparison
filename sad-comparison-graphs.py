@@ -407,7 +407,7 @@ model2 = [ num for (s, num) in pln]
 plt.hist(model2, bins, range = (0,1), facecolor = 'teal', histtype="stepfilled", alpha=.7, label = "Poisson lognormal")
 
 model3 = [ num for (s, num) in neg_bin]
-plt.hist(model3, bins, range = (0,1), facecolor = 'white', histtype="stepfilled", alpha=.7, label = "Negative binomial")
+plt.hist(model3, bins, range = (0,1), facecolor = 'gray', histtype="stepfilled", alpha=.7, label = "Negative binomial")
 
 model4 = [ num for (s, num) in geometric]
 plt.hist(model4, bins, range = (0,1), facecolor = 'olivedrab', histtype="stepfilled", alpha=.7, label = "Geometric")
@@ -424,6 +424,77 @@ plt.show()
 fileName = "./sad-data/AICc_weights.png"
 plt.savefig(fileName, format="png" )
 
+# Plot weights for each model individually
+bins = 50
+
+# Set up figures
+plt.figure()
+plt.hist(model0, bins, range = (0,1), facecolor = 'magenta', histtype="stepfilled", alpha=1, label = "Logseries")
+plt.xlabel("Logseries AICc weights")
+plt.ylabel("Frequency")
+
+plt.tight_layout()
+plt.show()
+
+#Output figure
+fileName = "./sad-data/Logseries_weights.png"
+plt.savefig(fileName, format="png" )
+
+plt.figure()
+plt.hist(model1, bins, range = (0,1), facecolor = 'orange', histtype="stepfilled", alpha=.7, label = "Untruncated logseries")
+plt.xlabel("Untruncated logseries AICc weights")
+plt.ylabel("Frequency")
+
+plt.tight_layout()
+plt.show()
+
+#Output figure
+fileName = "./sad-data/Untruncated logseries_weights.png"
+plt.savefig(fileName, format="png" )
+
+
+plt.figure()
+plt.hist(model2, bins, range = (0,1), facecolor = 'teal', histtype="stepfilled", alpha=.7, label = "Poisson lognormal")
+plt.xlabel("Poisson lognormal AICc weights")
+plt.ylabel("Frequency")
+
+plt.tight_layout()
+plt.show()
+
+#Output figure
+fileName = "./sad-data/Poisson lognormal_weights.png"
+plt.savefig(fileName, format="png" )
+
+
+plt.figure()
+model3 = [ num for (s, num) in neg_bin]
+plt.hist(model3, bins, range = (0,1), facecolor = 'gray', histtype="stepfilled", alpha=.7, label = "Negative binomial")
+plt.xlabel("Negative binomial AICc weights")
+plt.ylabel("Frequency")
+
+plt.tight_layout()
+plt.show()
+
+#Output figure
+fileName = "./sad-data/Negative binomial_weights.png"
+plt.savefig(fileName, format="png" )
+
+
+plt.figure()
+model4 = [ num for (s, num) in geometric]
+plt.hist(model4, bins, range = (0,1), facecolor = 'olivedrab', histtype="stepfilled", alpha=.7, label = "Geometric")
+
+plt.xlabel("Geometric AICc weights")
+plt.ylabel("Frequency")
+
+plt.tight_layout()
+plt.show()
+
+#Output figure
+fileName = "./sad-data/Geometric_weights.png"
+plt.savefig(fileName, format="png" )
+
+
 #Likelihood graph
 # Make histogram
 # Set up figure
@@ -431,27 +502,27 @@ l_likelihood = plt.figure()
 
 # Extract AICc weights for each model.
 ll_logseries = cur.execute("""SELECT model_name, value FROM RawResults
-                            WHERE model_name == 'Logseries' AND value_type =='likelihood' AND value IS NOT NULL
+                            WHERE model_name == 'Logseries' AND value_type =='likelihood' AND value > 0
                             ORDER BY value""")
 ll_logseries = cur.fetchall()
 
 
 ll_untruncated_logseries = cur.execute("""SELECT model_name, value FROM RawResults
-                            WHERE model_name =='Untruncated logseries' AND value_type =='likelihood' AND value IS NOT NULL
+                            WHERE model_name =='Untruncated logseries' AND value_type =='likelihood' AND value > 0
                             ORDER BY value""")
 ll_untruncated_logseries = cur.fetchall()
 
 
 
 ll_pln = cur.execute("""SELECT model_name, value FROM RawResults
-                            WHERE model_name =='Poisson lognormal' AND value_type =='likelihood' AND value IS NOT NULL
+                            WHERE model_name =='Poisson lognormal' AND value_type =='likelihood' AND value > 0
                             ORDER BY value""")
 ll_pln = cur.fetchall()
                      
                             
                             
 ll_neg_bin = cur.execute("""SELECT model_name, value FROM RawResults
-                            WHERE model_name =='Negative binomial' AND value_type =='likelihood' AND value IS NOT NULL
+                            WHERE model_name =='Negative binomial' AND value_type =='likelihood' AND value > 0
                             ORDER BY value""")
 ll_neg_bin = cur.fetchall()
 
@@ -459,7 +530,7 @@ ll_neg_bin = cur.fetchall()
                       
                             
 ll_geometric = cur.execute("""SELECT model_name, value FROM RawResults
-                            WHERE model_name =='Geometric series' AND value_type =='likelihood' AND value IS NOT NULL
+                            WHERE model_name =='Geometric series' AND value_type =='likelihood' AND value > 0
                             ORDER BY value""")
 ll_geometric = cur.fetchall()
 
@@ -474,18 +545,18 @@ plt.hist(ll_model0, bins, facecolor = 'magenta', histtype="stepfilled", alpha=1,
 ll_model1 = [ num for (s, num) in ll_untruncated_logseries]
 plt.hist(ll_model1, bins, facecolor = 'orange', histtype="stepfilled", alpha=.7, label = "Untruncated logseries")
 
-#ll_model2 = [ num for (s, num) in ll_pln]
-#plt.hist(ll_model2, bins, range = (0,1), facecolor = 'teal', histtype="stepfilled", alpha=.7, label = "Poisson lognormal")
+ll_model2 = [ num for (s, num) in ll_pln]
+plt.hist(ll_model2, bins, facecolor = 'teal', histtype="stepfilled", alpha=.7, label = "Poisson lognormal")
 
 ll_model3 = [ num for (s, num) in ll_neg_bin]
-plt.hist(ll_model3, bins, facecolor = 'white', histtype="stepfilled", alpha=.7, label = "Negative binomial")
+plt.hist(ll_model3, bins, facecolor = 'gray', histtype="stepfilled", alpha=.7, label = "Negative binomial")
 
 ll_model4 = [ num for (s, num) in ll_geometric]
 plt.hist(ll_model4, bins, facecolor = 'olivedrab', histtype="stepfilled", alpha=.7, label = "Geometric")
 
 plt.legend(loc = 'upper right', fontsize = 11)
 
-plt.xlabel("Log-likelihood")
+plt.xlabel("Log-likelihoods")
 plt.ylabel("Frequency")
 
 plt.tight_layout()
@@ -495,6 +566,66 @@ plt.show()
 fileName = "./sad-data/likelihoods.png"
 plt.savefig(fileName, format="png" )
 
+# Plot likelihoods for each model individually
+plt.figure()
+plt.hist(ll_model0, bins, facecolor = 'magenta', histtype="stepfilled", alpha=1, label = "Logseries")
+plt.xlabel("Logseries log-likelihoods")
+plt.ylabel("Frequency")
+
+plt.tight_layout()
+plt.show()
+
+#Output figure
+fileName = "./sad-data/logseries_likelihoods.png"
+plt.savefig(fileName, format="png" )
+
+
+plt.hist(ll_model1, bins, facecolor = 'orange', histtype="stepfilled", alpha=.7, label = "Untruncated logseries")
+plt.xlabel("Untruncated logseries log-likelihoods")
+plt.ylabel("Frequency")
+
+plt.tight_layout()
+plt.show()
+
+#Output figure
+fileName = "./sad-data/untruncated_logseries_likelihoods.png"
+plt.savefig(fileName, format="png" )
+
+
+plt.hist(ll_model2, bins, facecolor = 'teal', histtype="stepfilled", alpha=.7, label = "Poisson lognormal")
+plt.xlabel("Poisson lognormal log-likelihoods")
+plt.ylabel("Frequency")
+
+plt.tight_layout()
+plt.show()
+
+#Output figure
+fileName = "./sad-data/pln_likelihoods.png"
+plt.savefig(fileName, format="png" )
+
+
+plt.hist(ll_model3, bins, facecolor = 'gray', histtype="stepfilled", alpha=.7, label = "Negative binomial")
+plt.xlabel("Negative binomial log-likelihoods")
+plt.ylabel("Frequency")
+
+plt.tight_layout()
+plt.show()
+
+#Output figure
+fileName = "./sad-data/neg_bin_likelihoods.png"
+plt.savefig(fileName, format="png" )
+
+
+plt.hist(ll_model4, bins, facecolor = 'olivedrab', histtype="stepfilled", alpha=.7, label = "Geometric")
+plt.xlabel("Geometric log-likelihoods")
+plt.ylabel("Frequency")
+
+plt.tight_layout()
+plt.show()
+
+#Output figure
+fileName = "./sad-data/geometric_likelihoods.png"
+plt.savefig(fileName, format="png" )
 
 # Close connection
 con.close()
