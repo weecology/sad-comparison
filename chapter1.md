@@ -41,13 +41,13 @@ The North American Butterfly Count data (NABA) is conducted by volunteers, detai
 
 Gentry site 102 was culled from the dataset due to a previously unidentified flaw in that site (one species had a decimal rather than integer abundance).  In total, I used data for 15,847 communities across four taxonomic groups over six large datasets.  The data have a North American bias, as the BBS, CBC, and FIA data are restricted to North America.
 
-A small percentage of sites (number of sites) in the FIA dataset blew up on the negative binomial and the Poisson lognormal and one site in the MCDB blew up on the Poisson lognormal.  For sites where a model or models failed, AICc weights were calculated for only those models which successfully fit the data and blanks were inserted into the list of AICc weights post calculation.  All other model/data combinations seemingly fit correctly for everything. 
+A small percentage of sites (number of sites) in the FIA dataset blew up on the negative binomial and the Poisson lognormal and one site in the MCDB blew up on the Poisson lognormal (Appendix?).  For sites where a model or models failed, AICc weights were calculated for only those models which successfully fit the data and blanks were inserted into the list of AICc weights post calculation.  All other model/data combinations ran successfully. 
 
 ###Likelihood based statistical comparison (White et al 2008, Edwards et al 2007, 2008)
 I used a maximum likelihood approach because it is the best one for model comparison (citations).
 Used AICc (citations).
 Packages used to do analysis.
-(macroecotools/macroeco_distributions)<https://github.com/weecology/macroecotools.git>
+Model fitting and log-likelihood calculations were performed with the macroeco_distributions module in the macroecotools package, while AICcs and AICc weights were calculated with the macroecotools package (<https://github.com/weecology/macroecotools.git>).
 Also compared multiple datasets for multiple models because more rigorous (McGill et al. 2007)
 
 
@@ -87,13 +87,15 @@ Assorted colorful graphs (check Post-It notes).
 
 # Discussion
 
-Statistical difference vs. biological relevance (i.e., is there enough difference that we can distinguish between possible mechanisms)
+####Statistical difference vs. biological relevance (i.e., is there enough difference that we can distinguish between possible mechanisms)
+Something about AICc weights and the number of parameters vs. the likelihoods and model fit and what that all means.  Make the point that even if one model does win, the actual difference between/among the models might not be enough to conclusively thingy that the processes suggested by that particular model are the dominant processes operating in the system.  Also maybe Ken's feasible sets?  
 
-Different processes can generate identical models. (expansion of point from introduction)
+####Different processes can generate identical models. (expansion of point from introduction)
+This is a thing.  For example, the negative binomial distribution, a purely statistical model of species abundance distributions, is also the predicted result of neutral theory at the local scale (Conolly paper).  Actually, this might be a place to have that potential table with the form of the distribution on the left and a list of the mechanistic models that produce the shape of that distribution on the right.
 
-Paragraph on the Ulrich et al. 2010 paper. (limitations of their approach)
+####Paragraph on the Ulrich et al. 2010 paper. (limitations of their approach)
 
-Next steps: identify if there are explanatory patterns in winning model by taxonomic group or by space.
+####Next steps: identify if there are explanatory patterns in winning model by taxonomic group or by space.
 
 # References
 Connolly et al. 2014. Commonness and rarity in the marine biosphere. PNAS 111: 8524-8529.
@@ -118,6 +120,10 @@ national core field guide (Phase 2 and 3). Version 4.0. USDA
 Forest Service, Forest Inventory and Analysis, Washington,
 D.C., USA.
 
+###Code
+<https://github.com/weecology/sad-comparison.git>  
+<https://github.com/weecology/METE.git>  
+<https://github.com/weecology/macroecotools.git>
 
 
 
