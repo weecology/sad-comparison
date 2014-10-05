@@ -90,6 +90,9 @@ def model_comparisons(raw_data, dataset_name, data_dir, cutoff = 9):
             L_pln = md.pln_ll(obsabundance, mu,sigma) # Log-likelihood of Poisson lognormal
             if np.isinf(L_pln):
                 pln_blank = 1  # The Poisson lognormal returned -inf
+                
+            elif L_pln < 0:
+                pln_blank = 1  # The Poisson lognormal returned a negative likelihood               
             
             else:
                 AICc_pln = macroecotools.AICc(k2, L_pln, S) # AICc Poisson lognormal
