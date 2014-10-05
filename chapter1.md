@@ -22,7 +22,7 @@ Some have suggested that there is effectively no difference between models becau
 
 # Methods
 ###Data, (from White et al 2012, minus the broken Gentry site 102 or something like that).
-I used the following datasets used by White et al. 2012 to test the species abundance distribution models.  
+I used the following datasets analyzed by White et al. 2012 to test the performance of five species abundance distribution models.  
 
 ####BBS
 The North American Breeding Bird Survey (BBS) is a publicly available dataset, etc. etc.  available <link to BBS data> (BBS;
@@ -40,6 +40,8 @@ The Mammal Community Database (MCDB) publicly available at Ecological Archives <
 The North American Butterfly Count data (NABA) is conducted by volunteers, details, not publicly available, MOU, (NABA; North American Butterfly Association 2009). Number of sites.
 
 Gentry site 102 was culled from the dataset due to a previously unidentified flaw in that site (one species had a decimal rather than integer abundance).  In total, I used data for 15,847 communities across four taxonomic groups over six large datasets.  The data have a North American bias, as the BBS, CBC, and FIA data are restricted to North America.
+
+A small percentage of sites in the FIA dataset blew up on the negative binomial and the Poisson lognormal and one site in the MCDB blew up on the Poisson lognormal.  All other model/data combinations seemingly fit correctly for everything. 
 
 ###Likelihood based statistical comparison (White et al 2008, Edwards et al 2007, 2008)
 I used a maximum likelihood approach because it is the best one for model comparison (citations).
