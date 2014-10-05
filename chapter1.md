@@ -41,7 +41,7 @@ The North American Butterfly Count data (NABA) is conducted by volunteers, detai
 
 Gentry site 102 was culled from the dataset due to a previously unidentified flaw in that site (one species had a decimal rather than integer abundance).  In total, I used data for 15,847 communities across four taxonomic groups over six large datasets.  The data have a North American bias, as the BBS, CBC, and FIA data are restricted to North America.
 
-A small percentage of sites in the FIA dataset blew up on the negative binomial and the Poisson lognormal and one site in the MCDB blew up on the Poisson lognormal.  All other model/data combinations seemingly fit correctly for everything. 
+A small percentage of sites (number of sites) in the FIA dataset blew up on the negative binomial and the Poisson lognormal and one site in the MCDB blew up on the Poisson lognormal.  For sites where a model or models failed, AICc weights were calculated for only those models which successfully fit the data and blanks were inserted into the list of AICc weights post calculation.  All other model/data combinations seemingly fit correctly for everything. 
 
 ###Likelihood based statistical comparison (White et al 2008, Edwards et al 2007, 2008)
 I used a maximum likelihood approach because it is the best one for model comparison (citations).
