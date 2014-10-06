@@ -89,7 +89,9 @@ Assorted colorful graphs (check Post-It notes).
 Different process-based species abundance distribution models can generate identical forms of the species abundance distribution.  For example, the negative binomial distribution, a purely statistical model of species abundance distributions, is also the predicted result of neutral theory at the local scale (Conolly paper).  Actually, this might be a place to have that potential table with the form of the distribution on the left and a list of the mechanistic models that produce the shape of that distribution or proposed mechanisms on the right.
 
 ####Statistical difference vs. biological relevance (i.e., is there enough difference that we can distinguish between possible mechanisms)
-Something about AICc weights and the number of parameters vs. the likelihoods and model fit and what that all means.  Make the point that even if one model does win, the actual difference between/among the models might not be enough to conclusively state that the processes suggested by that particular model are the dominant processes operating in the system.  Also maybe Ken's feasible sets?  
+Something about AICc weights and the number of parameters vs. the likelihoods and model fit and what that all means.  Make the point that even if one model does win, the actual difference between/among the models might not be enough to conclusively state that the processes suggested by that particular model are the dominant processes operating in the system.  
+
+Something acknowledging model failure for certain datasets, which I suspect is due to a low species richness and abundance.  In cases where total community abundance is low and species richness is low, those models are not a good choice.  Also maybe Ken's feasible sets?  
 
 ####Paragraph on the Ulrich et al. 2010 paper. (limitations of their approach)
 
