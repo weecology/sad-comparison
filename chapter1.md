@@ -17,7 +17,7 @@ While different species abundance distribution models can share a single form of
 
 
 ###No comprehensive comparision across models using the most rigorous statistical approaches, large datasets (plus across taxonomic groups).
-While there have been some studies that compete species abundance distribution models against one another (citations including the Ulrich one), there has not yet been a comprehensive comparison across models using the most rigorous statistical approaches, large datasets, or across multiple taxonomic groups.  Seriously, I swear that I have read the paper I am looking for that provides a conceptual framework for rigorous testing of alternative species distribution models, but all the ones I think it is aren't the right one. Details to follow.  One of the things is likelihoods, another of the things is multiple datasets.
+While there have been some studies that compete species abundance distribution models against one another (citations including the Ulrich one), there has not yet been a comprehensive comparison across models using the most rigorous statistical approaches, large datasets, or across multiple taxonomic groups.  
 
 
 # Methods
@@ -48,7 +48,8 @@ I used a maximum likelihood approach because it is the best one for model compar
 Used AICc (citations).
 Packages used to do analysis.
 Model fitting and log-likelihood calculations were performed with the macroeco_distributions module in the macroecotools package, while AICcs and AICc weights were calculated with the macroecotools package (<https://github.com/weecology/macroecotools.git>).
-Also compared multiple datasets for multiple models because more rigorous (McGill et al. 2007)
+
+I followed the recommendations for strong inference in comparing species abundance distribution models provided by McGill et al. 2007.
 
 
 ###Model selection (justification of why we chose those, justification for neutral theory, Neutral theory predicts the negative binomial distribution (Connolly et al. 2014.)
