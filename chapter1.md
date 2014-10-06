@@ -96,7 +96,7 @@ Something acknowledging model failure for certain datasets, which I suspect is d
 
 ####Paragraph on the Ulrich et al. 2010 paper. (limitations of their approach)
 
-####Next steps: identify if there are explanatory patterns in winning model by taxonomic group or by space.
+####Next steps: identify if there are explanatory patterns in winning model by taxonomic group or by space. Or by species richness/abundance?
 
 # References
 Connolly et al. 2014. Commonness and rarity in the marine biosphere. PNAS 111: 8524-8529.
