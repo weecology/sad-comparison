@@ -85,11 +85,11 @@ Assorted colorful graphs (check Post-It notes).
 
 # Discussion
 
+####Different processes can generate identical models. (expansion of point from introduction)
+Different process-based species abundance distribution models can generate identical forms of the species abundance distribution.  For example, the negative binomial distribution, a purely statistical model of species abundance distributions, is also the predicted result of neutral theory at the local scale (Conolly paper).  Actually, this might be a place to have that potential table with the form of the distribution on the left and a list of the mechanistic models that produce the shape of that distribution or proposed mechanisms on the right.
+
 ####Statistical difference vs. biological relevance (i.e., is there enough difference that we can distinguish between possible mechanisms)
 Something about AICc weights and the number of parameters vs. the likelihoods and model fit and what that all means.  Make the point that even if one model does win, the actual difference between/among the models might not be enough to conclusively state that the processes suggested by that particular model are the dominant processes operating in the system.  Also maybe Ken's feasible sets?  
-
-####Different processes can generate identical models. (expansion of point from introduction)
-This is a thing.  For example, the negative binomial distribution, a purely statistical model of species abundance distributions, is also the predicted result of neutral theory at the local scale (Conolly paper).  Actually, this might be a place to have that potential table with the form of the distribution on the left and a list of the mechanistic models that produce the shape of that distribution on the right.
 
 ####Paragraph on the Ulrich et al. 2010 paper. (limitations of their approach)
 
@@ -114,8 +114,7 @@ USGS Patuxent Wildlife Research Center, Laurel, MD
 Thibault, K.M., Supp, S.R., Giffin, M., White, E.P, and Ernest, S.K.M. 2011. Species composition and
 abundance of mammalian communities. Ecology 92: 2316.  
 USDA Forest Service. 2010. Forest inventory and analysis
-national core field guide (Phase 2 and 3). Version 4.0. USDA
-Forest Service, Forest Inventory and Analysis, Washington,
+national core field guide (Phase 2 and 3). Version 4.0. USDA Forest Service, Forest Inventory and Analysis, Washington,
 D.C., USA.
 
 ###Code
