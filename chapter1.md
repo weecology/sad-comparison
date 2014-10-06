@@ -10,14 +10,14 @@ A fundamental and ubiquitous ecological pattern is the presence of many rare spe
 
 ###Statistical descriptions of SAD distributions, vs. process based.
 ### Set up process and non process based model overlap (same form)  
-There are two classes of species abundance distribution models, process based models, and non-process based models.  Constraints in a process based model of species abundance distributions (SADs) provide a predicted form of a distribution, based on an assumption that the constraints that produce the form of the distribution are biologically meaningful(relevant?).  However, non-process based species abundance distribution models are purely statistical descriptions of the shape of the distribution, and do not infer any biological meaning to the constraints of the distribution.  While the goal of a process based model is to identify pattern generating mechanisms, process based models can share the same forms as other process based or non-process based species abundance distribution models.  Because of the overlap between/among models, it can be difficult to identify potential mechanisms with any degree of certainty (if two models have an identical form, it is impossible to say which model is 'correct').  
+There are two classes of species abundance distribution models, process based models, and non-process based models.  Constraints in a process based model of species abundance distributions (SADs) provide a predicted form of a distribution, based on an assumption that the constraints that produce the form of the distribution are biologically meaningful(relevant?).  However, non-process based species abundance distribution models are purely statistical descriptions of the shape of the distribution, and do not infer any biological meaning to the constraints of the distribution.  While the goal of a process based model is to identify pattern generating mechanisms, process based models can share the same forms as other process based or non-process based species abundance distribution models.  Because of the overlap between/among models, it can be difficult to identify potential mechanisms with any degree of certainty (if two models have an identical form, it is impossible to say which model is 'correct'). The difficulty involved in distinguishing between/among models makes it challenging, if not impossible to identify a clear winner among the species abundance distribution models (citations). 
 
 ###No difference between models?  Maybe, but...
-
-Some have suggested that there is effectively no difference between models because of the difficulty involved in distinguishing between models (citations).  While there have been some studies that compete species abundance distribution models against one another, (citations including the Ulrich one) there has not yet been a comprehensive comparison across models using the most rigorous statistical approaches, large datasets, or across multiple taxonomic groups.  One of the McGill papers provides a conceptual framework for rigorous testing of alternative species distribution models. Details to follow.  One of the things is likelihoods, another of the things is multiple datasets. 
+While different species abundance distribution models can share a single form of a distribution, many models have different but highly similar forms of the species abundance distribution.  Because many forms of the species abundance distribution are highly similar, some have suggested that there is effectively no difference between models (i.e., that the differences between/among models are so small that the models are functionally equivalent)(citations).  However, there has been little work done to rigorously test this assertion.   
 
 
 ###No comprehensive comparision across models using the most rigorous statistical approaches, large datasets (plus across taxonomic groups).
+While there have been some studies that compete species abundance distribution models against one another (citations including the Ulrich one), there has not yet been a comprehensive comparison across models using the most rigorous statistical approaches, large datasets, or across multiple taxonomic groups.  Seriously, I swear that I have read the paper I am looking for that provides a conceptual framework for rigorous testing of alternative species distribution models, but all the ones I think it is aren't the right one. Details to follow.  One of the things is likelihoods, another of the things is multiple datasets.
 
 
 # Methods
@@ -54,11 +54,11 @@ Also compared multiple datasets for multiple models because more rigorous (McGil
 ###Model selection (justification of why we chose those, justification for neutral theory, Neutral theory predicts the negative binomial distribution (Connolly et al. 2014.)
 List of models used, packages used to implement code
 
-McGill et al. (2007) classified models into five different families.  I attempted to test models from each of the separate families, excluding the spatial distribution family (McGill et al. 2007) because that requires data at a finer spatial resolution, and was outside the scope of this study.  I had initially tried to test the generalized Yule model (branching process family), but this model proved difficult to fit to empirical data and failed to converge to a solution for many of the communities, so it was excluded from the final analyses.
+McGill et al. (2007) classified models into five different families: purely statistical, branching process, population dynamics, niche partitioning, and spatial distribution of individuals .  I attempted to test models from each of the separate families, excluding the spatial distribution family (McGill et al. 2007) which requires spatially explicit data.  I had initially tried to test the generalized Yule model (branching process family), but this model proved difficult to fit to empirical data and failed to converge to a solution for many of the communities, so it was excluded from the final analyses.
 
-This might be a place to talk about the Ulrich paper, because it seems like their power-law choice was in the branching process family.  Thus, connecting the not using the gen Yule to the Ulrich paper might be important here.
+This might be a place to talk about the Ulrich paper, because it seems like their power-law choice was in the branching process family, or at least it cites the same Nee 2003 paper that the McGill et al. 2007 paper uses.  Thus, connecting the not using the gen Yule to the Ulrich paper might be important here.
 
-Ethan's paper about discrete distributions being better finds that discrete approximations are more appropriate choices for model selection that continuous version of the distribution.
+Ethan's paper about discrete distributions being better finds that discrete approximations are more appropriate choices for model selection that continuous version of the distribution, so all models used were discrete forms of the distributions.
 
 I tested the following distributions with the following packages: 
 
@@ -70,8 +70,6 @@ Untruncated logseries (macroecotools/macroeco_distributions)<https://github.com/
 Poisson lognormal (macroecotools/macroeco_distributions)<https://github.com/weecology/macroecotools.git>
 Negative binomial (macroecotools/macroeco_distributions)<https://github.com/weecology/macroecotools.git>
 Geometric series (macroecotools/macroeco_distributions)<https://github.com/weecology/macroecotools.git> 
-
-
 
 
 ###Link to code.
@@ -87,11 +85,13 @@ Assorted colorful graphs (check Post-It notes).
 
 # Discussion
 
-####Statistical difference vs. biological relevance (i.e., is there enough difference that we can distinguish between possible mechanisms)
-Something about AICc weights and the number of parameters vs. the likelihoods and model fit and what that all means.  Make the point that even if one model does win, the actual difference between/among the models might not be enough to conclusively thingy that the processes suggested by that particular model are the dominant processes operating in the system.  Also maybe Ken's feasible sets?  
-
 ####Different processes can generate identical models. (expansion of point from introduction)
-This is a thing.  For example, the negative binomial distribution, a purely statistical model of species abundance distributions, is also the predicted result of neutral theory at the local scale (Conolly paper).  Actually, this might be a place to have that potential table with the form of the distribution on the left and a list of the mechanistic models that produce the shape of that distribution on the right.
+Different process-based species abundance distribution models can generate identical forms of the species abundance distribution.  For example, the negative binomial distribution, a purely statistical model of species abundance distributions, is also the predicted result of neutral theory at the local scale (Conolly paper).  Actually, this might be a place to have that potential table with the form of the distribution on the left and a list of the mechanistic models that produce the shape of that distribution or proposed mechanisms on the right.
+
+####Statistical difference vs. biological relevance (i.e., is there enough difference that we can distinguish between possible mechanisms)
+Something about AICc weights and the number of parameters vs. the likelihoods and model fit and what that all means.  Make the point that even if one model does win, the actual difference between/among the models might not be enough to conclusively state that the processes suggested by that particular model are the dominant processes operating in the system.  
+
+Something acknowledging model failure for certain datasets, which I suspect is due to a low species richness and abundance.  In cases where total community abundance is low and species richness is low, those models are not a good choice.  Also maybe Ken's feasible sets?  
 
 ####Paragraph on the Ulrich et al. 2010 paper. (limitations of their approach)
 
@@ -116,8 +116,7 @@ USGS Patuxent Wildlife Research Center, Laurel, MD
 Thibault, K.M., Supp, S.R., Giffin, M., White, E.P, and Ernest, S.K.M. 2011. Species composition and
 abundance of mammalian communities. Ecology 92: 2316.  
 USDA Forest Service. 2010. Forest inventory and analysis
-national core field guide (Phase 2 and 3). Version 4.0. USDA
-Forest Service, Forest Inventory and Analysis, Washington,
+national core field guide (Phase 2 and 3). Version 4.0. USDA Forest Service, Forest Inventory and Analysis, Washington,
 D.C., USA.
 
 ###Code
