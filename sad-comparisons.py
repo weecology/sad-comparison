@@ -54,7 +54,7 @@ def model_comparisons(raw_data, dataset_name, data_dir, cutoff = 9):
     # Insert header
     output1.writerow(['site', 'observed', 'predicted'])
     output2.writerow(['site', 'S', 'N', 'AICc_logseries', 'AICc_logseries_untruncated', 'AICc_pln', 'AICc_negbin', 'AICc_geometric'])
-    
+    output3.writerow(['site', 'S', 'N', 'likelihood_logseries', 'likelihood_logseries_untruncated', 'likelihood_pln', 'likelihood_negbin', 'likelihood_geometric'])
     for site in usites:
         subsites = raw_data["site"][raw_data["site"] == site]        
         subabundance = raw_data["ab"][raw_data["site"] == site]
@@ -159,6 +159,7 @@ data_dir = './sad-data/' # path to data directory
 analysis_ext = '_spab.csv' # Extension for raw species abundance files
 
 datasets = ['bbs', 'cbc', 'fia', 'gentry', 'mcdb', 'naba'] # Dataset ID codes
+
 
 # Starts actual analyses for each dataset in turn.
 for dataset in datasets:
