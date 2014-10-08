@@ -54,7 +54,7 @@ def model_comparisons(raw_data, dataset_name, data_dir, cutoff = 9):
     # Insert header
     output1.writerow(['site', 'observed', 'predicted'])
     output2.writerow(['site', 'S', 'N', 'AICc_logseries', 'AICc_logseries_untruncated', 'AICc_pln', 'AICc_negbin', 'AICc_geometric'])
-    
+    output3.writerow(['site', 'S', 'N', 'likelihood_logseries', 'likelihood_logseries_untruncated', 'likelihood_pln', 'likelihood_negbin', 'likelihood_geometric'])
     for site in usites:
         subsites = raw_data["site"][raw_data["site"] == site]        
         subabundance = raw_data["ab"][raw_data["site"] == site]
@@ -90,10 +90,7 @@ def model_comparisons(raw_data, dataset_name, data_dir, cutoff = 9):
             L_pln = md.pln_ll(obsabundance, mu,sigma) # Log-likelihood of Poisson lognormal
             if np.isinf(L_pln):
                 pln_blank = 1  # The Poisson lognormal returned -inf
-                
-            elif L_pln < 0:
-                pln_blank = 1  # The Poisson lognormal returned a negative likelihood               
-            
+
             else:
                 AICc_pln = macroecotools.AICc(k2, L_pln, S) # AICc Poisson lognormal
                 # Add to AICc list
@@ -131,8 +128,8 @@ def model_comparisons(raw_data, dataset_name, data_dir, cutoff = 9):
             
             # Inserts a blank in the output if the Poisson lognormal returned -inf
             if pln_blank == 1:
-                            AICc_list.insert(2, '')
-                            weights_output.insert(2, '')            
+                AICc_list.insert(2, '')
+                weights_output.insert(2, '')            
             
             # Inserts a blank in the output if the negative binomial exceeded the max number of iterations
             if negbin_blank == 1:
@@ -162,6 +159,7 @@ data_dir = './sad-data/' # path to data directory
 analysis_ext = '_spab.csv' # Extension for raw species abundance files
 
 datasets = ['bbs', 'cbc', 'fia', 'gentry', 'mcdb', 'naba'] # Dataset ID codes
+
 
 # Starts actual analyses for each dataset in turn.
 for dataset in datasets:
