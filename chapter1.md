@@ -44,8 +44,10 @@ Gentry site 102 was culled from the dataset due to a previously unidentified fla
 A small percentage of sites (number of sites) in the FIA dataset blew up on the negative binomial and the Poisson lognormal and one site in the MCDB blew up on the Poisson lognormal (Appendix?).  For sites where a model or models failed, AICc weights were calculated for only those models which successfully fit the data and blanks were inserted into the list of AICc weights post calculation.  All other model/data combinations ran successfully. 
 
 ###Likelihood based statistical comparison (White et al 2008, Edwards et al 2007, 2008)
-I used a maximum likelihood approach because it is the best one for model comparison (citations).
+I used a maximum likelihood approach to model fitting because it is the best (find a better word) one for this type of model comparison (citations).  If a model did not have a likelihood method for fitting the model to empirical data, it was excluded to keep the results comparable across models. 
 Used AICc (citations).
+I used the corrected Aikaike Information Criterion (AICc) to identify the model with the best performance for a given dataset (citation).  AICc was used because more robust, provides a penalty for more parameters (citation).  Also, seemingly magic.
+The model with the greatest AICc weight was determined to be the winning model for that site.
 Packages used to do analysis.
 Model fitting and log-likelihood calculations were performed with the macroeco_distributions module in the macroecotools package, while AICcs and AICc weights were calculated with the macroecotools package (<https://github.com/weecology/macroecotools.git>).
 
@@ -92,7 +94,7 @@ Different process-based species abundance distribution models can generate ident
 ####Statistical difference vs. biological relevance (i.e., is there enough difference that we can distinguish between possible mechanisms)
 Something about AICc weights and the number of parameters vs. the likelihoods and model fit and what that all means.  Make the point that even if one model does win, the actual difference between/among the models might not be enough to conclusively state that the processes suggested by that particular model are the dominant processes operating in the system.  
 
-Something acknowledging model failure for certain datasets, which I suspect is due to a low species richness and abundance.  In cases where total community abundance is low and species richness is low, those models are not a good choice.  Also maybe Ken's feasible sets?  
+Something acknowledging model failure for certain datasets, which I suspect is due to a low species richness and abundance.  Both the negative binomial and the Poisson lognormal distributions failed to provide an accurate fit to empirical data for n number of datasets. In cases where total community abundance is low and species richness is low, those models are not a good choice.  Also maybe Ken's feasible sets?  
 
 ####Paragraph on the Ulrich et al. 2010 paper. (limitations of their approach)
 
