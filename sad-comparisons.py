@@ -18,6 +18,9 @@ import mete # https://github.com/weecology/METE.git
 import macroecotools # https://github.com/weecology/macroecotools.git
 import macroeco_distributions as md
 
+import sys # Fix for the -inf problem
+sys.float_info[3]
+
 def import_abundance(datafile):
     """Imports raw species abundance .csv files in the form: Site, Year, Species, Abundance."""
     raw_data = np.genfromtxt(datafile, dtype = "S15,i8,S10,i8",
@@ -83,6 +86,7 @@ def model_comparisons(raw_data, dataset_name, data_dir, cutoff = 9):
             AICc_logser_untruncated = macroecotools.AICc(k1, L_logser_untruncated, S) # AICc logseries untruncated
             #Start making AICc list
             AICc_list = [AICc_logser, AICc_logser_untruncated]
+            likelihood_list = [L_logser, L_logser_untruncated]
           
             
             # Poisson lognormal
@@ -96,6 +100,7 @@ def model_comparisons(raw_data, dataset_name, data_dir, cutoff = 9):
                 # Add to AICc list
                 AICc_list = AICc_list + [AICc_pln]
                 pln_blank = 0
+                likelihood_list = likelihood_list +  [L_pln]
        
             # Negative binomial
             n0, p0 = md.negbin_solver(obsabundance)
@@ -111,6 +116,7 @@ def model_comparisons(raw_data, dataset_name, data_dir, cutoff = 9):
                 # Add to AICc list
                 AICc_list = AICc_list + [AICc_negbin]
                 negbin_blank = 0
+                likelihood_list = likelihood_list +  [L_negbin]
                 
 
             # Geometric series
@@ -118,7 +124,8 @@ def model_comparisons(raw_data, dataset_name, data_dir, cutoff = 9):
             L_geometric = md.geom_ll(obsabundance, p) # Log-likelihood of geometric series
             AICc_geometric = macroecotools.AICc(k1, L_geometric, S) # AICc geometric series
             # Add to AICc list
-            AICc_list = AICc_list + [AICc_geometric]            
+            AICc_list = AICc_list + [AICc_geometric]
+            likelihood_list = likelihood_list +  [L_geometric]
             
             
             # Calulate AICc weight            
@@ -141,7 +148,7 @@ def model_comparisons(raw_data, dataset_name, data_dir, cutoff = 9):
             results = ((np.column_stack((subsites, obsabundance, pred))))
             for weight in weights_output:
                 results2 = [[site, S, N] + weights_output]
-            results3 = [[site, S, N] + AICc_list]
+            results3 = [[site, S, N] + likelihood_list]
 
                                             
             # Save results to a csv file:            
