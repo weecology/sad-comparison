@@ -108,6 +108,15 @@ Ulrich et al. (2010) tested three types of species abundance distribution models
 
 ####Next steps: identify if there are explanatory patterns in winning model by taxonomic group or by space. Or by species richness/abundance?
 
+####Wrap up
+Big picture conclusions:
+
+While the logseries fit best for the majority of the dataset, the Poisson lognormal also performed well.  However, the actual degree of difference among models was not that great, suggesting that the fit of any  given species abundance distribution model is not an good test of that model.  Instead, I suggest that the McGill (I think the 2003, but others as well) recommendations for strong inference in macroecology( testing process-based model performance with multiple patterns at the same time) is the only appropriate approach for identifying macroecological mechanisms.  However, lack of ability to identify mechanisms that produce a pattern does not mean that a pattern is not useful for prediction, which is one of the goals to move macroecology forward as a discipline (citation, this is weak, and needs a rewrite, but the general idea is there).  
+
+
+#### Bit that really needs some work, but is about mechanism not neccessarily important to make predictions, which is a good point, although I think mechanism is more interesting.
+Identifying which forms of the species abundance distribution most closely follow the empirical form of the distribution can provide something or other insights into making or refine ability to prediction or something like that.  Anyway, the models are so close together in a lot of cases that it doesn't actually matter, so long as you don't pick the geometric, which just tends to be bad.  Also, picking a distribution that models the thing that you are looking for is good.  If you are interested, for example in modelling the abundance of rare species at a site, you might pick a species abundance distribution model that fits less well overall, but fits better at the rare species end. 
+
 # References
 Connolly et al. 2014. Commonness and rarity in the marine biosphere. PNAS 111: 8524-8529.
 McGill, B.J. et al. 2007. Species abundance distributions: moving beyond single prediction theories to integration within an ecological framework. Ecology Letters 10 995-1015.  
