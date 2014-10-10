@@ -61,6 +61,8 @@ McGill et al. (2007) classified models into five different families: purely stat
 
 This might be a place to talk about the Ulrich paper, because it seems like their power-law choice was in the branching process family, or at least it cites the same Nee 2003 paper that the McGill et al. 2007 paper uses.  Thus, connecting the not using the gen Yule to the Ulrich paper might be important here.
 
+Ulrich et al. (2010) tested a power law model like the generalize Yule distribution as one of their species abundance distributions, and found that it fit the data best when the datasets were incomplete.  It also had better performance when the data were binned (Ulrich et al. 2003), suggesting that this form of the species abundance distribution is not a "true form" of the distribution (i.e., reveals that the data are incomplete/undersampled). Transition sentence.
+
 Ethan's paper about discrete distributions being better finds that discrete approximations are more appropriate choices for model selection that continuous version of the distribution, so all models used were discrete forms of the distributions.
 
 I tested the following distributions with the following packages: 
@@ -84,9 +86,14 @@ The untruncated logseries had the best model fit in the majority of cases, for a
 
 The actual distribution of AICc weights varied with each model.  The peaks of the AICc weights tended to overlap for the logseries, negative binomial, and Poisson lognormal (Figure 3), although the Poisson lognormal had an additional smaller peak around 1, indicating that it had very good model fit in the cases where it was the winning model (Figure 3).  The majority of the AICc weights for the geometric series were near zero (Figure 3).
 
+
+Things to say about the log-likelihoods.
+
+
 Assorted colorful graphs (check Post-It notes).
 
 # Discussion
+Intro paragraph outlining points before jumping into them. 
 
 ####Different processes can generate identical models. (expansion of point from introduction)
 Different process-based species abundance distribution models can generate identical forms of the species abundance distribution.  For example, the negative binomial distribution, a purely statistical model of species abundance distributions, is also the predicted result of neutral theory at the local scale (Conolly paper).  Actually, this might be a place to have that potential table with the form of the distribution on the left and a list of the mechanistic models that produce the shape of that distribution or proposed mechanisms on the right.
@@ -97,6 +104,7 @@ Something about AICc weights and the number of parameters vs. the likelihoods an
 Something acknowledging model failure for certain datasets, which I suspect is due to a low species richness and abundance.  Both the negative binomial and the Poisson lognormal distributions failed to provide an accurate fit to empirical data for n number of datasets. In cases where total community abundance is low and species richness is low, those models are not a good choice.  Also maybe Ken's feasible sets?  
 
 ####Paragraph on the Ulrich et al. 2010 paper. (limitations of their approach)
+Ulrich et al. (2010) tested three types of species abundance distribution models in their analysis, and attempted to identify if there were patterns in the winning model according to several environmental variables, as well as the type of plot used to model the data.  As suggested by McGill et al (2007), modern computing power means that species abundance data no longer requiring binning to calculate (resulting in a loss of thingy, it's a statistical word).  Formal testing of binning data for species abundance distributions by Ulrich et al. (2010) concluded that binning performed worse in all cases. Several limitations of the approach by Ulrich et al (2010) were the different methods used to determine goodness of fit of the data to the model, and the decision not to assess statistical significance of a particular model.  My approach used a single method (AICc) to determine which model provides the best fit.  I also used a likelihood approach for fitting the data.  
 
 ####Next steps: identify if there are explanatory patterns in winning model by taxonomic group or by space. Or by species richness/abundance?
 
