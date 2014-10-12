@@ -105,7 +105,7 @@ def model_comparisons(raw_data, dataset_name, data_dir, cutoff = 9):
             # Negative binomial
             n0, p0 = md.negbin_solver(obsabundance)
             L_negbin = md.negbin_ll(obsabundance, n0, p0) # Log-likelihood of negative binomial
-            if np.isnan(L_negbin):
+            if np.isnan(L_negbin):fc
                 negbin_blank = 1 # The negative binomial distribution sometimes fails to come to a solution before the maximum number of iterations.
                 
             elif np.isinf(L_negbin):
@@ -135,12 +135,12 @@ def model_comparisons(raw_data, dataset_name, data_dir, cutoff = 9):
             
             # Inserts a blank in the output if the Poisson lognormal returned -inf
             if pln_blank == 1:
-                AICc_list.insert(2, '')
+                weights_output.insert(2, '')
                 likelihood_list.insert(2, '')            
             
             # Inserts a blank in the output if the negative binomial exceeded the max number of iterations
             if negbin_blank == 1:
-                AICc_list.insert(3, '')
+                weights_output.insert(3, '')
                 likelihood_list.insert(3, '')
                 
                                     
