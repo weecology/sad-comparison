@@ -105,7 +105,7 @@ def model_comparisons(raw_data, dataset_name, data_dir, cutoff = 9):
             # Negative binomial
             n0, p0 = md.negbin_solver(obsabundance)
             L_negbin = md.negbin_ll(obsabundance, n0, p0) # Log-likelihood of negative binomial
-            if np.isnan(L_negbin):fc
+            if np.isnan(L_negbin):
                 negbin_blank = 1 # The negative binomial distribution sometimes fails to come to a solution before the maximum number of iterations.
                 
             elif np.isinf(L_negbin):
