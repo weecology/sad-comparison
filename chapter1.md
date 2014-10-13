@@ -96,7 +96,18 @@ Assorted colorful graphs (check Post-It notes).
 Intro paragraph outlining points before jumping into them. 
 
 ####Different processes can generate identical models. (expansion of point from introduction)
-Different process-based species abundance distribution models can generate identical forms of the species abundance distribution.  For example, the negative binomial distribution, a purely statistical model of species abundance distributions, is also the predicted result of neutral theory at the local scale (Conolly paper).  Different biological explanations have been proposed for the same non-process based models.  Actually, this might be a place to have that potential table with the form of the distribution on the left and a list of the mechanistic models that produce the shape of that distribution or proposed mechanisms on the right.
+Identifying pattern generating mechanisms of the species abundance distribution is functionally impossible for several reasons.  Different process-based species abundance distribution models can generate identical forms of the species abundance distribution.  For example, the negative binomial distribution, a purely statistical model of species abundance distributions, is also the predicted result of neutral theory at the local scale (Conolly paper).  To further confuse the issue, different biological explanations have been proposed for the same non-process based models, and the same biological explanation have been proposed for different forms of the species abundance distribution.  For example, Hughes (1986) suggested that a model of community dynamics could produce both the logseries or the lognormal, depending on community conditions. 
+
+Actually, this might be a place to have that potential table with the form of the distribution on the left and a list of the mechanistic models that produce the shape of that distribution or proposed mechanisms on the right.
+
+Ugland & Gray 1982, Hummingbird book (a couple years ago, 2011-ish?)
+
+
+Logseries:niche preemption with random recruitment(May 1975) more dispersal/immigration (Hughes 1986) community dynamics (Hughes 1986)
+Lognormal:hierarchical niche apportionment (Sugihara 1980) more independant, lower dispersal, larger communities (Hughes 1986) community dynamics (Hughes 1986)
+Negative binomial:neutral (Connolly et al. 2014)
+Geometric:niche preemption with regular recruitment(May 1975)
+
 
 ####Statistical difference vs. biological relevance (i.e., is there enough difference that we can distinguish between possible mechanisms)
 Something about AICc weights and the number of parameters vs. the likelihoods and model fit and what that all means.  Make the point that even if one model does win, the actual difference between/among the models might not be enough to conclusively state that the processes suggested by that particular model are the dominant processes operating in the system.  
@@ -119,7 +130,8 @@ Identifying which forms of the species abundance distribution most closely follo
 
 # References
 Connolly et al. 2014. Commonness and rarity in the marine biosphere. PNAS 111: 8524-8529.
-McGill, B.J. et al. 2007. Species abundance distributions: moving beyond single prediction theories to integration within an ecological framework. Ecology Letters 10 995-1015.  
+McGill, B.J. et al. 2007. Species abundance distributions: moving beyond single prediction theories to integration within an ecological framework. Ecology Letters 10 995-1015.
+Sugihara, F. 1980. Minimal community structure: An explanation of species abundance patterns. The American Naturalist 116: 770-787. 
 Ulrich, W., Ollik, M. and K. I. Ugland. 2010. A meta-analysis of species–abundance distributions. Oikos, 119: 1149–1155.
 
 ###Data
