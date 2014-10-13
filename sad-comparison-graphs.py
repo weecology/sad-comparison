@@ -16,6 +16,7 @@ import sqlite3 as dbapi
 
 from mpl_toolkits.axes_grid.inset_locator import inset_axes
 
+
 # Function to import the AICc results.
 def import_results(datafile):
     """Imports raw result .csv files in the form: site, S, N, AICc_logseries, AICc_logseries_untruncated, AICc_pln, AICc_negbin, AICc_geometric."""
@@ -126,7 +127,6 @@ def process_results(data_dir, dataset_name, results, value_type):
                         value_type TEXT,
                         value FLOAT)""")
            
-            print(processed_results)
             cur.executemany("""INSERT INTO RawResults VALUES(?,?,?,?,?,?,?,?)""", processed_results)
             con.commit()
         
@@ -139,8 +139,8 @@ likelihood_ext = '_likelihoods.csv' # Extension for raw model likelihood files
 datasets = ['bbs', 'cbc', 'fia', 'gentry', 'mcdb', 'naba'] # Dataset ID codes
 
 # Asks for toggle variable so I don't have to rerun all the setup if it is already processed.
-needs_processing = input("Data needs to be processed into an sqlite database, True or False?  ")  
-#needs_processing = False # THIS LINE IS TEMPORARY AND NEEDS TO BE DELETED IN THE FINAL PRODUCT.
+#needs_processing = input("Data needs to be processed into an sqlite database, True or False?  ")  
+needs_processing = True # THIS LINE IS TEMPORARY AND NEEDS TO BE DELETED IN THE FINAL PRODUCT.
 
 # Starts actual processing for each set of results in turn.
 if needs_processing == True:
