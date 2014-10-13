@@ -139,8 +139,8 @@ likelihood_ext = '_likelihoods.csv' # Extension for raw model likelihood files
 datasets = ['bbs', 'cbc', 'fia', 'gentry', 'mcdb', 'naba'] # Dataset ID codes
 
 # Asks for toggle variable so I don't have to rerun all the setup if it is already processed.
-#needs_processing = input("Data needs to be processed into an sqlite database, True or False?  ")  
-needs_processing = True # THIS LINE IS TEMPORARY AND NEEDS TO BE DELETED IN THE FINAL PRODUCT.
+needs_processing = input("Data needs to be processed into an sqlite database, True or False?  ")  
+needs_processing = False # THIS LINE IS TEMPORARY AND NEEDS TO BE DELETED IN THE FINAL PRODUCT.
 
 # Starts actual processing for each set of results in turn.
 if needs_processing == True:
@@ -500,29 +500,29 @@ plt.savefig(fileName, format="png" )
 # Set up figure
 l_likelihood = plt.figure()
 
-# Extract AICc weights for each model.
+# Extract log-likelihoods for each model.
 ll_logseries = cur.execute("""SELECT model_name, value FROM RawResults
-                            WHERE model_name == 'Logseries' AND value_type =='likelihood' AND value > 0
+                            WHERE model_name == 'Logseries' AND value_type =='likelihood' AND value IS NOT NUll
                             ORDER BY value""")
 ll_logseries = cur.fetchall()
 
 
 ll_untruncated_logseries = cur.execute("""SELECT model_name, value FROM RawResults
-                            WHERE model_name =='Untruncated logseries' AND value_type =='likelihood' AND value > 0
+                            WHERE model_name =='Untruncated logseries' AND value_type =='likelihood' AND value IS NOT NUll
                             ORDER BY value""")
 ll_untruncated_logseries = cur.fetchall()
 
 
 
 ll_pln = cur.execute("""SELECT model_name, value FROM RawResults
-                            WHERE model_name =='Poisson lognormal' AND value_type =='likelihood' AND value > 0
+                            WHERE model_name =='Poisson lognormal' AND value_type =='likelihood' AND value IS NOT NUll
                             ORDER BY value""")
 ll_pln = cur.fetchall()
                      
                             
                             
 ll_neg_bin = cur.execute("""SELECT model_name, value FROM RawResults
-                            WHERE model_name =='Negative binomial' AND value_type =='likelihood' AND value > 0
+                            WHERE model_name =='Negative binomial' AND value_type =='likelihood' AND value IS NOT NUll
                             ORDER BY value""")
 ll_neg_bin = cur.fetchall()
 
@@ -530,7 +530,7 @@ ll_neg_bin = cur.fetchall()
                       
                             
 ll_geometric = cur.execute("""SELECT model_name, value FROM RawResults
-                            WHERE model_name =='Geometric series' AND value_type =='likelihood' AND value > 0
+                            WHERE model_name =='Geometric series' AND value_type =='likelihood' AND value IS NOT NUll
                             ORDER BY value""")
 ll_geometric = cur.fetchall()
 
