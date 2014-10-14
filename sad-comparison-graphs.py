@@ -50,7 +50,6 @@ bar1 = plt.bar( x, y, width, color="grey" )
 plt.ylabel( 'Number of Wins' )
 plt.xticks(x + width/2.0, labels, fontsize = 'small' )
 plt.xlabel( 'Species abundance distribution models' )
-plt.show()
 
 
 #Output figure
@@ -193,9 +192,6 @@ plt.xticks(x + width/2.0, labels, fontsize = 5.9  )
 plt.xlabel( 'NABA' )
 
 plt.tight_layout()
-plt.show()
-
-
 
 #Output figure
 fileName = "./sad-data/wins_by_dataset.png"
@@ -264,7 +260,6 @@ plt.xlabel("AICc weights")
 plt.ylabel("Frequency")
 
 plt.tight_layout()
-plt.show()
 
 #Output figure
 fileName = "./sad-data/AICc_weights.png"
@@ -280,7 +275,7 @@ plt.xlabel("Logseries AICc weights")
 plt.ylabel("Frequency")
 
 plt.tight_layout()
-plt.show()
+
 
 #Output figure
 fileName = "./sad-data/Logseries_weights.png"
@@ -292,7 +287,7 @@ plt.xlabel("Untruncated logseries AICc weights")
 plt.ylabel("Frequency")
 
 plt.tight_layout()
-plt.show()
+
 
 #Output figure
 fileName = "./sad-data/Untruncated logseries_weights.png"
@@ -305,7 +300,7 @@ plt.xlabel("Poisson lognormal AICc weights")
 plt.ylabel("Frequency")
 
 plt.tight_layout()
-plt.show()
+
 
 #Output figure
 fileName = "./sad-data/Poisson lognormal_weights.png"
@@ -319,7 +314,7 @@ plt.xlabel("Negative binomial AICc weights")
 plt.ylabel("Frequency")
 
 plt.tight_layout()
-plt.show()
+
 
 #Output figure
 fileName = "./sad-data/Negative binomial_weights.png"
@@ -334,7 +329,6 @@ plt.xlabel("Geometric AICc weights")
 plt.ylabel("Frequency")
 
 plt.tight_layout()
-plt.show()
 
 #Output figure
 fileName = "./sad-data/Geometric_weights.png"
@@ -376,7 +370,7 @@ ll_neg_bin = cur.fetchall()
                       
                             
 ll_geometric = cur.execute("""SELECT model_name, value FROM RawResults
-                            WHERE model_name =='Geometric series' AND value_type =='likelihood' AND value IS NOT NUll
+                            WHERE model_name =='Geometric series' AND value_type =='likelihood' AND value IS NOT NUll 
                             ORDER BY value""")
 ll_geometric = cur.fetchall()
 
@@ -400,7 +394,7 @@ plt.hist(ll_model3, bins, facecolor = 'gray', histtype="stepfilled", alpha=.7, l
 ll_model4 = [ num for (s, num) in ll_geometric]
 plt.hist(ll_model4, bins, facecolor = 'olivedrab', histtype="stepfilled", alpha=.7, label = "Geometric")
 
-plt.legend(loc = 'upper right', fontsize = 11)
+plt.legend(loc = 'upper left', fontsize = 11)
 
 plt.xlabel("Log-likelihoods")
 plt.ylabel("Frequency")
