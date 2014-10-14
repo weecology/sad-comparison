@@ -39,9 +39,12 @@ The Mammal Community Database (MCDB) publicly available at Ecological Archives <
 ####NABA    
 The North American Butterfly Count data (NABA) is conducted by volunteers, details, not publicly available, MOU, (NABA; North American Butterfly Association 2009). Number of sites.
 
-Gentry site 102 was culled from the dataset due to a previously unidentified flaw in that site (one species had a decimal rather than integer abundance).  In total, I used data for 15,847 communities across four taxonomic groups over six large datasets.  The data have a North American bias, as the BBS, CBC, and FIA data are restricted to North America.
+Gentry sites 102 and 179 were culled from the dataset due to a previously unidentified flaw in that site (one species had a decimal rather than integer abundance).  In total, I used data for 15,846 communities across four taxonomic groups over six large datasets.  The data have a North American bias, as the BBS, CBC, and FIA data are restricted to North America.
 
-A small percentage of sites (number of sites) in the FIA dataset blew up on the negative binomial and the Poisson lognormal and one site in the MCDB blew up on the Poisson lognormal (Appendix?).  For sites where a model or models failed, AICc weights were calculated for only those models which successfully fit the data and blanks were inserted into the list of AICc weights post calculation.  All other model/data combinations ran successfully. 
+THIS HAS PROBABLY CHANGED, CHECK
+A small percentage of sites (number of sites) in the FIA dataset blew up on the negative binomial and the Poisson lognormal and one site in the MCDB blew up on the Poisson lognormal (Appendix?).  
+
+For sites where a model or models failed, AICc weights were calculated for only those models which successfully fit the data and blanks were inserted into the list of AICc weights post calculation.  All other model/data combinations ran successfully. 
 
 ###Likelihood based statistical comparison (White et al 2008, Edwards et al 2007, 2008)
 I used a maximum likelihood approach to model fitting because it is the best (find a better word) one for this type of model comparison (citations).  If a model did not have a likelihood method for fitting the model to empirical data, it was excluded to keep the results comparable across models. 
