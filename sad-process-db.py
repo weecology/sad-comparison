@@ -27,7 +27,7 @@ def winning_model(data_dir, dataset_name, results):
     output_processed.writerow(["# 0 = Logseries, 1 = Untruncated logseries, 2 = Poisson lognormal, 3 = Negative binomial, 4 = Geometric series"])
     
     # Insert header
-    output_processed.writerow(['dataset', 'site', 'S', 'N', "model_code", "AICc_weight_model"])
+    output_processed.writerow(['dataset', 'site', 'S', 'N', "model_code", "model_name", "AICc_weight"])
    
     for site in results:
         site_results = site.tolist()
