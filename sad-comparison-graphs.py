@@ -193,6 +193,7 @@ plt.xlabel( 'NABA' )
 
 plt.tight_layout()
 
+
 #Output figure
 fileName = "./sad-data/wins_by_dataset.png"
 plt.savefig(fileName, format="png" )
@@ -221,8 +222,7 @@ pln = cur.execute("""SELECT model_name, value FROM RawResults
                             WHERE model_name =='Poisson lognormal' AND value_type =='AICc weight' AND value IS NOT NULL
                             ORDER BY value""")
 pln = cur.fetchall()
-                  
-                            
+                              
                             
 neg_bin = cur.execute("""SELECT model_name, value FROM RawResults
                             WHERE model_name =='Negative binomial' AND value_type =='AICc weight' AND value IS NOT NULL
@@ -261,6 +261,8 @@ plt.ylabel("Frequency")
 
 plt.tight_layout()
 
+
+
 #Output figure
 fileName = "./sad-data/AICc_weights.png"
 plt.savefig(fileName, format="png" )
@@ -276,7 +278,6 @@ plt.ylabel("Frequency")
 
 plt.tight_layout()
 
-
 #Output figure
 fileName = "./sad-data/Logseries_weights.png"
 plt.savefig(fileName, format="png" )
@@ -287,7 +288,6 @@ plt.xlabel("Untruncated logseries AICc weights")
 plt.ylabel("Frequency")
 
 plt.tight_layout()
-
 
 #Output figure
 fileName = "./sad-data/Untruncated logseries_weights.png"
@@ -301,7 +301,6 @@ plt.ylabel("Frequency")
 
 plt.tight_layout()
 
-
 #Output figure
 fileName = "./sad-data/Poisson lognormal_weights.png"
 plt.savefig(fileName, format="png" )
@@ -314,7 +313,6 @@ plt.xlabel("Negative binomial AICc weights")
 plt.ylabel("Frequency")
 
 plt.tight_layout()
-
 
 #Output figure
 fileName = "./sad-data/Negative binomial_weights.png"
@@ -400,68 +398,67 @@ plt.xlabel("Log-likelihoods")
 plt.ylabel("Frequency")
 
 plt.tight_layout()
-plt.show()
 
 #Output figure
 fileName = "./sad-data/likelihoods.png"
 plt.savefig(fileName, format="png" )
 
 # Plot likelihoods for each model individually
+#Logseries
 plt.figure()
 plt.hist(ll_model0, bins, facecolor = 'magenta', histtype="stepfilled", alpha=1, label = "Logseries")
 plt.xlabel("Logseries log-likelihoods")
 plt.ylabel("Frequency")
 
 plt.tight_layout()
-plt.show()
 
 #Output figure
 fileName = "./sad-data/logseries_likelihoods.png"
 plt.savefig(fileName, format="png" )
 
-
+#Untruncated logseries
+plt.figure()
 plt.hist(ll_model1, bins, facecolor = 'orange', histtype="stepfilled", alpha=.7, label = "Untruncated logseries")
 plt.xlabel("Untruncated logseries log-likelihoods")
 plt.ylabel("Frequency")
 
 plt.tight_layout()
-plt.show()
 
 #Output figure
 fileName = "./sad-data/untruncated_logseries_likelihoods.png"
 plt.savefig(fileName, format="png" )
 
-
+#Poisson lognormal
+plt.figure()
 plt.hist(ll_model2, bins, facecolor = 'teal', histtype="stepfilled", alpha=.7, label = "Poisson lognormal")
 plt.xlabel("Poisson lognormal log-likelihoods")
 plt.ylabel("Frequency")
 
 plt.tight_layout()
-plt.show()
 
 #Output figure
 fileName = "./sad-data/pln_likelihoods.png"
 plt.savefig(fileName, format="png" )
 
-
+#Negative binomial
+plt.figure()
 plt.hist(ll_model3, bins, facecolor = 'gray', histtype="stepfilled", alpha=.7, label = "Negative binomial")
 plt.xlabel("Negative binomial log-likelihoods")
 plt.ylabel("Frequency")
 
 plt.tight_layout()
-plt.show()
 
 #Output figure
 fileName = "./sad-data/neg_bin_likelihoods.png"
 plt.savefig(fileName, format="png" )
 
-
+#Geometric
+plt.figure()
 plt.hist(ll_model4, bins, facecolor = 'olivedrab', histtype="stepfilled", alpha=.7, label = "Geometric")
 plt.xlabel("Geometric log-likelihoods")
 plt.ylabel("Frequency")
 
 plt.tight_layout()
-plt.show()
 
 #Output figure
 fileName = "./sad-data/geometric_likelihoods.png"
