@@ -25,31 +25,32 @@ While there have been some studies that compete species abundance distribution m
 I used the following datasets analyzed by White et al. 2012 to test the performance of five species abundance distribution models.  
 
 ####BBS
-The North American Breeding Bird Survey (BBS) is a publicly available dataset, etc. etc.  available <link to BBS data> (BBS;
-Sauer et al. 2011). Number of sites.
+The North American Breeding Bird Survey (BBS) is a publicly available dataset, collected by volunteers, and was downloaded with the EcoData Retriever (BBS; Sauer et al. 2011) (EcoData Retriever, Morris and White 2013). Number of sites.
 ####CBC
-The Christmas Bird Count (CBC) is conducted by volunteers, etc. not publicly available, MOU, (CBC; National Audubon Society 2002). Number of sites.
+The Christmas Bird Count (CBC) is conducted by volunteers and is available by obtaining a memorandum of understanding. (CBC; National Audubon Society 2002). Number of sites.
 ####Gentry
-The Alwyn Gentry’s Forest Transect dataset (Gentry) information about Gentry data (Gentry; Phillips and
-Miller 2002). Number of sites.
+The Alwyn Gentry’s Forest Transect dataset (Gentry) was downloaded with the EcoData Retriever  (Gentry; Phillips and Miller 2002)(EcoData Retriever, Morris and White 2013). Number of sites.
 ####FIA
-The Forest Inventory Analysis (FIA) information, etc. (FIA; USDA Forest Service 2010). Number of sites.
+The Forest Inventory Analysis (FIA) was downloaded with the EcoData Retriever  (FIA; USDA Forest Service 2010)(EcoData Retriever, Morris and White 2013). Number of sites.
 ####MCDB
-The Mammal Community Database (MCDB) publicly available at Ecological Archives <link> (MCDB, Thibault et al. 2011). Number of sites.
+The Mammal Community Database (MCDB), publicly available at Ecological Archives, was downloaded with the EcoData Retriever (MCDB, Thibault et al. 2011)(EcoData Retriever, Morris and White 2013)). Number of sites.
 ####NABA    
-The North American Butterfly Count data (NABA) is conducted by volunteers, details, not publicly available, MOU, (NABA; North American Butterfly Association 2009). Number of sites.
+The North American Butterfly Count data (NABA) is conducted by volunteers and is available by obtaining a memorandum of understanding.  (NABA; North American Butterfly Association 2009). Number of sites.
 
-Gentry site 102 was culled from the dataset due to a previously unidentified flaw in that site (one species had a decimal rather than integer abundance).  In total, I used data for 15,847 communities across four taxonomic groups over six large datasets.  The data have a North American bias, as the BBS, CBC, and FIA data are restricted to North America.
+Gentry sites 102 and 179 were culled from the dataset due to a previously unidentified flaw in that site (one species had a decimal rather than integer abundance).  In total, I used data for 15,846 communities across four taxonomic groups over six large datasets.  The data have a North American bias, as the BBS, CBC, and FIA data are restricted to North America.
 
-A small percentage of sites (number of sites) in the FIA dataset blew up on the negative binomial and the Poisson lognormal and one site in the MCDB blew up on the Poisson lognormal (Appendix?).  For sites where a model or models failed, AICc weights were calculated for only those models which successfully fit the data and blanks were inserted into the list of AICc weights post calculation.  All other model/data combinations ran successfully. 
+THIS HAS PROBABLY CHANGED, CHECK
+A small percentage of sites (number of sites) in the FIA dataset blew up on the negative binomial and the Poisson lognormal and one site in the MCDB blew up on the Poisson lognormal (Appendix?).  
+
+For sites where a model or models failed, AICc weights were calculated for only those models which successfully fit the data and blanks were inserted into the list of AICc weights post calculation.  All other model/data combinations ran successfully. 
 
 ###Likelihood based statistical comparison (White et al 2008, Edwards et al 2007, 2008)
-I used a maximum likelihood approach to model fitting because it is the best (find a better word) one for this type of model comparison (citations).  If a model did not have a likelihood method for fitting the model to empirical data, it was excluded to keep the results comparable across models. 
+I used a maximum likelihood approach to model fitting because it is the most robust approach for this type of model comparison, and the log-likelihood also provides a measure of goodness of fit (citations Hummingbird book).  If a model did not have a likelihood method for fitting the model to empirical data, it was excluded to keep the results comparable across models. 
 Used AICc (citations).
-I used the corrected Aikaike Information Criterion (AICc) to identify the model with the best performance for a given dataset (citation).  AICc was used because more robust, provides a penalty for more parameters (citation).  Also, seemingly magic.
+I used the corrected Aikaike Information Criterion (AICc) to identify the model with the best performance relative to the number of model parameters for a given dataset (citation).  AICc was used because more robust, provides a penalty for more parameters (citation).  Also, seemingly magic.
 The model with the greatest AICc weight was determined to be the winning model for that site.
 Packages used to do analysis.
-Model fitting and log-likelihood calculations were performed with the macroeco_distributions module in the macroecotools package, while AICcs and AICc weights were calculated with the macroecotools package (<https://github.com/weecology/macroecotools.git>).
+Model fitting and log-likelihood calculations were performed with the macroeco_distributions module in the macroecotools package, while AICcs and AICc weights were calculated with the macroecotools package (Macroecotools, <https://github.com/weecology/macroecotools.git>).
 
 I followed the recommendations for strong inference in comparing species abundance distribution models provided by McGill et al. 2007.
 
@@ -63,7 +64,7 @@ This might be a place to talk about the Ulrich paper, because it seems like thei
 
 Ulrich et al. (2010) tested a power law model like the generalize Yule distribution as one of their species abundance distributions, and found that it fit the data best when the datasets were incomplete.  It also had better performance when the data were binned (Ulrich et al. 2003), suggesting that this form of the species abundance distribution is not a "true form" of the distribution (i.e., reveals that the data are incomplete/undersampled). Transition sentence.
 
-Ethan's paper about discrete distributions being better finds that discrete approximations are more appropriate choices for model selection that continuous version of the distribution, so all models used were discrete forms of the distributions.
+Because abundance is discrete, rather than continuous, discrete approximations of species abundance distributions are more appropriate choices for model selection than continuous versions of the distribution, so all models used were discrete forms of the distributions (Ethan's paper).
 
 I tested the following distributions with the following packages: 
 
@@ -82,21 +83,34 @@ Code neccessary to duplicate analyses and figures is available at <https://githu
 
 
 # Results
-The untruncated logseries had the best model fit in the majority of cases, for all datasets combined (Figure 1).  However, the pattern varied for each dataset individually.  For the BBS, CBC, FIA, MCDB, and NABA data, the untruncated logseries provided the best fit, while the Poisson lognormal provided the best model fit for the Gentry data, with the untruncated logseries coming in a close second (Figure 2).  The geometric performed the worst for all datasets (Figure 1), and was never the best fit for the BBS, CBC, Gentry, and NABA datasets (Figure 2).  The negative binomial distribution failed to fit a small number of sites (get actual numbers).
+The untruncated logseries had the best model fit in the majority of cases, for all datasets combined (Figure 1).  However, the pattern varied for each dataset individually.  For the BBS, CBC, FIA, MCDB, and NABA data, the untruncated logseries provided the best fit, while the Poisson lognormal provided the best model fit for the Gentry data, with the untruncated logseries coming in a close second (Figure 2).  The truncated lognormal performed the worst for the combined datasets (Figure 1) (zero sites, not graphed), and was never the best fit for the BBS, CBC, Gentry, and NABA datasets (Figure 2)(zero sites, not graphed).  The negative binomial distribution failed to fit *word choice here* a small number of sites (get actual numbers).
 
-The actual distribution of AICc weights varied with each model.  The peaks of the AICc weights tended to overlap for the logseries, negative binomial, and Poisson lognormal (Figure 3), although the Poisson lognormal had an additional smaller peak around 1, indicating that it had very good model fit in the cases where it was the winning model (Figure 3).  The majority of the AICc weights for the geometric series were near zero (Figure 3).
+The actual distribution of AICc weights varied with each model.  The peaks of the AICc weights tended to overlap for the truncated logseries, negative binomial, and Poisson lognormal (Figure 3), although the Poisson lognormal had an additional smaller peak around 1, indicating that it had very good model fit in the cases where it was the winning model (Figure 3).  The majority of the AICc weights for the geometric series were near zero (Figure 3).
 
 
-Things to say about the log-likelihoods.
+Although the truncated logseries and untruncated logseries do not have much overlap for AICc weights (Figure 3), and the truncated logseries was never the winning model (Figures 1, 2), the log-likelihood values have almost complete congruence (Figure 4).  This indicates that both the truncated and untruncated logseries fit equally well to the data, but that the truncated logseries recieves a heavy penalty in AICc weighting due to the extra truncation parameter. All of the models but the geometric series have very similar log-likelihood values, indicating very similar goodnesses of fit of models to data.  
+
 
 
 Assorted colorful graphs (check Post-It notes).
+Additional graphs showing the AICc weights and the log-likelihood weights separately are in Appendix whatever.
 
 # Discussion
 Intro paragraph outlining points before jumping into them. 
 
 ####Different processes can generate identical models. (expansion of point from introduction)
-Different process-based species abundance distribution models can generate identical forms of the species abundance distribution.  For example, the negative binomial distribution, a purely statistical model of species abundance distributions, is also the predicted result of neutral theory at the local scale (Conolly paper).  Different biological explanations have been proposed for the same non-process based models.  Actually, this might be a place to have that potential table with the form of the distribution on the left and a list of the mechanistic models that produce the shape of that distribution or proposed mechanisms on the right.
+Identifying pattern generating mechanisms of the species abundance distribution is functionally impossible for several reasons.  Different process-based species abundance distribution models can generate identical forms of the species abundance distribution.  For example, the negative binomial distribution, a purely statistical model of species abundance distributions, is also the predicted result of neutral theory at the local scale (Conolly paper).  To further confuse the issue, different biological explanations have been proposed for the same non-process based models, and the same biological explanations have been proposed for different forms of the species abundance distribution.  For example, Hughes (1986) suggested that a model of community dynamics could produce both the logseries or the lognormal, depending on community conditions. 
+
+Actually, this might be a place to have that potential table with the form of the distribution on the left and a list of the mechanistic models that produce the shape of that distribution or proposed mechanisms on the right.
+
+Ugland & Gray 1982, Hummingbird book (a couple years ago, 2011-ish?)
+
+
+Logseries:niche preemption with random recruitment(May 1975) more dispersal/immigration (Hughes 1986) community dynamics (Hughes 1986)
+Lognormal:hierarchical niche apportionment (Sugihara 1980) more independant, lower dispersal, larger communities (Hughes 1986) community dynamics (Hughes 1986)
+Negative binomial:neutral (Connolly et al. 2014)
+Geometric:niche preemption with regular recruitment(May 1975)
+
 
 ####Statistical difference vs. biological relevance (i.e., is there enough difference that we can distinguish between possible mechanisms)
 Something about AICc weights and the number of parameters vs. the likelihoods and model fit and what that all means.  Make the point that even if one model does win, the actual difference between/among the models might not be enough to conclusively state that the processes suggested by that particular model are the dominant processes operating in the system.  
@@ -114,12 +128,17 @@ Big picture conclusions:
 While the logseries fit best for the majority of the dataset, the Poisson lognormal also performed well.  However, the actual degree of difference among models was not that great, suggesting that the fit of any  given species abundance distribution model is not an good test of that model.  Instead, I suggest that the McGill (I think the 2003, but others as well) recommendations for strong inference in macroecology( testing process-based model performance with multiple patterns at the same time) is the only appropriate approach for identifying macroecological mechanisms.  However, lack of ability to identify mechanisms that produce a pattern does not mean that a pattern is not useful for prediction, which is one of the goals to move macroecology forward as a discipline (citation, this is weak, and needs a rewrite, but the general idea is there).  
 
 
+Cannot use species abundance distributions by themselves to identify mechanism- need to use multiple patterns (bunch of citations, McGill, Xiao, etc.)  Inability to identify mechanism doesn't mean that patterns can't be useful for prediction- but purely statistical forms of the distribution should probably be used, because mechanism can't be identified anyway.
+
+
 #### Bit that really needs some work, but is about mechanism not neccessarily important to make predictions, which is a good point, although I think mechanism is more interesting.
 Identifying which forms of the species abundance distribution most closely follow the empirical form of the distribution can provide something or other insights into making or refine ability to prediction or something like that.  Anyway, the models are so close together in a lot of cases that it doesn't actually matter, so long as you don't pick the geometric, which just tends to be bad.  Also, picking a distribution that models the thing that you are looking for is good.  If you are interested, for example in modelling the abundance of rare species at a site, you might pick a species abundance distribution model that fits less well overall, but fits better at the rare species end. 
 
 # References
 Connolly et al. 2014. Commonness and rarity in the marine biosphere. PNAS 111: 8524-8529.
-McGill, B.J. et al. 2007. Species abundance distributions: moving beyond single prediction theories to integration within an ecological framework. Ecology Letters 10 995-1015.  
+McGill, B.J. et al. 2007. Species abundance distributions: moving beyond single prediction theories to integration within an ecological framework. Ecology Letters 10 995-1015.
+Morris, B.D. and E.P. White. 2013. The EcoData Retriever: Improving Access to Existing Ecological Data. PLoS ONE 8: 65848. doi:10.1371/journal.pone.0065848.  
+Sugihara, F. 1980. Minimal community structure: An explanation of species abundance patterns. The American Naturalist 116: 770-787. 
 Ulrich, W., Ollik, M. and K. I. Ugland. 2010. A meta-analysis of species–abundance distributions. Oikos, 119: 1149–1155.
 
 ###Data
@@ -140,9 +159,9 @@ national core field guide (Phase 2 and 3). Version 4.0. USDA Forest Service, For
 D.C., USA.
 
 ###Code
-<https://github.com/weecology/sad-comparison.git>  
-<https://github.com/weecology/METE.git>  
-<https://github.com/weecology/macroecotools.git>
+sad-comparison, <https://github.com/weecology/sad-comparison.git>  
+METE, <https://github.com/weecology/METE.git>  
+Macroecotools, <https://github.com/weecology/macroecotools.git>
 
 
 

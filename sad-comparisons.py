@@ -23,8 +23,7 @@ sys.float_info[3]
 
 def import_abundance(datafile):
     """Imports raw species abundance .csv files in the form: Site, Year, Species, Abundance."""
-    raw_data = np.genfromtxt(datafile, dtype = "S15,i8,S10,i8",
-                      names = ['site','year','sp','ab'], delimiter = ",")
+    raw_data = np.genfromtxt(datafile, dtype = "S15,i8,S10,i8", names = ['site','year','sp','ab'], delimiter = ",",comments = "#")
     return raw_data
 
 def model_comparisons(raw_data, dataset_name, data_dir, cutoff = 9):
@@ -168,6 +167,8 @@ analysis_ext = '_spab.csv' # Extension for raw species abundance files
 datasets = ['bbs', 'cbc', 'fia', 'gentry', 'mcdb', 'naba'] # Dataset ID codes
 
 
+
+
 # Starts actual analyses for each dataset in turn.
 for dataset in datasets:
     datafile = data_dir + dataset + analysis_ext
@@ -175,3 +176,4 @@ for dataset in datasets:
     raw_data = import_abundance(datafile) # Import data
 
     model_comparisons(raw_data, dataset, data_dir, cutoff = 9) # Run analyses on data
+
