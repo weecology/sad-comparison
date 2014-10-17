@@ -240,7 +240,7 @@ geometric = cur.fetchall()
 bins = 50
 
 model0 = [ num for (s, num) in logseries ]
-plt.hist(model0, bins, range = (0,1), facecolor = 'magenta', histtype="stepfilled", alpha=1, label = "Logseries")
+plt.hist(model0, bins, range = (0,1), facecolor = 'magenta', histtype="stepfilled", alpha=1, label = "Truncated logseries")
 
 model1 = [ num for (s, num) in untruncated_logseries]
 plt.hist(model1, bins, range = (0,1), facecolor = 'orange', histtype="stepfilled", alpha=.7, label = "Untruncated logseries")
@@ -272,14 +272,14 @@ bins = 50
 
 # Set up figures
 plt.figure()
-plt.hist(model0, bins, range = (0,1), facecolor = 'magenta', histtype="stepfilled", alpha=1, label = "Logseries")
-plt.xlabel("Logseries AICc weights")
+plt.hist(model0, bins, range = (0,1), facecolor = 'magenta', histtype="stepfilled", alpha=1, label = "Truncated logseries")
+plt.xlabel("Truncated logseries AICc weights")
 plt.ylabel("Frequency")
 
 plt.tight_layout()
 
 #Output figure
-fileName = "./sad-data/Logseries_weights.png"
+fileName = "./sad-data/Truncated_logseries_weights.png"
 plt.savefig(fileName, format="png" )
 
 plt.figure()
@@ -378,7 +378,7 @@ ll_geometric = cur.fetchall()
 bins = 50
 
 ll_model0 = [ num for (s, num) in ll_logseries ]
-plt.hist(ll_model0, bins, facecolor = 'magenta', histtype="stepfilled", alpha=1, label = "Logseries")
+plt.hist(ll_model0, bins, facecolor = 'magenta', histtype="stepfilled", alpha=1, label = "Truncated logseries")
 
 ll_model1 = [ num for (s, num) in ll_untruncated_logseries]
 plt.hist(ll_model1, bins, facecolor = 'orange', histtype="stepfilled", alpha=.7, label = "Untruncated logseries")
@@ -404,22 +404,18 @@ fileName = "./sad-data/likelihoods.png"
 plt.savefig(fileName, format="png" )
 
 # Plot likelihoods for each model individually
-#Logseries
+#Truncated logseries
 plt.figure()
-plt.hist(ll_model0, bins, facecolor = 'magenta', histtype="stepfilled", alpha=1, label = "Logseries")
-plt.xlabel("Logseries log-likelihoods")
+plt.hist(ll_model0, bins, facecolor = 'magenta', histtype="stepfilled", alpha=1, label = "Truncated logseries")
+plt.xlabel("Truncated logseries log-likelihoods")
 plt.ylabel("Frequency")
 
 plt.tight_layout()
 
 #Output figure
-fileName = "./sad-data/logseries_likelihoods.png"
+fileName = "./sad-data/truncated_logseries_likelihoods.png"
 plt.savefig(fileName, format="png" )
 
-
-#Output figure
-fileName = "./sad-data/logseries_likelihoods.png"
-plt.savefig(fileName, format="png" )
 
 #Untruncated logseries
 plt.figure()
