@@ -416,13 +416,6 @@ plt.tight_layout()
 fileName = "./sad-data/logseries_likelihoods.png"
 plt.savefig(fileName, format="png" )
 
-#Logseries
-plt.figure()
-plt.hist(ll_model0, bins, facecolor = 'orange', histtype="stepfilled", alpha=.7, label = "Logseries")
-plt.xlabel("Logseries log-likelihoods")
-plt.ylabel("Frequency")
-
-plt.tight_layout()
 
 #Output figure
 fileName = "./sad-data/logseries_likelihoods.png"
