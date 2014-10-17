@@ -477,18 +477,6 @@ fileName = "./sad-data/geometric_likelihoods.png"
 plt.savefig(fileName, format="png" )
 
 
-#Graph of log-likelihoods vs. AICc weights
-logseriesxy = cur.execute("""SELECT model_name, 
-                            CASE 
-                            WHEN value_type = 'AICc weight' AND value IS NOT NULL THEN value as AICc_weight,
-                            WHEN value_type = 'likelihood' AND value IS NOT NULL THEN value as likelihood
-                            END 
-                            FROM RawResults
-                            WHERE model_name == 'Logseries'
-                            ORDER BY value""")
-logseriesxy = cur.fetchall()
-print(logseriesxy)
-
 # Close connection
 con.close()
 
