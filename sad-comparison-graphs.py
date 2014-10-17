@@ -416,6 +416,18 @@ plt.tight_layout()
 fileName = "./sad-data/logseries_likelihoods.png"
 plt.savefig(fileName, format="png" )
 
+#Logseries
+plt.figure()
+plt.hist(ll_model0, bins, facecolor = 'orange', histtype="stepfilled", alpha=.7, label = "Logseries")
+plt.xlabel("Logseries log-likelihoods")
+plt.ylabel("Frequency")
+
+plt.tight_layout()
+
+#Output figure
+fileName = "./sad-data/logseries_likelihoods.png"
+plt.savefig(fileName, format="png" )
+
 #Untruncated logseries
 plt.figure()
 plt.hist(ll_model1, bins, facecolor = 'orange', histtype="stepfilled", alpha=.7, label = "Untruncated logseries")
@@ -467,8 +479,10 @@ plt.savefig(fileName, format="png" )
 
 #Graph of log-likelihoods vs. AICc weights
 logseriesxy = cur.execute("""SELECT model_name, 
-                            case when value_type = 'AICc weight' AND value IS NOT NULL then value end as AICc_weight,
-                            case when value_type = 'likelihood' AND value IS NOT NULL then value end as likelihood
+                            CASE 
+                            WHEN value_type = 'AICc weight' AND value IS NOT NULL THEN value as AICc_weight,
+                            WHEN value_type = 'likelihood' AND value IS NOT NULL THEN value as likelihood
+                            END 
                             FROM RawResults
                             WHERE model_name == 'Logseries'
                             ORDER BY value""")
