@@ -374,23 +374,21 @@ ll_geometric = cur.fetchall()
 
 
 
-# Plot variables for weights
-bins = 50
-
-ll_model0 = [ num for (s, num) in ll_logseries ]
-plt.hist(ll_model0, bins, facecolor = 'magenta', histtype="stepfilled", alpha=1, label = "Truncated logseries")
-
-ll_model1 = [ num for (s, num) in ll_untruncated_logseries]
-plt.hist(ll_model1, bins, facecolor = 'orange', histtype="stepfilled", alpha=.7, label = "Untruncated logseries")
-
-ll_model2 = [ num for (s, num) in ll_pln]
-plt.hist(ll_model2, bins, facecolor = 'teal', histtype="stepfilled", alpha=.7, label = "Poisson lognormal")
+# Plot variables for logseries
+ll_model4 = [ num for (s, num) in ll_geometric]
+plt.hist(ll_model4, bins = range(-750, 0, 10), facecolor = 'olivedrab', histtype="stepfilled", alpha=.7, label = "Geometric")
 
 ll_model3 = [ num for (s, num) in ll_neg_bin]
-plt.hist(ll_model3, bins, facecolor = 'gray', histtype="stepfilled", alpha=.7, label = "Negative binomial")
+plt.hist(ll_model3, bins = range(-750, 0, 10), facecolor = 'gray', histtype="stepfilled", alpha=.7, label = "Negative binomial")
 
-ll_model4 = [ num for (s, num) in ll_geometric]
-plt.hist(ll_model4, bins, facecolor = 'olivedrab', histtype="stepfilled", alpha=.7, label = "Geometric")
+ll_model2 = [ num for (s, num) in ll_pln]
+plt.hist(ll_model2, bins = range(-750, 0, 10), facecolor = 'teal', histtype="stepfilled", alpha=.7, label = "Poisson lognormal")
+
+ll_model1 = [ num for (s, num) in ll_untruncated_logseries]
+plt.hist(ll_model1, bins = range(-750, 0, 10), facecolor = 'orange', histtype="stepfilled", alpha=.5, label = "Untruncated logseries")
+
+ll_model0 = [ num for (s, num) in ll_logseries ]
+plt.hist(ll_model0, bins = range(-750, 0, 10), facecolor = 'magenta', histtype="stepfilled", alpha=.4, label = "Truncated logseries")
 
 plt.legend(loc = 'upper left', fontsize = 11)
 
@@ -406,7 +404,7 @@ plt.savefig(fileName, format="png" )
 # Plot likelihoods for each model individually
 #Truncated logseries
 plt.figure()
-plt.hist(ll_model0, bins, facecolor = 'magenta', histtype="stepfilled", alpha=1, label = "Truncated logseries")
+plt.hist(ll_model0, bins = range(-750, 0, 10), facecolor = 'magenta', histtype="stepfilled", alpha=1, label = "Truncated logseries")
 plt.xlabel("Truncated logseries log-likelihoods")
 plt.ylabel("Frequency")
 
@@ -419,7 +417,7 @@ plt.savefig(fileName, format="png" )
 
 #Untruncated logseries
 plt.figure()
-plt.hist(ll_model1, bins, facecolor = 'orange', histtype="stepfilled", alpha=.7, label = "Untruncated logseries")
+plt.hist(ll_model1, bins = range(-750, 0, 10), facecolor = 'orange', histtype="stepfilled", alpha=.7, label = "Untruncated logseries")
 plt.xlabel("Untruncated logseries log-likelihoods")
 plt.ylabel("Frequency")
 
@@ -431,7 +429,7 @@ plt.savefig(fileName, format="png" )
 
 #Poisson lognormal
 plt.figure()
-plt.hist(ll_model2, bins, facecolor = 'teal', histtype="stepfilled", alpha=.7, label = "Poisson lognormal")
+plt.hist(ll_model2, bins = range(-750, 0, 10), facecolor = 'teal', histtype="stepfilled", alpha=.7, label = "Poisson lognormal")
 plt.xlabel("Poisson lognormal log-likelihoods")
 plt.ylabel("Frequency")
 
@@ -443,7 +441,7 @@ plt.savefig(fileName, format="png" )
 
 #Negative binomial
 plt.figure()
-plt.hist(ll_model3, bins, facecolor = 'gray', histtype="stepfilled", alpha=.7, label = "Negative binomial")
+plt.hist(ll_model3, bins = range(-750, 0, 10), facecolor = 'gray', histtype="stepfilled", alpha=.7, label = "Negative binomial")
 plt.xlabel("Negative binomial log-likelihoods")
 plt.ylabel("Frequency")
 
@@ -455,7 +453,7 @@ plt.savefig(fileName, format="png" )
 
 #Geometric
 plt.figure()
-plt.hist(ll_model4, bins, facecolor = 'olivedrab', histtype="stepfilled", alpha=.7, label = "Geometric")
+plt.hist(ll_model4, bins = range(-750, 0, 10), facecolor = 'olivedrab', histtype="stepfilled", alpha=.7, label = "Geometric")
 plt.xlabel("Geometric log-likelihoods")
 plt.ylabel("Frequency")
 
@@ -463,6 +461,141 @@ plt.tight_layout()
 
 #Output figure
 fileName = "./sad-data/geometric_likelihoods.png"
+plt.savefig(fileName, format="png" )
+
+
+
+#Relative likelihood graph
+# Make histogram
+# Set up figure
+relative_likelihood = plt.figure()
+
+# Extract relative likelihoods for each model.
+relative_logseries = cur.execute("""SELECT model_name, value FROM RawResults
+                            WHERE model_name == 'Logseries' AND value_type =='relative likelihood' AND value IS NOT NUll
+                            ORDER BY value""")
+relative_logseries = cur.fetchall()
+
+
+relative_untruncated_logseries = cur.execute("""SELECT model_name, value FROM RawResults
+                            WHERE model_name =='Untruncated logseries' AND value_type =='relative likelihood' AND value IS NOT NUll
+                            ORDER BY value""")
+relative_untruncated_logseries = cur.fetchall()
+
+
+
+relative_pln = cur.execute("""SELECT model_name, value FROM RawResults
+                            WHERE model_name =='Poisson lognormal' AND value_type =='relative likelihood' AND value IS NOT NUll
+                            ORDER BY value""")
+relative_pln = cur.fetchall()
+                     
+                            
+                            
+relative_neg_bin = cur.execute("""SELECT model_name, value FROM RawResults
+                            WHERE model_name =='Negative binomial' AND value_type =='relative likelihood' AND value IS NOT NUll
+                            ORDER BY value""")
+relative_neg_bin = cur.fetchall()
+
+
+                      
+                            
+relative_geometric = cur.execute("""SELECT model_name, value FROM RawResults
+                            WHERE model_name =='Geometric series' AND value_type =='relative likelihood' AND value IS NOT NUll 
+                            ORDER BY value""")
+relative_geometric = cur.fetchall()
+
+
+
+# Plot variables for logseries
+bins = 50
+
+relative_model4 = [ num for (s, num) in relative_geometric]
+plt.hist(relative_model4, bins, facecolor = 'olivedrab', histtype="stepfilled", alpha=.7, label = "Geometric")
+
+relative_model3 = [ num for (s, num) in relative_neg_bin]
+plt.hist(relative_model3, bins, facecolor = 'gray', histtype="stepfilled", alpha=.7, label = "Negative binomial")
+
+relative_model2 = [ num for (s, num) in relative_pln]
+plt.hist(relative_model2, bins, facecolor = 'teal', histtype="stepfilled", alpha=.7, label = "Poisson lognormal")
+
+relative_model1 = [ num for (s, num) in relative_untruncated_logseries]
+plt.hist(relative_model1, bins, facecolor = 'orange', histtype="stepfilled", alpha=.5, label = "Untruncated logseries")
+
+relative_model0 = [ num for (s, num) in relative_logseries ]
+plt.hist(relative_model0, bins, facecolor = 'magenta', histtype="stepfilled", alpha=.4, label = "Truncated logseries")
+
+
+plt.legend(loc = 'upper right', fontsize = 11)
+
+plt.xlabel("Relative likelihoods")
+plt.ylabel("Frequency")
+
+plt.tight_layout()
+
+#Output figure
+fileName = "./sad-data/relative_likelihoods.png"
+plt.savefig(fileName, format="png" )
+
+# Plot relative likelihoods for each model individually
+#Truncated logseries
+plt.figure()
+plt.hist(relative_model0, bins, facecolor = 'magenta', histtype="stepfilled", alpha=1, label = "Truncated logseries")
+plt.xlabel("Truncated logseries relative likelihoods")
+plt.ylabel("Frequency")
+
+plt.tight_layout()
+
+#Output figure
+fileName = "./sad-data/truncated_logseries_relative.png"
+plt.savefig(fileName, format="png" )
+
+
+#Untruncated logseries
+plt.figure()
+plt.hist(relative_model1, bins, facecolor = 'orange', histtype="stepfilled", alpha=.7, label = "Untruncated logseries")
+plt.xlabel("Untruncated logseries relative likelihoods")
+plt.ylabel("Frequency")
+
+plt.tight_layout()
+
+#Output figure
+fileName = "./sad-data/untruncated_logseries_relative.png"
+plt.savefig(fileName, format="png" )
+
+#Poisson lognormal
+plt.figure()
+plt.hist(relative_model2, bins, facecolor = 'teal', histtype="stepfilled", alpha=.7, label = "Poisson lognormal")
+plt.xlabel("Poisson lognormal relative likelihoods")
+plt.ylabel("Frequency")
+
+plt.tight_layout()
+
+#Output figure
+fileName = "./sad-data/pln_relative.png"
+plt.savefig(fileName, format="png" )
+
+#Negative binomial
+plt.figure()
+plt.hist(relative_model3, bins, facecolor = 'gray', histtype="stepfilled", alpha=.7, label = "Negative binomial")
+plt.xlabel("Negative binomial relative likelihoods")
+plt.ylabel("Frequency")
+
+plt.tight_layout()
+
+#Output figure
+fileName = "./sad-data/neg_bin_relative.png"
+plt.savefig(fileName, format="png" )
+
+#Geometric
+plt.figure()
+plt.hist(relative_model4, bins, facecolor = 'olivedrab', histtype="stepfilled", alpha=.7, label = "Geometric")
+plt.xlabel("Geometric relative likelihoods")
+plt.ylabel("Frequency")
+
+plt.tight_layout()
+
+#Output figure
+fileName = "./sad-data/geometric_relative.png"
 plt.savefig(fileName, format="png" )
 
 

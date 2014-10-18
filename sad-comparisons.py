@@ -51,12 +51,14 @@ def model_comparisons(raw_data, dataset_name, data_dir, cutoff = 9):
     # Open output files
     output1 = csv.writer(open(data_dir + dataset_name + '_obs_pred.csv','wb'))
     output2 = csv.writer(open(data_dir + dataset_name + '_dist_test.csv','wb'))
-    output3 = csv.writer(open(data_dir + dataset_name + '_likelihoods.csv','wb')) 
+    output3 = csv.writer(open(data_dir + dataset_name + '_likelihoods.csv','wb'))
+    output4 = csv.writer(open(data_dir + dataset_name + '_relative_L.csv','wb'))
     
     # Insert header
     output1.writerow(['site', 'observed', 'predicted'])
     output2.writerow(['site', 'S', 'N', 'AICc_logseries', 'AICc_logseries_untruncated', 'AICc_pln', 'AICc_negbin', 'AICc_geometric'])
     output3.writerow(['site', 'S', 'N', 'likelihood_logseries', 'likelihood_logseries_untruncated', 'likelihood_pln', 'likelihood_negbin', 'likelihood_geometric'])
+    output4.writerow(['site', 'S', 'N', 'relative_ll_logseries', 'relative_ll_logseries_untruncated', 'relative_ll_pln', 'relative_ll_negbin', 'relative_ll_geometric'])
     for site in usites:
         subsites = raw_data["site"][raw_data["site"] == site]        
         subabundance = raw_data["ab"][raw_data["site"] == site]
@@ -83,9 +85,13 @@ def model_comparisons(raw_data, dataset_name, data_dir, cutoff = 9):
             L_logser_untruncated = md.logser_ll(obsabundance, p_untruncated) # Log-likelihood of untruncated logseries
             AICc_logser = macroecotools.AICc(k2, L_logser, S) # AICc logseries
             AICc_logser_untruncated = macroecotools.AICc(k1, L_logser_untruncated, S) # AICc logseries untruncated
+            relative_ll_logser = macroecotools.AICc(k1, L_logser, S) # Relative likelihood truncated logseries
+            relative_ll_logser_untruncated = macroecotools.AICc(k1, L_logser_untruncated, S)# Relative likelihood untruncated logseries
+            
             #Start making AICc list
             AICc_list = [AICc_logser, AICc_logser_untruncated]
             likelihood_list = [L_logser, L_logser_untruncated]
+            relative_likelihood_list = [relative_ll_logser, relative_ll_logser_untruncated]
           
             
             # Poisson lognormal
@@ -93,13 +99,15 @@ def model_comparisons(raw_data, dataset_name, data_dir, cutoff = 9):
             L_pln = md.pln_ll(obsabundance, mu,sigma) # Log-likelihood of Poisson lognormal
             if np.isinf(L_pln):
                 pln_blank = 1  # The Poisson lognormal returned -inf
-
+                
             else:
                 AICc_pln = macroecotools.AICc(k2, L_pln, S) # AICc Poisson lognormal
+                relative_ll_pln = macroecotools.AICc(k1, L_pln, S) #Relative likelihood, Poisson lognormal
                 # Add to AICc list
                 AICc_list = AICc_list + [AICc_pln]
                 pln_blank = 0
                 likelihood_list = likelihood_list +  [L_pln]
+                relative_likelihood_list = relative_likelihood_list + [relative_ll_pln]
        
             # Negative binomial
             n0, p0 = md.negbin_solver(obsabundance)
@@ -112,48 +120,61 @@ def model_comparisons(raw_data, dataset_name, data_dir, cutoff = 9):
                 
             else:
                 AICc_negbin = macroecotools.AICc(k2, L_negbin, S)# AICc negative binomial
+                relative_ll_negbin = macroecotools.AICc(k1, L_negbin, S) # Relative log-likelihood of negative binomial
                 # Add to AICc list
                 AICc_list = AICc_list + [AICc_negbin]
                 negbin_blank = 0
                 likelihood_list = likelihood_list +  [L_negbin]
+                relative_likelihood_list = relative_likelihood_list + [relative_ll_negbin]
                 
 
             # Geometric series
             p = md.trunc_geom_solver(obsabundance, N) # For the upper bound, we are using the total community abundance
             L_geometric = md.geom_ll(obsabundance, p) # Log-likelihood of geometric series
             AICc_geometric = macroecotools.AICc(k1, L_geometric, S) # AICc geometric series
+            relative_ll_geometric = macroecotools.AICc(k1, L_geometric, S) # Relative log-likelihood of geometric series
             # Add to AICc list
             AICc_list = AICc_list + [AICc_geometric]
             likelihood_list = likelihood_list +  [L_geometric]
+            relative_likelihood_list = relative_likelihood_list + [relative_ll_geometric]
             
-            
-            # Calulate AICc weight            
+            # Calculate AICc weight            
             weight = macroecotools.aic_weight(AICc_list, S, cutoff = 4)
+            
+            #Calculate relative likelihood
+            relative_likelihoods = macroecotools.aic_weight(relative_likelihood_list, S, cutoff = 4)
+            
             # Convert weight to list
             weights_output = weight.tolist()
+            
+            #Convert relative likelihoods to list
+            relative_likelihoods_output = relative_likelihoods.tolist() 
             
             # Inserts a blank in the output if the Poisson lognormal returned -inf
             if pln_blank == 1:
                 weights_output.insert(2, '')
-                likelihood_list.insert(2, '')            
+                likelihood_list.insert(2, '')
+                relative_likelihoods_output.insert(2, '')
             
             # Inserts a blank in the output if the negative binomial exceeded the max number of iterations
             if negbin_blank == 1:
                 weights_output.insert(3, '')
                 likelihood_list.insert(3, '')
-                
+                relative_likelihoods_output.insert(3, '')
                                     
             # Format results for output
             results = ((np.column_stack((subsites, obsabundance, pred))))
             for weight in weights_output:
                 results2 = [[site, S, N] + weights_output]
             results3 = [[site, S, N] + likelihood_list]
+            results4 = [[site, S, N] + relative_likelihoods_output]
 
                                             
             # Save results to a csv file:            
             output1.writerows(results)
             output2.writerows(results2)
             output3.writerows(results3)
+            output4.writerows(results4)
 
 
 """ Function to see which predicted model fits best with the empirical data for each community. """
@@ -164,9 +185,7 @@ def model_comparisons(raw_data, dataset_name, data_dir, cutoff = 9):
 data_dir = './sad-data/' # path to data directory
 analysis_ext = '_spab.csv' # Extension for raw species abundance files
 
-datasets = ['bbs', 'cbc', 'fia', 'gentry', 'mcdb', 'naba'] # Dataset ID codes
-
-
+datasets = ['bbs', 'cbc', 'fia', 'gentry', 'mcdb', 'naba'] # Dataset ID code
 
 
 # Starts actual analyses for each dataset in turn.

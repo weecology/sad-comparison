@@ -47,10 +47,15 @@ For sites where a model or models failed, AICc weights were calculated for only 
 ###Likelihood based statistical comparison (White et al 2008, Edwards et al 2007, 2008)
 I used a maximum likelihood approach to model fitting because it is the most robust approach for this type of model comparison, and the log-likelihood also provides a measure of goodness of fit (citations Hummingbird book).  If a model did not have a likelihood method for fitting the model to empirical data, it was excluded to keep the results comparable across models. 
 Used AICc (citations).
-I used the corrected Aikaike Information Criterion (AICc) to identify the model with the best performance relative to the number of model parameters for a given dataset (citation).  AICc was used because more robust, provides a penalty for more parameters (citation).  Also, seemingly magic.
+I used corrected Aikaike Information Criterion (AICc) weights to identify the model with the best performance relative to the number of model parameters for a given dataset (citation).  AICc weights were used because more robust, provides a penalty for more parameters (citation).  Also, seemingly magic.
+
+Possibly something about number of parameters for each model?
+
 The model with the greatest AICc weight was determined to be the winning model for that site.
+Used relative likelihood (citations)
+Species richness varies greatly across the datasets, and the value of log-likelihoods (a measure of goodness of fit of model to data) are highly dependant on the starting species richness, making it difficult to compare goodness of fit across datasets.  To better visualize model fit across datasets, I also calculated relative likelihoods with AICc weights by setting the number of parameters in each model to one, effectively normalizing the results (definitely need a citation here).   
 Packages used to do analysis.
-Model fitting and log-likelihood calculations were performed with the macroeco_distributions module in the macroecotools package, while AICcs and AICc weights were calculated with the macroecotools package (Macroecotools, <https://github.com/weecology/macroecotools.git>).
+Model fitting, log-likelihood, and relative likelihood calculations were performed with the macroeco_distributions module in the macroecotools package, while AICcs and AICc weights were calculated with the macroecotools package (Macroecotools, <https://github.com/weecology/macroecotools.git>).
 
 I followed the recommendations for strong inference in comparing species abundance distribution models provided by McGill et al. 2007.
 
