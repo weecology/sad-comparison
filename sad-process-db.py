@@ -130,6 +130,7 @@ def process_results(data_dir, dataset_name, results, value_type):
 data_dir = './sad-data/' # path to data directory
 results_ext = '_dist_test.csv' # Extension for raw model AICc results files
 likelihood_ext = '_likelihoods.csv' # Extension for raw model likelihood files
+relative_ll_ext = '_relative_L.csv' # Extenstion for raw model relative likelihood files
 
 datasets = ['bbs', 'cbc', 'fia', 'gentry', 'mcdb', 'naba'] # Dataset ID codes
 
@@ -151,15 +152,19 @@ if needs_processing == True:
     for dataset in datasets:
         datafile = data_dir + dataset + results_ext
         datafile2 = data_dir + dataset + likelihood_ext
+        datafile3 = data_dir + dataset + relative_ll_ext
         
-        raw_results = import_results(datafile) # Import data
+        raw_results = import_results(datafile) # Import AICc weight data
         
-        raw_results_likelihood = import_results(datafile2) # Import data
+        raw_results_likelihood = import_results(datafile2) # Import log-likelihood data
+        
+        raw_results_relative_ll = import_results(datafile3) #Import relative likelihood data
 
         winning_model(data_dir, dataset, raw_results) # Finds the winning model for each site
         
         process_results(data_dir, dataset, raw_results, 'AICc weight') #Turns the raw results into a database.
         process_results(data_dir, dataset, raw_results_likelihood, 'likelihood') #Turns the raw results into a database.
+        process_results(data_dir, dataset, raw_results_likelihood, 'relative likelihood') #Turns the raw results into a database.
         
     
     #Close connection to database
