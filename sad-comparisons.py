@@ -100,9 +100,6 @@ def model_comparisons(raw_data, dataset_name, data_dir, cutoff = 9):
             if np.isinf(L_pln):
                 pln_blank = 1  # The Poisson lognormal returned -inf
                 
-            if L_pln > 0:
-                pln_blank = 1  # The Poisson lognormal returned a log-likelihood greater than 1
-
             else:
                 AICc_pln = macroecotools.AICc(k2, L_pln, S) # AICc Poisson lognormal
                 relative_ll_pln = macroecotools.AICc(k1, L_pln, S) #Relative likelihood, Poisson lognormal
@@ -153,7 +150,7 @@ def model_comparisons(raw_data, dataset_name, data_dir, cutoff = 9):
             #Convert relative likelihoods to list
             relative_likelihoods_output = relative_likelihoods.tolist() 
             
-            # Inserts a blank in the output if the Poisson lognormal returned -inf or a positive likelihood
+            # Inserts a blank in the output if the Poisson lognormal returned -inf
             if pln_blank == 1:
                 weights_output.insert(2, '')
                 likelihood_list.insert(2, '')
