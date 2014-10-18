@@ -186,11 +186,9 @@ def model_comparisons(raw_data, dataset_name, data_dir, cutoff = 9):
 
 # Set up analysis parameters
 data_dir = './sad-data/' # path to data directory
-analysis_ext = '_spab_testing.csv' # Extension for raw species abundance files
+analysis_ext = '_spab.csv' # Extension for raw species abundance files
 
-#datasets = ['bbs', 'cbc', 'fia', 'gentry', 'mcdb', 'naba'] # Dataset ID codes
-
-datasets = ['fia'] # Dataset ID codes
+datasets = ['bbs', 'cbc', 'fia', 'gentry', 'mcdb', 'naba'] # Dataset ID code
 
 
 # Starts actual analyses for each dataset in turn.
