@@ -37,39 +37,44 @@ The Mammal Community Database (MCDB), publicly available at Ecological Archives,
 ####NABA    
 The North American Butterfly Count data (NABA) is conducted by volunteers and is available by obtaining a memorandum of understanding.  (NABA; North American Butterfly Association 2009). Number of sites.
 
-Gentry sites 102 and 179 were culled from the dataset due to a previously unidentified flaw in that site (one species had a decimal rather than integer abundance).  In total, I used data for 15,846 communities across four taxonomic groups over six large datasets.  The data have a North American bias, as the BBS, CBC, and FIA data are restricted to North America.
+Gentry sites 102 and 179 were culled from the dataset due to a previously unidentified flaw in those sites (one species had a decimal rather than integer abundance).  In total, I used data for 15,846 communities across four taxonomic groups over six large datasets.  The data have a North American bias, as the BBS, CBC, FIA, and NABA data are restricted to North America.
 
 THIS HAS PROBABLY CHANGED, CHECK
 A small percentage of sites (number of sites) in the FIA dataset blew up on the negative binomial and the Poisson lognormal and one site in the MCDB blew up on the Poisson lognormal (Appendix?).  
 
-For sites where a model or models failed, AICc weights were calculated for only those models which successfully fit the data and blanks were inserted into the list of AICc weights post calculation.  All other model/data combinations ran successfully. 
+For sites where a model or models failed, AICc weights were calculated for only those models which successfully fit the data.  Blanks were inserted into the list of AICc weights post calculation.  All other model/data combinations ran successfully. 
 
 ###Likelihood based statistical comparison (White et al 2008, Edwards et al 2007, 2008)
 I used a maximum likelihood approach to model fitting because it is the most robust approach for this type of model comparison, and the log-likelihood also provides a measure of goodness of fit (citations Hummingbird book).  If a model did not have a likelihood method for fitting the model to empirical data, it was excluded to keep the results comparable across models. 
 Used AICc (citations).
-I used corrected Aikaike Information Criterion (AICc) weights to identify the model with the best performance relative to the number of model parameters for a given dataset (citation).  AICc weights were used because more robust, provides a penalty for more parameters (citation).  Also, seemingly magic.
+I used corrected Aikaike Information Criterion (AICc) weights to identify the model with the best performance relative to the number of model parameters for a given dataset (citation).  AICc weights were used because they are more robust for model comparision and provide a penalty for a greater number of parameters (citation).  
 
-Possibly something about number of parameters for each model?
+Possibly something about number of parameters for each model (i.e, a table)?
 
 The model with the greatest AICc weight was determined to be the winning model for that site.
-Used relative likelihood (citations)
-Species richness varies greatly across the datasets, and the value of log-likelihoods (a measure of goodness of fit of model to data) are highly dependant on the starting species richness, making it difficult to compare goodness of fit across datasets.  To better visualize model fit across datasets, I also calculated relative likelihoods with AICc weights by setting the number of parameters in each model to one, effectively normalizing the results (definitely need a citation here).   
-Packages used to do analysis.
-Model fitting, log-likelihood, and relative likelihood calculations were performed with the macroeco_distributions module in the macroecotools package, while AICcs and AICc weights were calculated with the macroecotools package (Macroecotools, <https://github.com/weecology/macroecotools.git>).
 
+I also examined the log-likelihood values to compare the fit of model to data without taking into account the number of parameters used to fit the model.
+
+Used relative likelihood (citations)
+Species richness varies greatly across the datasets, and the value of log-likelihoods (a measure of goodness of fit of model to data) are highly dependant on the starting species richness, making it difficult to compare goodness of fit across datasets.  To better visualize model fit across datasets, I also calculated relative likelihoods with the AICc weights package in macroecotools (macroecotools, <https://github.com/weecology/macroecotools.git>) by setting the number of parameters in each model to one, effectively normalizing the results (definitely need a citation here). 
+  
+Packages used to do analysis.
+Model fitting, log-likelihood, and relative likelihood calculations were performed with the macroeco_distributions module in the macroecotools package, while AICcs and AICc weights were calculated with the macroecotools package (macroecotools, <https://github.com/weecology/macroecotools.git>).
+
+
+The following sentences does not seem like it is in the right place anymore.
 I followed the recommendations for strong inference in comparing species abundance distribution models provided by McGill et al. 2007.
 
 
 ###Model selection (justification of why we chose those, justification for neutral theory, Neutral theory predicts the negative binomial distribution (Connolly et al. 2014.)
-List of models used, packages used to implement code
+Because abundance is discrete, rather than continuous, discrete approximations of species abundance distributions are more appropriate choices for model selection than continuous versions of the distribution, so all models selected were discrete forms of the distributions (Ethan's paper).
 
 McGill et al. (2007) classified models into five different families: purely statistical, branching process, population dynamics, niche partitioning, and spatial distribution of individuals .  I attempted to test models from each of the separate families, excluding the spatial distribution family (McGill et al. 2007) which requires spatially explicit data.  I had initially tried to test the generalized Yule model (branching process family), but this model proved difficult to fit to empirical data and failed to converge to a solution for many of the communities, so it was excluded from the final analyses.
 
 This might be a place to talk about the Ulrich paper, because it seems like their power-law choice was in the branching process family, or at least it cites the same Nee 2003 paper that the McGill et al. 2007 paper uses.  Thus, connecting the not using the gen Yule to the Ulrich paper might be important here.
 
-Ulrich et al. (2010) tested a power law model like the generalize Yule distribution as one of their species abundance distributions, and found that it fit the data best when the datasets were incomplete.  It also had better performance when the data were binned (Ulrich et al. 2003), suggesting that this form of the species abundance distribution is not a "true form" of the distribution (i.e., reveals that the data are incomplete/undersampled). Transition sentence.
+Ulrich et al. (2010) tested a power law model like the generalized Yule distribution as one of their species abundance distributions, and found that it fit the data best when the datasets were incomplete. Another transitional sentence to explain this better. It also had better performance when the data were binned (Ulrich et al. 2003), suggesting that this form of the species abundance distribution is not a "true form" of the speciea abundance distribution (i.e., reveals that the data are incomplete/undersampled). Transition sentence.
 
-Because abundance is discrete, rather than continuous, discrete approximations of species abundance distributions are more appropriate choices for model selection than continuous versions of the distribution, so all models used were discrete forms of the distributions (Ethan's paper).
 
 I tested the following distributions with the following packages: 
 
@@ -93,9 +98,9 @@ The untruncated logseries had the best model fit in the majority of cases, for a
 The actual distribution of AICc weights varied with each model.  The peaks of the AICc weights tended to overlap for the truncated logseries, negative binomial, and Poisson lognormal (Figure 3), although the Poisson lognormal had an additional smaller peak around 1, indicating that it had very good model fit in the cases where it was the winning model (Figure 3).  The majority of the AICc weights for the geometric series were near zero (Figure 3).
 
 
-Although the truncated logseries and untruncated logseries do not have much overlap for AICc weights (Figure 3), and the truncated logseries was never the winning model (Figures 1, 2), the log-likelihood values have almost complete congruence (Figure 4).  This indicates that both the truncated and untruncated logseries fit equally well to the data, but that the truncated logseries recieves a heavy penalty in AICc weighting due to the extra truncation parameter. All of the models but the geometric series have very similar log-likelihood values, indicating very similar goodnesses of fit of models to data.  
+Although the truncated logseries and untruncated logseries do not have much overlap for AICc weights (Figure 3), and the truncated logseries was never the winning model (Figures 1, 2), the log-likelihood values have almost complete congruence (Figure 4).  This indicates that both the truncated and untruncated logseries fit equally well to the data, but that the truncated logseries recieves a heavy penalty in AICc weighting due to the extra truncation parameter. All of the models but the geometric series have very similar log-likelihood values, indicating very similar goodnesses of fit of models to data.
 
-
+A few sites in the FIA dataset returned positive log-likelihood values for the Poisson lognormal, indicating that the Poisson lognormal is an extremely poor fit to those sites.  However, the upper bound for all the log-likelihood graphs were set to zero, for easier comparison.  A list of those sites with the associated log-likelihood values is provided in Appendix whatever?  
 
 Assorted colorful graphs (check Post-It notes).
 Additional graphs showing the AICc weights and the log-likelihood weights separately are in Appendix whatever.
