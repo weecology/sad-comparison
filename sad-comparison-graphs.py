@@ -440,6 +440,31 @@ bbs_ll_geometric = cur.execute("""SELECT model_name, value FROM RawResults
                             ORDER BY value""")
 bbs_ll_geometric = cur.fetchall()
 
+# Plot variables for BBS combined likelihoods graph
+#Geometric series
+bbs_ll_model4 = [ num for (s, num) in bbs_ll_geometric]
+plt.hist(bbs_ll_model4, bins = range(-750, 0, 10), facecolor = 'olivedrab', histtype="stepfilled", alpha=.7, label = "Geometric")
+#Negative binomial
+bbs_ll_model3 = [ num for (s, num) in bbs_ll_neg_bin]
+plt.hist(bbs_ll_model3, bins = range(-750, 0, 10), facecolor = 'gray', histtype="stepfilled", alpha=.7, label = "Negative binomial")
+#Poisson lognormal
+bbs_ll_model2 = [ num for (s, num) in bbs_ll_pln]
+plt.hist(bbs_ll_model2, bins = range(-750, 0, 10), facecolor = 'teal', histtype="stepfilled", alpha=.7, label = "Poisson lognormal")
+#Untruncated logseries
+bbs_ll_model1 = [ num for (s, num) in bbs_ll_untruncated_logser]
+plt.hist(bbs_ll_model1, bins = range(-750, 0, 10), facecolor = 'orange', histtype="stepfilled", alpha=.5, label = "Untruncated logseries")
+#Truncated logseries
+bbs_ll_model0 = [ num for (s, num) in bbs_ll_logser]
+plt.hist(bbs_ll_model0, bins = range(-750, 0, 10), facecolor = 'magenta', histtype="stepfilled", alpha=.4, label = "Truncated logseries")
+
+plt.legend(loc = 'upper left', fontsize = 11)
+plt.xlabel("BBS log-likelihoods")
+plt.ylabel("Frequency")
+plt.tight_layout()
+#Output figure
+fileName = "./sad-data/bbs_likelihoods.png"
+plt.savefig(fileName, format="png" )
+
 # CBC
 #CBC truncated logseries
 cbc_ll_logser = cur.execute("""SELECT model_name, value FROM RawResults
@@ -466,7 +491,30 @@ cbc_ll_geometric = cur.execute("""SELECT model_name, value FROM RawResults
                             WHERE dataset_code == 'cbc' AND model_name == 'Untruncated logseries' AND value_type =='likelihood' AND value IS NOT NUll
                             ORDER BY value""")
 cbc_ll_geometric = cur.fetchall()
+# Plot variables for CBC combined likelihoods graph
+#Geometric series
+cbc_ll_model4 = [ num for (s, num) in cbc_ll_geometric]
+plt.hist(cbc_ll_model4, bins = range(-750, 0, 10), facecolor = 'olivedrab', histtype="stepfilled", alpha=.7, label = "Geometric")
+#Negative binomial
+cbc_ll_model3 = [ num for (s, num) in cbc_ll_neg_bin]
+plt.hist(cbc_ll_model3, bins = range(-750, 0, 10), facecolor = 'gray', histtype="stepfilled", alpha=.7, label = "Negative binomial")
+#Poisson lognormal
+cbc_ll_model2 = [ num for (s, num) in cbc_ll_pln]
+plt.hist(cbc_ll_model2, bins = range(-750, 0, 10), facecolor = 'teal', histtype="stepfilled", alpha=.7, label = "Poisson lognormal")
+#Untruncated logseries
+cbc_ll_model1 = [ num for (s, num) in cbc_ll_untruncated_logser]
+plt.hist(cbc_ll_model1, bins = range(-750, 0, 10), facecolor = 'orange', histtype="stepfilled", alpha=.5, label = "Untruncated logseries")
+#Truncated logseries
+cbc_ll_model0 = [ num for (s, num) in cbc_ll_logser]
+plt.hist(cbc_ll_model0, bins = range(-750, 0, 10), facecolor = 'magenta', histtype="stepfilled", alpha=.4, label = "Truncated logseries")
 
+plt.legend(loc = 'upper left', fontsize = 11)
+plt.xlabel("CBC log-likelihoods")
+plt.ylabel("Frequency")
+plt.tight_layout()
+#Output figure
+fileName = "./sad-data/cbc_likelihoods.png"
+plt.savefig(fileName, format="png" )
 
 # FIA
 #FIA truncated logseries
@@ -494,6 +542,30 @@ fia_ll_geometric = cur.execute("""SELECT model_name, value FROM RawResults
                             WHERE dataset_code == 'fia' AND model_name == 'Untruncated logseries' AND value_type =='likelihood' AND value IS NOT NUll
                             ORDER BY value""")
 fia_ll_geometric = cur.fetchall()
+# Plot variables for FIA combined likelihoods graph
+#Geometric series
+fia_ll_model4 = [ num for (s, num) in fia_ll_geometric]
+plt.hist(fia_ll_model4, bins = range(-750, 0, 10), facecolor = 'olivedrab', histtype="stepfilled", alpha=.7, label = "Geometric")
+#Negative binomial
+fia_ll_model3 = [ num for (s, num) in fia_ll_neg_bin]
+plt.hist(fia_ll_model3, bins = range(-750, 0, 10), facecolor = 'gray', histtype="stepfilled", alpha=.7, label = "Negative binomial")
+#Poisson lognormal
+fia_ll_model2 = [ num for (s, num) in fia_ll_pln]
+plt.hist(fia_ll_model2, bins = range(-750, 0, 10), facecolor = 'teal', histtype="stepfilled", alpha=.7, label = "Poisson lognormal")
+#Untruncated logseries
+fia_ll_model1 = [ num for (s, num) in fia_ll_untruncated_logser]
+plt.hist(bbs_ll_model1, bins = range(-750, 0, 10), facecolor = 'orange', histtype="stepfilled", alpha=.5, label = "Untruncated logseries")
+#Truncated logseries
+fia_ll_model0 = [ num for (s, num) in fia_ll_logser]
+plt.hist(fia_ll_model0, bins = range(-750, 0, 10), facecolor = 'magenta', histtype="stepfilled", alpha=.4, label = "Truncated logseries")
+
+plt.legend(loc = 'upper left', fontsize = 11)
+plt.xlabel("FIA log-likelihoods")
+plt.ylabel("Frequency")
+plt.tight_layout()
+#Output figure
+fileName = "./sad-data/fia_likelihoods.png"
+plt.savefig(fileName, format="png" )
 
 
 # Gentry
@@ -522,6 +594,30 @@ gentry_ll_geometric = cur.execute("""SELECT model_name, value FROM RawResults
                             WHERE dataset_code == 'gentry' AND model_name == 'Untruncated logseries' AND value_type =='likelihood' AND value IS NOT NUll
                             ORDER BY value""")
 gentry_ll_geometric = cur.fetchall()
+# Plot variables for Gentry combined likelihoods graph
+#Geometric series
+gentry_ll_model4 = [ num for (s, num) in gentry_ll_geometric]
+plt.hist(gentry_ll_model4, bins = range(-750, 0, 10), facecolor = 'olivedrab', histtype="stepfilled", alpha=.7, label = "Geometric")
+#Negative binomial
+gentry_ll_model3 = [ num for (s, num) in gentry_ll_neg_bin]
+plt.hist(gentry_ll_model3, bins = range(-750, 0, 10), facecolor = 'gray', histtype="stepfilled", alpha=.7, label = "Negative binomial")
+#Poisson lognormal
+gentry_ll_model2 = [ num for (s, num) in gentry_ll_pln]
+plt.hist(gentry_ll_model2, bins = range(-750, 0, 10), facecolor = 'teal', histtype="stepfilled", alpha=.7, label = "Poisson lognormal")
+#Untruncated logseries
+gentry_ll_model1 = [ num for (s, num) in gentry_ll_untruncated_logser]
+plt.hist(gentry_ll_model1, bins = range(-750, 0, 10), facecolor = 'orange', histtype="stepfilled", alpha=.5, label = "Untruncated logseries")
+#Truncated logseries
+gentry_ll_model0 = [ num for (s, num) in gentry_ll_logser]
+plt.hist(gentry_ll_model0, bins = range(-750, 0, 10), facecolor = 'magenta', histtype="stepfilled", alpha=.4, label = "Truncated logseries")
+
+plt.legend(loc = 'upper left', fontsize = 11)
+plt.xlabel("Gentry log-likelihoods")
+plt.ylabel("Frequency")
+plt.tight_layout()
+#Output figure
+fileName = "./sad-data/gentry_likelihoods.png"
+plt.savefig(fileName, format="png" )
 
 
 # MCDB
@@ -550,6 +646,30 @@ mcdb_ll_geometric = cur.execute("""SELECT model_name, value FROM RawResults
                             WHERE dataset_code == 'mcdb' AND model_name == 'Untruncated logseries' AND value_type =='likelihood' AND value IS NOT NUll
                             ORDER BY value""")
 mcdb_ll_geometric = cur.fetchall()
+# Plot variables for MCDB combined likelihoods graph
+#Geometric series
+mcdb_ll_model4 = [ num for (s, num) in mcdb_ll_geometric]
+plt.hist(mcdb_ll_model4, bins = range(-750, 0, 10), facecolor = 'olivedrab', histtype="stepfilled", alpha=.7, label = "Geometric")
+#Negative binomial
+mcdb_ll_model3 = [ num for (s, num) in mcdb_ll_neg_bin]
+plt.hist(mcdb_ll_model3, bins = range(-750, 0, 10), facecolor = 'gray', histtype="stepfilled", alpha=.7, label = "Negative binomial")
+#Poisson lognormal
+mcdb_ll_model2 = [ num for (s, num) in mcdb_ll_pln]
+plt.hist(mcdb_ll_model2, bins = range(-750, 0, 10), facecolor = 'teal', histtype="stepfilled", alpha=.7, label = "Poisson lognormal")
+#Untruncated logseries
+mcdb_ll_model1 = [ num for (s, num) in mcdb_ll_untruncated_logser]
+plt.hist(mcdb_ll_model1, bins = range(-750, 0, 10), facecolor = 'orange', histtype="stepfilled", alpha=.5, label = "Untruncated logseries")
+#Truncated logseries
+mcdb_ll_model0 = [ num for (s, num) in mcdb_ll_logser]
+plt.hist(mcdb_ll_model0, bins = range(-750, 0, 10), facecolor = 'magenta', histtype="stepfilled", alpha=.4, label = "Truncated logseries")
+
+plt.legend(loc = 'upper left', fontsize = 11)
+plt.xlabel("MCDB log-likelihoods")
+plt.ylabel("Frequency")
+plt.tight_layout()
+#Output figure
+fileName = "./sad-data/mcdb_likelihoods.png"
+plt.savefig(fileName, format="png" )
 
 # NABA
 #NABA truncated logseries
@@ -578,7 +698,31 @@ naba_ll_geometric = cur.execute("""SELECT model_name, value FROM RawResults
                             ORDER BY value""")
 naba_ll_geometric = cur.fetchall()
 
+# Plot variables for NABA combined likelihoods graph
+#Geometric series
+naba_ll_model4 = [ num for (s, num) in naba_ll_geometric]
+plt.hist(naba_ll_model4, bins = range(-750, 0, 10), facecolor = 'olivedrab', histtype="stepfilled", alpha=.7, label = "Geometric")
+#Negative binomial
+naba_ll_model3 = [ num for (s, num) in naba_ll_neg_bin]
+plt.hist(naba_ll_model3, bins = range(-750, 0, 10), facecolor = 'gray', histtype="stepfilled", alpha=.7, label = "Negative binomial")
+#Poisson lognormal
+naba_ll_model2 = [ num for (s, num) in naba_ll_pln]
+plt.hist(naba_ll_model2, bins = range(-750, 0, 10), facecolor = 'teal', histtype="stepfilled", alpha=.7, label = "Poisson lognormal")
+#Untruncated logseries
+naba_ll_model1 = [ num for (s, num) in naba_ll_untruncated_logser]
+plt.hist(naba_ll_model1, bins = range(-750, 0, 10), facecolor = 'orange', histtype="stepfilled", alpha=.5, label = "Untruncated logseries")
+#Truncated logseries
+naba_ll_model0 = [ num for (s, num) in naba_ll_logser]
+plt.hist(naba_ll_model0, bins = range(-750, 0, 10), facecolor = 'magenta', histtype="stepfilled", alpha=.4, label = "Truncated logseries")
 
+
+plt.legend(loc = 'upper left', fontsize = 11)
+plt.xlabel("NABA log-likelihoods")
+plt.ylabel("Frequency")
+plt.tight_layout()
+#Output figure
+fileName = "./sad-data/naba_likelihoods.png"
+plt.savefig(fileName, format="png" )
 
 
 '''Relative likelihoods graph'''
