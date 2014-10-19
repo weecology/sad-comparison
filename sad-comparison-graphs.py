@@ -843,4 +843,3 @@ plt.savefig(fileName, format="png" )
 
 # Close connection
 con.close()
-
