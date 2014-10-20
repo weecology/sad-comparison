@@ -150,7 +150,7 @@ def model_comparisons(raw_data, dataset_name, data_dir, cutoff = 9):
             #Convert relative likelihoods to list
             relative_likelihoods_output = relative_likelihoods.tolist() 
             
-            # Inserts a blank in the output if the Poisson lognormal returned -inf
+            # Inserts a blank in the output if the Poisson lognormal returned -inmaki
             if pln_blank == 1:
                 weights_output.insert(2, '')
                 likelihood_list.insert(2, '')
@@ -195,4 +195,3 @@ for dataset in datasets:
     raw_data = import_abundance(datafile) # Import data
 
     model_comparisons(raw_data, dataset, data_dir, cutoff = 9) # Run analyses on data
-
