@@ -164,7 +164,7 @@ if needs_processing == True:
         
         process_results(data_dir, dataset, raw_results, 'AICc weight') #Turns the raw results into a database.
         process_results(data_dir, dataset, raw_results_likelihood, 'likelihood') #Turns the raw results into a database.
-        process_results(data_dir, dataset, raw_results_likelihood, 'relative likelihood') #Turns the raw results into a database.
+        process_results(data_dir, dataset, raw_results_relative_ll, 'relative likelihood') #Turns the raw results into a database.
         
     
     #Close connection to database
