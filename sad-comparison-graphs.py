@@ -48,6 +48,7 @@ plt.xlabel( 'Species abundance distribution models' )
 #Output figure
 fileName = "./sad-data/total_wins.png"
 plt.savefig(fileName, format="png" )
+plt.close()
 
 ''' Extract number of wins for each model and dataset'''
 # BBS
@@ -178,7 +179,7 @@ plt.tight_layout()
 #Output figure
 fileName = "./sad-data/wins_by_dataset.png"
 plt.savefig(fileName, format="png" )
-
+plt.close()
 
 
 '''AIC_c weight distributions graphs'''
@@ -242,6 +243,7 @@ plt.tight_layout()
 #Output figure
 fileName = "./sad-data/AICc_weights.png"
 plt.savefig(fileName, format="png" )
+plt.close()
 
 
 '''Plot weights for each model individually'''
@@ -255,6 +257,7 @@ plt.tight_layout()
 #Output figure
 fileName = "./sad-data/Truncated_logseries_weights.png"
 plt.savefig(fileName, format="png" )
+plt.close()
 
 #Untruncated logseries
 plt.figure()
@@ -265,6 +268,7 @@ plt.tight_layout()
 #Output figure
 fileName = "./sad-data/Untruncated logseries_weights.png"
 plt.savefig(fileName, format="png" )
+plt.close()
 
 #Poisson lognormal
 plt.figure()
@@ -275,6 +279,7 @@ plt.tight_layout()
 #Output figure
 fileName = "./sad-data/Poisson lognormal_weights.png"
 plt.savefig(fileName, format="png" )
+plt.close()
 
 #Negative binomial
 plt.figure()
@@ -286,6 +291,7 @@ plt.tight_layout()
 #Output figure
 fileName = "./sad-data/Negative binomial_weights.png"
 plt.savefig(fileName, format="png" )
+plt.close()
 
 #Geometric series
 plt.figure()
@@ -297,6 +303,7 @@ plt.tight_layout()
 #Output figure
 fileName = "./sad-data/Geometric_weights.png"
 plt.savefig(fileName, format="png" )
+plt.close()
 
 
 '''Likelihoods graph'''
@@ -359,6 +366,7 @@ plt.tight_layout()
 #Output figure
 fileName = "./sad-data/likelihoods.png"
 plt.savefig(fileName, format="png" )
+plt.close()
 
 ''' Plot likelihoods for each model individually'''
 #Truncated logseries
@@ -370,6 +378,7 @@ plt.tight_layout()
 #Output figure
 fileName = "./sad-data/truncated_logseries_likelihoods.png"
 plt.savefig(fileName, format="png" )
+plt.close()
 
 
 #Untruncated logseries
@@ -381,6 +390,7 @@ plt.tight_layout()
 #Output figure
 fileName = "./sad-data/untruncated_logseries_likelihoods.png"
 plt.savefig(fileName, format="png" )
+plt.close()
 
 #Poisson lognormal
 plt.figure()
@@ -391,6 +401,7 @@ plt.tight_layout()
 #Output figure
 fileName = "./sad-data/pln_likelihoods.png"
 plt.savefig(fileName, format="png" )
+plt.close()
 
 #Negative binomial
 plt.figure()
@@ -401,6 +412,7 @@ plt.tight_layout()
 #Output figure
 fileName = "./sad-data/neg_bin_likelihoods.png"
 plt.savefig(fileName, format="png" )
+plt.close()
 
 #Geometric
 plt.figure()
@@ -411,6 +423,7 @@ plt.tight_layout()
 #Output figure
 fileName = "./sad-data/geometric_likelihoods.png"
 plt.savefig(fileName, format="png" )
+plt.close()
 
 '''Plot likelihoods by dataset and model'''
 # BBS
@@ -430,10 +443,10 @@ bbs_ll_pln = cur.execute("""SELECT model_name, value FROM RawResults
                             ORDER BY value""")
 bbs_ll_pln = cur.fetchall()
 #BBS negative binomial
-bbs_ll_negbin = cur.execute("""SELECT model_name, value FROM RawResults
+bbs_ll_neg_bin = cur.execute("""SELECT model_name, value FROM RawResults
                             WHERE dataset_code == 'bbs' AND model_name == 'Negative binomial' AND value_type =='likelihood' AND value IS NOT NUll
                             ORDER BY value""")
-bbs_ll_negbin = cur.fetchall()
+bbs_ll_neg_bin = cur.fetchall()
 #BBS geometric
 bbs_ll_geometric = cur.execute("""SELECT model_name, value FROM RawResults
                             WHERE dataset_code == 'bbs' AND model_name == 'Untruncated logseries' AND value_type =='likelihood' AND value IS NOT NUll
@@ -441,6 +454,7 @@ bbs_ll_geometric = cur.execute("""SELECT model_name, value FROM RawResults
 bbs_ll_geometric = cur.fetchall()
 
 # Plot variables for BBS combined likelihoods graph
+plt.figure()
 #Geometric series
 bbs_ll_model4 = [ num for (s, num) in bbs_ll_geometric]
 plt.hist(bbs_ll_model4, bins = range(-750, 0, 10), facecolor = 'olivedrab', histtype="stepfilled", alpha=.7, label = "Geometric")
@@ -464,8 +478,10 @@ plt.tight_layout()
 #Output figure
 fileName = "./sad-data/bbs_likelihoods.png"
 plt.savefig(fileName, format="png" )
+plt.close()
 
 # CBC
+plt.figure()
 #CBC truncated logseries
 cbc_ll_logser = cur.execute("""SELECT model_name, value FROM RawResults
                             WHERE dataset_code == 'cbc' AND model_name == 'Logseries' AND value_type =='likelihood' AND value IS NOT NUll
@@ -482,16 +498,18 @@ cbc_ll_pln = cur.execute("""SELECT model_name, value FROM RawResults
                             ORDER BY value""")
 cbc_ll_pln = cur.fetchall()
 #CBC negative binomial
-cbc_ll_negbin = cur.execute("""SELECT model_name, value FROM RawResults
+cbc_ll_neg_bin = cur.execute("""SELECT model_name, value FROM RawResults
                             WHERE dataset_code == 'cbc' AND model_name == 'Negative binomial' AND value_type =='likelihood' AND value IS NOT NUll
                             ORDER BY value""")
-cbc_ll_negbin = cur.fetchall()
+cbc_ll_neg_bin = cur.fetchall()
 #CBC geometric
 cbc_ll_geometric = cur.execute("""SELECT model_name, value FROM RawResults
                             WHERE dataset_code == 'cbc' AND model_name == 'Untruncated logseries' AND value_type =='likelihood' AND value IS NOT NUll
                             ORDER BY value""")
 cbc_ll_geometric = cur.fetchall()
+
 # Plot variables for CBC combined likelihoods graph
+plt.figure()
 #Geometric series
 cbc_ll_model4 = [ num for (s, num) in cbc_ll_geometric]
 plt.hist(cbc_ll_model4, bins = range(-750, 0, 10), facecolor = 'olivedrab', histtype="stepfilled", alpha=.7, label = "Geometric")
@@ -515,6 +533,7 @@ plt.tight_layout()
 #Output figure
 fileName = "./sad-data/cbc_likelihoods.png"
 plt.savefig(fileName, format="png" )
+plt.close()
 
 # FIA
 #FIA truncated logseries
@@ -533,16 +552,18 @@ fia_ll_pln = cur.execute("""SELECT model_name, value FROM RawResults
                             ORDER BY value""")
 fia_ll_pln = cur.fetchall()
 #FIA negative binomial
-fia_ll_negbin = cur.execute("""SELECT model_name, value FROM RawResults
+fia_ll_neg_bin = cur.execute("""SELECT model_name, value FROM RawResults
                             WHERE dataset_code == 'fia' AND model_name == 'Negative binomial' AND value_type =='likelihood' AND value IS NOT NUll
                             ORDER BY value""")
-fia_ll_negbin = cur.fetchall()
+fia_ll_neg_bin = cur.fetchall()
 #FIA geometric
 fia_ll_geometric = cur.execute("""SELECT model_name, value FROM RawResults
                             WHERE dataset_code == 'fia' AND model_name == 'Untruncated logseries' AND value_type =='likelihood' AND value IS NOT NUll
                             ORDER BY value""")
 fia_ll_geometric = cur.fetchall()
+
 # Plot variables for FIA combined likelihoods graph
+plt.figure()
 #Geometric series
 fia_ll_model4 = [ num for (s, num) in fia_ll_geometric]
 plt.hist(fia_ll_model4, bins = range(-750, 0, 10), facecolor = 'olivedrab', histtype="stepfilled", alpha=.7, label = "Geometric")
@@ -566,6 +587,7 @@ plt.tight_layout()
 #Output figure
 fileName = "./sad-data/fia_likelihoods.png"
 plt.savefig(fileName, format="png" )
+plt.close()
 
 
 # Gentry
@@ -585,16 +607,18 @@ gentry_ll_pln = cur.execute("""SELECT model_name, value FROM RawResults
                             ORDER BY value""")
 gentry_ll_pln = cur.fetchall()
 #CBC negative binomial
-gentry_ll_negbin = cur.execute("""SELECT model_name, value FROM RawResults
+gentry_ll_neg_bin = cur.execute("""SELECT model_name, value FROM RawResults
                             WHERE dataset_code == 'gentry' AND model_name == 'Negative binomial' AND value_type =='likelihood' AND value IS NOT NUll
                             ORDER BY value""")
-gentry_ll_negbin = cur.fetchall()
+gentry_ll_neg_bin = cur.fetchall()
 #Gentry geometric
 gentry_ll_geometric = cur.execute("""SELECT model_name, value FROM RawResults
                             WHERE dataset_code == 'gentry' AND model_name == 'Untruncated logseries' AND value_type =='likelihood' AND value IS NOT NUll
                             ORDER BY value""")
 gentry_ll_geometric = cur.fetchall()
+
 # Plot variables for Gentry combined likelihoods graph
+plt.figure()
 #Geometric series
 gentry_ll_model4 = [ num for (s, num) in gentry_ll_geometric]
 plt.hist(gentry_ll_model4, bins = range(-750, 0, 10), facecolor = 'olivedrab', histtype="stepfilled", alpha=.7, label = "Geometric")
@@ -618,6 +642,7 @@ plt.tight_layout()
 #Output figure
 fileName = "./sad-data/gentry_likelihoods.png"
 plt.savefig(fileName, format="png" )
+plt.close()
 
 
 # MCDB
@@ -637,16 +662,18 @@ mcdb_ll_pln = cur.execute("""SELECT model_name, value FROM RawResults
                             ORDER BY value""")
 mcdb_ll_pln = cur.fetchall()
 #MCDB  negative binomial
-mcdb_ll_negbin = cur.execute("""SELECT model_name, value FROM RawResults
+mcdb_ll_neg_bin = cur.execute("""SELECT model_name, value FROM RawResults
                             WHERE dataset_code == 'mcdb' AND model_name == 'Negative binomial' AND value_type =='likelihood' AND value IS NOT NUll
                             ORDER BY value""")
-mcdb_ll_negbin = cur.fetchall()
+mcdb_ll_neg_bin = cur.fetchall()
 #MCDB  geometric
 mcdb_ll_geometric = cur.execute("""SELECT model_name, value FROM RawResults
                             WHERE dataset_code == 'mcdb' AND model_name == 'Untruncated logseries' AND value_type =='likelihood' AND value IS NOT NUll
                             ORDER BY value""")
 mcdb_ll_geometric = cur.fetchall()
+
 # Plot variables for MCDB combined likelihoods graph
+plt.figure()
 #Geometric series
 mcdb_ll_model4 = [ num for (s, num) in mcdb_ll_geometric]
 plt.hist(mcdb_ll_model4, bins = range(-750, 0, 10), facecolor = 'olivedrab', histtype="stepfilled", alpha=.7, label = "Geometric")
@@ -670,6 +697,7 @@ plt.tight_layout()
 #Output figure
 fileName = "./sad-data/mcdb_likelihoods.png"
 plt.savefig(fileName, format="png" )
+plt.close()
 
 # NABA
 #NABA truncated logseries
@@ -688,10 +716,10 @@ naba_ll_pln = cur.execute("""SELECT model_name, value FROM RawResults
                             ORDER BY value""")
 naba_ll_pln = cur.fetchall()
 #NABA negative binomial
-naba_ll_negbin = cur.execute("""SELECT model_name, value FROM RawResults
+naba_ll_neg_bin = cur.execute("""SELECT model_name, value FROM RawResults
                             WHERE dataset_code == 'naba' AND model_name == 'Negative binomial' AND value_type =='likelihood' AND value IS NOT NUll
                             ORDER BY value""")
-naba_ll_negbin = cur.fetchall()
+naba_ll_neg_bin = cur.fetchall()
 #NABA geometric
 naba_ll_geometric = cur.execute("""SELECT model_name, value FROM RawResults
                             WHERE dataset_code == 'naba' AND model_name == 'Untruncated logseries' AND value_type =='likelihood' AND value IS NOT NUll
@@ -699,6 +727,7 @@ naba_ll_geometric = cur.execute("""SELECT model_name, value FROM RawResults
 naba_ll_geometric = cur.fetchall()
 
 # Plot variables for NABA combined likelihoods graph
+plt.figure()
 #Geometric series
 naba_ll_model4 = [ num for (s, num) in naba_ll_geometric]
 plt.hist(naba_ll_model4, bins = range(-750, 0, 10), facecolor = 'olivedrab', histtype="stepfilled", alpha=.7, label = "Geometric")
@@ -723,6 +752,7 @@ plt.tight_layout()
 #Output figure
 fileName = "./sad-data/naba_likelihoods.png"
 plt.savefig(fileName, format="png" )
+plt.close()
 
 
 '''Relative likelihoods graph'''
@@ -764,6 +794,7 @@ relative_geometric = cur.execute("""SELECT model_name, value FROM RawResults
 relative_geometric = cur.fetchall()
 
 # Plot variables for relative likelihoods combined graph
+plt.figure()
 bins = 50
 #Geometric series
 relative_model4 = [ num for (s, num) in relative_geometric]
@@ -788,6 +819,7 @@ plt.tight_layout()
 #Output figure
 fileName = "./sad-data/relative_likelihoods.png"
 plt.savefig(fileName, format="png" )
+plt.close()
 
 ''' Plot relative likelihoods for each model individually'''
 #Truncated logseries
@@ -799,6 +831,7 @@ plt.tight_layout()
 #Output figure
 fileName = "./sad-data/truncated_logseries_relative.png"
 plt.savefig(fileName, format="png" )
+plt.close()
 
 
 #Untruncated logseries
@@ -810,6 +843,7 @@ plt.tight_layout()
 #Output figure
 fileName = "./sad-data/untruncated_logseries_relative.png"
 plt.savefig(fileName, format="png" )
+plt.close()
 
 #Poisson lognormal
 plt.figure()
@@ -820,6 +854,7 @@ plt.tight_layout()
 #Output figure
 fileName = "./sad-data/pln_relative.png"
 plt.savefig(fileName, format="png" )
+plt.close()
 
 #Negative binomial
 plt.figure()
@@ -830,6 +865,7 @@ plt.tight_layout()
 #Output figure
 fileName = "./sad-data/neg_bin_relative.png"
 plt.savefig(fileName, format="png" )
+plt.close()
 
 #Geometric
 plt.figure()
@@ -840,6 +876,7 @@ plt.tight_layout()
 #Output figure
 fileName = "./sad-data/geometric_relative.png"
 plt.savefig(fileName, format="png" )
+plt.close()
 
 # Close connection
 con.close()
