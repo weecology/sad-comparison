@@ -798,19 +798,19 @@ plt.figure()
 bins = 50
 #Geometric series
 relative_model4 = [ num for (s, num) in relative_geometric]
-plt.hist(relative_model4, bins, facecolor = 'olivedrab', histtype="stepfilled", alpha=.7, label = "Geometric")
+plt.hist(relative_model4, bins, range = [0,1], facecolor = 'olivedrab', histtype="stepfilled", alpha=.7, label = "Geometric")
 #Negative binomial
 relative_model3 = [ num for (s, num) in relative_neg_bin]
-plt.hist(relative_model3, bins, facecolor = 'gray', histtype="stepfilled", alpha=.7, label = "Negative binomial")
+plt.hist(relative_model3, bins, range = [0,1], facecolor = 'gray', histtype="stepfilled", alpha=.7, label = "Negative binomial")
 #Poisson lognormal
 relative_model2 = [ num for (s, num) in relative_pln]
-plt.hist(relative_model2, bins, facecolor = 'teal', histtype="stepfilled", alpha=.7, label = "Poisson lognormal")
+plt.hist(relative_model2, bins, range = [0,1], facecolor = 'teal', histtype="stepfilled", alpha=.7, label = "Poisson lognormal")
 #Untruncated lognormal
 relative_model1 = [ num for (s, num) in relative_untruncated_logseries]
-plt.hist(relative_model1, bins, facecolor = 'orange', histtype="stepfilled", alpha=.5, label = "Untruncated logseries")
+plt.hist(relative_model1, bins, range = [0,1], facecolor = 'orange', histtype="stepfilled", alpha=.5, label = "Untruncated logseries")
 #Truncated logseries
 relative_model0 = [ num for (s, num) in relative_logseries ]
-plt.hist(relative_model0, bins, facecolor = 'magenta', histtype="stepfilled", alpha=.4, label = "Truncated logseries")
+plt.hist(relative_model0, bins, range = [0,1], facecolor = 'magenta', histtype="stepfilled", alpha=.4, label = "Truncated logseries")
 
 plt.legend(loc = 'upper right', fontsize = 11)
 plt.xlabel("Relative likelihoods")
@@ -824,7 +824,7 @@ plt.close()
 ''' Plot relative likelihoods for each model individually'''
 #Truncated logseries
 plt.figure()
-plt.hist(relative_model0, bins, facecolor = 'magenta', histtype="stepfilled", alpha=1, label = "Truncated logseries")
+plt.hist(relative_model0, bins, range = [0,1], facecolor = 'magenta', histtype="stepfilled", alpha=1, label = "Truncated logseries")
 plt.xlabel("Truncated logseries relative likelihoods")
 plt.ylabel("Frequency")
 plt.tight_layout()
@@ -836,7 +836,7 @@ plt.close()
 
 #Untruncated logseries
 plt.figure()
-plt.hist(relative_model1, bins, facecolor = 'orange', histtype="stepfilled", alpha=.7, label = "Untruncated logseries")
+plt.hist(relative_model1, bins, range = [0,1], facecolor = 'orange', histtype="stepfilled", alpha=.7, label = "Untruncated logseries")
 plt.xlabel("Untruncated logseries relative likelihoods")
 plt.ylabel("Frequency")
 plt.tight_layout()
@@ -847,7 +847,7 @@ plt.close()
 
 #Poisson lognormal
 plt.figure()
-plt.hist(relative_model2, bins, facecolor = 'teal', histtype="stepfilled", alpha=.7, label = "Poisson lognormal")
+plt.hist(relative_model2, bins, range = [0,1], facecolor = 'teal', histtype="stepfilled", alpha=.7, label = "Poisson lognormal")
 plt.xlabel("Poisson lognormal relative likelihoods")
 plt.ylabel("Frequency")
 plt.tight_layout()
@@ -858,7 +858,7 @@ plt.close()
 
 #Negative binomial
 plt.figure()
-plt.hist(relative_model3, bins, facecolor = 'gray', histtype="stepfilled", alpha=.7, label = "Negative binomial")
+plt.hist(relative_model3, bins, range = [0,1], facecolor = 'gray', histtype="stepfilled", alpha=.7, label = "Negative binomial")
 plt.xlabel("Negative binomial relative likelihoods")
 plt.ylabel("Frequency")
 plt.tight_layout()
@@ -869,7 +869,7 @@ plt.close()
 
 #Geometric
 plt.figure()
-plt.hist(relative_model4, bins, facecolor = 'olivedrab', histtype="stepfilled", alpha=.7, label = "Geometric")
+plt.hist(relative_model4, bins, range = [0,1], facecolor = 'olivedrab', histtype="stepfilled", alpha=.7, label = "Geometric")
 plt.xlabel("Geometric relative likelihoods")
 plt.ylabel("Frequency")
 plt.tight_layout()
