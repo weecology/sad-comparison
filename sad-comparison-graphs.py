@@ -266,7 +266,7 @@ plt.xlabel("Untruncated logseries AICc weights")
 plt.ylabel("Frequency")
 plt.tight_layout()
 #Output figure
-fileName = "./sad-data/Untruncated logseries_weights.png"
+fileName = "./sad-data/Untruncated_logseries_weights.png"
 plt.savefig(fileName, format="png" )
 plt.close()
 
@@ -277,7 +277,7 @@ plt.xlabel("Poisson lognormal AICc weights")
 plt.ylabel("Frequency")
 plt.tight_layout()
 #Output figure
-fileName = "./sad-data/Poisson lognormal_weights.png"
+fileName = "./sad-data/Poisson_lognormal_weights.png"
 plt.savefig(fileName, format="png" )
 plt.close()
 
@@ -289,7 +289,7 @@ plt.xlabel("Negative binomial AICc weights")
 plt.ylabel("Frequency")
 plt.tight_layout()
 #Output figure
-fileName = "./sad-data/Negative binomial_weights.png"
+fileName = "./sad-data/Negative_binomial_weights.png"
 plt.savefig(fileName, format="png" )
 plt.close()
 
