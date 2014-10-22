@@ -100,6 +100,8 @@ The actual distribution of AICc weights varied with each model.  The peaks of th
 
 Although the truncated logseries and untruncated logseries do not have much overlap for AICc weights (Figure 3), and the truncated logseries was never the winning model (Figures 1, 2), the log-likelihood values have almost complete congruence (Figure 4).  This indicates that both the truncated and untruncated logseries fit equally well to the data, but that the truncated logseries recieves a heavy penalty in AICc weighting due to the extra truncation parameter. All of the models but the geometric series have very similar log-likelihood values, indicating very similar goodnesses of fit of models to data.
 
+I also compared the relative likelihoods, and I need to think about those graphs a bit more.  The truncated and untruncated logseries are virtually identical, the Poisson lognormal is a lot more stretched out, the negative binomial is pretty similar to the two logseries, and the geometric is squished toward zero still.
+
 A few sites in the FIA dataset returned positive log-likelihood values for the Poisson lognormal, indicating that the Poisson lognormal is an extremely poor fit to those sites.  However, the upper bound for all the log-likelihood graphs were set to zero, for easier comparison.  A list of those sites with the associated log-likelihood values is provided in Appendix whatever?  
 
 Assorted colorful graphs (check Post-It notes).
