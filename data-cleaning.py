@@ -6,17 +6,18 @@ import os
 import numpy as np
 import sqlite3 as dbapi
 
-sys.float_info[3]
+sys.float_info[2]
 
-def import_data(datafile):
+def import_data(datafile,datatype):
     """Imports raw species abundance .csv files in the form: Site, Year, Species, Abundance."""
-    raw_data = np.genfromtxt(datafile, delimiter = ",",comments = "#")
+    raw_data = np.genfromtxt(datafile, dtype = datatype, skip_header = 1,delimiter = ",",comments = "#")
     return raw_data
 
 #Stuff data into a real database
-data_dir = './sad-data/chapter2/' # path to data directory
 mainfile = './sad-data/chapter2/UlrichOllik2003.csv'
+maintype ='S15,S15,S15,S15,S15,i8,f8,i8,S15,S15,S15,S15,f8,S15,i8,S15,i8,S15,i8,S15,S15,S15,S15,S15,S15,S15,S15,S15' #datatype list 
 abundancefile = './sad-data/chapter2/UlrichOllik2003_abundance.csv'
+abundancetype = 'S15,S15,S15,S15,S15,f8,i8,i8'#datatype list 
 
 
 # Set up database capabilities 
@@ -32,9 +33,8 @@ con.commit()
 
 
 # Import .csv files
-abundance_table =import_data(abundancefile)
-main_table = import_data(mainfile)
-print(abundance_table)
+abundance_table =import_data(abundancefile, abundancetype)
+main_table = import_data(mainfile, maintype)
 
 # Add abundance data
 cur.execute("""CREATE TABLE IF NOT EXISTS RADmain
@@ -76,9 +76,10 @@ cur.execute("""CREATE TABLE IF NOT EXISTS abundance
                         file_number TEXT,
                         file_order TEXT,
                         dataset_ID TEXT,
+                        species TEXT,
                         abundance FLOAT,
                         decimals INTEGER,
                         confidence INTEGER)""")
            
-cur.executemany("""INSERT INTO abundance VALUES(?,?,?,?,?,?,?)""", abundance_table)
+cur.executemany("""INSERT INTO abundance VALUES(?,?,?,?,?,?,?,?)""", abundance_table)
 con.commit()
