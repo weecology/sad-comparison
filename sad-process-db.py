@@ -127,12 +127,18 @@ def process_results(data_dir, dataset_name, results, value_type):
         
     return processed_results   
 # Set up analysis parameters
-data_dir = './sad-data/' # path to data directory
 results_ext = '_dist_test.csv' # Extension for raw model AICc results files
 likelihood_ext = '_likelihoods.csv' # Extension for raw model likelihood files
 relative_ll_ext = '_relative_L.csv' # Extenstion for raw model relative likelihood files
 
-datasets = ['bbs', 'cbc', 'fia', 'gentry', 'mcdb', 'naba'] # Dataset ID codes
+data_dir = input("Please provide the path to the data directory. ")
+if data_dir == None:
+    data_dir == './sad-data/chapter1/' # path to data directory
+
+
+datasets = input("Please provide a list of dataset ID codes. ")
+if datasets == None:
+    datasets == ['bbs', 'cbc', 'fia', 'gentry', 'mcdb', 'naba'] # Dataset ID codes
 
 # Asks for toggle variable so I don't have to rerun all the setup if it is already processed.
 needs_processing = input("Data needs to be processed into an sqlite database, True or False?  ")  
@@ -141,7 +147,7 @@ needs_processing = input("Data needs to be processed into an sqlite database, Tr
 if needs_processing == True:
     # Set up database capabilities 
     # Set up ability to query data
-    con = dbapi.connect('./sad-data/SummarizedResults.sqlite')
+    con = dbapi.connect('./sad-data/chapter1/SummarizedResults.sqlite')
     cur = con.cursor()
     
     # Switch con data type to string
