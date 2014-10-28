@@ -93,4 +93,11 @@ integer_communities = cur.fetchall()
 
 #Output abundances
 output_integer_communities = csv.writer(open(data_dir + 'RAD2003int' + '_spab.csv','wb'))
-output_integer_communities.writerows(integer_communities)
+output_integer_communities.writerow(['dataset_ID', 'code', 'species', 'abundance']) #Output header
+for row in integer_communities:
+    output_integer_communities.writerow(row)
+
+print("Complete.")
+
+#Close connection
+con.close()
