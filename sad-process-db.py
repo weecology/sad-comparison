@@ -135,6 +135,7 @@ data_dir = input("Please provide the path to the data directory. ")
 if data_dir == None:
     data_dir == './sad-data/chapter1/' # path to data directory
 
+
 datasets = input("Please provide a list of dataset ID codes. ")
 if datasets == None:
     datasets == ['bbs', 'cbc', 'fia', 'gentry', 'mcdb', 'naba'] # Dataset ID codes
@@ -146,7 +147,7 @@ needs_processing = input("Data needs to be processed into an sqlite database, Tr
 if needs_processing == True:
     # Set up database capabilities 
     # Set up ability to query data
-    con = dbapi.connect('./sad-data/SummarizedResults.sqlite')
+    con = dbapi.connect('./sad-data/chapter1/SummarizedResults.sqlite')
     cur = con.cursor()
     
     # Switch con data type to string
