@@ -20,7 +20,7 @@ from mpl_toolkits.axes_grid.inset_locator import inset_axes
 
 # Set up database capabilities 
 # Set up ability to query data
-con = dbapi.connect('./sad-data/SummarizedResults.sqlite')
+con = dbapi.connect('./sad-data/chapter1/SummarizedResults.sqlite')
 cur = con.cursor()
 
 # Switch con data type to string
@@ -46,7 +46,7 @@ plt.ylabel( 'Number of Wins' )
 plt.xticks(x + width/2.0, labels, fontsize = 'small' )
 plt.xlabel( 'Species abundance distribution models' )
 #Output figure
-fileName = "./sad-data/total_wins.png"
+fileName = "./sad-data/chapter1/total_wins.png"
 plt.savefig(fileName, format="png" )
 plt.close()
 
@@ -177,7 +177,7 @@ plt.xlabel( 'NABA' )
 plt.tight_layout()
 
 #Output figure
-fileName = "./sad-data/wins_by_dataset.png"
+fileName = "./sad-data/chapter1/wins_by_dataset.png"
 plt.savefig(fileName, format="png" )
 plt.close()
 
@@ -241,7 +241,7 @@ plt.ylabel("Frequency")
 
 plt.tight_layout()
 #Output figure
-fileName = "./sad-data/AICc_weights.png"
+fileName = "./sad-data/chapter1/AICc_weights.png"
 plt.savefig(fileName, format="png" )
 plt.close()
 
@@ -255,7 +255,7 @@ plt.xlabel("Truncated logseries AICc weights")
 plt.ylabel("Frequency")
 plt.tight_layout()
 #Output figure
-fileName = "./sad-data/Truncated_logseries_weights.png"
+fileName = "./sad-data/chapter1/Truncated_logseries_weights.png"
 plt.savefig(fileName, format="png" )
 plt.close()
 
@@ -266,7 +266,7 @@ plt.xlabel("Untruncated logseries AICc weights")
 plt.ylabel("Frequency")
 plt.tight_layout()
 #Output figure
-fileName = "./sad-data/Untruncated_logseries_weights.png"
+fileName = "./sad-data/chapter1/Untruncated_logseries_weights.png"
 plt.savefig(fileName, format="png" )
 plt.close()
 
@@ -277,7 +277,7 @@ plt.xlabel("Poisson lognormal AICc weights")
 plt.ylabel("Frequency")
 plt.tight_layout()
 #Output figure
-fileName = "./sad-data/Poisson_lognormal_weights.png"
+fileName = "./sad-data/chapter1/Poisson_lognormal_weights.png"
 plt.savefig(fileName, format="png" )
 plt.close()
 
@@ -289,7 +289,7 @@ plt.xlabel("Negative binomial AICc weights")
 plt.ylabel("Frequency")
 plt.tight_layout()
 #Output figure
-fileName = "./sad-data/Negative_binomial_weights.png"
+fileName = "./sad-data/chapter1/Negative_binomial_weights.png"
 plt.savefig(fileName, format="png" )
 plt.close()
 
@@ -301,7 +301,7 @@ plt.xlabel("Geometric AICc weights")
 plt.ylabel("Frequency")
 plt.tight_layout()
 #Output figure
-fileName = "./sad-data/Geometric_weights.png"
+fileName = "./sad-data/chapter1/Geometric_weights.png"
 plt.savefig(fileName, format="png" )
 plt.close()
 
@@ -364,7 +364,7 @@ plt.xlabel("Log-likelihoods")
 plt.ylabel("Frequency")
 plt.tight_layout()
 #Output figure
-fileName = "./sad-data/likelihoods.png"
+fileName = "./sad-data/chapter1/likelihoods.png"
 plt.savefig(fileName, format="png" )
 plt.close()
 
@@ -376,7 +376,7 @@ plt.xlabel("Truncated logseries log-likelihoods")
 plt.ylabel("Frequency")
 plt.tight_layout()
 #Output figure
-fileName = "./sad-data/truncated_logseries_likelihoods.png"
+fileName = "./sad-data/chapter1/truncated_logseries_likelihoods.png"
 plt.savefig(fileName, format="png" )
 plt.close()
 
@@ -388,7 +388,7 @@ plt.xlabel("Untruncated logseries log-likelihoods")
 plt.ylabel("Frequency")
 plt.tight_layout()
 #Output figure
-fileName = "./sad-data/untruncated_logseries_likelihoods.png"
+fileName = "./sad-data/chapter1/untruncated_logseries_likelihoods.png"
 plt.savefig(fileName, format="png" )
 plt.close()
 
@@ -399,7 +399,7 @@ plt.xlabel("Poisson lognormal log-likelihoods")
 plt.ylabel("Frequency")
 plt.tight_layout()
 #Output figure
-fileName = "./sad-data/pln_likelihoods.png"
+fileName = "./sad-data/chapter1/pln_likelihoods.png"
 plt.savefig(fileName, format="png" )
 plt.close()
 
@@ -410,7 +410,7 @@ plt.xlabel("Negative binomial log-likelihoods")
 plt.ylabel("Frequency")
 plt.tight_layout()
 #Output figure
-fileName = "./sad-data/neg_bin_likelihoods.png"
+fileName = "./sad-data/chapter1/neg_bin_likelihoods.png"
 plt.savefig(fileName, format="png" )
 plt.close()
 
@@ -421,7 +421,7 @@ plt.xlabel("Geometric log-likelihoods")
 plt.ylabel("Frequency")
 plt.tight_layout()
 #Output figure
-fileName = "./sad-data/geometric_likelihoods.png"
+fileName = "./sad-data/chapter1/geometric_likelihoods.png"
 plt.savefig(fileName, format="png" )
 plt.close()
 
@@ -476,7 +476,7 @@ plt.xlabel("BBS log-likelihoods")
 plt.ylabel("Frequency")
 plt.tight_layout()
 #Output figure
-fileName = "./sad-data/bbs_likelihoods.png"
+fileName = "./sad-data/chapter1/bbs_likelihoods.png"
 plt.savefig(fileName, format="png" )
 plt.close()
 
@@ -531,7 +531,7 @@ plt.xlabel("CBC log-likelihoods")
 plt.ylabel("Frequency")
 plt.tight_layout()
 #Output figure
-fileName = "./sad-data/cbc_likelihoods.png"
+fileName = "./sad-data/chapter1/cbc_likelihoods.png"
 plt.savefig(fileName, format="png" )
 plt.close()
 
@@ -585,7 +585,7 @@ plt.xlabel("FIA log-likelihoods")
 plt.ylabel("Frequency")
 plt.tight_layout()
 #Output figure
-fileName = "./sad-data/fia_likelihoods.png"
+fileName = "./sad-data/chapter1/fia_likelihoods.png"
 plt.savefig(fileName, format="png" )
 plt.close()
 
@@ -640,7 +640,7 @@ plt.xlabel("Gentry log-likelihoods")
 plt.ylabel("Frequency")
 plt.tight_layout()
 #Output figure
-fileName = "./sad-data/gentry_likelihoods.png"
+fileName = "./sad-data/chapter1/gentry_likelihoods.png"
 plt.savefig(fileName, format="png" )
 plt.close()
 
@@ -695,7 +695,7 @@ plt.xlabel("MCDB log-likelihoods")
 plt.ylabel("Frequency")
 plt.tight_layout()
 #Output figure
-fileName = "./sad-data/mcdb_likelihoods.png"
+fileName = "./sad-data/chapter1/mcdb_likelihoods.png"
 plt.savefig(fileName, format="png" )
 plt.close()
 
@@ -750,7 +750,7 @@ plt.xlabel("NABA log-likelihoods")
 plt.ylabel("Frequency")
 plt.tight_layout()
 #Output figure
-fileName = "./sad-data/naba_likelihoods.png"
+fileName = "./sad-data/chapter1/naba_likelihoods.png"
 plt.savefig(fileName, format="png" )
 plt.close()
 
@@ -817,7 +817,7 @@ plt.xlabel("Relative likelihoods")
 plt.ylabel("Frequency")
 plt.tight_layout()
 #Output figure
-fileName = "./sad-data/relative_likelihoods.png"
+fileName = "./sad-data/chapter1/relative_likelihoods.png"
 plt.savefig(fileName, format="png" )
 plt.close()
 
@@ -829,7 +829,7 @@ plt.xlabel("Truncated logseries relative likelihoods")
 plt.ylabel("Frequency")
 plt.tight_layout()
 #Output figure
-fileName = "./sad-data/truncated_logseries_relative.png"
+fileName = "./sad-data/chapter1/truncated_logseries_relative.png"
 plt.savefig(fileName, format="png" )
 plt.close()
 
@@ -841,7 +841,7 @@ plt.xlabel("Untruncated logseries relative likelihoods")
 plt.ylabel("Frequency")
 plt.tight_layout()
 #Output figure
-fileName = "./sad-data/untruncated_logseries_relative.png"
+fileName = "./sad-data/chapter1/untruncated_logseries_relative.png"
 plt.savefig(fileName, format="png" )
 plt.close()
 
@@ -852,7 +852,7 @@ plt.xlabel("Poisson lognormal relative likelihoods")
 plt.ylabel("Frequency")
 plt.tight_layout()
 #Output figure
-fileName = "./sad-data/pln_relative.png"
+fileName = "./sad-data/chapter1/pln_relative.png"
 plt.savefig(fileName, format="png" )
 plt.close()
 
@@ -863,7 +863,7 @@ plt.xlabel("Negative binomial relative likelihoods")
 plt.ylabel("Frequency")
 plt.tight_layout()
 #Output figure
-fileName = "./sad-data/neg_bin_relative.png"
+fileName = "./sad-data/chapter1/neg_bin_relative.png"
 plt.savefig(fileName, format="png" )
 plt.close()
 
@@ -874,7 +874,7 @@ plt.xlabel("Geometric relative likelihoods")
 plt.ylabel("Frequency")
 plt.tight_layout()
 #Output figure
-fileName = "./sad-data/geometric_relative.png"
+fileName = "./sad-data/chapter1/geometric_relative.png"
 plt.savefig(fileName, format="png" )
 plt.close()
 
