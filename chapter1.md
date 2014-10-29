@@ -60,7 +60,7 @@ Gentry sites 102 and 179 were culled from the dataset due to a previously uniden
 THIS HAS PROBABLY CHANGED, CHECK
 A small percentage of sites (number of sites) in the FIA dataset blew up on the negative binomial and the Poisson lognormal and one site in the MCDB blew up on the Poisson lognormal (Appendix?).  
 
-For sites where a model or models failed, AICc weights were calculated for only those models which successfully fit the data.  Blanks were inserted into the list of AICc weights post calculation.  All other model/data combinations ran successfully. 
+For sites where a model or models failed, AICc weights were calculated for only those models which successfully fit the data. All other model/data combinations ran successfully. 
 
 ###Likelihood based statistical comparison (White et al 2008, Edwards et al 2007, 2008)
 
