@@ -1,4 +1,4 @@
-#Chapter 1
+#Chapter 1 - A large scale comparison of models of the species-abundance distribution
 
 # Introduction
 
@@ -7,8 +7,6 @@ Very important first sentence.
 ###Proliferation of SAD models, no agreement about winners. (citations galore)
 
 A fundamental and ubiquitous ecological pattern is the presence of many rare species and few super abundant species within a community, forming a hollow curve distribution.  Because of the generality of this pattern, the species abundance distribution (SAD) has been one of the most widely studied patterns in ecology, leading to a proliferation of models that attempt to characterize the shape of the distribution and identify potential mechanisms for the pattern. The most recent comprehensive review and classification of species abundance distributions was given by McGill et al. 2007.
-
-
 
 
 ###Statistical descriptions of SAD distributions, vs. process based.
