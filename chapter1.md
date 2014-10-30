@@ -2,27 +2,26 @@
 
 # Introduction
 
-Very important first sentence.
+The species abundance distribution describes the full distribution of commonness and rarity in ecological systems. It is one of the most fundamental and ubiquitous patterns in ecology, and exhibits a consistent general form with many rare species and few abundant species occurring within a community. This general shape is often referred to as a hollow curve distribution.
 
-###Proliferation of SAD models, no agreement about winners. (citations galore)
+The species abundance distribution (SAD) has been one of the most widely studied patterns in ecology, leading to a proliferation of models that attempt to characterize the shape of the distribution and identify potential mechanisms for the pattern (see McGill et al. 2007 for a recent review of SADs). These models range from arbitrary distributions that are chosen based on providing a good fit to the data (Fisher 1943), to process based ecological models (Hubbell 2001, Volkov et al. 2003), to models based on combinatorics and the most likely state of the distribution (Harte 2011, Locey and White 2013, Frank 2014).
 
-A fundamental and ubiquitous ecological pattern is the presence of many rare species and few super abundant species within a community, forming a hollow curve distribution.  Because of the generality of this pattern, the species abundance distribution (SAD) has been one of the most widely studied patterns in ecology, leading to a proliferation of models that attempt to characterize the shape of the distribution and identify potential mechanisms for the pattern. The most recent comprehensive review and classification of species abundance distributions was given by McGill et al. 2007.
+Which model or models provide the best fit to the data, and the implications for the processes structuring ecological systems, has been a regular topic of debate (e.g., McGill 2003, Volkov et al. 2004, Ulrich & Brose 2009, White et al. 2012). Most comparisons of the different models: 1) focus on a small subset of available models (typically two; e.g., McGill 2003, Volkov et al. 2004, White et al. 2012); 2) use a single dataset (e.g., McGill 2003, Volkov et al. 2004); or 3) fail to use the most appropriate modern statistical methods (e.g., Ulrich and Brose 2009). This makes it difficult to draw general conclusions about which, if any, models provide the best empirical fit to species abundance distributions.
 
+Here, we evaluate the performance of five of the most widely used models for the species abundance distribution. We evaluate their performance using likelihood based model selection on data from 15,846 communities, from four taxonomic groups, representing nearly 50 million individual organisms.
 
-###Statistical descriptions of SAD distributions, vs. process based.
+<!---
+Moved more extensive discussed on constraint vs. process based models to Discussion
+-->
 
-### Set up process and non process based model overlap (same form)  
-
-There are two classes of species abundance distribution models, process based models, and non-process based models.  Constraints in a process based model of species abundance distributions (SADs) provide a predicted form of a distribution based on the assumption that the constraints that produce the form of the distribution are biologically meaningful(relevant?).  However, non-process based species abundance distribution models are purely statistical descriptions of the shape of the distribution, and do not infer any biological meaning to the constraints of the distribution, although post hoc biological explanations are frequently applied to statistical descriptions (every paper ever written).  Process based models can share the same forms as other process based or non-process based species abundance distribution models.  Because of the overlap between/among models, it can be difficult to identify potential mechanisms with any degree of certainty (if two models have an identical form, it is impossible to say which model is 'correct'). The difficulty involved in distinguishing between/among models makes it challenging, if not impossible to identify a clear winner among the species abundance distribution models (citations). 
+<!--
+I'm not sure whether or not the follow section belongs in the Intro. If it does I'm not sure where to put it at the moment
+-->
 
 ###No difference between models?  Maybe, but...
 
 While different species abundance distribution models can share a single form of a distribution, many models have different but highly similar forms of the species abundance distribution.  Because many forms of the species abundance distribution are highly similar, some have suggested that there is effectively no difference between models (i.e., that the differences between/among models are so small that the models are functionally equivalent)(citations).  However, there has been little work done to rigorously test this assertion.   
 
-
-###No comprehensive comparision across models using the most rigorous statistical approaches, large datasets (plus across taxonomic groups).
-
-Some studies have competed species abundance distribution models against one another (citations including the Ulrich one), but there has not yet been a comprehensive comparison across models using the most rigorous statistical approaches, large datasets, or across multiple taxonomic groups.  
 
 
 # Methods
@@ -170,6 +169,18 @@ Identifying which forms of the species abundance distribution most closely follo
 While the logseries fit best for the majority of the dataset, the Poisson lognormal also performed well.  However, the actual degree of difference among models was not that great, suggesting that the fit of any  given species abundance distribution model is not an good test of that model.  Instead, I suggest that the McGill (I think the 2003, but others as well) recommendations for strong inference in macroecology( testing process-based model performance with multiple patterns at the same time) is the only appropriate approach for identifying macroecological mechanisms.  However, lack of ability to identify mechanisms that produce a pattern does not mean that a pattern is not useful for prediction, which is one of the goals to move macroecology forward as a discipline (citation, this is weak, and needs a rewrite, but the general idea is there).  
 
 Species abundance distributions can be useful in determining pattern generating mechanisms, but they cannot be used by themselves to identify mechanism.  To attempt to identify mechanism, it is important to compare the predictions of process-based models across multiple macroecological patterns (bunch of citations, McGill, Xiao, etc.)  An inability to identify biological mechanisms for the species abundance distribution does not mean that the species abundance distribution is not useful for prediction.  However, purely statistical forms of the distribution are more appropriate if using the species abundance distribution for predictions, because purely statistical forms of the distribution tend to have fewer parameters and mechanism cannot be identified anyway. 
+
+
+<!--
+The following section has been moved down from the Intro. Not sure exactly where it belongs yet
+-->
+
+###Statistical descriptions of SAD distributions, vs. process based.
+
+### Set up process and non process based model overlap (same form)  
+
+There are two classes of species abundance distribution models, process based models, and non-process based models.  Constraints in a process based model of species abundance distributions (SADs) provide a predicted form of a distribution based on the assumption that the constraints that produce the form of the distribution are biologically meaningful(relevant?).  However, non-process based species abundance distribution models are purely statistical descriptions of the shape of the distribution, and do not infer any biological meaning to the constraints of the distribution, although post hoc biological explanations are frequently applied to statistical descriptions (every paper ever written).  Process based models can share the same forms as other process based or non-process based species abundance distribution models.  Because of the overlap between/among models, it can be difficult to identify potential mechanisms with any degree of certainty (if two models have an identical form, it is impossible to say which model is 'correct'). The difficulty involved in distinguishing between/among models makes it challenging, if not impossible to identify a clear winner among the species abundance distribution models (citations).
+
 
 # References
 
