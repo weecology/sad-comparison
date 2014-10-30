@@ -63,6 +63,31 @@ A small percentage of sites (number of sites) in the FIA dataset blew up on the 
 
 For sites where a model or models failed, AICc weights were calculated for only those models which successfully fit the data. All other model/data combinations ran successfully. 
 
+### Models
+
+Because abundance is discrete, rather than continuous, discrete approximations of species abundance distributions are more appropriate choices for model selection than continuous versions of the distribution, so all models selected were discrete forms of the distributions (Ethan's paper).
+
+McGill et al. (2007) classified models into five different families: purely statistical, branching process, population dynamics, niche partitioning, and spatial distribution of individuals .  I attempted to test models from each of the separate families, excluding the spatial distribution family (McGill et al. 2007) which requires spatially explicit data.  I had initially tried to test the generalized Yule model (branching process family), but this model proved difficult to fit to empirical data and failed to converge to a solution for many of the communities, so it was excluded from the final analyses.
+
+This might be a place to talk about the Ulrich paper, because it seems like their power-law choice was in the branching process family, or at least it cites the same Nee 2003 paper that the McGill et al. 2007 paper uses.  Thus, connecting the not using the gen Yule to the Ulrich paper might be important here.
+
+Ulrich et al. (2010) tested a power law model like the generalized Yule distribution as one of their species abundance distributions, and found that it fit the data best when the datasets were incomplete. Another transitional sentence to explain this better. It also had better performance when the data were binned (Ulrich et al. 2003), suggesting that this form of the species abundance distribution is not a "true form" of the speciea abundance distribution (i.e., reveals that the data are incomplete/undersampled). Transition sentence.
+
+I tested the following distributions with the following packages: 
+
+Might make this into a table, like the infamous Table 2.
+
+Maximum Entropy Theory of Ecology (METE) <(METE)https://github.com/weecology/METE.git>
+Logseries (macroecotools/macroeco_distributions)<https://github.com/weecology/macroecotools.git>
+Untruncated logseries (macroecotools/macroeco_distributions)<https://github.com/weecology/macroecotools.git>
+Poisson lognormal (macroecotools/macroeco_distributions)<https://github.com/weecology/macroecotools.git>
+Negative binomial (macroecotools/macroeco_distributions)<https://github.com/weecology/macroecotools.git>
+Geometric series (macroecotools/macroeco_distributions)<https://github.com/weecology/macroecotools.git> 
+
+<!---
+We probably do need to add a power-law distribution to match up with Ulrich
+-->
+
 ###Likelihood based statistical comparison (White et al 2008, Edwards et al 2007, 2008)
 
 I used a maximum likelihood approach to model fitting because it is the most robust approach for this type of model comparison, and the log-likelihood also provides a measure of goodness of fit (citations Hummingbird book).  If a model did not have a likelihood method for fitting the model to empirical data, it was excluded to keep the results comparable across models. 
@@ -86,26 +111,6 @@ The following sentences does not seem like it is in the right place anymore.
 I followed the recommendations for strong inference in comparing species abundance distribution models provided by McGill et al. 2007.
 
 
-###Model selection (justification of why we chose those, justification for neutral theory, Neutral theory predicts the negative binomial distribution (Connolly et al. 2014.)
-
-Because abundance is discrete, rather than continuous, discrete approximations of species abundance distributions are more appropriate choices for model selection than continuous versions of the distribution, so all models selected were discrete forms of the distributions (Ethan's paper).
-
-McGill et al. (2007) classified models into five different families: purely statistical, branching process, population dynamics, niche partitioning, and spatial distribution of individuals .  I attempted to test models from each of the separate families, excluding the spatial distribution family (McGill et al. 2007) which requires spatially explicit data.  I had initially tried to test the generalized Yule model (branching process family), but this model proved difficult to fit to empirical data and failed to converge to a solution for many of the communities, so it was excluded from the final analyses.
-
-This might be a place to talk about the Ulrich paper, because it seems like their power-law choice was in the branching process family, or at least it cites the same Nee 2003 paper that the McGill et al. 2007 paper uses.  Thus, connecting the not using the gen Yule to the Ulrich paper might be important here.
-
-Ulrich et al. (2010) tested a power law model like the generalized Yule distribution as one of their species abundance distributions, and found that it fit the data best when the datasets were incomplete. Another transitional sentence to explain this better. It also had better performance when the data were binned (Ulrich et al. 2003), suggesting that this form of the species abundance distribution is not a "true form" of the speciea abundance distribution (i.e., reveals that the data are incomplete/undersampled). Transition sentence.
-
-I tested the following distributions with the following packages: 
-
-Might make this into a table, like the infamous Table 2.
-
-Maximum Entropy Theory of Ecology (METE) <(METE)https://github.com/weecology/METE.git>
-Logseries (macroecotools/macroeco_distributions)<https://github.com/weecology/macroecotools.git>
-Untruncated logseries (macroecotools/macroeco_distributions)<https://github.com/weecology/macroecotools.git>
-Poisson lognormal (macroecotools/macroeco_distributions)<https://github.com/weecology/macroecotools.git>
-Negative binomial (macroecotools/macroeco_distributions)<https://github.com/weecology/macroecotools.git>
-Geometric series (macroecotools/macroeco_distributions)<https://github.com/weecology/macroecotools.git> 
 
 
 ###Link to code.
