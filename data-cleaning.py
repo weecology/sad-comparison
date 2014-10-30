@@ -16,9 +16,9 @@ def import_data(datafile,datatype):
 #Stuff data into a real database
 data_dir = './sad-data/chapter2/'
 mainfile = './sad-data/chapter2/UlrichOllik2003.csv'
-maintype ='S15,S15,S15,S15,S15,i8,f8,i8,S15,S15,S15,S15,f8,S15,i8,S15,i8,S15,i8,S15,S15,S15,S15,S15,S15,S15,S15,S15' #datatype list 
+maintype ='S50,S50,S50,S50,S50,i8,f8,i8,S50,S50,S50,S50,f8,S50,i8,S50,i8,S50,i8,S50,S50,S50,S50,S50,S50,S50,S50,S50' #datatype list 
 abundancefile = './sad-data/chapter2/UlrichOllik2003_abundance.csv'
-abundancetype = 'S15,S15,S15,S15,S15,f8,i8,i8'#datatype list 
+abundancetype = 'S50,S50,S50,S50,S50,f8,i8,i8'#datatype list 
 
 
 # Set up database capabilities 
@@ -67,7 +67,7 @@ cur.execute("""CREATE TABLE IF NOT EXISTS RADmain
                        Taxonomic_level TEXT,
                        Scale TEXT,
                        Completeness TEXT)""")
-           
+
 cur.executemany("""INSERT INTO RADmain VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)""", main_table)
 con.commit()
 
@@ -81,19 +81,19 @@ cur.execute("""CREATE TABLE IF NOT EXISTS abundance
                         abundance FLOAT,
                         decimals INTEGER,
                         confidence INTEGER)""")
-           
+
 cur.executemany("""INSERT INTO abundance VALUES(?,?,?,?,?,?,?,?)""", abundance_table)
 con.commit()
 
 #Query for communities that are in the RAD main database and have integer abundances
-integer_communities= cur.execute("""SELECT dataset_ID, code, species, abundance FROM abundance
+integer_communities= cur.execute("""SELECT dataset_ID, confidence, species, abundance FROM abundance
                             WHERE decimals == 0 AND code IS NOT NUll
                             ORDER BY dataset_ID""")
 integer_communities = cur.fetchall()
 
 #Output abundances
 output_integer_communities = csv.writer(open(data_dir + 'RAD2003int' + '_spab.csv','wb'))
-output_integer_communities.writerow(['dataset_ID', 'code', 'species', 'abundance']) #Output header
+output_integer_communities.writerow(['dataset_ID', 'confidence', 'species', 'abundance']) #Output header
 for row in integer_communities:
     output_integer_communities.writerow(row)
 
