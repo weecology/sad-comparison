@@ -88,34 +88,17 @@ Geometric series (macroecotools/macroeco_distributions)<https://github.com/weeco
 We probably do need to add a power-law distribution to match up with Ulrich
 -->
 
-###Likelihood based statistical comparison (White et al 2008, Edwards et al 2007, 2008)
+### Analysis
 
-I used a maximum likelihood approach to model fitting because it is the most robust approach for this type of model comparison, and the log-likelihood also provides a measure of goodness of fit (citations Hummingbird book).  If a model did not have a likelihood method for fitting the model to empirical data, it was excluded to keep the results comparable across models. 
-Used AICc (citations).
-I used corrected Aikaike Information Criterion (AICc) weights to identify the model with the best performance relative to the number of model parameters for a given dataset (citation).  AICc weights were used because they are more robust for model comparision and provide a penalty for a greater number of parameters (citation).  
+I used a maximum likelihood to fit models to the data and likelihood based model selection to compare the fits of the different models. I did not include models lacking likelihoods in the analysis.
 
-Possibly something about number of parameters for each model (i.e, a table)?
+I used corrected Aikaike Information Criterion (AIC) weights were used to compare the fits of models while correcting for differences in the number of parameters (Burnham and Anderson 2002). Most of the models analyzed included two fitted parameters, with the exception of the log-series which has one parameter. I used AICc in these weights to address the small sample sizes (i.e., numbers of species) in some communities (Burnham and Anderson 2002). The model with the greatest AICc weight was determined to be the best model for that site and distributions of weights were compared to determine which models performed best across the entire datasets.
 
-The model with the greatest AICc weight was determined to be the winning model for that site.
+I also examined the log-likelihood values to compare the fit of model to data without taking into account the number of parameters used to fit the model. Since species richness varies greatly across the datasets, and the value of log-likelihoods are highly dependent on the number of data points, I calculated relative likelihoods with the AICc weights package in macroecotools (macroecotools, <https://github.com/weecology/macroecotools.git>) by setting the number of parameters in each model to one, effectively normalizing the results (definitely need a citation here).
 
-I also examined the log-likelihood values to compare the fit of model to data without taking into account the number of parameters used to fit the model.
+<!-- We should actually do a proper relatively likelihood comparison with it's own function when we get the chance. It won't change the result, but it will avoid this awkward step in the righting and make it easier for others understand what we've done. -->
 
-Used relative likelihood (citations)
-Species richness varies greatly across the datasets, and the value of log-likelihoods (a measure of goodness of fit of model to data) are highly dependant on the starting species richness, making it difficult to compare goodness of fit across datasets.  To better visualize model fit across datasets, I also calculated relative likelihoods with the AICc weights package in macroecotools (macroecotools, <https://github.com/weecology/macroecotools.git>) by setting the number of parameters in each model to one, effectively normalizing the results (definitely need a citation here). 
-  
-Packages used to do analysis.
-Model fitting, log-likelihood, and relative likelihood calculations were performed with the macroeco_distributions module in the macroecotools package, while AICcs and AICc weights were calculated with the macroecotools package (macroecotools, <https://github.com/weecology/macroecotools.git>).
-
-
-The following sentences does not seem like it is in the right place anymore.
-I followed the recommendations for strong inference in comparing species abundance distribution models provided by McGill et al. 2007.
-
-
-
-
-###Link to code.
-
-Code neccessary to duplicate analyses and figures is available at <https://github.com/weecology/sad-comparison>. The majority of the raw data neccessary to duplicate the analyses are provided in the sad-data folder in the GitHub repository; however, the CBC datasets and NABA datasets are not publicly available and were not included.
+Model fitting, log-likelihood, relative likelihood, and AIC  calculations were using the macroecotools Python package (https://github.com/weecology/macroecotools). Code necessary and the majority of the data necessary to replicate these analyses is available at (https://github.com/weecology/sad-comparison). The CBC datasets and NABA datasets are not publicly available and are not included.
 
 
 # Results
