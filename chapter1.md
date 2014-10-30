@@ -26,9 +26,13 @@ While different species abundance distribution models can share a single form of
 
 # Methods
 
-###Data, (from White et al 2012, minus the broken Gentry site 102 or something like that).
+### Data
 
-I used the following datasets analyzed by White et al. 2012 to test the performance of five species abundance distribution models.  
+I used data on 15,846 communities, from four taxonomic groups, representing nearly 50 million individual organisms, to test the performance of five species abundance distribution models. This data was compiled by White et al. 2012 from six data sources: the US Forest Service Forest Inventory and Analysis (FIA; USDA Forest Service 2010), the North American Breeding Bird Survey (BBS; Sauer et al. 2011), the North American Butterfly Associations North American Butterfly Count (NABC; NABA 2009), the Mammal Community Database (MCDB; Thibault et al. 2011), Alwyn Gentry's Forest Transect Data Set (Gentry; Phillips and Miller 2002), and the US Geological Survey's North American Breeding Bird Survey (BBS; Sauer et al. 2011).
+
+<!--
+How about a table for the sections below?
+-->
 
 ####BBS
 
@@ -54,7 +58,7 @@ The Mammal Community Database (MCDB), publicly available at Ecological Archives,
 
 The North American Butterfly Count data (NABA) is conducted by volunteers and is available by obtaining a memorandum of understanding.  (NABA; North American Butterfly Association 2009). Number of sites.
 
-Gentry sites 102 and 179 were culled from the dataset due to a previously unidentified flaw in those sites (one species had a decimal rather than integer abundance).  In total, I used data for 15,846 communities across four taxonomic groups over six large datasets.  The data have a North American bias, as the BBS, CBC, FIA, and NABA data are restricted to North America.
+Gentry sites 102 and 179 were culled from the dataset due to a previously unidentified flaw in those sites (one species had a decimal rather than integer abundance).
 
 THIS HAS PROBABLY CHANGED, CHECK
 A small percentage of sites (number of sites) in the FIA dataset blew up on the negative binomial and the Poisson lognormal and one site in the MCDB blew up on the Poisson lognormal (Appendix?).  
