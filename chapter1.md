@@ -44,7 +44,7 @@ The Christmas Bird Count (CBC) is conducted by volunteers and is available by ob
 
 ####Gentry
 
-The Alwyn Gentry’s Forest Transect dataset (Gentry) was downloaded with the EcoData Retriever  (Gentry; Phillips and Miller 2002)(EcoData Retriever, Morris and White 2013). Number of sites.
+The Alwyn Gentry’s Forest Transect dataset (Gentry) was downloaded with the EcoData Retriever  (Gentry; Phillips and Miller 2002)(EcoData Retriever, Morris and White 2013). Gentry sites 102 and 179 were culled from the dataset due to a previously unidentified flaw in those sites (one species had a decimal rather than integer abundance). Number of sites.
 
 ####FIA
 
@@ -57,8 +57,6 @@ The Mammal Community Database (MCDB), publicly available at Ecological Archives,
 ####NABA    
 
 The North American Butterfly Count data (NABA) is conducted by volunteers and is available by obtaining a memorandum of understanding.  (NABA; North American Butterfly Association 2009). Number of sites.
-
-Gentry sites 102 and 179 were culled from the dataset due to a previously unidentified flaw in those sites (one species had a decimal rather than integer abundance).
 
 THIS HAS PROBABLY CHANGED, CHECK
 A small percentage of sites (number of sites) in the FIA dataset blew up on the negative binomial and the Poisson lognormal and one site in the MCDB blew up on the Poisson lognormal (Appendix?).  
