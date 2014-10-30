@@ -65,9 +65,9 @@ For sites where a model or models failed, AICc weights were calculated for only 
 
 ### Models
 
-Because abundance is discrete, rather than continuous, discrete approximations of species abundance distributions are more appropriate choices for model selection than continuous versions of the distribution, so all models selected were discrete forms of the distributions (Ethan's paper).
+When species-abundance distributions (SADs) are constructed using counts of individuals (the most common, but not the only approach; see McGill et al. 2007 and Morlon et al. 2009), the data are discrete (i.e., you cannot have 1.5 individuals) and therefore the most appropriate models are discrete distributions. Therefore, we used only discrete forms of the distributions that have been applied to SADs.
 
-McGill et al. (2007) classified models into five different families: purely statistical, branching process, population dynamics, niche partitioning, and spatial distribution of individuals .  I attempted to test models from each of the separate families, excluding the spatial distribution family (McGill et al. 2007) which requires spatially explicit data.  I had initially tried to test the generalized Yule model (branching process family), but this model proved difficult to fit to empirical data and failed to converge to a solution for many of the communities, so it was excluded from the final analyses.
+McGill et al. (2007) classified models into five different families: purely statistical, branching process, population dynamics, niche partitioning, and spatial distribution of individuals. I attempted to test models from each of the separate families, excluding the spatial distribution family (McGill et al. 2007) which requires spatially explicit data.  I had initially tried to test the generalized Yule model (branching process family), but this model proved difficult to fit to empirical data and failed to converge to a solution for many of the communities, so it was excluded from the final analyses.
 
 This might be a place to talk about the Ulrich paper, because it seems like their power-law choice was in the branching process family, or at least it cites the same Nee 2003 paper that the McGill et al. 2007 paper uses.  Thus, connecting the not using the gen Yule to the Ulrich paper might be important here.
 
