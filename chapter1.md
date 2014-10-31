@@ -1,4 +1,4 @@
-#Chapter 1 - A large scale comparison of models of the species-abundance distribution
+#Chapter 1 - An extensive comparison of species-abundance distribution models
 
 # Introduction
 
@@ -28,38 +28,21 @@ While different species abundance distribution models can share a single form of
 
 ### Data
 
-I used data on 15,846 communities, from four taxonomic groups, representing nearly 50 million individual organisms, to test the performance of five species abundance distribution models. This data was compiled by White et al. 2012 from six data sources: the US Forest Service Forest Inventory and Analysis (FIA; USDA Forest Service 2010), the North American Breeding Bird Survey (BBS; Sauer et al. 2011), the North American Butterfly Associations North American Butterfly Count (NABC; NABA 2009), the Mammal Community Database (MCDB; Thibault et al. 2011), Alwyn Gentry's Forest Transect Data Set (Gentry; Phillips and Miller 2002), and the US Geological Survey's North American Breeding Bird Survey (BBS; Sauer et al. 2011).
+I used data on 15,846 communities, from four taxonomic groups, representing nearly 50 million individual organisms, to test the performance of five species abundance distribution models. This data was compiled by White et al. 2012 from six data sources: the US Forest Service Forest Inventory and Analysis (FIA; USDA Forest Service 2010), the North American Breeding Bird Survey (BBS; Sauer et al. 2011), the North American Butterfly Associations North American Butterfly Count (NABC; NABA 2009), the Mammal Community Database (MCDB; Thibault et al. 2011), Alwyn Gentry's Forest Transect Data Set (Gentry; Phillips and Miller 2002), and the US Geological Survey's North American Breeding Bird Survey (BBS; Sauer et al. 2011). Gentry sites 102 and 179 were culled from the dataset due to a previously unidentified flaw in those sites.
 
 <!--
 How about a table for the sections below?
 -->
-
-####BBS
-
-The North American Breeding Bird Survey (BBS) is a publicly available dataset, collected by volunteers, and was downloaded with the EcoData Retriever (BBS; Sauer et al. 2011) (EcoData Retriever, Morris and White 2013). Number of sites.
-
-####CBC
-
-The Christmas Bird Count (CBC) is conducted by volunteers and is available by obtaining a memorandum of understanding. (CBC; National Audubon Society 2002). Number of sites.
-
-####Gentry
-
-The Alwyn Gentry’s Forest Transect dataset (Gentry) was downloaded with the EcoData Retriever  (Gentry; Phillips and Miller 2002)(EcoData Retriever, Morris and White 2013). Gentry sites 102 and 179 were culled from the dataset due to a previously unidentified flaw in those sites (one species had a decimal rather than integer abundance). Number of sites.
-
-####FIA
-
-The Forest Inventory Analysis (FIA) was downloaded with the EcoData Retriever  (FIA; USDA Forest Service 2010)(EcoData Retriever, Morris and White 2013). Number of sites.
-
-####MCDB
-
-The Mammal Community Database (MCDB), publicly available at Ecological Archives, was downloaded with the EcoData Retriever (MCDB, Thibault et al. 2011)(EcoData Retriever, Morris and White 2013)). Number of sites.
-
-####NABA    
-
-The North American Butterfly Count data (NABA) is conducted by volunteers and is available by obtaining a memorandum of understanding.  (NABA; North American Butterfly Association 2009). Number of sites.
-
-THIS HAS PROBABLY CHANGED, CHECK
-A small percentage of sites (number of sites) in the FIA dataset blew up on the negative binomial and the Poisson lognormal and one site in the MCDB blew up on the Poisson lognormal (Appendix?).  
+Table : Information on data sets used.  All publicly available datasets were accessed through the EcoData Retriever (Morris and White 2013).  
+| Dataset                              	| Dataset code 	| Availability                                     	| Total sites 	| Citation                                         	|
+|--------------------------------------	|--------------	|--------------------------------------------------	|-------------	|--------------------------------------------------	|
+| North American  Breeding Bird Survey 	| BBS          	| Publicly available                               	|             	| BBS; Sauer et al. 2011.                          	|
+| Christmas Bird Count                 	| CBC          	| Data request;  Memorandum of  Understanding      	|             	| CBC; National Audubon Society 2002.              	|
+| Alwyn Gentry's Forest Transects      	| Gentry       	| Publicly available                               	|             	| Gentry; Phillips and Miller 2002.                	|
+| Forest Inventory Analysis            	| FIA          	| Publicly available                               	|             	| FIA; USDA Forest Service 2010.                   	|
+| Mammal Community Database            	| MCDB         	| Publicly available                               	|             	| MCDB; Thibault et al. 2011.                      	|
+| North American Butterfly Count       	| NABA         	| Data request with  Memorandum of  Understanding  	|             	| NABA; North American Butterfly Association 2009. 	|
+ 
 
 For sites where a model or models failed, AICc weights were calculated for only those models which successfully fit the data. All other model/data combinations ran successfully. 
 
@@ -193,7 +176,7 @@ There are two classes of species abundance distribution models, process based mo
 Connolly et al. 2014. Commonness and rarity in the marine biosphere. PNAS 111: 8524-8529.
 McGill, B.J. et al. 2007. Species abundance distributions: moving beyond single prediction theories to integration within an ecological framework. Ecology Letters 10 995-1015.
 Morris, B.D. and E.P. White. 2013. The EcoData Retriever: Improving Access to Existing Ecological Data. PLoS ONE 8: 65848. doi:10.1371/journal.pone.0065848.  
-Sugihara, F. 1980. Minimal community structure: An explanation of species abundance patterns. The American Naturalist 116: 770-787. 
+Sugihara, F. 1980. Minimal community structure: An explanation of species abundance patterns. The American Naturalist 116: 770-787.   
 Ulrich, W., Ollik, M. and K. I. Ugland. 2010. A meta-analysis of species–abundance distributions. Oikos, 119: 1149–1155.
 
 ###Data
