@@ -1,4 +1,4 @@
-#Chapter 1 - A large scale comparison of models of the species-abundance distribution
+#Chapter 1 - An extensive comparison of species-abundance distribution models
 
 # Introduction
 
@@ -28,38 +28,21 @@ While different species abundance distribution models can share a single form of
 
 ### Data
 
-I used data on 15,846 communities, from four taxonomic groups, representing nearly 50 million individual organisms, to test the performance of five species abundance distribution models. This data was compiled by White et al. 2012 from six data sources: the US Forest Service Forest Inventory and Analysis (FIA; USDA Forest Service 2010), the North American Breeding Bird Survey (BBS; Sauer et al. 2011), the North American Butterfly Associations North American Butterfly Count (NABC; NABA 2009), the Mammal Community Database (MCDB; Thibault et al. 2011), Alwyn Gentry's Forest Transect Data Set (Gentry; Phillips and Miller 2002), and the US Geological Survey's North American Breeding Bird Survey (BBS; Sauer et al. 2011).
+I used data on 15,846 communities, from four taxonomic groups, representing nearly 50 million individual organisms, to test the performance of five species abundance distribution models. This data was compiled by White et al. 2012 from six data sources: the US Forest Service Forest Inventory and Analysis (FIA; USDA Forest Service 2010), the North American Breeding Bird Survey (BBS; Sauer et al. 2011), the North American Butterfly Associations North American Butterfly Count (NABC; NABA 2009), the Mammal Community Database (MCDB; Thibault et al. 2011), Alwyn Gentry's Forest Transect Data Set (Gentry; Phillips and Miller 2002), and the US Geological Survey's North American Breeding Bird Survey (BBS; Sauer et al. 2011). Gentry sites 102 and 179 were culled from the dataset due to a previously unidentified flaw in those sites.
 
 <!--
 How about a table for the sections below?
 -->
-
-####BBS
-
-The North American Breeding Bird Survey (BBS) is a publicly available dataset, collected by volunteers, and was downloaded with the EcoData Retriever (BBS; Sauer et al. 2011) (EcoData Retriever, Morris and White 2013). Number of sites.
-
-####CBC
-
-The Christmas Bird Count (CBC) is conducted by volunteers and is available by obtaining a memorandum of understanding. (CBC; National Audubon Society 2002). Number of sites.
-
-####Gentry
-
-The Alwyn Gentry’s Forest Transect dataset (Gentry) was downloaded with the EcoData Retriever  (Gentry; Phillips and Miller 2002)(EcoData Retriever, Morris and White 2013). Gentry sites 102 and 179 were culled from the dataset due to a previously unidentified flaw in those sites (one species had a decimal rather than integer abundance). Number of sites.
-
-####FIA
-
-The Forest Inventory Analysis (FIA) was downloaded with the EcoData Retriever  (FIA; USDA Forest Service 2010)(EcoData Retriever, Morris and White 2013). Number of sites.
-
-####MCDB
-
-The Mammal Community Database (MCDB), publicly available at Ecological Archives, was downloaded with the EcoData Retriever (MCDB, Thibault et al. 2011)(EcoData Retriever, Morris and White 2013)). Number of sites.
-
-####NABA    
-
-The North American Butterfly Count data (NABA) is conducted by volunteers and is available by obtaining a memorandum of understanding.  (NABA; North American Butterfly Association 2009). Number of sites.
-
-THIS HAS PROBABLY CHANGED, CHECK
-A small percentage of sites (number of sites) in the FIA dataset blew up on the negative binomial and the Poisson lognormal and one site in the MCDB blew up on the Poisson lognormal (Appendix?).  
+Table : Information on data sets used.  All publicly available datasets were accessed through the EcoData Retriever (Morris and White 2013).  
+| Dataset                              	| Dataset code 	| Availability                                     	| Total sites 	| Citation                                         	|
+|--------------------------------------	|--------------	|--------------------------------------------------	|-------------	|--------------------------------------------------	|
+| North American  Breeding Bird Survey 	| BBS          	| Publicly available                               	|             	| BBS; Sauer et al. 2011.                          	|
+| Christmas Bird Count                 	| CBC          	| Data request;  Memorandum of  Understanding      	|             	| CBC; National Audubon Society 2002.              	|
+| Alwyn Gentry's Forest Transects      	| Gentry       	| Publicly available                               	|             	| Gentry; Phillips and Miller 2002.                	|
+| Forest Inventory Analysis            	| FIA          	| Publicly available                               	|             	| FIA; USDA Forest Service 2010.                   	|
+| Mammal Community Database            	| MCDB         	| Publicly available                               	|             	| MCDB; Thibault et al. 2011.                      	|
+| North American Butterfly Count       	| NABA         	| Data request with  Memorandum of  Understanding  	|             	| NABA; North American Butterfly Association 2009. 	|
+ 
 
 For sites where a model or models failed, AICc weights were calculated for only those models which successfully fit the data. All other model/data combinations ran successfully. 
 
@@ -76,6 +59,17 @@ Ulrich et al. (2010) tested a power law model like the generalized Yule distribu
 I tested the following distributions with the following packages: 
 
 Might make this into a table, like the infamous Table 2.
+Table: Provides the species abundance distribution models used with links to the code implementation and model classification following McGill et al. 2007.  Additional classifications of models are also provided where appropriate.
+
+| Species abundance distribution model     	| Code implementation                            	| Model classification  (McGill et al. 2007) 	| Additional model classifications                    	|
+|------------------------------------------	|------------------------------------------------	|--------------------------------------------	|-----------------------------------------------------	|
+| Maximum Entropy Theory of Ecology (METE) 	| https://github.com/weecology/METE.git          	|                                            	| Information-theoretic                               	|
+| Truncated logseries                      	| https://github.com/weecology/macroecotools.git 	| Purely statistical                         	|                                                     	|
+| Untruncated logseries                    	| https://github.com/weecology/macroecotools.git 	| Purely statistical                         	|                                                     	|
+| Poisson lognormal                        	| https://github.com/weecology/macroecotools.git 	| Purely statistical                         	|                                                     	|
+| Negative binomial                        	| https://github.com/weecology/macroecotools.git 	| Purely statistical                         	| Neutral theory approximation (Connolly et al. 2014) 	|
+| Geometric series                         	| https://github.com/weecology/macroecotools.git 	| Niche partitioning                         	|                                                     	|
+| Zipf distribution (Zipf-Mandelbrot)      	| R, probably                                    	| Branching process                          	| Power-law (Ulrich et al. 2010)                      	|
 
 Maximum Entropy Theory of Ecology (METE) <(METE)https://github.com/weecology/METE.git>
 Logseries (macroecotools/macroeco_distributions)<https://github.com/weecology/macroecotools.git>
@@ -109,7 +103,7 @@ The actual distribution of AICc weights varied with each model. The peaks of the
 
 Although the truncated logseries and untruncated logseries do not have much overlap for AICc weights (Figure 3), and the truncated logseries was never the winning model (Figures 1, 2), the log-likelihood values have almost complete congruence (Figure 4).  This indicates that both the truncated and untruncated logseries fit equally well to the data, but that the truncated logseries recieves a heavy penalty in AICc weighting due to the extra truncation parameter. All of the models but the geometric series have very similar log-likelihood values, indicating very similar goodnesses of fit of models to data.
 
-I also compared the relative likelihoods, and I need to think about those graphs a bit more.  The truncated and untruncated logseries are virtually identical, the Poisson lognormal is a lot more stretched out, the negative binomial is pretty similar to the two logseries, and the geometric is squished toward zero still.
+I also compared the relative likelihoods, and I need to think about those graphs a bit more.  The truncated and untruncated logseries are virtually identical, the Poisson lognormal is a lot more stretched out, the negative binomial is pretty similar to the two logseries, and the geometric is squished toward zero still.  The two logseries never make it to one, while the Poisson lognormal and the negative binomial both do.
 
 A few sites in the FIA dataset returned positive log-likelihood values for the Poisson lognormal, indicating that the Poisson lognormal is an extremely poor fit to those sites.  However, the upper bound for all the log-likelihood graphs were set to zero, for easier comparison.  A list of those sites with the associated log-likelihood values is provided in Appendix whatever?
 
@@ -193,7 +187,7 @@ There are two classes of species abundance distribution models, process based mo
 Connolly et al. 2014. Commonness and rarity in the marine biosphere. PNAS 111: 8524-8529.
 McGill, B.J. et al. 2007. Species abundance distributions: moving beyond single prediction theories to integration within an ecological framework. Ecology Letters 10 995-1015.
 Morris, B.D. and E.P. White. 2013. The EcoData Retriever: Improving Access to Existing Ecological Data. PLoS ONE 8: 65848. doi:10.1371/journal.pone.0065848.  
-Sugihara, F. 1980. Minimal community structure: An explanation of species abundance patterns. The American Naturalist 116: 770-787. 
+Sugihara, F. 1980. Minimal community structure: An explanation of species abundance patterns. The American Naturalist 116: 770-787.   
 Ulrich, W., Ollik, M. and K. I. Ugland. 2010. A meta-analysis of species–abundance distributions. Oikos, 119: 1149–1155.
 
 ###Data
