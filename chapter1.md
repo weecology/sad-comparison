@@ -59,6 +59,17 @@ Ulrich et al. (2010) tested a power law model like the generalized Yule distribu
 I tested the following distributions with the following packages: 
 
 Might make this into a table, like the infamous Table 2.
+Table: Provides the species abundance distribution models used with links to the code implementation and model classification following McGill et al. 2007.  Additional classifications of models are also provided where appropriate.
+
+| Species abundance distribution model     	| Code implementation                            	| Model classification  (McGill et al. 2007) 	| Additional model classifications                    	|
+|------------------------------------------	|------------------------------------------------	|--------------------------------------------	|-----------------------------------------------------	|
+| Maximum Entropy Theory of Ecology (METE) 	| https://github.com/weecology/METE.git          	|                                            	| Information-theoretic                               	|
+| Truncated logseries                      	| https://github.com/weecology/macroecotools.git 	| Purely statistical                         	|                                                     	|
+| Untruncated logseries                    	| https://github.com/weecology/macroecotools.git 	| Purely statistical                         	|                                                     	|
+| Poisson lognormal                        	| https://github.com/weecology/macroecotools.git 	| Purely statistical                         	|                                                     	|
+| Negative binomial                        	| https://github.com/weecology/macroecotools.git 	| Purely statistical                         	| Neutral theory approximation (Connolly et al. 2014) 	|
+| Geometric series                         	| https://github.com/weecology/macroecotools.git 	| Niche partitioning                         	|                                                     	|
+| Zipf distribution (Zipf-Mandelbrot)      	| R, probably                                    	| Branching process                          	| Power-law (Ulrich et al. 2010)                      	|
 
 Maximum Entropy Theory of Ecology (METE) <(METE)https://github.com/weecology/METE.git>
 Logseries (macroecotools/macroeco_distributions)<https://github.com/weecology/macroecotools.git>
