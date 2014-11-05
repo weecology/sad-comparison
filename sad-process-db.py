@@ -14,9 +14,9 @@ import sqlite3 as dbapi
 
 # Function to import the AICc results.
 def import_results(datafile):
-    """Imports raw result .csv files in the form: site, S, N, AICc_logseries, AICc_logseries_untruncated, AICc_pln, AICc_negbin, AICc_geometric."""
-    raw_results = np.genfromtxt(datafile, dtype = "S15, i8, i8, f8, f8, f8, f8, f8", skip_header = 1,
-                      names = ['site', 'S', 'N', 'AICc_logseries', 'AICc_logseries_untruncated', 'AICc_pln', 'AICc_negbin', 'AICc_geometric'], delimiter = ",", missing_values = '', filling_values = '', )
+    """Imports raw result .csv files in the form: site, S, N, logseries, logseries_untruncated, pln, Anegbin, geometric, zipf."""
+    raw_results = np.genfromtxt(datafile, dtype = "S15, i8, i8, f8, f8, f8, f8, f8, f8", skip_header = 1, 
+                                names = ['site', 'S', 'N', 'logseries', 'logseries_untruncated', 'pln', 'negbin', 'geometric','AICc_zipf'], delimiter = ",", missing_values = '', filling_values = '')
     return raw_results
 
 # Function to determine the winning model for each site.
@@ -24,7 +24,7 @@ def winning_model(data_dir, dataset_name, results):
     # Open output files
     output_processed = csv.writer(open(data_dir + dataset_name + '_processed_results.csv','wb'))
     # Insert comment line
-    output_processed.writerow(["# 0 = Logseries, 1 = Untruncated logseries, 2 = Poisson lognormal, 3 = Negative binomial, 4 = Geometric series"])
+    output_processed.writerow(["# 0 = Logseries, 1 = Untruncated logseries, 2 = Poisson lognormal, 3 = Negative binomial, 4 = Geometric series, 5 = Zipf distribution"])
     
     # Insert header
     output_processed.writerow(['dataset', 'site', 'S', 'N', "model_code", "model_name", "AICc_weight"])
@@ -53,8 +53,11 @@ def winning_model(data_dir, dataset_name, results):
         elif winning_model == 3:
             model_name = 'Negative binomial'
             
-        else:
+        elif winning_model == 4:
             model_name = 'Geometric series'
+            
+        else:
+            model_name = 'Zipf distribution'
 
         # Format results for output
         processed_results = [[dataset_name] + [site_ID] + [S] + [N] + [winning_model] + [model_name] + [AICc_max_weight]]
@@ -106,8 +109,12 @@ def process_results(data_dir, dataset_name, results, value_type):
                 model_name = 'Negative binomial'
                 processed_results = [[dataset_name] + [site_ID] + [S] + [N] + [index] + [model_name] + [value_type] + [value]]
             
-            else:
+            elif index == 4:
                 model_name = 'Geometric series'
+                processed_results = [[dataset_name] + [site_ID] + [S] + [N] + [index] + [model_name] + [value_type] + [value]]
+                
+            else:
+                model_name = 'Zipf distribution'
                 processed_results = [[dataset_name] + [site_ID] + [S] + [N] + [index] + [model_name] + [value_type] + [value]]
 
             # Save results to sqlite database      

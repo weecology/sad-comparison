@@ -36,12 +36,12 @@ How about a table for the sections below?
 Table : Information on data sets used.  All publicly available datasets were accessed through the EcoData Retriever (Morris and White 2013).  
 | Dataset                              	| Dataset code 	| Availability                                     	| Total sites 	| Citation                                         	|
 |--------------------------------------	|--------------	|--------------------------------------------------	|-------------	|--------------------------------------------------	|
-| North American  Breeding Bird Survey 	| BBS          	| Publicly available                               	|             	| BBS; Sauer et al. 2011.                          	|
-| Christmas Bird Count                 	| CBC          	| Data request;  Memorandum of  Understanding      	|             	| CBC; National Audubon Society 2002.              	|
-| Alwyn Gentry's Forest Transects      	| Gentry       	| Publicly available                               	|             	| Gentry; Phillips and Miller 2002.                	|
-| Forest Inventory Analysis            	| FIA          	| Publicly available                               	|             	| FIA; USDA Forest Service 2010.                   	|
-| Mammal Community Database            	| MCDB         	| Publicly available                               	|             	| MCDB; Thibault et al. 2011.                      	|
-| North American Butterfly Count       	| NABA         	| Data request with  Memorandum of  Understanding  	|             	| NABA; North American Butterfly Association 2009. 	|
+| North American  Breeding Bird Survey 	| BBS          	| Publicly available                               	|2769             	| BBS; Sauer et al. 2011.                          	|
+| Christmas Bird Count                 	| CBC          	| Data request;  Memorandum of  Understanding      	|1999             	| CBC; National Audubon Society 2002.              	|
+| Alwyn Gentry's Forest Transects      	| Gentry       	| Publicly available                               	|10355             	| Gentry; Phillips and Miller 2002.                	|
+| Forest Inventory Analysis            	| FIA          	| Publicly available                               	|220             	| FIA; USDA Forest Service 2010.                   	|
+| Mammal Community Database            	| MCDB         	| Publicly available                               	|103             	| MCDB; Thibault et al. 2011.                      	|
+| North American Butterfly Count       	| NABA         	| Data request with  Memorandum of  Understanding  	|400             	| NABA; North American Butterfly Association 2009. 	|
  
 
 For sites where a model or models failed, AICc weights were calculated for only those models which successfully fit the data. All other model/data combinations ran successfully. 
