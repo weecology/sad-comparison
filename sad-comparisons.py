@@ -140,7 +140,7 @@ def model_comparisons(raw_data, dataset_name, data_dir, cutoff = 9):
             
             # Zipf distribution
             par = md.zipf_solver(obsabundance)
-            L_zipf = zipf_ll(obsabundance, par) #Log-likelihood of Zipf distribution
+            L_zipf = md.zipf_ll(obsabundance, par) #Log-likelihood of Zipf distribution
             AICc_zipf = macroecotools.AICc(k1, L_zipf, S)
             relative_ll_zipf = AICc_zipf
             #Add to AICc list
