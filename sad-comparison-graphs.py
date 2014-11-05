@@ -216,6 +216,12 @@ geometric = cur.execute("""SELECT model_name, value FROM RawResults
                             WHERE model_name =='Geometric series' AND value_type =='AICc weight' AND value IS NOT NULL
                             ORDER BY value""")
 geometric = cur.fetchall()
+
+#Zipf distribution                           
+zipf = cur.execute("""SELECT model_name, value FROM RawResults
+                            WHERE model_name =='Zipf distribution' AND value_type =='AICc weight' AND value IS NOT NULL
+                            ORDER BY value""")
+zipf = cur.fetchall()
 # Plot variables for weights
 bins = 50
 #Truncated logseries
@@ -233,6 +239,9 @@ plt.hist(model3, bins, range = (0,1), facecolor = 'gray', histtype="stepfilled",
 #Geometric series
 model4 = [ num for (s, num) in geometric]
 plt.hist(model4, bins, range = (0,1), facecolor = 'olivedrab', histtype="stepfilled", alpha=.7, label = "Geometric")
+#Zipf distribution
+model5 = [ num for (s, num) in zipf]
+plt.hist(model5, bins, range = (0,1), facecolor = 'violet', histtype="stepfilled", alpha=.7, label = "Zipf")
 
 plt.legend(loc = 'upper right', fontsize = 11)
 
@@ -305,6 +314,18 @@ fileName = "./sad-data/chapter1/Geometric_weights.png"
 plt.savefig(fileName, format="png" )
 plt.close()
 
+#Zipf distribution
+plt.figure()
+model5 = [ num for (s, num) in zipf]
+plt.hist(model5, bins, range = (0,1), facecolor = 'violet', histtype="stepfilled", alpha=.7, label = "Zipf")
+plt.xlabel("Zipf distribution AICc weights")
+plt.ylabel("Frequency")
+plt.tight_layout()
+#Output figure
+fileName = "./sad-data/chapter1/Zipf_weights.png"
+plt.savefig(fileName, format="png" )
+plt.close()
+
 
 '''Likelihoods graph'''
 # Make histogram
@@ -341,8 +362,17 @@ ll_geometric = cur.execute("""SELECT model_name, value FROM RawResults
                             ORDER BY value""")
 ll_geometric = cur.fetchall()
 
+#Zipf distribution
+ll_zipf = cur.execute("""SELECT model_name, value FROM RawResults
+                            WHERE model_name =='Zipf distribution' AND value_type =='likelihood' AND value IS NOT NUll 
+                            ORDER BY value""")
+ll_zipf = cur.fetchall()
+
 
 # Plot variables for combined likelihoods graph
+#Zipf distribution
+ll_model5 = [ num for (s, num) in ll_zipf]
+plt.hist(ll_model5, bins = range(-750, 0, 10), facecolor = 'violet', histtype="stepfilled", alpha=.7, label = "Zipf distribution")
 #Geometric series
 ll_model4 = [ num for (s, num) in ll_geometric]
 plt.hist(ll_model4, bins = range(-750, 0, 10), facecolor = 'olivedrab', histtype="stepfilled", alpha=.7, label = "Geometric")
@@ -422,6 +452,18 @@ plt.ylabel("Frequency")
 plt.tight_layout()
 #Output figure
 fileName = "./sad-data/chapter1/geometric_likelihoods.png"
+plt.savefig(fileName, format="png" )
+plt.close()
+
+#Zipf distribution
+plt.figure()
+ll_model5 = [ num for (s, num) in ll_zipf]
+plt.hist(model5, bins, range = (0,1), facecolor = 'violet', histtype="stepfilled", alpha=.7, label = "Zipf distribution")
+plt.xlabel("Zipf distribution log-likelihoods")
+plt.ylabel("Frequency")
+plt.tight_layout()
+#Output figure
+fileName = "./sad-data/chapter1/Zipf_likelihoods.png"
 plt.savefig(fileName, format="png" )
 plt.close()
 
