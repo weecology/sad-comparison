@@ -109,12 +109,6 @@ I also compared the relative likelihoods, and I need to think about those graphs
 As we discussed, both this graph and the AICc weights graph are influenced by having some models that include and upper truncated version and some that don't. When the upper truncation doesn't matter, these models will be virtually identical, and therefore even if that model is the best it can never have an AIC weight of > 0.5. My inclination at the moment is to do the main analysis without any upper truncated versions and then do a side analysis investigating whether the upper truncation matters in cases where we have upper truncated versions of the distributions. How does that sound?
 -->
 
-A few sites in the FIA dataset returned positive log-likelihood values for the Poisson lognormal, indicating that the Poisson lognormal is an extremely poor fit to those sites.  However, the upper bound for all the log-likelihood graphs were set to zero, for easier comparison.  A list of those sites with the associated log-likelihood values is provided in Appendix whatever?
-
-<!---
-This is a bug and should be fixed. Fortunately Xiao is on the case!
--->
-
 Assorted colorful graphs (check Post-It notes).
 Additional graphs showing the AICc weights and the log-likelihood weights separately are in Appendix whatever.
 
