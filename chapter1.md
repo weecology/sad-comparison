@@ -109,8 +109,10 @@ I also compared the relative likelihoods, and I need to think about those graphs
 As we discussed, both this graph and the AICc weights graph are influenced by having some models that include and upper truncated version and some that don't. When the upper truncation doesn't matter, these models will be virtually identical, and therefore even if that model is the best it can never have an AIC weight of > 0.5. My inclination at the moment is to do the main analysis without any upper truncated versions and then do a side analysis investigating whether the upper truncation matters in cases where we have upper truncated versions of the distributions. How does that sound?
 -->
 
-Assorted colorful graphs (check Post-It notes).
-Additional graphs showing the AICc weights and the log-likelihood weights separately are in Appendix whatever.
+TODO:
+
+* Assorted colorful graphs (check Post-It notes).
+* Additional graphs showing the AICc weights and the log-likelihood weights separately are in Appendix whatever.
 
 # Discussion
 
