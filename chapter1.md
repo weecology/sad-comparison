@@ -116,11 +116,12 @@ TODO:
 
 # Discussion
 
+Our extensive comparison of different models for the species-abundance distribution using rigorous statistical methods demonstrates that most existing models provide equivalent fits to empirical data. Since all models perform well, the models with the fewest parameters perform better in AIC-based model selection, since these approaches penalize model complexity.
+
 <!---
 Add some discussion of the fact that since log-series yields equivalent likelihoods, has the fewest parameters, and is trivial to fit, it is probably the best naive model for the SAD
 -->
 
-Intro paragraph outlining points before jumping into them.
 I addressed two unresolved questions about (something goes here) species abundance distributions by comparing five species abundance distribution models.  One problem with the analysis of species abundance distributions is the difficulty of identifying pattern generating mechanisms for species abundance distribution models.  Another problem with species abundance distribution models is determining whether statistical difference between/among models translates into biological relevance.  These questions have been challenging to address throughly; although researchers have compared species abundance distribution models in the past, previous studies have not analyzed as many species abundance distribution models, or with as many different taxonomic groups or number of communities.   
 
 ####Different processes can generate identical models. (expansion of point from introduction)
