@@ -491,12 +491,21 @@ bbs_ll_neg_bin = cur.execute("""SELECT model_name, value FROM RawResults
 bbs_ll_neg_bin = cur.fetchall()
 #BBS geometric
 bbs_ll_geometric = cur.execute("""SELECT model_name, value FROM RawResults
-                            WHERE dataset_code == 'bbs' AND model_name == 'Untruncated logseries' AND value_type =='likelihood' AND value IS NOT NUll
+                            WHERE dataset_code == 'bbs' AND model_name == 'Geometric series' AND value_type =='likelihood' AND value IS NOT NUll
                             ORDER BY value""")
 bbs_ll_geometric = cur.fetchall()
 
+#BBS Zipf
+bbs_ll_zipf = cur.execute("""SELECT model_name, value FROM RawResults
+                            WHERE dataset_code == 'bbs' AND model_name == 'Zipf distribution' AND value_type =='likelihood' AND value IS NOT NUll
+                            ORDER BY value""")
+bbs_ll_zipf = cur.fetchall()
+
 # Plot variables for BBS combined likelihoods graph
 plt.figure()
+#Zipf distribution
+bbs_ll_model5 = [ num for (s, num) in bbs_ll_zipf]
+plt.hist(bbs_ll_model5, bins = range(-750, 0, 10), facecolor = 'violet', histtype="stepfilled", alpha=.7, label = "Zipf distribution")
 #Geometric series
 bbs_ll_model4 = [ num for (s, num) in bbs_ll_geometric]
 plt.hist(bbs_ll_model4, bins = range(-750, 0, 10), facecolor = 'olivedrab', histtype="stepfilled", alpha=.7, label = "Geometric")
@@ -546,12 +555,21 @@ cbc_ll_neg_bin = cur.execute("""SELECT model_name, value FROM RawResults
 cbc_ll_neg_bin = cur.fetchall()
 #CBC geometric
 cbc_ll_geometric = cur.execute("""SELECT model_name, value FROM RawResults
-                            WHERE dataset_code == 'cbc' AND model_name == 'Untruncated logseries' AND value_type =='likelihood' AND value IS NOT NUll
+                            WHERE dataset_code == 'cbc' AND model_name == 'Geometric series' AND value_type =='likelihood' AND value IS NOT NUll
                             ORDER BY value""")
 cbc_ll_geometric = cur.fetchall()
 
+#CBC Zipf
+cbc_ll_zipf = cur.execute("""SELECT model_name, value FROM RawResults
+                            WHERE dataset_code == 'cbc' AND model_name == 'Zipf distribution' AND value_type =='likelihood' AND value IS NOT NUll
+                            ORDER BY value""")
+cbc_ll_zipf = cur.fetchall()
+
 # Plot variables for CBC combined likelihoods graph
 plt.figure()
+#Zipf distribution
+cbc_ll_model5 = [ num for (s, num) in cbc_ll_zipf]
+plt.hist(cbc_ll_model5, bins = range(-750, 0, 10), facecolor = 'violet', histtype="stepfilled", alpha=.7, label = "Zipf distribution")
 #Geometric series
 cbc_ll_model4 = [ num for (s, num) in cbc_ll_geometric]
 plt.hist(cbc_ll_model4, bins = range(-750, 0, 10), facecolor = 'olivedrab', histtype="stepfilled", alpha=.7, label = "Geometric")
@@ -600,12 +618,21 @@ fia_ll_neg_bin = cur.execute("""SELECT model_name, value FROM RawResults
 fia_ll_neg_bin = cur.fetchall()
 #FIA geometric
 fia_ll_geometric = cur.execute("""SELECT model_name, value FROM RawResults
-                            WHERE dataset_code == 'fia' AND model_name == 'Untruncated logseries' AND value_type =='likelihood' AND value IS NOT NUll
+                            WHERE dataset_code == 'fia' AND model_name == 'Geometric series' AND value_type =='likelihood' AND value IS NOT NUll
                             ORDER BY value""")
 fia_ll_geometric = cur.fetchall()
 
+#FIA Zipf
+fia_ll_zipf = cur.execute("""SELECT model_name, value FROM RawResults
+                            WHERE dataset_code == 'fia' AND model_name == 'Zipf distribution' AND value_type =='likelihood' AND value IS NOT NUll
+                            ORDER BY value""")
+fia_ll_zipf = cur.fetchall()
+
 # Plot variables for FIA combined likelihoods graph
 plt.figure()
+#Zipf distribution
+fia_ll_model5 = [ num for (s, num) in fia_ll_zipf]
+plt.hist(fia_ll_model5, bins = range(-750, 0, 10), facecolor = 'violet', histtype="stepfilled", alpha=.7, label = "Zipf distribution")
 #Geometric series
 fia_ll_model4 = [ num for (s, num) in fia_ll_geometric]
 plt.hist(fia_ll_model4, bins = range(-750, 0, 10), facecolor = 'olivedrab', histtype="stepfilled", alpha=.7, label = "Geometric")
@@ -655,12 +682,21 @@ gentry_ll_neg_bin = cur.execute("""SELECT model_name, value FROM RawResults
 gentry_ll_neg_bin = cur.fetchall()
 #Gentry geometric
 gentry_ll_geometric = cur.execute("""SELECT model_name, value FROM RawResults
-                            WHERE dataset_code == 'gentry' AND model_name == 'Untruncated logseries' AND value_type =='likelihood' AND value IS NOT NUll
+                            WHERE dataset_code == 'gentry' AND model_name == 'Geometric series' AND value_type =='likelihood' AND value IS NOT NUll
                             ORDER BY value""")
 gentry_ll_geometric = cur.fetchall()
 
+#Gentry Zipf
+gentry_ll_zipf = cur.execute("""SELECT model_name, value FROM RawResults
+                            WHERE dataset_code == 'gentry' AND model_name == 'Zipf distribution' AND value_type =='likelihood' AND value IS NOT NUll
+                            ORDER BY value""")
+gentry_ll_zipf = cur.fetchall()
+
 # Plot variables for Gentry combined likelihoods graph
 plt.figure()
+#Zipf distribution
+gentry_ll_model5 = [ num for (s, num) in gentry_ll_zipf]
+plt.hist(gentry_ll_model5, bins = range(-750, 0, 10), facecolor = 'violet', histtype="stepfilled", alpha=.7, label = "Zipf distribution")
 #Geometric series
 gentry_ll_model4 = [ num for (s, num) in gentry_ll_geometric]
 plt.hist(gentry_ll_model4, bins = range(-750, 0, 10), facecolor = 'olivedrab', histtype="stepfilled", alpha=.7, label = "Geometric")
@@ -710,12 +746,21 @@ mcdb_ll_neg_bin = cur.execute("""SELECT model_name, value FROM RawResults
 mcdb_ll_neg_bin = cur.fetchall()
 #MCDB  geometric
 mcdb_ll_geometric = cur.execute("""SELECT model_name, value FROM RawResults
-                            WHERE dataset_code == 'mcdb' AND model_name == 'Untruncated logseries' AND value_type =='likelihood' AND value IS NOT NUll
+                            WHERE dataset_code == 'mcdb' AND model_name == 'Geometric series' AND value_type =='likelihood' AND value IS NOT NUll
                             ORDER BY value""")
 mcdb_ll_geometric = cur.fetchall()
 
+#Gentry Zipf
+mcdb_ll_zipf = cur.execute("""SELECT model_name, value FROM RawResults
+                            WHERE dataset_code == 'mcdb' AND model_name == 'Zipf distribution' AND value_type =='likelihood' AND value IS NOT NUll
+                            ORDER BY value""")
+mcdb_ll_zipf = cur.fetchall()
+
 # Plot variables for MCDB combined likelihoods graph
 plt.figure()
+#Zipf distribution
+mcdb_ll_model5 = [ num for (s, num) in mcdb_ll_zipf]
+plt.hist(mcdb_ll_model5, bins = range(-750, 0, 10), facecolor = 'violet', histtype="stepfilled", alpha=.7, label = "Zipf distribution")
 #Geometric series
 mcdb_ll_model4 = [ num for (s, num) in mcdb_ll_geometric]
 plt.hist(mcdb_ll_model4, bins = range(-750, 0, 10), facecolor = 'olivedrab', histtype="stepfilled", alpha=.7, label = "Geometric")
@@ -764,12 +809,21 @@ naba_ll_neg_bin = cur.execute("""SELECT model_name, value FROM RawResults
 naba_ll_neg_bin = cur.fetchall()
 #NABA geometric
 naba_ll_geometric = cur.execute("""SELECT model_name, value FROM RawResults
-                            WHERE dataset_code == 'naba' AND model_name == 'Untruncated logseries' AND value_type =='likelihood' AND value IS NOT NUll
+                            WHERE dataset_code == 'naba'AND model_name == 'Geometric series' AND value_type =='likelihood' AND value IS NOT NUll
                             ORDER BY value""")
 naba_ll_geometric = cur.fetchall()
 
+#NABA Zipf
+naba_ll_zipf = cur.execute("""SELECT model_name, value FROM RawResults
+                            WHERE dataset_code == 'naba' AND model_name == 'Zipf distribution' AND value_type =='likelihood' AND value IS NOT NUll
+                            ORDER BY value""")
+naba_ll_zipf = cur.fetchall()
+
 # Plot variables for NABA combined likelihoods graph
 plt.figure()
+#Zipf distribution
+naba_ll_model5 = [ num for (s, num) in naba_ll_zipf]
+plt.hist(naba_ll_model5, bins = range(-750, 0, 10), facecolor = 'violet', histtype="stepfilled", alpha=.7, label = "Zipf distribution")
 #Geometric series
 naba_ll_model4 = [ num for (s, num) in naba_ll_geometric]
 plt.hist(naba_ll_model4, bins = range(-750, 0, 10), facecolor = 'olivedrab', histtype="stepfilled", alpha=.7, label = "Geometric")
@@ -835,9 +889,18 @@ relative_geometric = cur.execute("""SELECT model_name, value FROM RawResults
                             ORDER BY value""")
 relative_geometric = cur.fetchall()
 
+#Zipf distribution                         
+relative_zipf = cur.execute("""SELECT model_name, value FROM RawResults
+                            WHERE model_name =='Zipf distribution' AND value_type =='relative likelihood' AND value IS NOT NUll 
+                            ORDER BY value""")
+relative_zipf = cur.fetchall()
+
 # Plot variables for relative likelihoods combined graph
 plt.figure()
 bins = 50
+#Zipf distribution
+relative_model5 = [ num for (s, num) in relative_zipf]
+plt.hist(relative_model5, bins, range = [0,1], facecolor = 'violet', histtype="stepfilled", alpha=.7, label = "Geometric")
 #Geometric series
 relative_model4 = [ num for (s, num) in relative_geometric]
 plt.hist(relative_model4, bins, range = [0,1], facecolor = 'olivedrab', histtype="stepfilled", alpha=.7, label = "Geometric")
@@ -917,6 +980,17 @@ plt.ylabel("Frequency")
 plt.tight_layout()
 #Output figure
 fileName = "./sad-data/chapter1/geometric_relative.png"
+plt.savefig(fileName, format="png" )
+plt.close()
+
+#Zipf
+plt.figure()
+plt.hist(relative_model5, bins, range = [0,1], facecolor = 'violet', histtype="stepfilled", alpha=.7, label = "Geometric")
+plt.xlabel("Zipf distribution")
+plt.ylabel("Frequency")
+plt.tight_layout()
+#Output figure
+fileName = "./sad-data/chapter1/zipf_relative.png"
 plt.savefig(fileName, format="png" )
 plt.close()
 
