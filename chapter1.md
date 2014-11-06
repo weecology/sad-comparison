@@ -124,10 +124,9 @@ Add some discussion of the fact that since log-series yields equivalent likeliho
 "goodness of fit" is used a lot, but traditionally this is used to describe whether the model fits the data. All we've done so far is see who well the different models fit the data relative to one another. Adding some tests of actually goodness of fit would probably be a worthwhile addition, either based on binning or comparing R^2 with the real data to simulated distributions like Xiao did in her in press AmNat paper. Regardless, we shouldn't use "goodness of fit" to refer to this particular set of analyses.
 
 I think some discussion of Locey & White, Frank 2014, and other constraint based approaches as possible explanations for why so many models yield similar results would be a useful way to wrap things up.
-
 -->
 
-Our extensive comparison of different models for the species-abundance distribution using rigorous statistical methods demonstrates that most existing models provide equivalent fits to empirical data. Since all models perform well, the models with the fewest parameters perform better in AIC-based model selection, since these approaches penalize model complexity.
+Our extensive comparison of different models for the species-abundance distribution using rigorous statistical methods demonstrates that most existing models provide equivalently good fits to empirical data. Since all models perform well, the models with the fewest parameters perform better in AIC-based model selection, since these approaches penalize model complexity.
 
 I addressed two unresolved questions about (something goes here) species abundance distributions by comparing five species abundance distribution models.  One problem with the analysis of species abundance distributions is the difficulty of identifying pattern generating mechanisms for species abundance distribution models.  Another problem with species abundance distribution models is determining whether statistical difference between/among models translates into biological relevance.  These questions have been challenging to address throughly; although researchers have compared species abundance distribution models in the past, previous studies have not analyzed as many species abundance distribution models, or with as many different taxonomic groups or number of communities.   
 
@@ -139,7 +138,7 @@ Actually, this might be a place to have that potential table with the form of th
 
 Ugland & Gray 1982, Hummingbird book (a couple years ago, 2011-ish?)
 
-Logseries:niche preemption with random recruitment(May 1975) more dispersal/immigration (Hughes 1986) community dynamics (Hughes 1986)
+Logseries:niche preemption with random recruitment(May 1975) more dispersal/immigration (Hughes 1986) community dynamics (Hughes 1986), neutral at metacommunity scale
 Lognormal:hierarchical niche apportionment (Sugihara 1980) more independant, lower dispersal, larger communities (Hughes 1986) community dynamics (Hughes 1986)
 Negative binomial:neutral (Connolly et al. 2014)
 Geometric:niche preemption with regular recruitment(May 1975)
