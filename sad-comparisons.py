@@ -81,17 +81,14 @@ def model_comparisons(raw_data, dataset_name, data_dir, cutoff = 9):
             
             # Calculate log-likelihoods of species abundance models and calculate AICc values:
             # Logseries
-            L_logser = md.logser_ll(obsabundance, p) # Log-likelihood of truncated logseries
             L_logser_untruncated = md.logser_ll(obsabundance, p_untruncated) # Log-likelihood of untruncated logseries
-            AICc_logser = macroecotools.AICc(k2, L_logser, S) # AICc logseries
             AICc_logser_untruncated = macroecotools.AICc(k1, L_logser_untruncated, S) # AICc logseries untruncated
-            relative_ll_logser = macroecotools.AICc(k1, L_logser, S) # Relative likelihood truncated logseries
             relative_ll_logser_untruncated = AICc_logser_untruncated# Relative likelihood untruncated logseries
             
             #Start making AICc list
-            AICc_list = [AICc_logser, AICc_logser_untruncated]
-            likelihood_list = [L_logser, L_logser_untruncated]
-            relative_likelihood_list = [relative_ll_logser, relative_ll_logser_untruncated]
+            AICc_list = [AICc_logser_untruncated]
+            likelihood_list = [L_logser_untruncated]
+            relative_likelihood_list = [relative_ll_logser_untruncated]
           
             
             # Poisson lognormal
@@ -162,15 +159,15 @@ def model_comparisons(raw_data, dataset_name, data_dir, cutoff = 9):
             
             # Inserts a blank in the output if the Poisson lognormal returned -inmaki
             if pln_blank == 1:
-                weights_output.insert(2, '')
-                likelihood_list.insert(2, '')
-                relative_likelihoods_output.insert(2, '')
+                weights_output.insert(1, '')
+                likelihood_list.insert(1, '')
+                relative_likelihoods_output.insert(1, '')
             
             # Inserts a blank in the output if the negative binomial exceeded the max number of iterations
             if negbin_blank == 1:
-                weights_output.insert(3, '')
-                likelihood_list.insert(3, '')
-                relative_likelihoods_output.insert(3, '')
+                weights_output.insert(2, '')
+                likelihood_list.insert(2, '')
+                relative_likelihoods_output.insert(2, '')
                                     
             # Format results for output
             results = ((np.column_stack((subsites, obsabundance, pred))))
