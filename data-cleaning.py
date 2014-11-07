@@ -101,3 +101,32 @@ print("Complete.")
 
 #Close connection
 con.close()
+
+# Set up database capabilities 
+# Set up ability to query data
+con = dbapi.connect('path-to-retriever-data.sqlite')
+cur = con.cursor()
+# Switch con data type to string
+con.text_factory = str 
+
+#Query for communities that are in the misc main database and have integer abundances
+#Query for taxa
+taxa = cur.execute("""SELECT Class FROM main
+                      ORDER BY Class""")
+taxa = cur.fetchall()
+
+
+communities= cur.execute("""SELECT Class, Site_ID, Citation, (Genus || Species) AS species, Abundance FROM abundance
+                            WHERE Abundance IS NOT 0
+                            ORDER BY Site_ID""")
+communities = cur.fetchall()
+
+for taxon in taxa:
+    #Run through communities, pull out all data that matches the taxon and output as a .csv
+    #Output abundances
+    output_communities = csv.writer(open(data_dir + taxon + '_spab.csv','wb'))
+    output_communities.writerow(['site_ID', 'citation', 'species', 'abundance']) #Output header
+    for row in communities:
+        if row[0] == taxon:
+            output_communities.writerow(row[1:])    
+    
