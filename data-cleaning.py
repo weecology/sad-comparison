@@ -104,7 +104,8 @@ con.close()
 
 # Set up database capabilities 
 # Set up ability to query data
-con = dbapi.connect('path-to-retriever-data.sqlite')
+data_path = input("Please provide the path to the data. ")
+con = dbapi.connect(data_path)
 cur = con.cursor()
 # Switch con data type to string
 con.text_factory = str 
