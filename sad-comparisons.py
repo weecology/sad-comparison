@@ -56,9 +56,9 @@ def model_comparisons(raw_data, dataset_name, data_dir, cutoff = 9):
     
     # Insert header
     output1.writerow(['site', 'observed', 'predicted'])
-    output2.writerow(['site', 'S', 'N', 'AICc_logseries', 'AICc_logseries_untruncated', 'AICc_pln', 'AICc_negbin', 'AICc_geometric', 'AICc_zipf'])
-    output3.writerow(['site', 'S', 'N', 'likelihood_logseries', 'likelihood_logseries_untruncated', 'likelihood_pln', 'likelihood_negbin', 'likelihood_geometric', 'likelihood_zipf'])
-    output4.writerow(['site', 'S', 'N', 'relative_ll_logseries', 'relative_ll_logseries_untruncated', 'relative_ll_pln', 'relative_ll_negbin', 'relative_ll_geometric', 'relative_ll_zipf'])
+    output2.writerow(['site', 'S', 'N', 'AICc_logseries', 'AICc_pln', 'AICc_negbin', 'AICc_geometric', 'AICc_zipf'])
+    output3.writerow(['site', 'S', 'N', 'likelihood_logseries', 'likelihood_pln', 'likelihood_negbin', 'likelihood_geometric', 'likelihood_zipf'])
+    output4.writerow(['site', 'S', 'N', 'relative_ll_logseries', 'relative_ll_pln', 'relative_ll_negbin', 'relative_ll_geometric', 'relative_ll_zipf'])
     for site in usites:
         subsites = raw_data["site"][raw_data["site"] == site]        
         subabundance = raw_data["ab"][raw_data["site"] == site]
