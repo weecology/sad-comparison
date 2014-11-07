@@ -126,7 +126,7 @@ def model_comparisons(raw_data, dataset_name, data_dir, cutoff = 9):
                 
 
             # Geometric series
-            p = md.trunc_geom_solver(obsabundance, N) # For the upper bound, we are using the total community abundance
+            p = p = S/N  # Solves for parameter p of the untruncated geometric series
             L_geometric = md.geom_ll(obsabundance, p) # Log-likelihood of geometric series
             AICc_geometric = macroecotools.AICc(k1, L_geometric, S) # AICc geometric series
             relative_ll_geometric = AICc_geometric # Relative log-likelihood of geometric series
@@ -157,7 +157,7 @@ def model_comparisons(raw_data, dataset_name, data_dir, cutoff = 9):
             #Convert relative likelihoods to list
             relative_likelihoods_output = relative_likelihoods.tolist() 
             
-            # Inserts a blank in the output if the Poisson lognormal returned -inmaki
+            # Inserts a blank in the output if the Poisson lognormal returned -inf
             if pln_blank == 1:
                 weights_output.insert(1, '')
                 likelihood_list.insert(1, '')
