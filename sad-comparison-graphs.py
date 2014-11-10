@@ -187,17 +187,12 @@ plt.close()
 # Set up figure
 AIC_c_weights = plt.figure()
 # Extract AICc weights for each model.
-#Truncated logseries
+#Logseries
 logseries = cur.execute("""SELECT model_name, value FROM RawResults
                             WHERE model_name == 'Logseries' AND value_type =='AICc weight' AND value IS NOT NULL
                             ORDER BY value""")
 logseries = cur.fetchall()
 
-#Untruncated logseries
-untruncated_logseries = cur.execute("""SELECT model_name, value FROM RawResults
-                            WHERE model_name =='Untruncated logseries' AND value_type =='AICc weight' AND value IS NOT NULL
-                            ORDER BY value""")
-untruncated_logseries = cur.fetchall()
 
 #Poisson lognormal
 pln = cur.execute("""SELECT model_name, value FROM RawResults
@@ -224,23 +219,20 @@ zipf = cur.execute("""SELECT model_name, value FROM RawResults
 zipf = cur.fetchall()
 # Plot variables for weights
 bins = 50
-#Truncated logseries
+#Logseries
 model0 = [ num for (s, num) in logseries ]
 plt.hist(model0, bins, range = (0,1), facecolor = 'magenta', histtype="stepfilled", alpha=1, label = "Truncated logseries")
-#Untruncated logseries
-model1 = [ num for (s, num) in untruncated_logseries]
-plt.hist(model1, bins, range = (0,1), facecolor = 'orange', histtype="stepfilled", alpha=.7, label = "Untruncated logseries")
 #Poisson lognormal
-model2 = [ num for (s, num) in pln]
+model1 = [ num for (s, num) in pln]
 plt.hist(model2, bins, range = (0,1), facecolor = 'teal', histtype="stepfilled", alpha=.7, label = "Poisson lognormal")
 #Negative binomial
-model3 = [ num for (s, num) in neg_bin]
+model2 = [ num for (s, num) in neg_bin]
 plt.hist(model3, bins, range = (0,1), facecolor = 'gray', histtype="stepfilled", alpha=.7, label = "Negative binomial")
 #Geometric series
-model4 = [ num for (s, num) in geometric]
+model3 = [ num for (s, num) in geometric]
 plt.hist(model4, bins, range = (0,1), facecolor = 'olivedrab', histtype="stepfilled", alpha=.7, label = "Geometric")
 #Zipf distribution
-model5 = [ num for (s, num) in zipf]
+model4 = [ num for (s, num) in zipf]
 plt.hist(model5, bins, range = (0,1), facecolor = 'violet', histtype="stepfilled", alpha=.7, label = "Zipf")
 
 plt.legend(loc = 'upper right', fontsize = 11)
@@ -257,31 +249,20 @@ plt.close()
 
 '''Plot weights for each model individually'''
 bins = 50
-# Truncated logseries
+#Logseries
 plt.figure()
 plt.hist(model0, bins, range = (0,1), facecolor = 'magenta', histtype="stepfilled", alpha=1, label = "Truncated logseries")
-plt.xlabel("Truncated logseries AICc weights")
+plt.xlabel("Logseries AICc weights")
 plt.ylabel("Frequency")
 plt.tight_layout()
 #Output figure
-fileName = "./sad-data/chapter1/Truncated_logseries_weights.png"
-plt.savefig(fileName, format="png" )
-plt.close()
-
-#Untruncated logseries
-plt.figure()
-plt.hist(model1, bins, range = (0,1), facecolor = 'orange', histtype="stepfilled", alpha=.7, label = "Untruncated logseries")
-plt.xlabel("Untruncated logseries AICc weights")
-plt.ylabel("Frequency")
-plt.tight_layout()
-#Output figure
-fileName = "./sad-data/chapter1/Untruncated_logseries_weights.png"
+fileName = "./sad-data/chapter1/Logseries_weights.png"
 plt.savefig(fileName, format="png" )
 plt.close()
 
 #Poisson lognormal
 plt.figure()
-plt.hist(model2, bins, range = (0,1), facecolor = 'teal', histtype="stepfilled", alpha=.7, label = "Poisson lognormal")
+plt.hist(model1, bins, range = (0,1), facecolor = 'teal', histtype="stepfilled", alpha=.7, label = "Poisson lognormal")
 plt.xlabel("Poisson lognormal AICc weights")
 plt.ylabel("Frequency")
 plt.tight_layout()
@@ -292,8 +273,8 @@ plt.close()
 
 #Negative binomial
 plt.figure()
-model3 = [ num for (s, num) in neg_bin]
-plt.hist(model3, bins, range = (0,1), facecolor = 'gray', histtype="stepfilled", alpha=.7, label = "Negative binomial")
+model2 = [ num for (s, num) in neg_bin]
+plt.hist(model2, bins, range = (0,1), facecolor = 'gray', histtype="stepfilled", alpha=.7, label = "Negative binomial")
 plt.xlabel("Negative binomial AICc weights")
 plt.ylabel("Frequency")
 plt.tight_layout()
@@ -304,8 +285,8 @@ plt.close()
 
 #Geometric series
 plt.figure()
-model4 = [ num for (s, num) in geometric]
-plt.hist(model4, bins, range = (0,1), facecolor = 'olivedrab', histtype="stepfilled", alpha=.7, label = "Geometric")
+model3 = [ num for (s, num) in geometric]
+plt.hist(model3, bins, range = (0,1), facecolor = 'olivedrab', histtype="stepfilled", alpha=.7, label = "Geometric")
 plt.xlabel("Geometric AICc weights")
 plt.ylabel("Frequency")
 plt.tight_layout()
@@ -316,8 +297,8 @@ plt.close()
 
 #Zipf distribution
 plt.figure()
-model5 = [ num for (s, num) in zipf]
-plt.hist(model5, bins, range = (0,1), facecolor = 'violet', histtype="stepfilled", alpha=.7, label = "Zipf")
+model4 = [ num for (s, num) in zipf]
+plt.hist(model4, bins, range = (0,1), facecolor = 'violet', histtype="stepfilled", alpha=.7, label = "Zipf")
 plt.xlabel("Zipf distribution AICc weights")
 plt.ylabel("Frequency")
 plt.tight_layout()
@@ -332,36 +313,26 @@ plt.close()
 # Set up figure
 l_likelihood = plt.figure()
 # Extract log-likelihoods for each model.
-#Truncated logseries
+#Logseries
 ll_logseries = cur.execute("""SELECT model_name, value FROM RawResults
                             WHERE model_name == 'Logseries' AND value_type =='likelihood' AND value IS NOT NUll
                             ORDER BY value""")
 ll_logseries = cur.fetchall()
-
-#Untruncated logseries
-ll_untruncated_logseries = cur.execute("""SELECT model_name, value FROM RawResults
-                            WHERE model_name =='Untruncated logseries' AND value_type =='likelihood' AND value IS NOT NUll
-                            ORDER BY value""")
-ll_untruncated_logseries = cur.fetchall()
-
 #Poisson lognormal
 ll_pln = cur.execute("""SELECT model_name, value FROM RawResults
                             WHERE model_name =='Poisson lognormal' AND value_type =='likelihood' AND value IS NOT NUll
                             ORDER BY value""")
-ll_pln = cur.fetchall()
-                                                 
+ll_pln = cur.fetchall()                                             
 #Negative binomial                            
 ll_neg_bin = cur.execute("""SELECT model_name, value FROM RawResults
                             WHERE model_name =='Negative binomial' AND value_type =='likelihood' AND value IS NOT NUll
                             ORDER BY value""")
-ll_neg_bin = cur.fetchall()
-                     
+ll_neg_bin = cur.fetchall()                     
 #Geometric series                            
 ll_geometric = cur.execute("""SELECT model_name, value FROM RawResults
                             WHERE model_name =='Geometric series' AND value_type =='likelihood' AND value IS NOT NUll 
                             ORDER BY value""")
 ll_geometric = cur.fetchall()
-
 #Zipf distribution
 ll_zipf = cur.execute("""SELECT model_name, value FROM RawResults
                             WHERE model_name =='Zipf distribution' AND value_type =='likelihood' AND value IS NOT NUll 
@@ -382,12 +353,9 @@ plt.hist(ll_model3, bins = range(-750, 0, 10), facecolor = 'gray', histtype="ste
 #Poisson lognormal
 ll_model2 = [ num for (s, num) in ll_pln]
 plt.hist(ll_model2, bins = range(-750, 0, 10), facecolor = 'teal', histtype="stepfilled", alpha=.7, label = "Poisson lognormal")
-#Untruncated logseries
-ll_model1 = [ num for (s, num) in ll_untruncated_logseries]
-plt.hist(ll_model1, bins = range(-750, 0, 10), facecolor = 'orange', histtype="stepfilled", alpha=.5, label = "Untruncated logseries")
-#Truncated logseries
+#Logseries
 ll_model0 = [ num for (s, num) in ll_logseries ]
-plt.hist(ll_model0, bins = range(-750, 0, 10), facecolor = 'magenta', histtype="stepfilled", alpha=.4, label = "Truncated logseries")
+plt.hist(ll_model0, bins = range(-750, 0, 10), facecolor = 'magenta', histtype="stepfilled", alpha=.4, label = "Logseries")
 
 plt.legend(loc = 'upper left', fontsize = 11)
 plt.xlabel("Log-likelihoods")
@@ -399,26 +367,14 @@ plt.savefig(fileName, format="png" )
 plt.close()
 
 ''' Plot likelihoods for each model individually'''
-#Truncated logseries
+#Logseries
 plt.figure()
-plt.hist(ll_model0, bins = range(-750, 0, 10), facecolor = 'magenta', histtype="stepfilled", alpha=1, label = "Truncated logseries")
+plt.hist(ll_model0, bins = range(-750, 0, 10), facecolor = 'magenta', histtype="stepfilled", alpha=1, label = "Logseries")
 plt.xlabel("Truncated logseries log-likelihoods")
 plt.ylabel("Frequency")
 plt.tight_layout()
 #Output figure
-fileName = "./sad-data/chapter1/truncated_logseries_likelihoods.png"
-plt.savefig(fileName, format="png" )
-plt.close()
-
-
-#Untruncated logseries
-plt.figure()
-plt.hist(ll_model1, bins = range(-750, 0, 10), facecolor = 'orange', histtype="stepfilled", alpha=.7, label = "Untruncated logseries")
-plt.xlabel("Untruncated logseries log-likelihoods")
-plt.ylabel("Frequency")
-plt.tight_layout()
-#Output figure
-fileName = "./sad-data/chapter1/untruncated_logseries_likelihoods.png"
+fileName = "./sad-data/chapter1/logseries_likelihoods.png"
 plt.savefig(fileName, format="png" )
 plt.close()
 
@@ -469,16 +425,12 @@ plt.close()
 
 '''Plot likelihoods by dataset and model'''
 # BBS
-#BBS truncated logseries
+#BBS logseries
 bbs_ll_logser = cur.execute("""SELECT model_name, value FROM RawResults
                             WHERE dataset_code == 'bbs' AND model_name == 'Logseries' AND value_type =='likelihood' AND value IS NOT NUll
                             ORDER BY value""")
 bbs_ll_logser = cur.fetchall()
-#BBS untruncated logseries
-bbs_ll_untruncated_logser = cur.execute("""SELECT model_name, value FROM RawResults
-                            WHERE dataset_code == 'bbs' AND model_name == 'Untruncated logseries' AND value_type =='likelihood' AND value IS NOT NUll
-                            ORDER BY value""")
-bbs_ll_untruncated_logser = cur.fetchall()
+
 #BBS Poisson lognormal
 bbs_ll_pln = cur.execute("""SELECT model_name, value FROM RawResults
                             WHERE dataset_code == 'bbs' AND model_name == 'Poisson lognormal' AND value_type =='likelihood' AND value IS NOT NUll
@@ -515,12 +467,9 @@ plt.hist(bbs_ll_model3, bins = range(-750, 0, 10), facecolor = 'gray', histtype=
 #Poisson lognormal
 bbs_ll_model2 = [ num for (s, num) in bbs_ll_pln]
 plt.hist(bbs_ll_model2, bins = range(-750, 0, 10), facecolor = 'teal', histtype="stepfilled", alpha=.7, label = "Poisson lognormal")
-#Untruncated logseries
-bbs_ll_model1 = [ num for (s, num) in bbs_ll_untruncated_logser]
-plt.hist(bbs_ll_model1, bins = range(-750, 0, 10), facecolor = 'orange', histtype="stepfilled", alpha=.5, label = "Untruncated logseries")
-#Truncated logseries
+#Logseries
 bbs_ll_model0 = [ num for (s, num) in bbs_ll_logser]
-plt.hist(bbs_ll_model0, bins = range(-750, 0, 10), facecolor = 'magenta', histtype="stepfilled", alpha=.4, label = "Truncated logseries")
+plt.hist(bbs_ll_model0, bins = range(-750, 0, 10), facecolor = 'magenta', histtype="stepfilled", alpha=.4, label = "Logseries")
 
 plt.legend(loc = 'upper left', fontsize = 11)
 plt.xlabel("BBS log-likelihoods")
@@ -533,16 +482,11 @@ plt.close()
 
 # CBC
 plt.figure()
-#CBC truncated logseries
+#CBC Logseries
 cbc_ll_logser = cur.execute("""SELECT model_name, value FROM RawResults
                             WHERE dataset_code == 'cbc' AND model_name == 'Logseries' AND value_type =='likelihood' AND value IS NOT NUll
                             ORDER BY value""")
 cbc_ll_logser = cur.fetchall()
-#CBC untruncated logseries
-cbc_ll_untruncated_logser = cur.execute("""SELECT model_name, value FROM RawResults
-                            WHERE dataset_code == 'cbc' AND model_name == 'Untruncated logseries' AND value_type =='likelihood' AND value IS NOT NUll
-                            ORDER BY value""")
-cbc_ll_untruncated_logser = cur.fetchall()
 #CBC Poisson lognormal
 cbc_ll_pln = cur.execute("""SELECT model_name, value FROM RawResults
                             WHERE dataset_code == 'cbc' AND model_name == 'Poisson lognormal' AND value_type =='likelihood' AND value IS NOT NUll
@@ -579,12 +523,9 @@ plt.hist(cbc_ll_model3, bins = range(-750, 0, 10), facecolor = 'gray', histtype=
 #Poisson lognormal
 cbc_ll_model2 = [ num for (s, num) in cbc_ll_pln]
 plt.hist(cbc_ll_model2, bins = range(-750, 0, 10), facecolor = 'teal', histtype="stepfilled", alpha=.7, label = "Poisson lognormal")
-#Untruncated logseries
-cbc_ll_model1 = [ num for (s, num) in cbc_ll_untruncated_logser]
-plt.hist(cbc_ll_model1, bins = range(-750, 0, 10), facecolor = 'orange', histtype="stepfilled", alpha=.5, label = "Untruncated logseries")
-#Truncated logseries
+#Logseries
 cbc_ll_model0 = [ num for (s, num) in cbc_ll_logser]
-plt.hist(cbc_ll_model0, bins = range(-750, 0, 10), facecolor = 'magenta', histtype="stepfilled", alpha=.4, label = "Truncated logseries")
+plt.hist(cbc_ll_model0, bins = range(-750, 0, 10), facecolor = 'magenta', histtype="stepfilled", alpha=.4, label = "Logseries")
 
 plt.legend(loc = 'upper left', fontsize = 11)
 plt.xlabel("CBC log-likelihoods")
@@ -596,16 +537,11 @@ plt.savefig(fileName, format="png" )
 plt.close()
 
 # FIA
-#FIA truncated logseries
+#FIA logseries
 fia_ll_logser = cur.execute("""SELECT model_name, value FROM RawResults
                             WHERE dataset_code == 'fia' AND model_name == 'Logseries' AND value_type =='likelihood' AND value IS NOT NUll
                             ORDER BY value""")
 fia_ll_logser = cur.fetchall()
-#FIA untruncated logseries
-fia_ll_untruncated_logser = cur.execute("""SELECT model_name, value FROM RawResults
-                            WHERE dataset_code == 'fia' AND model_name == 'Untruncated logseries' AND value_type =='likelihood' AND value IS NOT NUll
-                            ORDER BY value""")
-fia_ll_untruncated_logser = cur.fetchall()
 #FIA Poisson lognormal
 fia_ll_pln = cur.execute("""SELECT model_name, value FROM RawResults
                             WHERE dataset_code == 'fia' AND model_name == 'Poisson lognormal' AND value_type =='likelihood' AND value IS NOT NUll
@@ -642,12 +578,9 @@ plt.hist(fia_ll_model3, bins = range(-750, 0, 10), facecolor = 'gray', histtype=
 #Poisson lognormal
 fia_ll_model2 = [ num for (s, num) in fia_ll_pln]
 plt.hist(fia_ll_model2, bins = range(-750, 0, 10), facecolor = 'teal', histtype="stepfilled", alpha=.7, label = "Poisson lognormal")
-#Untruncated logseries
-fia_ll_model1 = [ num for (s, num) in fia_ll_untruncated_logser]
-plt.hist(bbs_ll_model1, bins = range(-750, 0, 10), facecolor = 'orange', histtype="stepfilled", alpha=.5, label = "Untruncated logseries")
-#Truncated logseries
+#Logseries
 fia_ll_model0 = [ num for (s, num) in fia_ll_logser]
-plt.hist(fia_ll_model0, bins = range(-750, 0, 10), facecolor = 'magenta', histtype="stepfilled", alpha=.4, label = "Truncated logseries")
+plt.hist(fia_ll_model0, bins = range(-750, 0, 10), facecolor = 'magenta', histtype="stepfilled", alpha=.4, label = "Logseries")
 
 plt.legend(loc = 'upper left', fontsize = 11)
 plt.xlabel("FIA log-likelihoods")
@@ -660,16 +593,11 @@ plt.close()
 
 
 # Gentry
-#Gentry truncated logseries
+#Gentry logseries
 gentry_ll_logser = cur.execute("""SELECT model_name, value FROM RawResults
                             WHERE dataset_code == 'gentry' AND model_name == 'Logseries' AND value_type =='likelihood' AND value IS NOT NUll
                             ORDER BY value""")
 gentry_ll_logser = cur.fetchall()
-#Gentry untruncated logseries
-gentry_ll_untruncated_logser = cur.execute("""SELECT model_name, value FROM RawResults
-                            WHERE dataset_code == 'gentry' AND model_name == 'Untruncated logseries' AND value_type =='likelihood' AND value IS NOT NUll
-                            ORDER BY value""")
-gentry_ll_untruncated_logser = cur.fetchall()
 #Gentry Poisson lognormal
 gentry_ll_pln = cur.execute("""SELECT model_name, value FROM RawResults
                             WHERE dataset_code == 'gentry' AND model_name == 'Poisson lognormal' AND value_type =='likelihood' AND value IS NOT NUll
@@ -706,12 +634,9 @@ plt.hist(gentry_ll_model3, bins = range(-750, 0, 10), facecolor = 'gray', histty
 #Poisson lognormal
 gentry_ll_model2 = [ num for (s, num) in gentry_ll_pln]
 plt.hist(gentry_ll_model2, bins = range(-750, 0, 10), facecolor = 'teal', histtype="stepfilled", alpha=.7, label = "Poisson lognormal")
-#Untruncated logseries
-gentry_ll_model1 = [ num for (s, num) in gentry_ll_untruncated_logser]
-plt.hist(gentry_ll_model1, bins = range(-750, 0, 10), facecolor = 'orange', histtype="stepfilled", alpha=.5, label = "Untruncated logseries")
-#Truncated logseries
+#Logseries
 gentry_ll_model0 = [ num for (s, num) in gentry_ll_logser]
-plt.hist(gentry_ll_model0, bins = range(-750, 0, 10), facecolor = 'magenta', histtype="stepfilled", alpha=.4, label = "Truncated logseries")
+plt.hist(gentry_ll_model0, bins = range(-750, 0, 10), facecolor = 'magenta', histtype="stepfilled", alpha=.4, label = "Logseries")
 
 plt.legend(loc = 'upper left', fontsize = 11)
 plt.xlabel("Gentry log-likelihoods")
@@ -724,16 +649,11 @@ plt.close()
 
 
 # MCDB
-#MCDB truncated logseries
+#MCDB logseries
 mcdb_ll_logser = cur.execute("""SELECT model_name, value FROM RawResults
                             WHERE dataset_code == 'mcdb' AND model_name == 'Logseries' AND value_type =='likelihood' AND value IS NOT NUll
                             ORDER BY value""")
 mcdb_ll_logser = cur.fetchall()
-#MCDB untruncated logseries
-mcdb_ll_untruncated_logser = cur.execute("""SELECT model_name, value FROM RawResults
-                            WHERE dataset_code == 'mcdb' AND model_name == 'Untruncated logseries' AND value_type =='likelihood' AND value IS NOT NUll
-                            ORDER BY value""")
-mcdb_ll_untruncated_logser = cur.fetchall()
 #MCDB Poisson lognormal
 mcdb_ll_pln = cur.execute("""SELECT model_name, value FROM RawResults
                             WHERE dataset_code == 'mcdb' AND model_name == 'Poisson lognormal' AND value_type =='likelihood' AND value IS NOT NUll
@@ -770,12 +690,9 @@ plt.hist(mcdb_ll_model3, bins = range(-750, 0, 10), facecolor = 'gray', histtype
 #Poisson lognormal
 mcdb_ll_model2 = [ num for (s, num) in mcdb_ll_pln]
 plt.hist(mcdb_ll_model2, bins = range(-750, 0, 10), facecolor = 'teal', histtype="stepfilled", alpha=.7, label = "Poisson lognormal")
-#Untruncated logseries
-mcdb_ll_model1 = [ num for (s, num) in mcdb_ll_untruncated_logser]
-plt.hist(mcdb_ll_model1, bins = range(-750, 0, 10), facecolor = 'orange', histtype="stepfilled", alpha=.5, label = "Untruncated logseries")
-#Truncated logseries
+#Logseries
 mcdb_ll_model0 = [ num for (s, num) in mcdb_ll_logser]
-plt.hist(mcdb_ll_model0, bins = range(-750, 0, 10), facecolor = 'magenta', histtype="stepfilled", alpha=.4, label = "Truncated logseries")
+plt.hist(mcdb_ll_model0, bins = range(-750, 0, 10), facecolor = 'magenta', histtype="stepfilled", alpha=.4, label = "Logseries")
 
 plt.legend(loc = 'upper left', fontsize = 11)
 plt.xlabel("MCDB log-likelihoods")
@@ -787,16 +704,11 @@ plt.savefig(fileName, format="png" )
 plt.close()
 
 # NABA
-#NABA truncated logseries
+#NABA logseries
 naba_ll_logser = cur.execute("""SELECT model_name, value FROM RawResults
                             WHERE dataset_code == 'naba' AND model_name == 'Logseries' AND value_type =='likelihood' AND value IS NOT NUll
                             ORDER BY value""")
 naba_ll_logser = cur.fetchall()
-#NABA untruncated logseries
-naba_ll_untruncated_logser = cur.execute("""SELECT model_name, value FROM RawResults
-                            WHERE dataset_code == 'naba' AND model_name == 'Untruncated logseries' AND value_type =='likelihood' AND value IS NOT NUll
-                            ORDER BY value""")
-naba_ll_untruncated_logser = cur.fetchall()
 #NABA Poisson lognormal
 naba_ll_pln = cur.execute("""SELECT model_name, value FROM RawResults
                             WHERE dataset_code == 'naba' AND model_name == 'Poisson lognormal' AND value_type =='likelihood' AND value IS NOT NUll
@@ -833,12 +745,9 @@ plt.hist(naba_ll_model3, bins = range(-750, 0, 10), facecolor = 'gray', histtype
 #Poisson lognormal
 naba_ll_model2 = [ num for (s, num) in naba_ll_pln]
 plt.hist(naba_ll_model2, bins = range(-750, 0, 10), facecolor = 'teal', histtype="stepfilled", alpha=.7, label = "Poisson lognormal")
-#Untruncated logseries
-naba_ll_model1 = [ num for (s, num) in naba_ll_untruncated_logser]
-plt.hist(naba_ll_model1, bins = range(-750, 0, 10), facecolor = 'orange', histtype="stepfilled", alpha=.5, label = "Untruncated logseries")
-#Truncated logseries
+#Logseries
 naba_ll_model0 = [ num for (s, num) in naba_ll_logser]
-plt.hist(naba_ll_model0, bins = range(-750, 0, 10), facecolor = 'magenta', histtype="stepfilled", alpha=.4, label = "Truncated logseries")
+plt.hist(naba_ll_model0, bins = range(-750, 0, 10), facecolor = 'magenta', histtype="stepfilled", alpha=.4, label = "Logseries")
 
 
 plt.legend(loc = 'upper left', fontsize = 11)
@@ -856,39 +765,26 @@ plt.close()
 # Set up figure
 relative_likelihood = plt.figure()
 # Extract relative likelihoods for each model.
-#Truncated logseries
+#Logseries
 relative_logseries = cur.execute("""SELECT model_name, value FROM RawResults
                             WHERE model_name == 'Logseries' AND value_type =='relative likelihood' AND value IS NOT NUll
                             ORDER BY value""")
 relative_logseries = cur.fetchall()
-
-#Untruncated logseries
-relative_untruncated_logseries = cur.execute("""SELECT model_name, value FROM RawResults
-                            WHERE model_name =='Untruncated logseries' AND value_type =='relative likelihood' AND value IS NOT NUll
-                            ORDER BY value""")
-relative_untruncated_logseries = cur.fetchall()
-
-
 #Poisson lognormal
 relative_pln = cur.execute("""SELECT model_name, value FROM RawResults
                             WHERE model_name =='Poisson lognormal' AND value_type =='relative likelihood' AND value IS NOT NUll
                             ORDER BY value""")
-relative_pln = cur.fetchall()
-                     
-                            
+relative_pln = cur.fetchall()                        
 #Negative binomial                            
 relative_neg_bin = cur.execute("""SELECT model_name, value FROM RawResults
                             WHERE model_name =='Negative binomial' AND value_type =='relative likelihood' AND value IS NOT NUll
                             ORDER BY value""")
 relative_neg_bin = cur.fetchall()
-
-
 #Geometric series                           
 relative_geometric = cur.execute("""SELECT model_name, value FROM RawResults
                             WHERE model_name =='Geometric series' AND value_type =='relative likelihood' AND value IS NOT NUll 
                             ORDER BY value""")
 relative_geometric = cur.fetchall()
-
 #Zipf distribution                         
 relative_zipf = cur.execute("""SELECT model_name, value FROM RawResults
                             WHERE model_name =='Zipf distribution' AND value_type =='relative likelihood' AND value IS NOT NUll 
@@ -910,12 +806,9 @@ plt.hist(relative_model3, bins, range = [0,1], facecolor = 'gray', histtype="ste
 #Poisson lognormal
 relative_model2 = [ num for (s, num) in relative_pln]
 plt.hist(relative_model2, bins, range = [0,1], facecolor = 'teal', histtype="stepfilled", alpha=.7, label = "Poisson lognormal")
-#Untruncated lognormal
-relative_model1 = [ num for (s, num) in relative_untruncated_logseries]
-plt.hist(relative_model1, bins, range = [0,1], facecolor = 'orange', histtype="stepfilled", alpha=.5, label = "Untruncated logseries")
-#Truncated logseries
+#Logseries
 relative_model0 = [ num for (s, num) in relative_logseries ]
-plt.hist(relative_model0, bins, range = [0,1], facecolor = 'magenta', histtype="stepfilled", alpha=.4, label = "Truncated logseries")
+plt.hist(relative_model0, bins, range = [0,1], facecolor = 'magenta', histtype="stepfilled", alpha=.4, label = "Logseries")
 
 plt.legend(loc = 'upper right', fontsize = 11)
 plt.xlabel("Relative likelihoods")
@@ -927,28 +820,17 @@ plt.savefig(fileName, format="png" )
 plt.close()
 
 ''' Plot relative likelihoods for each model individually'''
-#Truncated logseries
+#Logseries
 plt.figure()
-plt.hist(relative_model0, bins, range = [0,1], facecolor = 'magenta', histtype="stepfilled", alpha=1, label = "Truncated logseries")
-plt.xlabel("Truncated logseries relative likelihoods")
+plt.hist(relative_model0, bins, range = [0,1], facecolor = 'magenta', histtype="stepfilled", alpha=1, label = "Logseries")
+plt.xlabel("Logseries relative likelihoods")
 plt.ylabel("Frequency")
 plt.tight_layout()
 #Output figure
-fileName = "./sad-data/chapter1/truncated_logseries_relative.png"
+fileName = "./sad-data/chapter1/logseries_relative.png"
 plt.savefig(fileName, format="png" )
 plt.close()
 
-
-#Untruncated logseries
-plt.figure()
-plt.hist(relative_model1, bins, range = [0,1], facecolor = 'orange', histtype="stepfilled", alpha=.7, label = "Untruncated logseries")
-plt.xlabel("Untruncated logseries relative likelihoods")
-plt.ylabel("Frequency")
-plt.tight_layout()
-#Output figure
-fileName = "./sad-data/chapter1/untruncated_logseries_relative.png"
-plt.savefig(fileName, format="png" )
-plt.close()
 
 #Poisson lognormal
 plt.figure()

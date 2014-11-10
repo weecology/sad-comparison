@@ -56,9 +56,9 @@ def model_comparisons(raw_data, dataset_name, data_dir, cutoff = 9):
     
     # Insert header
     output1.writerow(['site', 'observed', 'predicted'])
-    output2.writerow(['site', 'S', 'N', 'AICc_logseries', 'AICc_logseries_untruncated', 'AICc_pln', 'AICc_negbin', 'AICc_geometric', 'AICc_zipf'])
-    output3.writerow(['site', 'S', 'N', 'likelihood_logseries', 'likelihood_logseries_untruncated', 'likelihood_pln', 'likelihood_negbin', 'likelihood_geometric', 'likelihood_zipf'])
-    output4.writerow(['site', 'S', 'N', 'relative_ll_logseries', 'relative_ll_logseries_untruncated', 'relative_ll_pln', 'relative_ll_negbin', 'relative_ll_geometric', 'relative_ll_zipf'])
+    output2.writerow(['site', 'S', 'N', 'AICc_logseries', 'AICc_pln', 'AICc_negbin', 'AICc_geometric', 'AICc_zipf'])
+    output3.writerow(['site', 'S', 'N', 'likelihood_logseries', 'likelihood_pln', 'likelihood_negbin', 'likelihood_geometric', 'likelihood_zipf'])
+    output4.writerow(['site', 'S', 'N', 'relative_ll_logseries', 'relative_ll_pln', 'relative_ll_negbin', 'relative_ll_geometric', 'relative_ll_zipf'])
     for site in usites:
         subsites = raw_data["site"][raw_data["site"] == site]        
         subabundance = raw_data["ab"][raw_data["site"] == site]
@@ -81,17 +81,14 @@ def model_comparisons(raw_data, dataset_name, data_dir, cutoff = 9):
             
             # Calculate log-likelihoods of species abundance models and calculate AICc values:
             # Logseries
-            L_logser = md.logser_ll(obsabundance, p) # Log-likelihood of truncated logseries
             L_logser_untruncated = md.logser_ll(obsabundance, p_untruncated) # Log-likelihood of untruncated logseries
-            AICc_logser = macroecotools.AICc(k2, L_logser, S) # AICc logseries
             AICc_logser_untruncated = macroecotools.AICc(k1, L_logser_untruncated, S) # AICc logseries untruncated
-            relative_ll_logser = macroecotools.AICc(k1, L_logser, S) # Relative likelihood truncated logseries
             relative_ll_logser_untruncated = AICc_logser_untruncated# Relative likelihood untruncated logseries
             
             #Start making AICc list
-            AICc_list = [AICc_logser, AICc_logser_untruncated]
-            likelihood_list = [L_logser, L_logser_untruncated]
-            relative_likelihood_list = [relative_ll_logser, relative_ll_logser_untruncated]
+            AICc_list = [AICc_logser_untruncated]
+            likelihood_list = [L_logser_untruncated]
+            relative_likelihood_list = [relative_ll_logser_untruncated]
           
             
             # Poisson lognormal
@@ -129,7 +126,7 @@ def model_comparisons(raw_data, dataset_name, data_dir, cutoff = 9):
                 
 
             # Geometric series
-            p = md.trunc_geom_solver(obsabundance, N) # For the upper bound, we are using the total community abundance
+            p = p = S/N  # Solves for parameter p of the untruncated geometric series
             L_geometric = md.geom_ll(obsabundance, p) # Log-likelihood of geometric series
             AICc_geometric = macroecotools.AICc(k1, L_geometric, S) # AICc geometric series
             relative_ll_geometric = AICc_geometric # Relative log-likelihood of geometric series
@@ -160,17 +157,17 @@ def model_comparisons(raw_data, dataset_name, data_dir, cutoff = 9):
             #Convert relative likelihoods to list
             relative_likelihoods_output = relative_likelihoods.tolist() 
             
-            # Inserts a blank in the output if the Poisson lognormal returned -inmaki
+            # Inserts a blank in the output if the Poisson lognormal returned -inf
             if pln_blank == 1:
-                weights_output.insert(2, '')
-                likelihood_list.insert(2, '')
-                relative_likelihoods_output.insert(2, '')
+                weights_output.insert(1, '')
+                likelihood_list.insert(1, '')
+                relative_likelihoods_output.insert(1, '')
             
             # Inserts a blank in the output if the negative binomial exceeded the max number of iterations
             if negbin_blank == 1:
-                weights_output.insert(3, '')
-                likelihood_list.insert(3, '')
-                relative_likelihoods_output.insert(3, '')
+                weights_output.insert(2, '')
+                likelihood_list.insert(2, '')
+                relative_likelihoods_output.insert(2, '')
                                     
             # Format results for output
             results = ((np.column_stack((subsites, obsabundance, pred))))

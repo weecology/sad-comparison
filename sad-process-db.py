@@ -15,8 +15,8 @@ import sqlite3 as dbapi
 # Function to import the AICc results.
 def import_results(datafile):
     """Imports raw result .csv files in the form: site, S, N, logseries, logseries_untruncated, pln, Anegbin, geometric, zipf."""
-    raw_results = np.genfromtxt(datafile, dtype = "S15, i8, i8, f8, f8, f8, f8, f8, f8", skip_header = 1, 
-                                names = ['site', 'S', 'N', 'logseries', 'logseries_untruncated', 'pln', 'negbin', 'geometric','AICc_zipf'], delimiter = ",", missing_values = '', filling_values = '')
+    raw_results = np.genfromtxt(datafile, dtype = "S15, i8, i8, f8, f8, f8, f8, f8", skip_header = 1, 
+                                names = ['site', 'S', 'N', 'logseries', 'pln', 'negbin', 'geometric','AICc_zipf'], delimiter = ",", missing_values = '', filling_values = '')
     return raw_results
 
 # Function to determine the winning model for each site.
@@ -24,7 +24,7 @@ def winning_model(data_dir, dataset_name, results):
     # Open output files
     output_processed = csv.writer(open(data_dir + dataset_name + '_processed_results.csv','wb'))
     # Insert comment line
-    output_processed.writerow(["# 0 = Logseries, 1 = Untruncated logseries, 2 = Poisson lognormal, 3 = Negative binomial, 4 = Geometric series, 5 = Zipf distribution"])
+    output_processed.writerow(["# 0 = Logseries, 1 = Poisson lognormal, 2 = Negative binomial, 3 = Geometric series, 4 = Zipf distribution"])
     
     # Insert header
     output_processed.writerow(['dataset', 'site', 'S', 'N', "model_code", "model_name", "AICc_weight"])
@@ -45,15 +45,12 @@ def winning_model(data_dir, dataset_name, results):
             model_name = 'Logseries'
             
         elif winning_model == 1:
-            model_name = 'Untruncated logseries'
-            
-        elif winning_model == 2:
             model_name = 'Poisson lognormal'
             
-        elif winning_model == 3:
+        elif winning_model == 2:
             model_name = 'Negative binomial'
             
-        elif winning_model == 4:
+        elif winning_model == 3:
             model_name = 'Geometric series'
             
         else:
@@ -98,18 +95,14 @@ def process_results(data_dir, dataset_name, results, value_type):
                 processed_results = [[dataset_name] + [site_ID] + [S] + [N] + [index] + [model_name] + [value_type] + [value]]
             
             elif index == 1:
-                model_name = 'Untruncated logseries'
-                processed_results = [[dataset_name] + [site_ID] + [S] + [N] + [index] + [model_name] + [value_type] + [value]]
-            
-            elif index == 2:
                 model_name = 'Poisson lognormal'
                 processed_results = [[dataset_name] + [site_ID] + [S] + [N] + [index] + [model_name] + [value_type] + [value]]
             
-            elif index == 3:
+            elif index == 2:
                 model_name = 'Negative binomial'
                 processed_results = [[dataset_name] + [site_ID] + [S] + [N] + [index] + [model_name] + [value_type] + [value]]
             
-            elif index == 4:
+            elif index == 3:
                 model_name = 'Geometric series'
                 processed_results = [[dataset_name] + [site_ID] + [S] + [N] + [index] + [model_name] + [value_type] + [value]]
                 
