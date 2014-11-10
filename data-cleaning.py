@@ -5,6 +5,7 @@ import multiprocessing
 import os
 import numpy as np
 import sqlite3 as dbapi
+import re
 
 sys.float_info[2]
 
@@ -104,30 +105,35 @@ con.close()
 
 # Set up database capabilities 
 # Set up ability to query data
-data_path = input("Please provide the path to the data. ")
-con = dbapi.connect(data_path)
+con = dbapi.connect('./sad-data/chapter2/misc.sqlite')
 cur = con.cursor()
 # Switch con data type to string
 con.text_factory = str 
 
 #Query for communities that are in the misc main database and have integer abundances
 #Query for taxa
-taxa = cur.execute("""SELECT Class FROM main
-                      ORDER BY Class""")
+taxa = cur.execute("""SELECT DISTINCT Class FROM miscabundancedb_main
+                      WHERE Class IS NOT 'Chondrichthyes' 
+                      ORDER BY Class""") #Excludes Chondrichthyes because that class has too few species. (2, for 2 sites)
 taxa = cur.fetchall()
 
 
-communities= cur.execute("""SELECT Class, Site_ID, Citation, (Genus || Species) AS species, Abundance FROM abundance
-                            WHERE Abundance IS NOT 0
+communities= cur.execute("""SELECT Class, Site_ID, Citation, (Genus ||" "|| Species) AS species, Abundance FROM
+                            miscabundancedb_main
+                            WHERE Abundance IS NOT 0 OR NULL
                             ORDER BY Site_ID""")
 communities = cur.fetchall()
 
-for taxon in taxa:
+for taxa_class in taxa:
+    taxon_str = str(taxa_class)
+    taxon = re.findall(r"\'([A-Za-z]+)\'", taxon_str) #Strips out just the taxon name
     #Run through communities, pull out all data that matches the taxon and output as a .csv
     #Output abundances
-    output_communities = csv.writer(open(data_dir + taxon + '_spab.csv','wb'))
+    output_file = data_dir + taxon[0] + '_spab.csv'
+    output_communities = csv.writer(open(output_file,'wb'))
     output_communities.writerow(['site_ID', 'citation', 'species', 'abundance']) #Output header
     for row in communities:
-        if row[0] == taxon:
+        if row[0] == taxon[0]:
             output_communities.writerow(row[1:])    
+    
     
