@@ -151,10 +151,14 @@ if needs_processing == True:
     cur = con.cursor()
     
     # Switch con data type to string
-    con.text_factory = str    
-    cur.execute("""DROP TABLE IF EXISTS ResultsWin""")
-    cur.execute("""DROP TABLE IF EXISTS RawResults""")
-    con.commit() 
+    con.text_factory = str
+    drop_tables = input("Database needs to be rebuilt, True or False?  ")
+    if drop_tables == True:
+        cur.execute("""DROP TABLE IF EXISTS ResultsWin""")
+        cur.execute("""DROP TABLE IF EXISTS RawResults""")
+        con.commit()
+        
+        
     for dataset in datasets:
         datafile = data_dir + dataset + results_ext
         datafile2 = data_dir + dataset + likelihood_ext
