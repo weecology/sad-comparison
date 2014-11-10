@@ -124,12 +124,15 @@ communities= cur.execute("""SELECT Class, Site_ID, Citation, (Genus ||" "|| Spec
                             ORDER BY Site_ID""")
 communities = cur.fetchall()
 
+#Close connection
+con.close()
+
 for taxa_class in taxa:
     taxon_str = str(taxa_class)
     taxon = re.findall(r"\'([A-Za-z]+)\'", taxon_str) #Strips out just the taxon name
     #Run through communities, pull out all data that matches the taxon and output as a .csv
     #Output abundances
-    output_file = data_dir + taxon[0] + '_spab.csv'
+    output_file = './sad-data/chapter1/' + taxon[0] + '_spab.csv'
     output_communities = csv.writer(open(output_file,'wb'))
     output_communities.writerow(['site_ID', 'citation', 'species', 'abundance']) #Output header
     for row in communities:
