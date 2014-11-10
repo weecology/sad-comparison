@@ -87,11 +87,34 @@ naba_wins = cur.execute("""SELECT model_name, COUNT(model_code) AS total_wins FR
                                  GROUP BY model_code""")
 naba_wins = cur.fetchall()
 
+#beetles
+beetle_wins = cur.execute("""SELECT model_name, COUNT(model_code) AS total_wins FROM ResultsWin
+                                 WHERE dataset_code == 'Coleoptera'
+                                 GROUP BY model_code""")
+beetle_wins = cur.fetchall()
+#spiders
+spider_wins = cur.execute("""SELECT model_name, COUNT(model_code) AS total_wins FROM ResultsWin
+                                 WHERE dataset_code == 'Arachnida'
+                                 GROUP BY model_code""")
+spider_wins = cur.fetchall()
+
+#amphibians
+amphibians_wins = cur.execute("""SELECT model_name, COUNT(model_code) AS total_wins FROM ResultsWin
+                                 WHERE dataset_code == 'Amphibia'
+                                 GROUP BY model_code""")
+amphibians_wins = cur.fetchall()
+
+#fish
+fish_wins = cur.execute("""SELECT model_name, COUNT(model_code) AS total_wins FROM ResultsWin
+                                 WHERE dataset_code == 'Actinopterygii'
+                                 GROUP BY model_code""")
+fish_wins = cur.fetchall()
+
 # Make histogram
 # Set up figure
 wins_by_dataset_fig = plt.figure()
 # Plot variables for bbs subplot
-plt.subplot(3,2,1)
+plt.subplot(5,2,1)
 N = len(bbs_wins)
 x = np.arange(1, N+1)
 y = [ num for (s, num) in bbs_wins ]
@@ -105,7 +128,7 @@ plt.xlabel( 'BBS' )
 
 
 # Plot variables for cbc subplot
-plt.subplot(3,2,2)
+plt.subplot(5,2,2)
 N = len(cbc_wins)
 x = np.arange(1, N+1)
 y = [ num for (s, num) in cbc_wins ]
@@ -119,7 +142,7 @@ plt.xlabel( 'CBC' )
 
 
 # Plot variables for fia subplot
-plt.subplot(3,2,3)
+plt.subplot(5,2,3)
 N = len(fia_wins)
 x = np.arange(1, N+1)
 y = [ num for (s, num) in fia_wins ]
@@ -133,7 +156,7 @@ plt.xlabel( 'FIA' )
 
 
 # Plot variables for Gentry subplot
-plt.subplot(3,2,4)
+plt.subplot(5,2,4)
 N = len(gentry_wins)
 x = np.arange(1, N+1)
 y = [ num for (s, num) in gentry_wins ]
@@ -147,7 +170,7 @@ plt.xlabel( 'Gentry' )
 
 
 # Plot variables for mcdb subplot
-plt.subplot(3,2,5)
+plt.subplot(5,2,5)
 N = len(mcdb_wins)
 x = np.arange(1, N+1)
 y = [ num for (s, num) in mcdb_wins ]
@@ -162,7 +185,7 @@ plt.xlabel( 'MCDB' )
 
 
 # Plot variables for NABA subplot
-plt.subplot(3,2,6)
+plt.subplot(5,2,6)
 N = len(naba_wins)
 x = np.arange(1, N+1)
 y = [ num for (s, num) in naba_wins ]
@@ -173,6 +196,67 @@ plt.yticks(fontsize = 'small')
 plt.ylabel( 'Number of Wins', fontsize = 'small' )
 plt.xticks(x + width/2.0, labels, fontsize = 5.9  )
 plt.xlabel( 'NABA' )
+
+plt.tight_layout()
+
+#beetle subplot
+plt.subplot(5,2,7)
+N = len(beetle_wins)
+x = np.arange(1, N+1)
+y = [ num for (s, num) in beetle_wins ]
+labels = [ s for (s, num) in beetle_wins ]
+width = 1
+bar1 = plt.bar( x, y, width, color="orange" )
+plt.yticks(fontsize = 'small')
+plt.ylabel( 'Number of Wins', fontsize = 'small' )
+plt.xticks(x + width/2.0, labels, fontsize = 5.9  )
+plt.xlabel( 'Coleoptera' )
+
+plt.tight_layout()
+
+# spider subplot
+plt.subplot(5,2,8)
+N = len(spider_wins)
+x = np.arange(1, N+1)
+y = [ num for (s, num) in spider_wins ]
+labels = [ s for (s, num) in spider_wins ]
+width = 1
+bar1 = plt.bar( x, y, width, color="magenta" )
+plt.yticks(fontsize = 'small')
+plt.ylabel( 'Number of Wins', fontsize = 'small' )
+plt.xticks(x + width/2.0, labels, fontsize = 5.9  )
+plt.xlabel( 'Arachnida' )
+
+plt.tight_layout()
+
+
+#amphibian subplot
+plt.subplot(5,2,9)
+N = len(amphibian_wins)
+x = np.arange(1, N+1)
+y = [ num for (s, num) in amphibian_wins ]
+labels = [ s for (s, num) in amphibian_wins ]
+width = 1
+bar1 = plt.bar( x, y, width, color="indigo" )
+plt.yticks(fontsize = 'small')
+plt.ylabel( 'Number of Wins', fontsize = 'small' )
+plt.xticks(x + width/2.0, labels, fontsize = 5.9  )
+plt.xlabel( 'Amphibians' )
+
+plt.tight_layout()
+
+# fish subplot
+plt.subplot(5,2,8)
+N = len(fish_wins)
+x = np.arange(1, N+1)
+y = [ num for (s, num) in fish_wins ]
+labels = [ s for (s, num) in fish_wins ]
+width = 1
+bar1 = plt.bar( x, y, width, color="teal" )
+plt.yticks(fontsize = 'small')
+plt.ylabel( 'Number of Wins', fontsize = 'small' )
+plt.xticks(x + width/2.0, labels, fontsize = 5.9  )
+plt.xlabel( 'Actinopterygii' )
 
 plt.tight_layout()
 
