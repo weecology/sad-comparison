@@ -27,8 +27,10 @@ While different species abundance distribution models can share a single form of
 # Methods
 
 ### Data
-
-I used data on 15,846 communities, from four taxonomic groups, representing nearly 50 million individual organisms, to test the performance of five species abundance distribution models. This data was compiled by White et al. 2012 from six data sources: the US Forest Service Forest Inventory and Analysis (FIA; USDA Forest Service 2010), the North American Breeding Bird Survey (BBS; Sauer et al. 2011), the North American Butterfly Associations North American Butterfly Count (NABC; NABA 2009), the Mammal Community Database (MCDB; Thibault et al. 2011), Alwyn Gentry's Forest Transect Data Set (Gentry; Phillips and Miller 2002), and the US Geological Survey's North American Breeding Bird Survey (BBS; Sauer et al. 2011). Gentry sites 102 and 179 were culled from the dataset due to a previously unidentified flaw in those sites.
+<!--
+Change number of communities, number of individuals once that has settled.
+-->
+I used data on 15,846 communities, from nine taxonomic groups, representing nearly 50 million individual organisms, to test the performance of five species abundance distribution models. This data was compiled from a variety of sources.  Data for the trees, birds, butterflies and mammals was compiled by White et al. 2012 from six data sources: the US Forest Service Forest Inventory and Analysis (FIA; USDA Forest Service 2010), the North American Breeding Bird Survey (BBS; Sauer et al. 2011), the North American Butterfly Associations North American Butterfly Count (NABC; NABA 2009), the Mammal Community Database (MCDB; Thibault et al. 2011), Alwyn Gentry's Forest Transect Data Set (Gentry; Phillips and Miller 2002), and the US Geological Survey's North American Breeding Bird Survey (BBS; Sauer et al. 2011). Gentry sites 102 and 179 were culled from the dataset due to a previously unidentified flaw in those sites.  Additional data was compiled by Baldridge 2012 (fish, reptiles, beetles, spiders, amphibians; MiscDB, Baldridge 2012) and accessed through the EcoData Retriever (Morris and White 2013)
 
 <!--
 How about a table for the sections below?
@@ -42,6 +44,12 @@ Table : Information on data sets used.  All publicly available datasets were acc
 | Forest Inventory Analysis            	| FIA          	| Publicly available                               	|220             	| FIA; USDA Forest Service 2010.                   	|
 | Mammal Community Database            	| MCDB         	| Publicly available                               	|103             	| MCDB; Thibault et al. 2011.                      	|
 | North American Butterfly Count       	| NABA         	| Data request with  Memorandum of  Understanding  	|400             	| NABA; North American Butterfly Association 2009. 	|
+| Actinopterygii; Miscellaneous abundance database      	| fish         	| Publicly available  	|##             	| MiscDB; Baldridge 2012. 	|
+| Reptilia; Miscellaneous abundance database      	| reptiles         	| Publicly available  	|##             	| MiscDB; Baldridge 2012. 	|
+| Amphibia; Miscellaneous abundance database      	| amphibia         	| Publicly available  	|##             	| MiscDB; Baldridge 2012. 	|
+| Coleoptera; Miscellaneous abundance database      	| beetles        	| Publicly available  	|##             	| MiscDB; Baldridge 2012. 	|
+| Arachnida; Miscellaneous abundance database      	| spiders         	| Publicly available  	|##             	| MiscDB; Baldridge 2012. 	|
+
  
 
 For sites where a model or models failed, AICc weights were calculated for only those models which successfully fit the data. All other model/data combinations ran successfully. 
@@ -64,7 +72,6 @@ Table: Provides the species abundance distribution models used with links to the
 | Species abundance distribution model     	| Code implementation                            	| Model classification  (McGill et al. 2007) 	| Additional model classifications                    	|
 |------------------------------------------	|------------------------------------------------	|--------------------------------------------	|-----------------------------------------------------	|
 | Maximum Entropy Theory of Ecology (METE) 	| https://github.com/weecology/METE.git          	|                                            	| Information-theoretic                               	|
-| Truncated logseries                      	| https://github.com/weecology/macroecotools.git 	| Purely statistical                         	|                                                     	|
 | Untruncated logseries                    	| https://github.com/weecology/macroecotools.git 	| Purely statistical                         	|                                                     	|
 | Poisson lognormal                        	| https://github.com/weecology/macroecotools.git 	| Purely statistical                         	|                                                     	|
 | Negative binomial                        	| https://github.com/weecology/macroecotools.git 	| Purely statistical                         	| Neutral theory approximation (Connolly et al. 2014) 	|
@@ -76,11 +83,8 @@ Logseries (macroecotools/macroeco_distributions)<https://github.com/weecology/ma
 Untruncated logseries (macroecotools/macroeco_distributions)<https://github.com/weecology/macroecotools.git>
 Poisson lognormal (macroecotools/macroeco_distributions)<https://github.com/weecology/macroecotools.git>
 Negative binomial (macroecotools/macroeco_distributions)<https://github.com/weecology/macroecotools.git>
-Geometric series (macroecotools/macroeco_distributions)<https://github.com/weecology/macroecotools.git> 
-
-<!---
-We probably do need to add a power-law distribution to match up with Ulrich
--->
+Geometric series (macroecotools/macroeco_distributions)<https://github.com/weecology/macroecotools.git>
+Zipf distribution (macroecotools/macroeco_distributions)<https://github.com/weecology/macroecotools.git> 
 
 ### Analysis
 
@@ -207,6 +211,7 @@ abundance of mammalian communities. Ecology 92: 2316.
 USDA Forest Service. 2010. Forest inventory and analysis
 national core field guide (Phase 2 and 3). Version 4.0. USDA Forest Service, Forest Inventory and Analysis, Washington,
 D.C., USA.
+Baldridge, Elita. 2013. Community abundance data. figshare. http://dx.doi.org/10.6084/m9.figshare.79251
 
 ###Code
 
