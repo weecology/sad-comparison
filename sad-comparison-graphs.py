@@ -870,7 +870,7 @@ beetle_ll_zipf = cur.execute("""SELECT model_name, value FROM RawResults
                             ORDER BY value""")
 beetle_ll_zipf = cur.fetchall()
 
-# Plot variables for NABA combined likelihoods graph
+# Plot variables for beetle combined likelihoods graph
 plt.figure()
 #Zipf distribution
 beetle_ll_model5 = [ num for (s, num) in beetle_ll_zipf]
@@ -920,13 +920,13 @@ spiders_ll_geometric = cur.execute("""SELECT model_name, value FROM RawResults
                             ORDER BY value""")
 spiders_ll_geometric = cur.fetchall()
 
-#beetle Zipf
+#spiders Zipf
 spiders_ll_zipf = cur.execute("""SELECT model_name, value FROM RawResults
                             WHERE dataset_code == 'Arachnida' AND model_name == 'Zipf distribution' AND value_type =='likelihood' AND value IS NOT NUll
                             ORDER BY value""")
 spiders_ll_zipf = cur.fetchall()
 
-# Plot variables for NABA combined likelihoods graph
+# Plot variables for spiders combined likelihoods graph
 plt.figure()
 #Zipf distribution
 spiders_ll_model5 = [ num for (s, num) in spiders_ll_zipf]
@@ -953,6 +953,119 @@ plt.tight_layout()
 fileName = "./sad-data/chapter1/spider_likelihoods.png"
 plt.savefig(fileName, format="png" )
 plt.close()
+
+# amphibians
+#amphibians logseries
+amphibians_ll_logser = cur.execute("""SELECT model_name, value FROM RawResults
+                            WHERE dataset_code == 'Amphibia' AND model_name == 'Logseries' AND value_type =='likelihood' AND value IS NOT NUll
+                            ORDER BY value""")
+amphibians_ll_logser = cur.fetchall()
+#amphibians Poisson lognormal
+amphibians_ll_pln = cur.execute("""SELECT model_name, value FROM RawResults
+                            WHERE dataset_code == 'Amphibia' AND model_name == 'Poisson lognormal' AND value_type =='likelihood' AND value IS NOT NUll
+                            ORDER BY value""")
+amphibians_ll_pln = cur.fetchall()
+#amphibians negative binomial
+amphibians_ll_neg_bin = cur.execute("""SELECT model_name, value FROM RawResults
+                            WHERE dataset_code == 'Amphibia' AND model_name == 'Negative binomial' AND value_type =='likelihood' AND value IS NOT NUll
+                            ORDER BY value""")
+amphibians_ll_neg_bin = cur.fetchall()
+#amphibians geometric
+amphibians_ll_geometric = cur.execute("""SELECT model_name, value FROM RawResults
+                            WHERE dataset_code == 'Amphibia'AND model_name == 'Geometric series' AND value_type =='likelihood' AND value IS NOT NUll
+                            ORDER BY value""")
+amphibians_ll_geometric = cur.fetchall()
+
+#amphibians Zipf
+amphibians_ll_zipf = cur.execute("""SELECT model_name, value FROM RawResults
+                            WHERE dataset_code == 'Amphibia' AND model_name == 'Zipf distribution' AND value_type =='likelihood' AND value IS NOT NUll
+                            ORDER BY value""")
+amphibians_ll_zipf = cur.fetchall()
+
+# Plot variables for amphibians combined likelihoods graph
+plt.figure()
+#Zipf distribution
+amphibians_ll_model5 = [ num for (s, num) in amphibians_ll_zipf]
+plt.hist(amphibians_ll_model5, bins = range(-750, 0, 10), facecolor = 'violet', histtype="stepfilled", alpha=.7, label = "Zipf distribution")
+#Geometric series
+amphibians_ll_model4 = [ num for (s, num) in amphibians_ll_geometric]
+plt.hist(amphibians_ll_model4, bins = range(-750, 0, 10), facecolor = 'olivedrab', histtype="stepfilled", alpha=.7, label = "Geometric")
+#Negative binomial
+amphibians_ll_model3 = [ num for (s, num) in amphibians_ll_neg_bin]
+plt.hist(amphibians_ll_model3, bins = range(-750, 0, 10), facecolor = 'gray', histtype="stepfilled", alpha=.7, label = "Negative binomial")
+#Poisson lognormal
+amphibians_ll_model2 = [ num for (s, num) in amphibians_ll_pln]
+plt.hist(amphibians_ll_model2, bins = range(-750, 0, 10), facecolor = 'teal', histtype="stepfilled", alpha=.7, label = "Poisson lognormal")
+#Logseries
+amphibians_ll_model0 = [ num for (s, num) in amphibians_ll_logser]
+plt.hist(amphibians_ll_model0, bins = range(-750, 0, 10), facecolor = 'magenta', histtype="stepfilled", alpha=.4, label = "Logseries")
+
+
+plt.legend(loc = 'upper left', fontsize = 11)
+plt.xlabel("Amphibia log-likelihoods")
+plt.ylabel("Frequency")
+plt.tight_layout()
+#Output figure
+fileName = "./sad-data/chapter1/amphibian_likelihoods.png"
+plt.savefig(fileName, format="png" )
+plt.close()
+
+# fish
+#fish logseries
+fish_ll_logser = cur.execute("""SELECT model_name, value FROM RawResults
+                            WHERE dataset_code == 'Actinopterygii' AND model_name == 'Logseries' AND value_type =='likelihood' AND value IS NOT NUll
+                            ORDER BY value""")
+fish_ll_logser = cur.fetchall()
+#fish Poisson lognormal
+fish_ll_pln = cur.execute("""SELECT model_name, value FROM RawResults
+                            WHERE dataset_code == 'Actinopterygii' AND model_name == 'Poisson lognormal' AND value_type =='likelihood' AND value IS NOT NUll
+                            ORDER BY value""")
+fish_ll_pln = cur.fetchall()
+#fish negative binomial
+fish_ll_neg_bin = cur.execute("""SELECT model_name, value FROM RawResults
+                            WHERE dataset_code == 'Actinopterygii' AND model_name == 'Negative binomial' AND value_type =='likelihood' AND value IS NOT NUll
+                            ORDER BY value""")
+fish_ll_neg_bin = cur.fetchall()
+#fish geometric
+fish_ll_geometric = cur.execute("""SELECT model_name, value FROM RawResults
+                            WHERE dataset_code == 'Actinopterygii'AND model_name == 'Geometric series' AND value_type =='likelihood' AND value IS NOT NUll
+                            ORDER BY value""")
+fish_ll_geometric = cur.fetchall()
+
+#fish Zipf
+fish_ll_zipf = cur.execute("""SELECT model_name, value FROM RawResults
+                            WHERE dataset_code == 'Actinopterygii' AND model_name == 'Zipf distribution' AND value_type =='likelihood' AND value IS NOT NUll
+                            ORDER BY value""")
+fish_ll_zipf = cur.fetchall()
+
+# Plot variables for fish combined likelihoods graph
+plt.figure()
+#Zipf distribution
+fish_ll_model5 = [ num for (s, num) in fish_ll_zipf]
+plt.hist(fish_ll_model5, bins = range(-750, 0, 10), facecolor = 'violet', histtype="stepfilled", alpha=.7, label = "Zipf distribution")
+#Geometric series
+fish_ll_model4 = [ num for (s, num) in fish_ll_geometric]
+plt.hist(fish_ll_model4, bins = range(-750, 0, 10), facecolor = 'olivedrab', histtype="stepfilled", alpha=.7, label = "Geometric")
+#Negative binomial
+fish_ll_model3 = [ num for (s, num) in fish_ll_neg_bin]
+plt.hist(fish_ll_model3, bins = range(-750, 0, 10), facecolor = 'gray', histtype="stepfilled", alpha=.7, label = "Negative binomial")
+#Poisson lognormal
+fish_ll_model2 = [ num for (s, num) in fish_ll_pln]
+plt.hist(fish_ll_model2, bins = range(-750, 0, 10), facecolor = 'teal', histtype="stepfilled", alpha=.7, label = "Poisson lognormal")
+#Logseries
+fish_ll_model0 = [ num for (s, num) in fish_ll_logser]
+plt.hist(fish_ll_model0, bins = range(-750, 0, 10), facecolor = 'magenta', histtype="stepfilled", alpha=.4, label = "Logseries")
+
+
+plt.legend(loc = 'upper left', fontsize = 11)
+plt.xlabel("Actinopterygii log-likelihoods")
+plt.ylabel("Frequency")
+plt.tight_layout()
+#Output figure
+fileName = "./sad-data/chapter1/Actinopterygiin_likelihoods.png"
+plt.savefig(fileName, format="png" )
+plt.close()
+
 '''Relative likelihoods graph'''
 # Make histogram
 # Set up figure
