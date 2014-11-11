@@ -87,92 +87,176 @@ naba_wins = cur.execute("""SELECT model_name, COUNT(model_code) AS total_wins FR
                                  GROUP BY model_code""")
 naba_wins = cur.fetchall()
 
+#beetles
+beetle_wins = cur.execute("""SELECT model_name, COUNT(model_code) AS total_wins FROM ResultsWin
+                                 WHERE dataset_code == 'Coleoptera'
+                                 GROUP BY model_code""")
+beetle_wins = cur.fetchall()
+#spiders
+spider_wins = cur.execute("""SELECT model_name, COUNT(model_code) AS total_wins FROM ResultsWin
+                                 WHERE dataset_code == 'Arachnida'
+                                 GROUP BY model_code""")
+spider_wins = cur.fetchall()
+
+#amphibians
+amphibian_wins = cur.execute("""SELECT model_name, COUNT(model_code) AS total_wins FROM ResultsWin
+                                 WHERE dataset_code == 'Amphibia'
+                                 GROUP BY model_code""")
+amphibian_wins = cur.fetchall()
+
+#fish
+fish_wins = cur.execute("""SELECT model_name, COUNT(model_code) AS total_wins FROM ResultsWin
+                                 WHERE dataset_code == 'Actinopterygii'
+                                 GROUP BY model_code""")
+fish_wins = cur.fetchall()
+
 # Make histogram
 # Set up figure
 wins_by_dataset_fig = plt.figure()
 # Plot variables for bbs subplot
-plt.subplot(3,2,1)
+plt.subplot(5,2,1)
 N = len(bbs_wins)
 x = np.arange(1, N+1)
 y = [ num for (s, num) in bbs_wins ]
 labels = [ s for (s, num) in bbs_wins ]
 width = 1
 bar1 = plt.bar( x, y, width, color="red" )
-plt.yticks(fontsize = 'small')
-plt.ylabel( 'Number of Wins', fontsize = 'small')
+plt.yticks(fontsize = 'x-small')
+plt.ylabel( 'Wins', fontsize = 'small')
 plt.xticks(x + width/2.0, labels, fontsize = 5.9 )
 plt.xlabel( 'BBS' )
 
 
 # Plot variables for cbc subplot
-plt.subplot(3,2,2)
+plt.subplot(5,2,2)
 N = len(cbc_wins)
 x = np.arange(1, N+1)
 y = [ num for (s, num) in cbc_wins ]
 labels = [ s for (s, num) in cbc_wins ]
 width = 1
-bar1 = plt.bar( x, y, width, color="orange" )
-plt.yticks(fontsize = 'small')
-plt.ylabel( 'Number of Wins', fontsize = 'small' )
+bar1 = plt.bar( x, y, width, color="tomato" )
+plt.yticks(fontsize = 'xx-small')
+plt.ylabel( 'Wins', fontsize = 'small' )
 plt.xticks(x + width/2.0, labels, fontsize = 5.9  )
 plt.xlabel( 'CBC' )
 
 
 # Plot variables for fia subplot
-plt.subplot(3,2,3)
+plt.subplot(5,2,3)
 N = len(fia_wins)
 x = np.arange(1, N+1)
 y = [ num for (s, num) in fia_wins ]
 labels = [ s for (s, num) in fia_wins ]
 width = 1
 bar1 = plt.bar( x, y, width, color="green" )
-plt.yticks(fontsize = 'small')
-plt.ylabel( 'Number of Wins', fontsize = 'small' )
+plt.yticks(fontsize = 'x-small')
+plt.ylabel( 'Wins', fontsize = 'small' )
 plt.xticks(x + width/2.0, labels, fontsize = 5  )
 plt.xlabel( 'FIA' )
 
 
 # Plot variables for Gentry subplot
-plt.subplot(3,2,4)
+plt.subplot(5,2,4)
 N = len(gentry_wins)
 x = np.arange(1, N+1)
 y = [ num for (s, num) in gentry_wins ]
 labels = [ s for (s, num) in gentry_wins ]
 width = 1
 bar1 = plt.bar( x, y, width, color="olivedrab" )
-plt.yticks(fontsize = 'small')
-plt.ylabel( 'Number of Wins', fontsize = 'small' )
+plt.yticks(fontsize = 'x-small')
+plt.ylabel( 'Wins', fontsize = 'small' )
 plt.xticks(x + width/2.0, labels, fontsize = 5.9  )
 plt.xlabel( 'Gentry' )
 
 
 # Plot variables for mcdb subplot
-plt.subplot(3,2,5)
+plt.subplot(5,2,5)
 N = len(mcdb_wins)
 x = np.arange(1, N+1)
 y = [ num for (s, num) in mcdb_wins ]
 labels = [ s for (s, num) in mcdb_wins ]
 width = 1
 bar1 = plt.bar( x, y, width, color="sienna" )
-plt.yticks(fontsize = 'small')
-plt.ylabel( 'Number of Wins', fontsize = 'small' )
+plt.yticks(fontsize = 'x-small')
+plt.ylabel( 'Wins', fontsize = 'small' )
 plt.xticks(x + width/2.0, labels, fontsize = 5  )
 plt.xlabel( 'MCDB' )
 
 
 
 # Plot variables for NABA subplot
-plt.subplot(3,2,6)
+plt.subplot(5,2,6)
 N = len(naba_wins)
 x = np.arange(1, N+1)
 y = [ num for (s, num) in naba_wins ]
 labels = [ s for (s, num) in naba_wins ]
 width = 1
 bar1 = plt.bar( x, y, width, color="blue" )
-plt.yticks(fontsize = 'small')
-plt.ylabel( 'Number of Wins', fontsize = 'small' )
+plt.yticks(fontsize = 'x-small')
+plt.ylabel( 'Wins', fontsize = 'small' )
 plt.xticks(x + width/2.0, labels, fontsize = 5.9  )
 plt.xlabel( 'NABA' )
+
+plt.tight_layout()
+
+#beetle subplot
+plt.subplot(5,2,7)
+N = len(beetle_wins)
+x = np.arange(1, N+1)
+y = [ num for (s, num) in beetle_wins ]
+labels = [ s for (s, num) in beetle_wins ]
+width = 1
+bar1 = plt.bar( x, y, width, color="orange" )
+plt.yticks(fontsize = 'x-small')
+plt.ylabel( 'Wins', fontsize = 'small' )
+plt.xticks(x + width/2.0, labels, fontsize = 5.9  )
+plt.xlabel( 'Coleoptera' )
+
+plt.tight_layout()
+
+# spider subplot
+plt.subplot(5,2,8)
+N = len(spider_wins)
+x = np.arange(1, N+1)
+y = [ num for (s, num) in spider_wins ]
+labels = [ s for (s, num) in spider_wins ]
+width = 1
+bar1 = plt.bar( x, y, width, color="magenta" )
+plt.yticks(fontsize = 'x-small')
+plt.ylabel( 'Wins', fontsize = 'small' )
+plt.xticks(x + width/2.0, labels, fontsize = 5.9  )
+plt.xlabel( 'Arachnida' )
+
+plt.tight_layout()
+
+
+#amphibian subplot
+plt.subplot(5,2,9)
+N = len(amphibian_wins)
+x = np.arange(1, N+1)
+y = [ num for (s, num) in amphibian_wins ]
+labels = [ s for (s, num) in amphibian_wins ]
+width = 1
+bar1 = plt.bar( x, y, width, color="indigo" )
+plt.yticks(fontsize = 'x-small')
+plt.ylabel( 'Wins', fontsize = 'small' )
+plt.xticks(x + width/2.0, labels, fontsize = 5.9  )
+plt.xlabel( 'Amphibians' )
+
+plt.tight_layout()
+
+# fish subplot
+plt.subplot(5,2,10)
+N = len(fish_wins)
+x = np.arange(1, N+1)
+y = [ num for (s, num) in fish_wins ]
+labels = [ s for (s, num) in fish_wins ]
+width = 1
+bar1 = plt.bar( x, y, width, color="teal" )
+plt.yticks(fontsize = 'x-small')
+plt.ylabel( 'Wins', fontsize = 'small' )
+plt.xticks(x + width/2.0, labels, fontsize = 5.9  )
+plt.xlabel( 'Actinopterygii' )
 
 plt.tight_layout()
 
@@ -224,16 +308,16 @@ model0 = [ num for (s, num) in logseries ]
 plt.hist(model0, bins, range = (0,1), facecolor = 'magenta', histtype="stepfilled", alpha=1, label = "Truncated logseries")
 #Poisson lognormal
 model1 = [ num for (s, num) in pln]
-plt.hist(model2, bins, range = (0,1), facecolor = 'teal', histtype="stepfilled", alpha=.7, label = "Poisson lognormal")
+plt.hist(model1, bins, range = (0,1), facecolor = 'teal', histtype="stepfilled", alpha=.7, label = "Poisson lognormal")
 #Negative binomial
 model2 = [ num for (s, num) in neg_bin]
-plt.hist(model3, bins, range = (0,1), facecolor = 'gray', histtype="stepfilled", alpha=.7, label = "Negative binomial")
+plt.hist(model2, bins, range = (0,1), facecolor = 'gray', histtype="stepfilled", alpha=.7, label = "Negative binomial")
 #Geometric series
 model3 = [ num for (s, num) in geometric]
-plt.hist(model4, bins, range = (0,1), facecolor = 'olivedrab', histtype="stepfilled", alpha=.7, label = "Geometric")
+plt.hist(model3, bins, range = (0,1), facecolor = 'olivedrab', histtype="stepfilled", alpha=.7, label = "Geometric")
 #Zipf distribution
 model4 = [ num for (s, num) in zipf]
-plt.hist(model5, bins, range = (0,1), facecolor = 'violet', histtype="stepfilled", alpha=.7, label = "Zipf")
+plt.hist(model4, bins, range = (0,1), facecolor = 'orange', histtype="stepfilled", alpha=.7, label = "Zipf")
 
 plt.legend(loc = 'upper right', fontsize = 11)
 
@@ -298,7 +382,7 @@ plt.close()
 #Zipf distribution
 plt.figure()
 model4 = [ num for (s, num) in zipf]
-plt.hist(model4, bins, range = (0,1), facecolor = 'violet', histtype="stepfilled", alpha=.7, label = "Zipf")
+plt.hist(model4, bins, range = (0,1), facecolor = 'orange', histtype="stepfilled", alpha=.7, label = "Zipf")
 plt.xlabel("Zipf distribution AICc weights")
 plt.ylabel("Frequency")
 plt.tight_layout()
@@ -343,7 +427,7 @@ ll_zipf = cur.fetchall()
 # Plot variables for combined likelihoods graph
 #Zipf distribution
 ll_model5 = [ num for (s, num) in ll_zipf]
-plt.hist(ll_model5, bins = range(-750, 0, 10), facecolor = 'violet', histtype="stepfilled", alpha=.7, label = "Zipf distribution")
+plt.hist(ll_model5, bins = range(-750, 0, 10), facecolor = 'orange', histtype="stepfilled", alpha=.7, label = "Zipf distribution")
 #Geometric series
 ll_model4 = [ num for (s, num) in ll_geometric]
 plt.hist(ll_model4, bins = range(-750, 0, 10), facecolor = 'olivedrab', histtype="stepfilled", alpha=.7, label = "Geometric")
@@ -413,8 +497,7 @@ plt.close()
 
 #Zipf distribution
 plt.figure()
-ll_model5 = [ num for (s, num) in ll_zipf]
-plt.hist(model5, bins, range = (0,1), facecolor = 'violet', histtype="stepfilled", alpha=.7, label = "Zipf distribution")
+plt.hist(ll_model5, bins = range(-750, 0, 10), facecolor = 'orange', histtype="stepfilled", alpha=.7, label = "Zipf distribution")
 plt.xlabel("Zipf distribution log-likelihoods")
 plt.ylabel("Frequency")
 plt.tight_layout()
@@ -457,7 +540,7 @@ bbs_ll_zipf = cur.fetchall()
 plt.figure()
 #Zipf distribution
 bbs_ll_model5 = [ num for (s, num) in bbs_ll_zipf]
-plt.hist(bbs_ll_model5, bins = range(-750, 0, 10), facecolor = 'violet', histtype="stepfilled", alpha=.7, label = "Zipf distribution")
+plt.hist(bbs_ll_model5, bins = range(-750, 0, 10), facecolor = 'orange', histtype="stepfilled", alpha=.7, label = "Zipf distribution")
 #Geometric series
 bbs_ll_model4 = [ num for (s, num) in bbs_ll_geometric]
 plt.hist(bbs_ll_model4, bins = range(-750, 0, 10), facecolor = 'olivedrab', histtype="stepfilled", alpha=.7, label = "Geometric")
@@ -513,7 +596,7 @@ cbc_ll_zipf = cur.fetchall()
 plt.figure()
 #Zipf distribution
 cbc_ll_model5 = [ num for (s, num) in cbc_ll_zipf]
-plt.hist(cbc_ll_model5, bins = range(-750, 0, 10), facecolor = 'violet', histtype="stepfilled", alpha=.7, label = "Zipf distribution")
+plt.hist(cbc_ll_model5, bins = range(-750, 0, 10), facecolor = 'orange', histtype="stepfilled", alpha=.7, label = "Zipf distribution")
 #Geometric series
 cbc_ll_model4 = [ num for (s, num) in cbc_ll_geometric]
 plt.hist(cbc_ll_model4, bins = range(-750, 0, 10), facecolor = 'olivedrab', histtype="stepfilled", alpha=.7, label = "Geometric")
@@ -568,7 +651,7 @@ fia_ll_zipf = cur.fetchall()
 plt.figure()
 #Zipf distribution
 fia_ll_model5 = [ num for (s, num) in fia_ll_zipf]
-plt.hist(fia_ll_model5, bins = range(-750, 0, 10), facecolor = 'violet', histtype="stepfilled", alpha=.7, label = "Zipf distribution")
+plt.hist(fia_ll_model5, bins = range(-750, 0, 10), facecolor = 'orange', histtype="stepfilled", alpha=.7, label = "Zipf distribution")
 #Geometric series
 fia_ll_model4 = [ num for (s, num) in fia_ll_geometric]
 plt.hist(fia_ll_model4, bins = range(-750, 0, 10), facecolor = 'olivedrab', histtype="stepfilled", alpha=.7, label = "Geometric")
@@ -624,7 +707,7 @@ gentry_ll_zipf = cur.fetchall()
 plt.figure()
 #Zipf distribution
 gentry_ll_model5 = [ num for (s, num) in gentry_ll_zipf]
-plt.hist(gentry_ll_model5, bins = range(-750, 0, 10), facecolor = 'violet', histtype="stepfilled", alpha=.7, label = "Zipf distribution")
+plt.hist(gentry_ll_model5, bins = range(-750, 0, 10), facecolor = 'orange', histtype="stepfilled", alpha=.7, label = "Zipf distribution")
 #Geometric series
 gentry_ll_model4 = [ num for (s, num) in gentry_ll_geometric]
 plt.hist(gentry_ll_model4, bins = range(-750, 0, 10), facecolor = 'olivedrab', histtype="stepfilled", alpha=.7, label = "Geometric")
@@ -680,7 +763,7 @@ mcdb_ll_zipf = cur.fetchall()
 plt.figure()
 #Zipf distribution
 mcdb_ll_model5 = [ num for (s, num) in mcdb_ll_zipf]
-plt.hist(mcdb_ll_model5, bins = range(-750, 0, 10), facecolor = 'violet', histtype="stepfilled", alpha=.7, label = "Zipf distribution")
+plt.hist(mcdb_ll_model5, bins = range(-750, 0, 10), facecolor = 'orange', histtype="stepfilled", alpha=.7, label = "Zipf distribution")
 #Geometric series
 mcdb_ll_model4 = [ num for (s, num) in mcdb_ll_geometric]
 plt.hist(mcdb_ll_model4, bins = range(-750, 0, 10), facecolor = 'olivedrab', histtype="stepfilled", alpha=.7, label = "Geometric")
@@ -735,7 +818,7 @@ naba_ll_zipf = cur.fetchall()
 plt.figure()
 #Zipf distribution
 naba_ll_model5 = [ num for (s, num) in naba_ll_zipf]
-plt.hist(naba_ll_model5, bins = range(-750, 0, 10), facecolor = 'violet', histtype="stepfilled", alpha=.7, label = "Zipf distribution")
+plt.hist(naba_ll_model5, bins = range(-750, 0, 10), facecolor = 'orange', histtype="stepfilled", alpha=.7, label = "Zipf distribution")
 #Geometric series
 naba_ll_model4 = [ num for (s, num) in naba_ll_geometric]
 plt.hist(naba_ll_model4, bins = range(-750, 0, 10), facecolor = 'olivedrab', histtype="stepfilled", alpha=.7, label = "Geometric")
@@ -759,6 +842,229 @@ fileName = "./sad-data/chapter1/naba_likelihoods.png"
 plt.savefig(fileName, format="png" )
 plt.close()
 
+# beetles
+#beetle logseries
+beetle_ll_logser = cur.execute("""SELECT model_name, value FROM RawResults
+                            WHERE dataset_code == 'Coleoptera' AND model_name == 'Logseries' AND value_type =='likelihood' AND value IS NOT NUll
+                            ORDER BY value""")
+beetle_ll_logser = cur.fetchall()
+#beetle Poisson lognormal
+beetle_ll_pln = cur.execute("""SELECT model_name, value FROM RawResults
+                            WHERE dataset_code == 'Coleoptera' AND model_name == 'Poisson lognormal' AND value_type =='likelihood' AND value IS NOT NUll
+                            ORDER BY value""")
+beetle_ll_pln = cur.fetchall()
+#beetle negative binomial
+beetle_ll_neg_bin = cur.execute("""SELECT model_name, value FROM RawResults
+                            WHERE dataset_code == 'Coleoptera' AND model_name == 'Negative binomial' AND value_type =='likelihood' AND value IS NOT NUll
+                            ORDER BY value""")
+beetle_ll_neg_bin = cur.fetchall()
+#beetle geometric
+beetle_ll_geometric = cur.execute("""SELECT model_name, value FROM RawResults
+                            WHERE dataset_code == 'Coleoptera'AND model_name == 'Geometric series' AND value_type =='likelihood' AND value IS NOT NUll
+                            ORDER BY value""")
+beetle_ll_geometric = cur.fetchall()
+
+#beetle Zipf
+beetle_ll_zipf = cur.execute("""SELECT model_name, value FROM RawResults
+                            WHERE dataset_code == 'Coleoptera' AND model_name == 'Zipf distribution' AND value_type =='likelihood' AND value IS NOT NUll
+                            ORDER BY value""")
+beetle_ll_zipf = cur.fetchall()
+
+# Plot variables for beetle combined likelihoods graph
+plt.figure()
+#Zipf distribution
+beetle_ll_model5 = [ num for (s, num) in beetle_ll_zipf]
+plt.hist(beetle_ll_model5, bins = range(-750, 0, 10), facecolor = 'orange', histtype="stepfilled", alpha=.7, label = "Zipf distribution")
+#Geometric series
+beetle_ll_model4 = [ num for (s, num) in beetle_ll_geometric]
+plt.hist(beetle_ll_model4, bins = range(-750, 0, 10), facecolor = 'olivedrab', histtype="stepfilled", alpha=.7, label = "Geometric")
+#Negative binomial
+beetle_ll_model3 = [ num for (s, num) in beetle_ll_neg_bin]
+plt.hist(beetle_ll_model3, bins = range(-750, 0, 10), facecolor = 'gray', histtype="stepfilled", alpha=.7, label = "Negative binomial")
+#Poisson lognormal
+beetle_ll_model2 = [ num for (s, num) in beetle_ll_pln]
+plt.hist(beetle_ll_model2, bins = range(-750, 0, 10), facecolor = 'teal', histtype="stepfilled", alpha=.7, label = "Poisson lognormal")
+#Logseries
+beetle_ll_model0 = [ num for (s, num) in beetle_ll_logser]
+plt.hist(beetle_ll_model0, bins = range(-750, 0, 10), facecolor = 'magenta', histtype="stepfilled", alpha=.4, label = "Logseries")
+
+
+plt.legend(loc = 'upper left', fontsize = 11)
+plt.xlabel("Coleoptera log-likelihoods")
+plt.ylabel("Frequency")
+plt.tight_layout()
+#Output figure
+fileName = "./sad-data/chapter1/beetle_likelihoods.png"
+plt.savefig(fileName, format="png" )
+plt.close()
+
+# spiders
+#spiders logseries
+spiders_ll_logser = cur.execute("""SELECT model_name, value FROM RawResults
+                            WHERE dataset_code == 'Arachnida' AND model_name == 'Logseries' AND value_type =='likelihood' AND value IS NOT NUll
+                            ORDER BY value""")
+spiders_ll_logser = cur.fetchall()
+#spiders Poisson lognormal
+spiders_ll_pln = cur.execute("""SELECT model_name, value FROM RawResults
+                            WHERE dataset_code == 'Arachnida' AND model_name == 'Poisson lognormal' AND value_type =='likelihood' AND value IS NOT NUll
+                            ORDER BY value""")
+spiders_ll_pln = cur.fetchall()
+#spiders negative binomial
+spiders_ll_neg_bin = cur.execute("""SELECT model_name, value FROM RawResults
+                            WHERE dataset_code == 'Arachnida' AND model_name == 'Negative binomial' AND value_type =='likelihood' AND value IS NOT NUll
+                            ORDER BY value""")
+spiders_ll_neg_bin = cur.fetchall()
+#spiders geometric
+spiders_ll_geometric = cur.execute("""SELECT model_name, value FROM RawResults
+                            WHERE dataset_code == 'Arachnida'AND model_name == 'Geometric series' AND value_type =='likelihood' AND value IS NOT NUll
+                            ORDER BY value""")
+spiders_ll_geometric = cur.fetchall()
+
+#spiders Zipf
+spiders_ll_zipf = cur.execute("""SELECT model_name, value FROM RawResults
+                            WHERE dataset_code == 'Arachnida' AND model_name == 'Zipf distribution' AND value_type =='likelihood' AND value IS NOT NUll
+                            ORDER BY value""")
+spiders_ll_zipf = cur.fetchall()
+
+# Plot variables for spiders combined likelihoods graph
+plt.figure()
+#Zipf distribution
+spiders_ll_model5 = [ num for (s, num) in spiders_ll_zipf]
+plt.hist(spiders_ll_model5, bins = range(-750, 0, 10), facecolor = 'orange', histtype="stepfilled", alpha=.7, label = "Zipf distribution")
+#Geometric series
+spiders_ll_model4 = [ num for (s, num) in spiders_ll_geometric]
+plt.hist(spiders_ll_model4, bins = range(-750, 0, 10), facecolor = 'olivedrab', histtype="stepfilled", alpha=.7, label = "Geometric")
+#Negative binomial
+spiders_ll_model3 = [ num for (s, num) in spiders_ll_neg_bin]
+plt.hist(spiders_ll_model3, bins = range(-750, 0, 10), facecolor = 'gray', histtype="stepfilled", alpha=.7, label = "Negative binomial")
+#Poisson lognormal
+spiders_ll_model2 = [ num for (s, num) in spiders_ll_pln]
+plt.hist(spiders_ll_model2, bins = range(-750, 0, 10), facecolor = 'teal', histtype="stepfilled", alpha=.7, label = "Poisson lognormal")
+#Logseries
+spiders_ll_model0 = [ num for (s, num) in spiders_ll_logser]
+plt.hist(spiders_ll_model0, bins = range(-750, 0, 10), facecolor = 'magenta', histtype="stepfilled", alpha=.4, label = "Logseries")
+
+
+plt.legend(loc = 'upper left', fontsize = 11)
+plt.xlabel("Arachnida log-likelihoods")
+plt.ylabel("Frequency")
+plt.tight_layout()
+#Output figure
+fileName = "./sad-data/chapter1/spider_likelihoods.png"
+plt.savefig(fileName, format="png" )
+plt.close()
+
+# amphibians
+#amphibians logseries
+amphibians_ll_logser = cur.execute("""SELECT model_name, value FROM RawResults
+                            WHERE dataset_code == 'Amphibia' AND model_name == 'Logseries' AND value_type =='likelihood' AND value IS NOT NUll
+                            ORDER BY value""")
+amphibians_ll_logser = cur.fetchall()
+#amphibians Poisson lognormal
+amphibians_ll_pln = cur.execute("""SELECT model_name, value FROM RawResults
+                            WHERE dataset_code == 'Amphibia' AND model_name == 'Poisson lognormal' AND value_type =='likelihood' AND value IS NOT NUll
+                            ORDER BY value""")
+amphibians_ll_pln = cur.fetchall()
+#amphibians negative binomial
+amphibians_ll_neg_bin = cur.execute("""SELECT model_name, value FROM RawResults
+                            WHERE dataset_code == 'Amphibia' AND model_name == 'Negative binomial' AND value_type =='likelihood' AND value IS NOT NUll
+                            ORDER BY value""")
+amphibians_ll_neg_bin = cur.fetchall()
+#amphibians geometric
+amphibians_ll_geometric = cur.execute("""SELECT model_name, value FROM RawResults
+                            WHERE dataset_code == 'Amphibia'AND model_name == 'Geometric series' AND value_type =='likelihood' AND value IS NOT NUll
+                            ORDER BY value""")
+amphibians_ll_geometric = cur.fetchall()
+
+#amphibians Zipf
+amphibians_ll_zipf = cur.execute("""SELECT model_name, value FROM RawResults
+                            WHERE dataset_code == 'Amphibia' AND model_name == 'Zipf distribution' AND value_type =='likelihood' AND value IS NOT NUll
+                            ORDER BY value""")
+amphibians_ll_zipf = cur.fetchall()
+
+# Plot variables for amphibians combined likelihoods graph
+plt.figure()
+#Zipf distribution
+amphibians_ll_model5 = [ num for (s, num) in amphibians_ll_zipf]
+plt.hist(amphibians_ll_model5, bins = range(-750, 0, 10), facecolor = 'orange', histtype="stepfilled", alpha=.7, label = "Zipf distribution")
+#Geometric series
+amphibians_ll_model4 = [ num for (s, num) in amphibians_ll_geometric]
+plt.hist(amphibians_ll_model4, bins = range(-750, 0, 10), facecolor = 'olivedrab', histtype="stepfilled", alpha=.7, label = "Geometric")
+#Negative binomial
+amphibians_ll_model3 = [ num for (s, num) in amphibians_ll_neg_bin]
+plt.hist(amphibians_ll_model3, bins = range(-750, 0, 10), facecolor = 'gray', histtype="stepfilled", alpha=.7, label = "Negative binomial")
+#Poisson lognormal
+amphibians_ll_model2 = [ num for (s, num) in amphibians_ll_pln]
+plt.hist(amphibians_ll_model2, bins = range(-750, 0, 10), facecolor = 'teal', histtype="stepfilled", alpha=.7, label = "Poisson lognormal")
+#Logseries
+amphibians_ll_model0 = [ num for (s, num) in amphibians_ll_logser]
+plt.hist(amphibians_ll_model0, bins = range(-750, 0, 10), facecolor = 'magenta', histtype="stepfilled", alpha=.4, label = "Logseries")
+
+
+plt.legend(loc = 'upper left', fontsize = 11)
+plt.xlabel("Amphibia log-likelihoods")
+plt.ylabel("Frequency")
+plt.tight_layout()
+#Output figure
+fileName = "./sad-data/chapter1/amphibian_likelihoods.png"
+plt.savefig(fileName, format="png" )
+plt.close()
+
+# fish
+#fish logseries
+fish_ll_logser = cur.execute("""SELECT model_name, value FROM RawResults
+                            WHERE dataset_code == 'Actinopterygii' AND model_name == 'Logseries' AND value_type =='likelihood' AND value IS NOT NUll
+                            ORDER BY value""")
+fish_ll_logser = cur.fetchall()
+#fish Poisson lognormal
+fish_ll_pln = cur.execute("""SELECT model_name, value FROM RawResults
+                            WHERE dataset_code == 'Actinopterygii' AND model_name == 'Poisson lognormal' AND value_type =='likelihood' AND value IS NOT NUll
+                            ORDER BY value""")
+fish_ll_pln = cur.fetchall()
+#fish negative binomial
+fish_ll_neg_bin = cur.execute("""SELECT model_name, value FROM RawResults
+                            WHERE dataset_code == 'Actinopterygii' AND model_name == 'Negative binomial' AND value_type =='likelihood' AND value IS NOT NUll
+                            ORDER BY value""")
+fish_ll_neg_bin = cur.fetchall()
+#fish geometric
+fish_ll_geometric = cur.execute("""SELECT model_name, value FROM RawResults
+                            WHERE dataset_code == 'Actinopterygii'AND model_name == 'Geometric series' AND value_type =='likelihood' AND value IS NOT NUll
+                            ORDER BY value""")
+fish_ll_geometric = cur.fetchall()
+
+#fish Zipf
+fish_ll_zipf = cur.execute("""SELECT model_name, value FROM RawResults
+                            WHERE dataset_code == 'Actinopterygii' AND model_name == 'Zipf distribution' AND value_type =='likelihood' AND value IS NOT NUll
+                            ORDER BY value""")
+fish_ll_zipf = cur.fetchall()
+
+# Plot variables for fish combined likelihoods graph
+plt.figure()
+#Zipf distribution
+fish_ll_model5 = [ num for (s, num) in fish_ll_zipf]
+plt.hist(fish_ll_model5, bins = range(-750, 0, 10), facecolor = 'orange', histtype="stepfilled", alpha=.7, label = "Zipf distribution")
+#Geometric series
+fish_ll_model4 = [ num for (s, num) in fish_ll_geometric]
+plt.hist(fish_ll_model4, bins = range(-750, 0, 10), facecolor = 'olivedrab', histtype="stepfilled", alpha=.7, label = "Geometric")
+#Negative binomial
+fish_ll_model3 = [ num for (s, num) in fish_ll_neg_bin]
+plt.hist(fish_ll_model3, bins = range(-750, 0, 10), facecolor = 'gray', histtype="stepfilled", alpha=.7, label = "Negative binomial")
+#Poisson lognormal
+fish_ll_model2 = [ num for (s, num) in fish_ll_pln]
+plt.hist(fish_ll_model2, bins = range(-750, 0, 10), facecolor = 'teal', histtype="stepfilled", alpha=.7, label = "Poisson lognormal")
+#Logseries
+fish_ll_model0 = [ num for (s, num) in fish_ll_logser]
+plt.hist(fish_ll_model0, bins = range(-750, 0, 10), facecolor = 'magenta', histtype="stepfilled", alpha=.4, label = "Logseries")
+
+
+plt.legend(loc = 'upper left', fontsize = 11)
+plt.xlabel("Actinopterygii log-likelihoods")
+plt.ylabel("Frequency")
+plt.tight_layout()
+#Output figure
+fileName = "./sad-data/chapter1/Actinopterygii_likelihoods.png"
+plt.savefig(fileName, format="png" )
+plt.close()
 
 '''Relative likelihoods graph'''
 # Make histogram
@@ -796,7 +1102,7 @@ plt.figure()
 bins = 50
 #Zipf distribution
 relative_model5 = [ num for (s, num) in relative_zipf]
-plt.hist(relative_model5, bins, range = [0,1], facecolor = 'violet', histtype="stepfilled", alpha=.7, label = "Geometric")
+plt.hist(relative_model5, bins, range = [0,1], facecolor = 'orange', histtype="stepfilled", alpha=.7, label = "Geometric")
 #Geometric series
 relative_model4 = [ num for (s, num) in relative_geometric]
 plt.hist(relative_model4, bins, range = [0,1], facecolor = 'olivedrab', histtype="stepfilled", alpha=.7, label = "Geometric")
@@ -867,7 +1173,7 @@ plt.close()
 
 #Zipf
 plt.figure()
-plt.hist(relative_model5, bins, range = [0,1], facecolor = 'violet', histtype="stepfilled", alpha=.7, label = "Geometric")
+plt.hist(relative_model5, bins, range = [0,1], facecolor = 'orange', histtype="stepfilled", alpha=.7, label = "Geometric")
 plt.xlabel("Zipf distribution")
 plt.ylabel("Frequency")
 plt.tight_layout()
