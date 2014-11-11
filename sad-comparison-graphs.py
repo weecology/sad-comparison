@@ -99,10 +99,10 @@ spider_wins = cur.execute("""SELECT model_name, COUNT(model_code) AS total_wins 
 spider_wins = cur.fetchall()
 
 #amphibians
-amphibians_wins = cur.execute("""SELECT model_name, COUNT(model_code) AS total_wins FROM ResultsWin
+amphibian_wins = cur.execute("""SELECT model_name, COUNT(model_code) AS total_wins FROM ResultsWin
                                  WHERE dataset_code == 'Amphibia'
                                  GROUP BY model_code""")
-amphibians_wins = cur.fetchall()
+amphibian_wins = cur.fetchall()
 
 #fish
 fish_wins = cur.execute("""SELECT model_name, COUNT(model_code) AS total_wins FROM ResultsWin
@@ -308,16 +308,16 @@ model0 = [ num for (s, num) in logseries ]
 plt.hist(model0, bins, range = (0,1), facecolor = 'magenta', histtype="stepfilled", alpha=1, label = "Truncated logseries")
 #Poisson lognormal
 model1 = [ num for (s, num) in pln]
-plt.hist(model2, bins, range = (0,1), facecolor = 'teal', histtype="stepfilled", alpha=.7, label = "Poisson lognormal")
+plt.hist(model1, bins, range = (0,1), facecolor = 'teal', histtype="stepfilled", alpha=.7, label = "Poisson lognormal")
 #Negative binomial
 model2 = [ num for (s, num) in neg_bin]
-plt.hist(model3, bins, range = (0,1), facecolor = 'gray', histtype="stepfilled", alpha=.7, label = "Negative binomial")
+plt.hist(model2, bins, range = (0,1), facecolor = 'gray', histtype="stepfilled", alpha=.7, label = "Negative binomial")
 #Geometric series
 model3 = [ num for (s, num) in geometric]
-plt.hist(model4, bins, range = (0,1), facecolor = 'olivedrab', histtype="stepfilled", alpha=.7, label = "Geometric")
+plt.hist(model3, bins, range = (0,1), facecolor = 'olivedrab', histtype="stepfilled", alpha=.7, label = "Geometric")
 #Zipf distribution
 model4 = [ num for (s, num) in zipf]
-plt.hist(model5, bins, range = (0,1), facecolor = 'violet', histtype="stepfilled", alpha=.7, label = "Zipf")
+plt.hist(model4, bins, range = (0,1), facecolor = 'violet', histtype="stepfilled", alpha=.7, label = "Zipf")
 
 plt.legend(loc = 'upper right', fontsize = 11)
 
@@ -497,8 +497,7 @@ plt.close()
 
 #Zipf distribution
 plt.figure()
-ll_model5 = [ num for (s, num) in ll_zipf]
-plt.hist(model5, bins, range = (0,1), facecolor = 'violet', histtype="stepfilled", alpha=.7, label = "Zipf distribution")
+plt.hist(ll_model5, bins = range(-750, 0, 10), facecolor = 'violet', histtype="stepfilled", alpha=.7, label = "Zipf distribution")
 plt.xlabel("Zipf distribution log-likelihoods")
 plt.ylabel("Frequency")
 plt.tight_layout()
