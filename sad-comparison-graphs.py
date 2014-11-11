@@ -898,7 +898,61 @@ fileName = "./sad-data/chapter1/beetle_likelihoods.png"
 plt.savefig(fileName, format="png" )
 plt.close()
 
+# spiders
+#spiders logseries
+spiders_ll_logser = cur.execute("""SELECT model_name, value FROM RawResults
+                            WHERE dataset_code == 'Arachnida' AND model_name == 'Logseries' AND value_type =='likelihood' AND value IS NOT NUll
+                            ORDER BY value""")
+spiders_ll_logser = cur.fetchall()
+#spiders Poisson lognormal
+spiders_ll_pln = cur.execute("""SELECT model_name, value FROM RawResults
+                            WHERE dataset_code == 'Arachnida' AND model_name == 'Poisson lognormal' AND value_type =='likelihood' AND value IS NOT NUll
+                            ORDER BY value""")
+spiders_ll_pln = cur.fetchall()
+#spiders negative binomial
+spiders_ll_neg_bin = cur.execute("""SELECT model_name, value FROM RawResults
+                            WHERE dataset_code == 'Arachnida' AND model_name == 'Negative binomial' AND value_type =='likelihood' AND value IS NOT NUll
+                            ORDER BY value""")
+spiders_ll_neg_bin = cur.fetchall()
+#spiders geometric
+spiders_ll_geometric = cur.execute("""SELECT model_name, value FROM RawResults
+                            WHERE dataset_code == 'Arachnida'AND model_name == 'Geometric series' AND value_type =='likelihood' AND value IS NOT NUll
+                            ORDER BY value""")
+spiders_ll_geometric = cur.fetchall()
 
+#beetle Zipf
+spiders_ll_zipf = cur.execute("""SELECT model_name, value FROM RawResults
+                            WHERE dataset_code == 'Arachnida' AND model_name == 'Zipf distribution' AND value_type =='likelihood' AND value IS NOT NUll
+                            ORDER BY value""")
+spiders_ll_zipf = cur.fetchall()
+
+# Plot variables for NABA combined likelihoods graph
+plt.figure()
+#Zipf distribution
+spiders_ll_model5 = [ num for (s, num) in spiders_ll_zipf]
+plt.hist(spiders_ll_model5, bins = range(-750, 0, 10), facecolor = 'violet', histtype="stepfilled", alpha=.7, label = "Zipf distribution")
+#Geometric series
+spiders_ll_model4 = [ num for (s, num) in spiders_ll_geometric]
+plt.hist(spiders_ll_model4, bins = range(-750, 0, 10), facecolor = 'olivedrab', histtype="stepfilled", alpha=.7, label = "Geometric")
+#Negative binomial
+spiders_ll_model3 = [ num for (s, num) in spiders_ll_neg_bin]
+plt.hist(spiders_ll_model3, bins = range(-750, 0, 10), facecolor = 'gray', histtype="stepfilled", alpha=.7, label = "Negative binomial")
+#Poisson lognormal
+spiders_ll_model2 = [ num for (s, num) in spiders_ll_pln]
+plt.hist(spiders_ll_model2, bins = range(-750, 0, 10), facecolor = 'teal', histtype="stepfilled", alpha=.7, label = "Poisson lognormal")
+#Logseries
+spiders_ll_model0 = [ num for (s, num) in spiders_ll_logser]
+plt.hist(spiders_ll_model0, bins = range(-750, 0, 10), facecolor = 'magenta', histtype="stepfilled", alpha=.4, label = "Logseries")
+
+
+plt.legend(loc = 'upper left', fontsize = 11)
+plt.xlabel("Arachnida log-likelihoods")
+plt.ylabel("Frequency")
+plt.tight_layout()
+#Output figure
+fileName = "./sad-data/chapter1/spider_likelihoods.png"
+plt.savefig(fileName, format="png" )
+plt.close()
 '''Relative likelihoods graph'''
 # Make histogram
 # Set up figure
