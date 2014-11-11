@@ -317,7 +317,7 @@ model3 = [ num for (s, num) in geometric]
 plt.hist(model3, bins, range = (0,1), facecolor = 'olivedrab', histtype="stepfilled", alpha=.7, label = "Geometric")
 #Zipf distribution
 model4 = [ num for (s, num) in zipf]
-plt.hist(model4, bins, range = (0,1), facecolor = 'violet', histtype="stepfilled", alpha=.7, label = "Zipf")
+plt.hist(model4, bins, range = (0,1), facecolor = 'orange', histtype="stepfilled", alpha=.7, label = "Zipf")
 
 plt.legend(loc = 'upper right', fontsize = 11)
 
@@ -382,7 +382,7 @@ plt.close()
 #Zipf distribution
 plt.figure()
 model4 = [ num for (s, num) in zipf]
-plt.hist(model4, bins, range = (0,1), facecolor = 'violet', histtype="stepfilled", alpha=.7, label = "Zipf")
+plt.hist(model4, bins, range = (0,1), facecolor = 'orange', histtype="stepfilled", alpha=.7, label = "Zipf")
 plt.xlabel("Zipf distribution AICc weights")
 plt.ylabel("Frequency")
 plt.tight_layout()
@@ -427,7 +427,7 @@ ll_zipf = cur.fetchall()
 # Plot variables for combined likelihoods graph
 #Zipf distribution
 ll_model5 = [ num for (s, num) in ll_zipf]
-plt.hist(ll_model5, bins = range(-750, 0, 10), facecolor = 'violet', histtype="stepfilled", alpha=.7, label = "Zipf distribution")
+plt.hist(ll_model5, bins = range(-750, 0, 10), facecolor = 'orange', histtype="stepfilled", alpha=.7, label = "Zipf distribution")
 #Geometric series
 ll_model4 = [ num for (s, num) in ll_geometric]
 plt.hist(ll_model4, bins = range(-750, 0, 10), facecolor = 'olivedrab', histtype="stepfilled", alpha=.7, label = "Geometric")
@@ -497,7 +497,7 @@ plt.close()
 
 #Zipf distribution
 plt.figure()
-plt.hist(ll_model5, bins = range(-750, 0, 10), facecolor = 'violet', histtype="stepfilled", alpha=.7, label = "Zipf distribution")
+plt.hist(ll_model5, bins = range(-750, 0, 10), facecolor = 'orange', histtype="stepfilled", alpha=.7, label = "Zipf distribution")
 plt.xlabel("Zipf distribution log-likelihoods")
 plt.ylabel("Frequency")
 plt.tight_layout()
@@ -540,7 +540,7 @@ bbs_ll_zipf = cur.fetchall()
 plt.figure()
 #Zipf distribution
 bbs_ll_model5 = [ num for (s, num) in bbs_ll_zipf]
-plt.hist(bbs_ll_model5, bins = range(-750, 0, 10), facecolor = 'violet', histtype="stepfilled", alpha=.7, label = "Zipf distribution")
+plt.hist(bbs_ll_model5, bins = range(-750, 0, 10), facecolor = 'orange', histtype="stepfilled", alpha=.7, label = "Zipf distribution")
 #Geometric series
 bbs_ll_model4 = [ num for (s, num) in bbs_ll_geometric]
 plt.hist(bbs_ll_model4, bins = range(-750, 0, 10), facecolor = 'olivedrab', histtype="stepfilled", alpha=.7, label = "Geometric")
@@ -596,7 +596,7 @@ cbc_ll_zipf = cur.fetchall()
 plt.figure()
 #Zipf distribution
 cbc_ll_model5 = [ num for (s, num) in cbc_ll_zipf]
-plt.hist(cbc_ll_model5, bins = range(-750, 0, 10), facecolor = 'violet', histtype="stepfilled", alpha=.7, label = "Zipf distribution")
+plt.hist(cbc_ll_model5, bins = range(-750, 0, 10), facecolor = 'orange', histtype="stepfilled", alpha=.7, label = "Zipf distribution")
 #Geometric series
 cbc_ll_model4 = [ num for (s, num) in cbc_ll_geometric]
 plt.hist(cbc_ll_model4, bins = range(-750, 0, 10), facecolor = 'olivedrab', histtype="stepfilled", alpha=.7, label = "Geometric")
@@ -651,7 +651,7 @@ fia_ll_zipf = cur.fetchall()
 plt.figure()
 #Zipf distribution
 fia_ll_model5 = [ num for (s, num) in fia_ll_zipf]
-plt.hist(fia_ll_model5, bins = range(-750, 0, 10), facecolor = 'violet', histtype="stepfilled", alpha=.7, label = "Zipf distribution")
+plt.hist(fia_ll_model5, bins = range(-750, 0, 10), facecolor = 'orange', histtype="stepfilled", alpha=.7, label = "Zipf distribution")
 #Geometric series
 fia_ll_model4 = [ num for (s, num) in fia_ll_geometric]
 plt.hist(fia_ll_model4, bins = range(-750, 0, 10), facecolor = 'olivedrab', histtype="stepfilled", alpha=.7, label = "Geometric")
@@ -707,7 +707,7 @@ gentry_ll_zipf = cur.fetchall()
 plt.figure()
 #Zipf distribution
 gentry_ll_model5 = [ num for (s, num) in gentry_ll_zipf]
-plt.hist(gentry_ll_model5, bins = range(-750, 0, 10), facecolor = 'violet', histtype="stepfilled", alpha=.7, label = "Zipf distribution")
+plt.hist(gentry_ll_model5, bins = range(-750, 0, 10), facecolor = 'orange', histtype="stepfilled", alpha=.7, label = "Zipf distribution")
 #Geometric series
 gentry_ll_model4 = [ num for (s, num) in gentry_ll_geometric]
 plt.hist(gentry_ll_model4, bins = range(-750, 0, 10), facecolor = 'olivedrab', histtype="stepfilled", alpha=.7, label = "Geometric")
@@ -763,7 +763,7 @@ mcdb_ll_zipf = cur.fetchall()
 plt.figure()
 #Zipf distribution
 mcdb_ll_model5 = [ num for (s, num) in mcdb_ll_zipf]
-plt.hist(mcdb_ll_model5, bins = range(-750, 0, 10), facecolor = 'violet', histtype="stepfilled", alpha=.7, label = "Zipf distribution")
+plt.hist(mcdb_ll_model5, bins = range(-750, 0, 10), facecolor = 'orange', histtype="stepfilled", alpha=.7, label = "Zipf distribution")
 #Geometric series
 mcdb_ll_model4 = [ num for (s, num) in mcdb_ll_geometric]
 plt.hist(mcdb_ll_model4, bins = range(-750, 0, 10), facecolor = 'olivedrab', histtype="stepfilled", alpha=.7, label = "Geometric")
@@ -818,7 +818,7 @@ naba_ll_zipf = cur.fetchall()
 plt.figure()
 #Zipf distribution
 naba_ll_model5 = [ num for (s, num) in naba_ll_zipf]
-plt.hist(naba_ll_model5, bins = range(-750, 0, 10), facecolor = 'violet', histtype="stepfilled", alpha=.7, label = "Zipf distribution")
+plt.hist(naba_ll_model5, bins = range(-750, 0, 10), facecolor = 'orange', histtype="stepfilled", alpha=.7, label = "Zipf distribution")
 #Geometric series
 naba_ll_model4 = [ num for (s, num) in naba_ll_geometric]
 plt.hist(naba_ll_model4, bins = range(-750, 0, 10), facecolor = 'olivedrab', histtype="stepfilled", alpha=.7, label = "Geometric")
@@ -874,7 +874,7 @@ beetle_ll_zipf = cur.fetchall()
 plt.figure()
 #Zipf distribution
 beetle_ll_model5 = [ num for (s, num) in beetle_ll_zipf]
-plt.hist(beetle_ll_model5, bins = range(-750, 0, 10), facecolor = 'violet', histtype="stepfilled", alpha=.7, label = "Zipf distribution")
+plt.hist(beetle_ll_model5, bins = range(-750, 0, 10), facecolor = 'orange', histtype="stepfilled", alpha=.7, label = "Zipf distribution")
 #Geometric series
 beetle_ll_model4 = [ num for (s, num) in beetle_ll_geometric]
 plt.hist(beetle_ll_model4, bins = range(-750, 0, 10), facecolor = 'olivedrab', histtype="stepfilled", alpha=.7, label = "Geometric")
@@ -930,7 +930,7 @@ spiders_ll_zipf = cur.fetchall()
 plt.figure()
 #Zipf distribution
 spiders_ll_model5 = [ num for (s, num) in spiders_ll_zipf]
-plt.hist(spiders_ll_model5, bins = range(-750, 0, 10), facecolor = 'violet', histtype="stepfilled", alpha=.7, label = "Zipf distribution")
+plt.hist(spiders_ll_model5, bins = range(-750, 0, 10), facecolor = 'orange', histtype="stepfilled", alpha=.7, label = "Zipf distribution")
 #Geometric series
 spiders_ll_model4 = [ num for (s, num) in spiders_ll_geometric]
 plt.hist(spiders_ll_model4, bins = range(-750, 0, 10), facecolor = 'olivedrab', histtype="stepfilled", alpha=.7, label = "Geometric")
@@ -986,7 +986,7 @@ amphibians_ll_zipf = cur.fetchall()
 plt.figure()
 #Zipf distribution
 amphibians_ll_model5 = [ num for (s, num) in amphibians_ll_zipf]
-plt.hist(amphibians_ll_model5, bins = range(-750, 0, 10), facecolor = 'violet', histtype="stepfilled", alpha=.7, label = "Zipf distribution")
+plt.hist(amphibians_ll_model5, bins = range(-750, 0, 10), facecolor = 'orange', histtype="stepfilled", alpha=.7, label = "Zipf distribution")
 #Geometric series
 amphibians_ll_model4 = [ num for (s, num) in amphibians_ll_geometric]
 plt.hist(amphibians_ll_model4, bins = range(-750, 0, 10), facecolor = 'olivedrab', histtype="stepfilled", alpha=.7, label = "Geometric")
@@ -1042,7 +1042,7 @@ fish_ll_zipf = cur.fetchall()
 plt.figure()
 #Zipf distribution
 fish_ll_model5 = [ num for (s, num) in fish_ll_zipf]
-plt.hist(fish_ll_model5, bins = range(-750, 0, 10), facecolor = 'violet', histtype="stepfilled", alpha=.7, label = "Zipf distribution")
+plt.hist(fish_ll_model5, bins = range(-750, 0, 10), facecolor = 'orange', histtype="stepfilled", alpha=.7, label = "Zipf distribution")
 #Geometric series
 fish_ll_model4 = [ num for (s, num) in fish_ll_geometric]
 plt.hist(fish_ll_model4, bins = range(-750, 0, 10), facecolor = 'olivedrab', histtype="stepfilled", alpha=.7, label = "Geometric")
@@ -1062,7 +1062,7 @@ plt.xlabel("Actinopterygii log-likelihoods")
 plt.ylabel("Frequency")
 plt.tight_layout()
 #Output figure
-fileName = "./sad-data/chapter1/Actinopterygiin_likelihoods.png"
+fileName = "./sad-data/chapter1/Actinopterygii_likelihoods.png"
 plt.savefig(fileName, format="png" )
 plt.close()
 
@@ -1102,7 +1102,7 @@ plt.figure()
 bins = 50
 #Zipf distribution
 relative_model5 = [ num for (s, num) in relative_zipf]
-plt.hist(relative_model5, bins, range = [0,1], facecolor = 'violet', histtype="stepfilled", alpha=.7, label = "Geometric")
+plt.hist(relative_model5, bins, range = [0,1], facecolor = 'orange', histtype="stepfilled", alpha=.7, label = "Geometric")
 #Geometric series
 relative_model4 = [ num for (s, num) in relative_geometric]
 plt.hist(relative_model4, bins, range = [0,1], facecolor = 'olivedrab', histtype="stepfilled", alpha=.7, label = "Geometric")
@@ -1173,7 +1173,7 @@ plt.close()
 
 #Zipf
 plt.figure()
-plt.hist(relative_model5, bins, range = [0,1], facecolor = 'violet', histtype="stepfilled", alpha=.7, label = "Geometric")
+plt.hist(relative_model5, bins, range = [0,1], facecolor = 'orange', histtype="stepfilled", alpha=.7, label = "Geometric")
 plt.xlabel("Zipf distribution")
 plt.ylabel("Frequency")
 plt.tight_layout()
