@@ -1102,7 +1102,7 @@ plt.figure()
 bins = 50
 #Zipf distribution
 relative_model5 = [ num for (s, num) in relative_zipf]
-plt.hist(relative_model5, bins, range = [0,1], facecolor = 'orange', histtype="stepfilled", alpha=.7, label = "Geometric")
+plt.hist(relative_model5, bins, range = [0,1], facecolor = 'orange', histtype="stepfilled", alpha=.7, label = "Zipf distribution")
 #Geometric series
 relative_model4 = [ num for (s, num) in relative_geometric]
 plt.hist(relative_model4, bins, range = [0,1], facecolor = 'olivedrab', histtype="stepfilled", alpha=.7, label = "Geometric")
