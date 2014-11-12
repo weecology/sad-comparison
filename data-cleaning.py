@@ -93,12 +93,12 @@ integer_communities= cur.execute("""SELECT dataset_ID, confidence, species, abun
 integer_communities = cur.fetchall()
 
 #Output abundances
-output_integer_communities = csv.writer(open(data_dir + 'RAD2003int' + '_spab.csv','wb'))
-output_integer_communities.writerow(['dataset_ID', 'confidence', 'species', 'abundance']) #Output header
-for row in integer_communities:
-    output_integer_communities.writerow(row)
+with open(data_dir + 'RAD2003int' + '_spab.csv','wb') as archive_file:
+    output_integer_communities = csv.writer(archive_file)
+    output_integer_communities.writerow(['dataset_ID', 'confidence', 'species', 'abundance']) #Output header
+    for row in integer_communities:
+        output_integer_communities.writerow(row)
 
-print("Complete.")
 
 #Close connection
 con.close()
@@ -113,14 +113,14 @@ con.text_factory = str
 #Query for communities that are in the misc main database and have integer abundances
 #Query for taxa
 taxa = cur.execute("""SELECT DISTINCT Class FROM miscabundancedb_main
-                      WHERE Class IS NOT 'Chondrichthyes' 
-                      ORDER BY Class""") #Excludes Chondrichthyes because that class has too few species. (2, for 2 sites)
+                      WHERE Class IS NOT 'Chondrichthyes' AND Class IS NOT 'Aves'
+                      ORDER BY Class""") #Excludes Chondrichthyes because that class has too few species. (2, for 2 sites), and Aves, because it has no integer abundance data."
 taxa = cur.fetchall()
 
 
 communities= cur.execute("""SELECT Class, Site_ID, Citation, (Genus ||" "|| Species) AS species, Abundance FROM
                             miscabundancedb_main
-                            WHERE Abundance IS NOT 0 OR NULL
+                            WHERE Abundance IS NOT NULL AND Abundance IS NOT 0
                             ORDER BY Site_ID""")
 communities = cur.fetchall()
 
@@ -133,10 +133,12 @@ for taxa_class in taxa:
     #Run through communities, pull out all data that matches the taxon and output as a .csv
     #Output abundances
     output_file = './sad-data/chapter1/' + taxon[0] + '_spab.csv'
-    output_communities = csv.writer(open(output_file,'wb'))
-    output_communities.writerow(['site_ID', 'citation', 'species', 'abundance']) #Output header
-    for row in communities:
-        if row[0] == taxon[0]:
-            output_communities.writerow(row[1:])    
+    with open(output_file,'wb') as archive_file:
+        output_communities = csv.writer(archive_file)
+        output_communities.writerow(['site_ID', 'citation', 'species', 'abundance']) #Output header
+        for row in communities:
+            if row[0] == taxon[0]:
+                output_communities.writerow(row[1:])    
     
+print("Complete.")
     
