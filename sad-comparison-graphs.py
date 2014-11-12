@@ -331,7 +331,7 @@ zipf = cur.fetchall()
 bins = 50
 #Logseries
 model0 = [ num for (s, num) in logseries ]
-plt.hist(model0, bins, range = (0,1), facecolor = 'magenta', histtype="stepfilled", alpha=1, label = "Truncated logseries")
+plt.hist(model0, bins, range = (0,1), facecolor = 'magenta', histtype="stepfilled", alpha=1, label = "Logseries")
 #Poisson lognormal
 model1 = [ num for (s, num) in pln]
 plt.hist(model1, bins, range = (0,1), facecolor = 'teal', histtype="stepfilled", alpha=.7, label = "Poisson lognormal")
@@ -361,7 +361,7 @@ plt.close()
 bins = 50
 #Logseries
 plt.figure()
-plt.hist(model0, bins, range = (0,1), facecolor = 'magenta', histtype="stepfilled", alpha=1, label = "Truncated logseries")
+plt.hist(model0, bins, range = (0,1), facecolor = 'magenta', histtype="stepfilled", alpha=1, label = "Logseries")
 plt.xlabel("Logseries AICc weights")
 plt.ylabel("Frequency")
 plt.tight_layout()
@@ -480,7 +480,7 @@ plt.close()
 #Logseries
 plt.figure()
 plt.hist(ll_model0, bins = range(-750, 0, 10), facecolor = 'magenta', histtype="stepfilled", alpha=1, label = "Logseries")
-plt.xlabel("Truncated logseries log-likelihoods")
+plt.xlabel("Logseries log-likelihoods")
 plt.ylabel("Frequency")
 plt.tight_layout()
 #Output figure
