@@ -110,11 +110,17 @@ fish_wins = cur.execute("""SELECT model_name, COUNT(model_code) AS total_wins FR
                                  GROUP BY model_code""")
 fish_wins = cur.fetchall()
 
+#reptiles
+reptile_wins = cur.execute("""SELECT model_name, COUNT(model_code) AS total_wins FROM ResultsWin
+                                 WHERE dataset_code == 'Reptilia'
+                                 GROUP BY model_code""")
+reptile_wins = cur.fetchall()
+
 # Make histogram
 # Set up figure
 wins_by_dataset_fig = plt.figure()
 # Plot variables for bbs subplot
-plt.subplot(5,2,1)
+plt.subplot(4,3,1)
 N = len(bbs_wins)
 x = np.arange(1, N+1)
 y = [ num for (s, num) in bbs_wins ]
@@ -128,7 +134,7 @@ plt.xlabel( 'BBS' )
 
 
 # Plot variables for cbc subplot
-plt.subplot(5,2,2)
+plt.subplot(4,3,2)
 N = len(cbc_wins)
 x = np.arange(1, N+1)
 y = [ num for (s, num) in cbc_wins ]
@@ -142,7 +148,7 @@ plt.xlabel( 'CBC' )
 
 
 # Plot variables for fia subplot
-plt.subplot(5,2,3)
+plt.subplot(4,3,3)
 N = len(fia_wins)
 x = np.arange(1, N+1)
 y = [ num for (s, num) in fia_wins ]
@@ -156,7 +162,7 @@ plt.xlabel( 'FIA' )
 
 
 # Plot variables for Gentry subplot
-plt.subplot(5,2,4)
+plt.subplot(4,3,4)
 N = len(gentry_wins)
 x = np.arange(1, N+1)
 y = [ num for (s, num) in gentry_wins ]
@@ -170,7 +176,7 @@ plt.xlabel( 'Gentry' )
 
 
 # Plot variables for mcdb subplot
-plt.subplot(5,2,5)
+plt.subplot(4,3,5)
 N = len(mcdb_wins)
 x = np.arange(1, N+1)
 y = [ num for (s, num) in mcdb_wins ]
@@ -185,7 +191,7 @@ plt.xlabel( 'MCDB' )
 
 
 # Plot variables for NABA subplot
-plt.subplot(5,2,6)
+plt.subplot(4,3,6)
 N = len(naba_wins)
 x = np.arange(1, N+1)
 y = [ num for (s, num) in naba_wins ]
@@ -200,7 +206,7 @@ plt.xlabel( 'NABA' )
 plt.tight_layout()
 
 #beetle subplot
-plt.subplot(5,2,7)
+plt.subplot(4,3,7)
 N = len(beetle_wins)
 x = np.arange(1, N+1)
 y = [ num for (s, num) in beetle_wins ]
@@ -215,7 +221,7 @@ plt.xlabel( 'Coleoptera' )
 plt.tight_layout()
 
 # spider subplot
-plt.subplot(5,2,8)
+plt.subplot(4,3,8)
 N = len(spider_wins)
 x = np.arange(1, N+1)
 y = [ num for (s, num) in spider_wins ]
@@ -231,7 +237,7 @@ plt.tight_layout()
 
 
 #amphibian subplot
-plt.subplot(5,2,9)
+plt.subplot(4,3,9)
 N = len(amphibian_wins)
 x = np.arange(1, N+1)
 y = [ num for (s, num) in amphibian_wins ]
@@ -246,7 +252,7 @@ plt.xlabel( 'Amphibians' )
 plt.tight_layout()
 
 # fish subplot
-plt.subplot(5,2,10)
+plt.subplot(4,3,10)
 N = len(fish_wins)
 x = np.arange(1, N+1)
 y = [ num for (s, num) in fish_wins ]
@@ -257,6 +263,26 @@ plt.yticks(fontsize = 'x-small')
 plt.ylabel( 'Wins', fontsize = 'small' )
 plt.xticks(x + width/2.0, labels, fontsize = 5.9  )
 plt.xlabel( 'Actinopterygii' )
+
+plt.tight_layout()
+
+#Output figure
+fileName = "./sad-data/chapter1/wins_by_dataset.png"
+plt.savefig(fileName, format="png" )
+plt.close()
+
+# reptile subplot
+plt.subplot(4,3,11)
+N = len(reptile_wins)
+x = np.arange(1, N+1)
+y = [ num for (s, num) in reptile_wins ]
+labels = [ s for (s, num) in reptile_wins ]
+width = 1
+bar1 = plt.bar( x, y, width, color="goldenrod" )
+plt.yticks(fontsize = 'x-small')
+plt.ylabel( 'Wins', fontsize = 'small' )
+plt.xticks(x + width/2.0, labels, fontsize = 5.9  )
+plt.xlabel( 'Reptilia' )
 
 plt.tight_layout()
 
@@ -305,7 +331,7 @@ zipf = cur.fetchall()
 bins = 50
 #Logseries
 model0 = [ num for (s, num) in logseries ]
-plt.hist(model0, bins, range = (0,1), facecolor = 'magenta', histtype="stepfilled", alpha=1, label = "Truncated logseries")
+plt.hist(model0, bins, range = (0,1), facecolor = 'magenta', histtype="stepfilled", alpha=1, label = "Logseries")
 #Poisson lognormal
 model1 = [ num for (s, num) in pln]
 plt.hist(model1, bins, range = (0,1), facecolor = 'teal', histtype="stepfilled", alpha=.7, label = "Poisson lognormal")
@@ -335,7 +361,7 @@ plt.close()
 bins = 50
 #Logseries
 plt.figure()
-plt.hist(model0, bins, range = (0,1), facecolor = 'magenta', histtype="stepfilled", alpha=1, label = "Truncated logseries")
+plt.hist(model0, bins, range = (0,1), facecolor = 'magenta', histtype="stepfilled", alpha=1, label = "Logseries")
 plt.xlabel("Logseries AICc weights")
 plt.ylabel("Frequency")
 plt.tight_layout()
@@ -454,7 +480,7 @@ plt.close()
 #Logseries
 plt.figure()
 plt.hist(ll_model0, bins = range(-750, 0, 10), facecolor = 'magenta', histtype="stepfilled", alpha=1, label = "Logseries")
-plt.xlabel("Truncated logseries log-likelihoods")
+plt.xlabel("Logseries log-likelihoods")
 plt.ylabel("Frequency")
 plt.tight_layout()
 #Output figure
@@ -1037,6 +1063,62 @@ fish_ll_zipf = cur.execute("""SELECT model_name, value FROM RawResults
                             WHERE dataset_code == 'Actinopterygii' AND model_name == 'Zipf distribution' AND value_type =='likelihood' AND value IS NOT NUll
                             ORDER BY value""")
 fish_ll_zipf = cur.fetchall()
+
+# reptiles
+#reptiles logseries
+reptiles_ll_logser = cur.execute("""SELECT model_name, value FROM RawResults
+                            WHERE dataset_code == 'Reptilia' AND model_name == 'Logseries' AND value_type =='likelihood' AND value IS NOT NUll
+                            ORDER BY value""")
+reptiles_ll_logser = cur.fetchall()
+#reptiles Poisson lognormal
+reptiles_ll_pln = cur.execute("""SELECT model_name, value FROM RawResults
+                            WHERE dataset_code == 'Reptilia' AND model_name == 'Poisson lognormal' AND value_type =='likelihood' AND value IS NOT NUll
+                            ORDER BY value""")
+reptiles_ll_pln = cur.fetchall()
+#reptiles negative binomial
+reptiles_ll_neg_bin = cur.execute("""SELECT model_name, value FROM RawResults
+                            WHERE dataset_code == 'Reptilia' AND model_name == 'Negative binomial' AND value_type =='likelihood' AND value IS NOT NUll
+                            ORDER BY value""")
+reptiles_ll_neg_bin = cur.fetchall()
+#reptiles geometric
+reptiles_ll_geometric = cur.execute("""SELECT model_name, value FROM RawResults
+                            WHERE dataset_code == 'Reptilia'AND model_name == 'Geometric series' AND value_type =='likelihood' AND value IS NOT NUll
+                            ORDER BY value""")
+reptiles_ll_geometric = cur.fetchall()
+
+#reptiles Zipf
+reptiles_ll_zipf = cur.execute("""SELECT model_name, value FROM RawResults
+                            WHERE dataset_code == 'Reptilia' AND model_name == 'Zipf distribution' AND value_type =='likelihood' AND value IS NOT NUll
+                            ORDER BY value""")
+reptiles_ll_zipf = cur.fetchall()
+
+# Plot variables for reptiles combined likelihoods graph
+plt.figure()
+#Zipf distribution
+reptiles_ll_model5 = [ num for (s, num) in reptiles_ll_zipf]
+plt.hist(reptiles_ll_model5, bins = range(-750, 0, 10), facecolor = 'orange', histtype="stepfilled", alpha=.7, label = "Zipf distribution")
+#Geometric series
+reptiles_ll_model4 = [ num for (s, num) in reptiles_ll_geometric]
+plt.hist(reptiles_ll_model4, bins = range(-750, 0, 10), facecolor = 'olivedrab', histtype="stepfilled", alpha=.7, label = "Geometric")
+#Negative binomial
+reptiles_ll_model3 = [ num for (s, num) in reptiles_ll_neg_bin]
+plt.hist(reptiles_ll_model3, bins = range(-750, 0, 10), facecolor = 'gray', histtype="stepfilled", alpha=.7, label = "Negative binomial")
+#Poisson lognormal
+reptiles_ll_model2 = [ num for (s, num) in reptiles_ll_pln]
+plt.hist(reptiles_ll_model2, bins = range(-750, 0, 10), facecolor = 'teal', histtype="stepfilled", alpha=.7, label = "Poisson lognormal")
+#Logseries
+reptiles_ll_model0 = [ num for (s, num) in reptiles_ll_logser]
+plt.hist(reptiles_ll_model0, bins = range(-750, 0, 10), facecolor = 'goldenrod', histtype="stepfilled", alpha=.4, label = "Logseries")
+
+
+plt.legend(loc = 'upper left', fontsize = 11)
+plt.xlabel("Reptilia log-likelihoods")
+plt.ylabel("Frequency")
+plt.tight_layout()
+#Output figure
+fileName = "./sad-data/chapter1/Reptilia_likelihoods.png"
+plt.savefig(fileName, format="png" )
+plt.close()
 
 # Plot variables for fish combined likelihoods graph
 plt.figure()
