@@ -138,7 +138,7 @@ if data_dir == None:
 
 datasets = input("Please provide a list of dataset ID codes. ")
 if datasets == None:
-    datasets == ['bbs', 'cbc', 'fia', 'gentry', 'mcdb', 'naba'] # Dataset ID codes
+    datasets == ['bbs', 'cbc', 'fia', 'gentry', 'mcdb', 'naba', 'Reptilia', 'Coleoptera', 'Arachnida', 'Amphibia', 'Actinopterygii'] # Dataset ID codes
 
 # Asks for toggle variable so I don't have to rerun all the setup if it is already processed.
 needs_processing = input("Data needs to be processed into an sqlite database, True or False?  ")  
@@ -178,4 +178,6 @@ if needs_processing == True:
         
     
     #Close connection to database
-    con.close()    
+    con.close()
+    
+    print("Database complete.")
