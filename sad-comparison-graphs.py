@@ -266,11 +266,6 @@ plt.xlabel( 'Actinopterygii' )
 
 plt.tight_layout()
 
-#Output figure
-fileName = "./sad-data/chapter1/wins_by_dataset.png"
-plt.savefig(fileName, format="png" )
-plt.close()
-
 # reptile subplot
 plt.subplot(4,3,11)
 N = len(reptile_wins)
