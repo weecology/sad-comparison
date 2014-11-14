@@ -99,21 +99,23 @@ Needs total rewrite with new results
 <!--
 Add inline figures.
 -->
-The logseries had the best model fit in the majority of cases (Figure 1). It provided the best fit for the <!--insert datasets --> datasets.  While the logseries was the consistent winner, the geometric series also performed quite well, and was a fairly close second in the number of wins (Figure 1).
+  While the logseries was the consistent winner for all datasets combined, the geometric series also performed quite well, and was a fairly close second in the number of wins (Figure 1).  The Poisson lognormal and negative binomial distributions had very similar numbers of wins, and the Zipf distribution had slightly less (Figure 1).
 
 ![Figure 1](./sad-data/chapter1/total_wins.png "Figure 1. Total wins by model for all datasets combined.")
 Figure 1. Total wins by model for all datasets combined.
 
-Although the logseries was the overall winner for the combined datasets, there was no consistent pattern in model wins when the datasets were examined separately (Figure 2).
+The logseries had the best model fit in the majority of cases (Figure 2). It provided the best fit for all datasets except FIA, where it was outperformed by the geometric series(Figure 2.) Although the logseries was the overall winner for the combined datasets, there was no consistent pattern in model wins when the datasets were examined separately (Figure 2).  The negative binomial never won for the Coleoptera and Arachnida datasets, and the Poisson lognormal never won for the Coleoptera dataset; however, these datasets had the fewest number of sites (Figure 2).
 
 ![Figure 2](./sad-data/chapter1/wins_by_dataset.png "Figure 2. Total wins by model for each dataset individually.")
 Figure 2. Total wins by model for each dataset individually.
+
+The AICc weights show some separation among models after correcting for the number of model parameters (Figure 3).  The main peak of the weight distribution for the Zipf and geometric distributions tends to fall slightly above 0.0 (Figure 3).  The negative binomial and the Poisson lognormal distributions have peaks slightly higher, around .1, while the Poisson lognormal has another small peak close to 1.0 (Figure 3).  The logseries has a gentle peak from approximately 0.3-0.5, and another from 0.6-0.7 (Figure 3.)  The geometric series has a peak that is fairly consistent to .4, where it shows a slight increase to .5 and falls off sharply at .6 (Figure 3). 
 
  AICc weights
  ![Figure 3](./sad-data/chapter1/AICc_weights.png "Figure 3. AICc weights by model for all datasets combined.")
  Figure 3. AICc weights by model for all datasets combined.
  
- While the AICc weights show some separation among models after correction for the number of parameters (Figure 3), the log-likelihoods show almost complete overlap among models (Figure 4), indicating that all models fit the data equivalently well relative to one another.
+ While the AICc weights show some separation among models after correction for the number of parameters (Figure 3), the log-likelihoods show almost complete overlap among models (Figure 4), indicating that all models fit the data equivalently <!-- not the right word -->well relative to one another.
  ![Figure 4](./sad-data/chapter1/likelihoods.png "Figure 4. Log-likelihoods by model for all datasets combined.")
  Figure 4. Log-likelihoods by model for all datasets combined.
  
