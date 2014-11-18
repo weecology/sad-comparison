@@ -86,7 +86,7 @@ cur.executemany("""INSERT INTO abundance VALUES(?,?,?,?,?,?,?,?)""", abundance_t
 con.commit()
 
 #Query for communities that are in the RAD main database and have integer abundances
-integer_communities= cur.execute("""SELECT dataset_ID, confidence, species, abundance FROM abundance
+integer_communities= cur.execute("""SELECT dataset_ID, species, abundance FROM abundance
                             WHERE decimals == 0 AND code IS NOT NUll
                             ORDER BY dataset_ID""")
 integer_communities = cur.fetchall()
@@ -94,11 +94,20 @@ integer_communities = cur.fetchall()
 #Output abundances
 with open(data_dir + 'RAD2003int' + '_spab.csv','wb') as archive_file:
     output_integer_communities = csv.writer(archive_file)
-    output_integer_communities.writerow(['dataset_ID', 'confidence', 'species', 'abundance']) #Output header
+    output_integer_communities.writerow(['dataset_ID', 'year', 'species', 'abundance']) #Output header
     for row in integer_communities:
-        output_integer_communities.writerow(row)
+        site = []
+        year = ['']
+        species = []
+        abundance = []
+        str(row)
+        site.append(row[0])
+        species.append(row[1])
+        abundance.append(int(row[2]))
+        output_integer_communities.writerow((site + year + species + abundance))
 
 
 #Close connection
 con.close()
 
+print("Complete.")

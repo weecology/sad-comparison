@@ -129,7 +129,7 @@ width = 1
 bar1 = plt.bar( x, y, width, color="red" )
 plt.yticks(fontsize = 'x-small')
 plt.ylabel( 'Wins', fontsize = 'small')
-plt.xticks(x + width/2.0, labels, fontsize = 5.9 )
+plt.xticks(x + width/2.0, labels, fontsize = 'x-small', rotation=15, horizontalalignment = 'right' )
 plt.xlabel( 'BBS' )
 
 
@@ -143,7 +143,7 @@ width = 1
 bar1 = plt.bar( x, y, width, color="tomato" )
 plt.yticks(fontsize = 'xx-small')
 plt.ylabel( 'Wins', fontsize = 'small' )
-plt.xticks(x + width/2.0, labels, fontsize = 5.9  )
+plt.xticks(x + width/2.0, labels, fontsize = 'x-small', rotation=15 , horizontalalignment = 'right'  )
 plt.xlabel( 'CBC' )
 
 
@@ -157,7 +157,7 @@ width = 1
 bar1 = plt.bar( x, y, width, color="green" )
 plt.yticks(fontsize = 'x-small')
 plt.ylabel( 'Wins', fontsize = 'small' )
-plt.xticks(x + width/2.0, labels, fontsize = 5  )
+plt.xticks(x + width/2.0, labels, fontsize = 'x-small', rotation=15, horizontalalignment = 'right'  )
 plt.xlabel( 'FIA' )
 
 
@@ -171,7 +171,7 @@ width = 1
 bar1 = plt.bar( x, y, width, color="olivedrab" )
 plt.yticks(fontsize = 'x-small')
 plt.ylabel( 'Wins', fontsize = 'small' )
-plt.xticks(x + width/2.0, labels, fontsize = 5.9  )
+plt.xticks(x + width/2.0, labels, fontsize = 'x-small', rotation=15, horizontalalignment = 'right'  )
 plt.xlabel( 'Gentry' )
 
 
@@ -185,7 +185,7 @@ width = 1
 bar1 = plt.bar( x, y, width, color="sienna" )
 plt.yticks(fontsize = 'x-small')
 plt.ylabel( 'Wins', fontsize = 'small' )
-plt.xticks(x + width/2.0, labels, fontsize = 5  )
+plt.xticks(x + width/2.0, labels, fontsize = 'x-small', rotation=15, horizontalalignment = 'right'  )
 plt.xlabel( 'MCDB' )
 
 
@@ -200,7 +200,7 @@ width = 1
 bar1 = plt.bar( x, y, width, color="blue" )
 plt.yticks(fontsize = 'x-small')
 plt.ylabel( 'Wins', fontsize = 'small' )
-plt.xticks(x + width/2.0, labels, fontsize = 5.9  )
+plt.xticks(x + width/2.0, labels, fontsize = 'x-small', rotation=15, horizontalalignment = 'right' )
 plt.xlabel( 'NABA' )
 
 plt.tight_layout()
@@ -215,7 +215,7 @@ width = 1
 bar1 = plt.bar( x, y, width, color="orange" )
 plt.yticks(fontsize = 'x-small')
 plt.ylabel( 'Wins', fontsize = 'small' )
-plt.xticks(x + width/2.0, labels, fontsize = 5.9  )
+plt.xticks(x + width/2.0, labels, fontsize = 'x-small', rotation=15, horizontalalignment = 'right' )
 plt.xlabel( 'Coleoptera' )
 
 plt.tight_layout()
@@ -230,7 +230,7 @@ width = 1
 bar1 = plt.bar( x, y, width, color="magenta" )
 plt.yticks(fontsize = 'x-small')
 plt.ylabel( 'Wins', fontsize = 'small' )
-plt.xticks(x + width/2.0, labels, fontsize = 5.9  )
+plt.xticks(x + width/2.0, labels, fontsize = 'x-small', rotation=15, horizontalalignment = 'right'  )
 plt.xlabel( 'Arachnida' )
 
 plt.tight_layout()
@@ -246,7 +246,7 @@ width = 1
 bar1 = plt.bar( x, y, width, color="indigo" )
 plt.yticks(fontsize = 'x-small')
 plt.ylabel( 'Wins', fontsize = 'small' )
-plt.xticks(x + width/2.0, labels, fontsize = 5.9  )
+plt.xticks(x + width/2.0, labels, fontsize = 'x-small', rotation=15, horizontalalignment = 'right'  )
 plt.xlabel( 'Amphibians' )
 
 plt.tight_layout()
@@ -261,15 +261,10 @@ width = 1
 bar1 = plt.bar( x, y, width, color="teal" )
 plt.yticks(fontsize = 'x-small')
 plt.ylabel( 'Wins', fontsize = 'small' )
-plt.xticks(x + width/2.0, labels, fontsize = 5.9  )
+plt.xticks(x + width/2.0, labels, fontsize = 'x-small', rotation=15, horizontalalignment = 'right'  )
 plt.xlabel( 'Actinopterygii' )
 
 plt.tight_layout()
-
-#Output figure
-fileName = "./sad-data/chapter1/wins_by_dataset.png"
-plt.savefig(fileName, format="png" )
-plt.close()
 
 # reptile subplot
 plt.subplot(4,3,11)
@@ -281,7 +276,7 @@ width = 1
 bar1 = plt.bar( x, y, width, color="goldenrod" )
 plt.yticks(fontsize = 'x-small')
 plt.ylabel( 'Wins', fontsize = 'small' )
-plt.xticks(x + width/2.0, labels, fontsize = 5.9  )
+plt.xticks(x + width/2.0, labels, fontsize = 'x-small', rotation=15, horizontalalignment = 'right'  )
 plt.xlabel( 'Reptilia' )
 
 plt.tight_layout()
