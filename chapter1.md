@@ -58,13 +58,7 @@ For sites where a model or models failed, AICc weights were calculated for only 
 
 When species-abundance distributions (SADs) are constructed using counts of individuals (the most common, but not the only approach; see [@McGill2007species and @Morlonetal2009]), the data are discrete (i.e., you cannot have 1.5 individuals) and therefore the most appropriate models are discrete distributions. Therefore, we used only discrete forms of the distributions that have been applied to SADs.
 
-[@McGill2007species] classified models into five different families: purely statistical, branching process, population dynamics, niche partitioning, and spatial distribution of individuals. I attempted to test models from each of the separate families, excluding the spatial distribution family [@McGill2007species] which requires spatially explicit data.  I had initially tried to test the generalized Yule model (branching process family), but this model proved difficult to fit to empirical data and failed to converge to a solution for many of the communities, so it was excluded from the final analyses.
-
-<!--
-This might be a place to talk about the Ulrich paper, because it seems like their power-law choice was in the branching process family, or at least it cites the same Nee 2003 paper that the McGill et al. 2007 paper uses.  Thus, connecting the not using the gen Yule to the Ulrich paper might be important here.
--->
-
-[@Ulrich2010meta] tested a power law model like the generalized Yule distribution as one of their species abundance distributions, and found that it fit the data best when the datasets were incomplete. Another transitional sentence to explain this better. It also had better performance when the data were binned [@Ulrichetal2003], suggesting that this form of the species abundance distribution is not a "true form" of the speciea abundance distribution (i.e., reveals that the data are incomplete/undersampled). <!--Transition sentence.-->
+[@McGill2007species] classified models into five different families: purely statistical, branching process, population dynamics, niche partitioning, and spatial distribution of individuals. I attempted to test models from each of the separate families, excluding the spatial distribution family [@McGill2007species] which requires spatially explicit data.  
 
 I tested the following distributions with the following packages: 
 
@@ -80,8 +74,7 @@ Table 1: Provides the species abundance distribution models used with links to t
 | Zipf distribution (Zipf-Mandelbrot)      	| https://github.com/weecology/macroecotools.git                                    	| Branching process                          	| Power-law (Ulrich et al. 2010)                      	|
 
 ### Analysis
-
-I used a maximum likelihood to fit models to the data and likelihood based model selection to compare the fits of the different models. I did not include models lacking likelihoods in the analysis.
+I used a maximum likelihood to fit models to the data and likelihood based model selection to compare the fits of the different models following the current best practices recommendations for empirically testing species abundance distribution models [@MatthewsWhittaker2014]. I did not include models lacking likelihoods in the analysis.
 
 I used corrected Aikaike Information Criterion (AIC) weights were used to compare the fits of models while correcting for differences in the number of parameters [@BurnhamAnderson2002]. Most of the models analyzed included two fitted parameters, with the exception of the log-series which has one parameter. I used AICc in these weights to address the small sample sizes (i.e., numbers of species) in some communities [@BurnhamAnderson2002]. The model with the greatest AICc weight was determined to be the best model for that site and distributions of weights were compared to determine which models performed best across all datasets.
 
@@ -122,16 +115,6 @@ The AICc weights show some separation among models after correcting for the numb
  <!-- Do we want to add in the 'relative likelihood' graphs, or wait until we do a proper goodness of fit test? -->
  
 # Discussion
-<!---
-TODO:
-
-Add some discussion of the fact that since log-series yields equivalent likelihoods, has the fewest parameters, and is trivial to fit, it is probably the best naive model for the SAD
-
-"goodness of fit" is used a lot, but traditionally this is used to describe whether the model fits the data. All we've done so far is see who well the different models fit the data relative to one another. Adding some tests of actually goodness of fit would probably be a worthwhile addition, either based on binning or comparing R^2 with the real data to simulated distributions like Xiao did in her in press AmNat paper. Regardless, we shouldn't use "goodness of fit" to refer to this particular set of analyses.
-
-I think some discussion of Locey & White, Frank 2014, and other constraint based approaches as possible explanations for why so many models yield similar results would be a useful way to wrap things up.
--->
-
 My extensive comparison of different models for the species-abundance distribution using rigorous statistical methods demonstrates that most existing models provide equivalently good fits to empirical data. Since all models perform well, the models with the fewest parameters perform better in AIC-based model selection, since these approaches penalize model complexity.  Since the logseries provides equivalent likelihoods to the other species distribution models, has a single fitted parameter, and is trivial to fit to empirical data, it is probably the best naive model for fitting species abundance distributions. 
 
  
@@ -146,7 +129,7 @@ The following section has been moved down from the Intro. Not sure exactly where
 
 ### Set up process and non process based model overlap (same form)  
 
-There are two classes of species abundance distribution models, process based models, and non-process based models.  Constraints in a process based model of species abundance distributions (SADs) provide a predicted form of a distribution based on the assumption that the constraints that produce the form of the distribution are biologically meaningful(relevant?).  However, non-process based species abundance distribution models are purely statistical descriptions of the shape of the distribution, and do not infer any biological meaning to the constraints of the distribution, although post hoc biological explanations are sometimes applied to statistical descriptions.  Process based models can share the same forms as other process based or non-process based species abundance distribution models.  Because of the overlap between/among models, it can be difficult to identify potential mechanisms with any degree of certainty (if two models have an identical form, it is impossible to say which model is 'correct'). The difficulty involved in distinguishing between/among models makes it challenging, if not impossible to identify a clear winner among the species abundance distribution models (citations).
+There are two classes of species abundance distribution models, process based models, and non-process based models.  Constraints in a process based model of species abundance distributions (SADs) provide a predicted form of a distribution based on the assumption that the constraints that produce the form of the distribution are biologically meaningful(relevant?).  However, non-process based species abundance distribution models are purely statistical descriptions of the shape of the distribution, and do not infer any biological meaning to the constraints of the distribution, although post hoc biological explanations are sometimes applied to statistical descriptions.  Process based models can share the same forms as other process based or non-process based species abundance distribution models.  Because of the overlap between/among models, it can be difficult to identify potential mechanisms with any degree of certainty (if two models have an identical form, it is impossible to say which model is 'correct'). The difficulty involved in distinguishing between/among models makes it challenging, if not impossible to identify a clear winner among the species abundance distribution models [see @locey2013species; @frank2014generative for possible explanations].
 
 Identifying pattern generating mechanisms of the species abundance distribution is functionally impossible for several reasons.  The three reasons why pattern generating mechanisms are not identifiable are identical distribution forms for different models, multiple mechanistic models for the same distribution, and single mechanisms that can generate multiple forms of the species abundance distribution.  Different process-based species abundance distribution models can generate identical forms of the species abundance distribution.  For example, the negative binomial distribution, a purely statistical model of species abundance distributions, is also the predicted result of neutral theory at the local scale [@Conolly2014commonness].  To further confuse the issue, different biological explanations have been proposed for the same non-process based models, and the same biological explanations have been proposed for different forms of the species abundance distribution.  For example, [@Hughes1986] suggested that a model of community dynamics could produce both the logseries or the lognormal, depending on community conditions.  There might also be so little difference among model goodness of fits that any differerences among models might be irrelevant, making it even more unlikely that any biological mechanisms could be conclusively identified. 
 
