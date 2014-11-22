@@ -87,8 +87,8 @@ con.commit()
 
 #Query for communities that are in the RAD main database and have integer abundances
 integer_communities= cur.execute("""SELECT dataset_ID, species, abundance FROM abundance
-                            WHERE decimals == 0 AND code IS NOT NUll
-                            ORDER BY dataset_ID""")
+                           WHERE decimals == 0 AND code IS NOT NUll AND file_number IS NOT '281'
+                            ORDER BY dataset_ID""") #Abundances for site 281 seem to be too large to run successfully.
 integer_communities = cur.fetchall()
 
 #Output abundances
