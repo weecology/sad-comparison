@@ -14,7 +14,7 @@ import sqlite3 as dbapi
 
 # Function to import the AICc results.
 def import_results(datafile):
-    """Imports raw result .csv files in the form: site, S, N, logseries, logseries_untruncated, pln, Anegbin, geometric, zipf."""
+    """Imports raw result .csv files in the form: site, S, N, logseries, logseries_untruncated, pln, negbin, geometric, zipf."""
     raw_results = np.genfromtxt(datafile, dtype = "S15, i8, i8, f8, f8, f8, f8, f8", skip_header = 1, 
                                 names = ['site', 'S', 'N', 'logseries', 'pln', 'negbin', 'geometric','AICc_zipf'], delimiter = ",", missing_values = '', filling_values = '')
     return raw_results
@@ -130,6 +130,7 @@ def process_results(data_dir, dataset_name, results, value_type):
 results_ext = '_dist_test.csv' # Extension for raw model AICc results files
 likelihood_ext = '_likelihoods.csv' # Extension for raw model likelihood files
 relative_ll_ext = '_relative_L.csv' # Extenstion for raw model relative likelihood files
+database_name = input("Please provide the name of the output database. ")
 
 data_dir = input("Please provide the path to the data directory. ")
 if data_dir == None:
@@ -147,7 +148,8 @@ needs_processing = input("Data needs to be processed into an sqlite database, Tr
 if needs_processing == True:
     # Set up database capabilities 
     # Set up ability to query data
-    con = dbapi.connect('./sad-data/chapter1/SummarizedResults.sqlite')
+    database = data_dir + database_name
+    con = dbapi.connect(database)
     cur = con.cursor()
     
     # Switch con data type to string

@@ -20,7 +20,7 @@ from mpl_toolkits.axes_grid.inset_locator import inset_axes
 
 # Set up database capabilities 
 # Set up ability to query data
-con = dbapi.connect('./sad-data/chapter2/SummarizedResults.sqlite')
+con = dbapi.connect('./sad-data/chapter2/UlrichOllik2003.sqlite')
 cur = con.cursor()
 
 # Switch con data type to string
