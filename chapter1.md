@@ -14,9 +14,7 @@ Here, we evaluate the performance of five of the most widely used models for the
 # Methods
 
 ### Data
-<!--
-Change number of communities, number of individuals once that has settled.
--->
+
 I used data on 16,218 communities, from nine taxonomic groups, representing nearly 50 million individual terrestrial, aquatic, and marine organisms, to test the performance of five species abundance distribution models. This data was compiled from a variety of sources.  Data for the trees, birds, butterflies and mammals was compiled by White et al. 2012 from six data sources: the US Forest Service Forest Inventory and Analysis (FIA; USDA Forest Service 2010), the North American Breeding Bird Survey (BBS; Sauer et al. 2011), the North American Butterfly Associations North American Butterfly Count (NABC; NABA 2009), the Mammal Community Database (MCDB; Thibault et al. 2011), Alwyn Gentry's Forest Transect Data Set (Gentry; Phillips and Miller 2002), and the US Geological Survey's North American Breeding Bird Survey (BBS; Sauer et al. 2011). Gentry sites 102 and 179 were culled from the dataset due to a previously unidentified flaw in those sites.  Additional data was compiled by Baldridge 2012 (Actinopterygii, Reptilia, Coleoptera, Arachnida, Amphibia; MiscDB, Baldridge 2012) and accessed through the EcoData Retriever [@Morris2013ecodata].
 
 <!--
