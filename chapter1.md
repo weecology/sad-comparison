@@ -79,12 +79,7 @@ Model fitting, relative likelihood, and AICc calculations were performed using t
 For sites where the maximum likelihood estimates for one or more models failed to converge (n=XXXX), AICc weights were calculated for only those models which successfully fit the data. ADD A SENTENCE OR TWO DESCRIBING WHICH DATASETS THESE CONVERGENCE FAILURES OCCURRED IN. All other model/data combinations ran successfully.
 
 # Results
-<!--
-Needs total rewrite with new results
--->
-<!--
-Add inline figures.
--->
+
   While the logseries was the consistent winner for all datasets combined, the geometric series also performed quite well, and was a fairly close second in the number of wins (Figure 1).  The Poisson lognormal and negative binomial distributions had very similar numbers of wins, and the Zipf distribution had slightly less (Figure 1).
 
 ![Figure 1](./sad-data/chapter1/total_wins.png "Figure 1. Total wins by model for all datasets combined.")
