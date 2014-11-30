@@ -17,7 +17,7 @@ Here, we evaluate the performance of five of the most widely used models for the
 
 We compiled data from on citizen science projects, government surveys, and literature mining to produce a dataset with 16,218 communities, from nine taxonomic groups, representing nearly 50 million individual terrestrial, aquatic, and marine organisms. to test the performance of five species abundance distribution models. Data for the trees, birds, butterflies and mammals was compiled by White et al. 2012 from six data sources: the US Forest Service Forest Inventory and Analysis (FIA; USDA Forest Service 2010), the North American Breeding Bird Survey (BBS; Sauer et al. 2011), the North American Butterfly Associations North American Butterfly Count (NABC; NABA 2009), the Mammal Community Database (MCDB; Thibault et al. 2011), Alwyn Gentry's Forest Transect Data Set (Gentry; Phillips and Miller 2002), and the US Geological Survey's North American Breeding Bird Survey (BBS; Sauer et al. 2011). Details of the treatment of these datasets can be found in Appendix A of White et al. [@white2012]. In addition to the data selection described by White et al, we did not use Gentry sites 102 and 179 because NEED TO DESCRIBE THE SPECIFIC ISSUE THAT PREVENTED US FROM USING THEM. Data on Actinopterygii, Reptilia, Coleoptera, Arachnida, and Amphibia, were mined from literature by Baldridge (MiscDB, Baldridge 2012). All publicly available data were accessed using the EcoData Retriever [@Morris2013ecodata].
 
-Table : Details of datasets used to evaluate the form of the species-abundance distribution.
+Table 1: Details of datasets used to evaluate the form of the species-abundance distribution.
 
 | Dataset                              	| Dataset code 	| Availability                                     	| Total sites 	| Citation                                         	|
 |--------------------------------------	|--------------	|--------------------------------------------------	|-------------	|--------------------------------------------------	|
@@ -37,35 +37,46 @@ All abundances in the compiled datasets where counts of individuals.
 
 ### Models
 
-species-abundance distributions (SADs) are constructed using counts of individuals (the most common, but not the only approach; see [@McGill2007species and @Morlonetal2009]), the data are discrete (i.e., you cannot have 1.5 individuals) and therefore the most appropriate models are discrete distributions. Therefore, we used only discrete forms of the distributions that have been applied to SADs.
+When species-abundance distributions (SADs) are constructed using counts of individuals (the most common, but not the only approach; see [@McGill2007species and @Morlonetal2009]), the data are discrete (i.e., you cannot have 1.5 individuals) and therefore the most appropriate models are discrete distributions. Since our abundance data was based on individual counts, we used only discrete distributions that have been applied to SADs.
 
-[@McGill2007species] classified models into five different families: purely statistical, branching process, population dynamics, niche partitioning, and spatial distribution of individuals. I attempted to test models from each of the separate families, excluding the spatial distribution family [@McGill2007species] which requires spatially explicit data.  
+[@McGill2007species] classified models into five different families: purely statistical, branching process, population dynamics, niche partitioning, and spatial distribution of individuals. We evaluated models from each of the separate families, excluding the spatial distribution family, which requires spatially explicit data. Specifically, we evaluated the log-series, the Poisson log-normal, the negative binomial, the geometric series, and the Zipf distributions (Table 2).
 
-I tested the following distributions with the following packages: 
+We excluded models from analysis that do not have explicit likelihoods so that we could use the likelihood based methods for fitting and evaluating distributions (see Analysis).
 
-Table 1: Provides the species abundance distribution models used with links to the code implementation and model classification following McGill et al. 2007.  Additional classifications of models are also provided where appropriate.
+<!--
+We need to add a couple of sentences about each distribution, where it comes from, and why we chose it. We also need citations for each distribution as part of this description. This could possible go in the table instead of in the text, but the information definitely needs to be included somewhere.
+-->
+
+<!--
+TODO: Add mathematical form of the distributions to the table. This can replace the "Code implementation" column since everything comes from the same place.
+
+I'd also recommend combining the model classification columns and then providing citations for each classification using footnotes. So, many of them, will simply footnote to McGill, but in the case of things like the negative binomial the "Purely statistical" footnote goes to McGill and the Population Dynamics footnote goes to Connolly. 
+-->
+
+Table 2: Species abundance distribution models evaluated, their mathematical forms and model classifications.
 
 | Species abundance distribution model     	| Code implementation                            	| Model classification  (McGill et al. 2007) 	| Additional model classifications                    	|
 |------------------------------------------	|------------------------------------------------	|--------------------------------------------	|-----------------------------------------------------	|
-| Maximum Entropy Theory of Ecology (METE) 	| https://github.com/weecology/METE.git          	|                                            	| Information-theoretic                               	|
 | Untruncated logseries                    	| https://github.com/weecology/macroecotools.git 	| Purely statistical                         	|                                                     	|
 | Poisson lognormal                        	| https://github.com/weecology/macroecotools.git 	| Purely statistical                         	|                                                     	|
-| Negative binomial                        	| https://github.com/weecology/macroecotools.git 	| Purely statistical                         	| Neutral theory approximation (Connolly et al. 2014) 	|
+| Negative binomial                        	| https://github.com/weecology/macroecotools.git 	| Purely statistical and population dynamics   	| Neutral theory approximation (Connolly et al. 2014) 	|
 | Geometric series                         	| https://github.com/weecology/macroecotools.git 	| Niche partitioning                         	|                                                     	|
-| Zipf distribution (Zipf-Mandelbrot)      	| https://github.com/weecology/macroecotools.git                                    	| Branching process                          	| Power-law (Ulrich et al. 2010)                      	|
+| Zipf distribution (Zipf-Mandelbrot)      	| https://github.com/weecology/macroecotools.git    | Branching process                          	| Power-law (Ulrich et al. 2010)                      	|
 
 ### Analysis
-I used a maximum likelihood to fit models to the data and likelihood based model selection to compare the fits of the different models following the current best practices recommendations for empirically testing species abundance distribution models [@MatthewsWhittaker2014]. I did not include models lacking likelihoods in the analysis.
 
-I used corrected Aikaike Information Criterion (AIC) weights were used to compare the fits of models while correcting for differences in the number of parameters [@BurnhamAnderson2002]. Most of the models analyzed included two fitted parameters, with the exception of the log-series which has one parameter. I used AICc in these weights to address the small sample sizes (i.e., numbers of species) in some communities [@BurnhamAnderson2002]. The model with the greatest AICc weight was determined to be the best model for that site and distributions of weights were compared to determine which models performed best across all datasets.
+Following current best practices for fitting distributions to data and evaluating their fit, I used maximum likelihood estimation to fit models to the data [@clark1999, @newman2005, @white2008] and likelihood based model selection to compare the fits of the different models [@BurnhamAnderson2002, @edwards2007] These general best practices have recently been affirmed as best practices for species abundance distributions [@MatthewsWhittaker2014]. I did not include models lacking likelihoods in the analysis.
 
-I also examined the log-likelihood values to compare the fit of model to data without taking into account the number of parameters used to fit the model. <!--Since species richness varies greatly across the datasets, and the value of log-likelihoods are highly dependent on the number of data points, I calculated relative likelihoods with the AICc weights package in macroecotools (macroecotools, <https://github.com/weecology/macroecotools.git>) by setting the number of parameters in each model to one, effectively normalizing the results (definitely need a citation here)-->.
+For model comparison we used corrected Aikaike Information Criterion (AICc) weights to compare the fits of models while correcting for differences in the number of parameters and appropriately handling the small sample sizes (i.e., numbers of species) in some communities [@BurnhamAnderson2002]. The Poisson log-normal and the negative binomial each have two fitted parameters, while the log-series, geometric series, and Zipf distributions have one fitted parameter each. The model with the greatest AICc weight in each community was determined to be the best model for that community. We also assessed the full distribution of weights to evaluate how similar the fits of the different models were. In addition to evaluating AICc of each model, we also examined the relative log-likelihood values of the models (CITATION NEEDED). This allowed us to compare the fit of models to data without taking into account the number of parameters used to fit the model, and is equivalent to calculating the AIC of each model while setting the number of parameters equal to zero for all models.
+
 <!-- What do you want to do about this?  Should we leave in the weirdness, or take it out?  I feel like this was a weirdness that we did to better visualize the results for ourselves, but it's distracting in the actual paper. -->
-<!-- We should actually do a proper relatively likelihood comparison with it's own function when we get the chance. It won't change the result, but it will avoid this awkward step in the writing and make it easier for others understand what we've done. -->
 
-Model fitting, log-likelihood, relative likelihood, and AIC  calculations were using the macroecotools Python package (https://github.com/weecology/macroecotools). Code necessary and the majority of the data necessary to replicate these analyses is available at (https://github.com/weecology/sad-comparison). The CBC datasets and NABA datasets are not publicly available and are not included.
+<!-- What we need to do is a proper relatively likelihood comparison. This is actually technically AIC with K=0 as I have now described in the text. Just rerunning the analysis with K=0 is fine for this chapter, but we should add a separate function for this in macroecotools when we get the chance since it will be clearer what is going on.
+-->
 
-For sites where a model or models failed, AICc weights were calculated for only those models which successfully fit the data. All other model/data combinations ran successfully. 
+Model fitting, relative likelihood, and AICc calculations were performed using the macroecotools Python package (https://github.com/weecology/macroecotools). All of the code and the majority of the data necessary to replicate these analyses is available at (https://github.com/weecology/sad-comparison). The CBC datasets and NABA datasets are not publicly available and therefore we are not allowed to make the raw data publicly available.
+
+For sites where the maximum likelihood estimates for one or more models failed to converge (n=XXXX), AICc weights were calculated for only those models which successfully fit the data. ADD A SENTENCE OR TWO DESCRIBING WHICH DATASETS THESE CONVERGENCE FAILURES OCCURRED IN. All other model/data combinations ran successfully.
 
 # Results
 <!--
