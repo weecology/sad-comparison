@@ -8,19 +8,17 @@ The species abundance distribution (SAD) has been one of the most widely studied
 
 Which model or models provide the best fit to the data, and the resulting implications for the processes structuring ecological systems, has been a regular topic of debate (e.g., [@McGill2003; @Volkovetal2004; @Ulrich2010meta; @White2012maxent]). Most comparisons of the different models: 1) use only a small subset of available models (typically two; e.g., [@McGill2003; @Volkovetal2004; @White2012maxent]); 2) focus on a single ecosystem or taxonomic group (e.g., [@McGill2003; @Volkovetal2004]); or 3) fail to use the most appropriate statistical methods (e.g., [@Ulrich2010meta]). This makes it difficult to draw general conclusions about which, if any, models provide the best empirical fit to species abundance distributions.
 
-Here, we evaluate the performance of five of the most widely used models for the species abundance distribution. We evaluate their performance using likelihood based model selection on data from 16,218 communities, from nine taxonomic groups, representing roughly 50 million individual organisms.
+Here, we evaluate the performance of five of the most widely used models for the species abundance distribution. We evaluate their performance using likelihood based model selection on data from 16,218 communities, from nine taxonomic groups. This includes data from terrestrial, aquatic, and marine ecosystems representing roughly 50 million individual organisms in total.
 
 
 # Methods
 
 ### Data
 
-I used data on 16,218 communities, from nine taxonomic groups, representing nearly 50 million individual terrestrial, aquatic, and marine organisms, to test the performance of five species abundance distribution models. This data was compiled from a variety of sources.  Data for the trees, birds, butterflies and mammals was compiled by White et al. 2012 from six data sources: the US Forest Service Forest Inventory and Analysis (FIA; USDA Forest Service 2010), the North American Breeding Bird Survey (BBS; Sauer et al. 2011), the North American Butterfly Associations North American Butterfly Count (NABC; NABA 2009), the Mammal Community Database (MCDB; Thibault et al. 2011), Alwyn Gentry's Forest Transect Data Set (Gentry; Phillips and Miller 2002), and the US Geological Survey's North American Breeding Bird Survey (BBS; Sauer et al. 2011). Gentry sites 102 and 179 were culled from the dataset due to a previously unidentified flaw in those sites.  Additional data was compiled by Baldridge 2012 (Actinopterygii, Reptilia, Coleoptera, Arachnida, Amphibia; MiscDB, Baldridge 2012) and accessed through the EcoData Retriever [@Morris2013ecodata].
+We compiled data from on citizen science projects, government surveys, and literature mining to produce a dataset with 16,218 communities, from nine taxonomic groups, representing nearly 50 million individual terrestrial, aquatic, and marine organisms. to test the performance of five species abundance distribution models. Data for the trees, birds, butterflies and mammals was compiled by White et al. 2012 from six data sources: the US Forest Service Forest Inventory and Analysis (FIA; USDA Forest Service 2010), the North American Breeding Bird Survey (BBS; Sauer et al. 2011), the North American Butterfly Associations North American Butterfly Count (NABC; NABA 2009), the Mammal Community Database (MCDB; Thibault et al. 2011), Alwyn Gentry's Forest Transect Data Set (Gentry; Phillips and Miller 2002), and the US Geological Survey's North American Breeding Bird Survey (BBS; Sauer et al. 2011). Details of the treatment of these datasets can be found in Appendix A of White et al. [@white2012]. In addition to the data selection described by White et al, we did not use Gentry sites 102 and 179 because NEED TO DESCRIBE THE SPECIFIC ISSUE THAT PREVENTED US FROM USING THEM. Data on Actinopterygii, Reptilia, Coleoptera, Arachnida, and Amphibia, were mined from literature by Baldridge (MiscDB, Baldridge 2012). All publicly available data were accessed using the EcoData Retriever [@Morris2013ecodata].
 
-<!--
-How about a table for the sections below?
--->
-Table : Information on data sets used.  All publicly available datasets were accessed through the EcoData Retriever (Morris and White 2013).  
+Table : Details of datasets used to evaluate the form of the species-abundance distribution.
+
 | Dataset                              	| Dataset code 	| Availability                                     	| Total sites 	| Citation                                         	|
 |--------------------------------------	|--------------	|--------------------------------------------------	|-------------	|--------------------------------------------------	|
 | North American  Breeding Bird Survey 	| BBS          	| Publicly available                               	|2769             	| BBS; Sauer et al. 2011.                          	|
@@ -35,13 +33,11 @@ Table : Information on data sets used.  All publicly available datasets were acc
 | Coleoptera; Miscellaneous abundance database      	| Coleoptera        	| Publicly available  	|5             	| MiscDB; Baldridge 2012. 	|
 | Arachnida; Miscellaneous abundance database      	| Arachnida         	| Publicly available  	|25             	| MiscDB; Baldridge 2012. 	|
 
- 
-
-For sites where a model or models failed, AICc weights were calculated for only those models which successfully fit the data. All other model/data combinations ran successfully. 
+All abundances in the compiled datasets where counts of individuals.
 
 ### Models
 
-When species-abundance distributions (SADs) are constructed using counts of individuals (the most common, but not the only approach; see [@McGill2007species and @Morlonetal2009]), the data are discrete (i.e., you cannot have 1.5 individuals) and therefore the most appropriate models are discrete distributions. Therefore, we used only discrete forms of the distributions that have been applied to SADs.
+species-abundance distributions (SADs) are constructed using counts of individuals (the most common, but not the only approach; see [@McGill2007species and @Morlonetal2009]), the data are discrete (i.e., you cannot have 1.5 individuals) and therefore the most appropriate models are discrete distributions. Therefore, we used only discrete forms of the distributions that have been applied to SADs.
 
 [@McGill2007species] classified models into five different families: purely statistical, branching process, population dynamics, niche partitioning, and spatial distribution of individuals. I attempted to test models from each of the separate families, excluding the spatial distribution family [@McGill2007species] which requires spatially explicit data.  
 
@@ -69,6 +65,7 @@ I also examined the log-likelihood values to compare the fit of model to data wi
 
 Model fitting, log-likelihood, relative likelihood, and AIC  calculations were using the macroecotools Python package (https://github.com/weecology/macroecotools). Code necessary and the majority of the data necessary to replicate these analyses is available at (https://github.com/weecology/sad-comparison). The CBC datasets and NABA datasets are not publicly available and are not included.
 
+For sites where a model or models failed, AICc weights were calculated for only those models which successfully fit the data. All other model/data combinations ran successfully. 
 
 # Results
 <!--
