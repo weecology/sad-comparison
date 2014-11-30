@@ -8,7 +8,7 @@ The species abundance distribution (SAD) has been one of the most widely studied
 
 Which model or models provide the best fit to the data, and the resulting implications for the processes structuring ecological systems, has been a regular topic of debate (e.g., [@McGill2003; @Volkovetal2004; @Ulrich2010meta; @White2012maxent]). Most comparisons of the different models: 1) use only a small subset of available models (typically two; e.g., [@McGill2003; @Volkovetal2004; @White2012maxent]); 2) focus on a single ecosystem or taxonomic group (e.g., [@McGill2003; @Volkovetal2004]); or 3) fail to use the most appropriate statistical methods (e.g., [@Ulrich2010meta]). This makes it difficult to draw general conclusions about which, if any, models provide the best empirical fit to species abundance distributions.
 
-Here, we evaluate the performance of five of the most widely used models for the species abundance distribution. We evaluate their performance using likelihood based model selection on data from 15,846 communities, from four taxonomic groups, representing nearly 50 million individual organisms.
+Here, we evaluate the performance of five of the most widely used models for the species abundance distribution. We evaluate their performance using likelihood based model selection on data from 16,218 communities, from nine taxonomic groups, representing roughly 50 million individual organisms.
 
 <!--
 I'm not sure whether or not the follow section belongs in the Intro. If it does I'm not sure where to put it at the moment
