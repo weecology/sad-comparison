@@ -10,15 +10,6 @@ Which model or models provide the best fit to the data, and the resulting implic
 
 Here, we evaluate the performance of five of the most widely used models for the species abundance distribution. We evaluate their performance using likelihood based model selection on data from 16,218 communities, from nine taxonomic groups, representing roughly 50 million individual organisms.
 
-<!--
-I'm not sure whether or not the follow section belongs in the Intro. If it does I'm not sure where to put it at the moment
--->
-
-###No difference between models?  Maybe, but...
-
-While different species abundance distribution models can share a single form of a distribution, many models have different but highly similar forms of the species abundance distribution.  Because many forms of the species abundance distribution are highly similar, some have suggested that there is effectively no difference between models (i.e., that the differences between/among models are so small that the models are functionally equivalent)(citations).  However, there has been little work done to rigorously test this assertion.   
-
-
 
 # Methods
 
