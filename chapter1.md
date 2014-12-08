@@ -4,7 +4,11 @@
 
 The species abundance distribution describes the full distribution of commonness and rarity in ecological systems. It is one of the most fundamental and ubiquitous patterns in ecology, and exhibits a consistent general form with many rare species and few abundant species occurring within a community. This general shape is often referred to as a hollow curve distribution.
 
-The species abundance distribution (SAD) has been one of the most widely studied patterns in ecology, leading to a proliferation of models that attempt to characterize the shape of the distribution and identify potential mechanisms for the pattern (see [@mcgill2007] for a recent review of SADs). These models range from arbitrary distributions that are chosen based on providing a good fit to the data (@fisher1943relation), to distributions chosen based on combinatorics and the most likely state of the distribution, [@harte2011; @locey2013; @frank2014], to models based on specific ecological process [@hubbell2001; @volkov2003]. 
+The species abundance distribution (SAD) has been one of the most widely studied patterns in ecology, leading to a proliferation of models that attempt to characterize the shape of the distribution and identify potential mechanisms for the pattern (see [@mcgill2007] for a recent review of SADs). These models range from arbitrary distributions that are chosen based on providing a good fit to the data (@fisher1943relation), to distributions chosen based on combinatorics and the most likely state of the system, [@harte2011; @locey2013; @frank2014], to models based on specific ecological process [@hubbell2001; @volkov2003]. 
+
+<!--
+Xiao's comment: I don't remember SAD in Frank 2014. Could it be Frank 2010 instead, where SADs are assumed to arise from the so-called "measurement scale"?
+-->
 
 Which model or models provide the best fit to the data, and the resulting implications for the processes structuring ecological systems, has been a regular topic of debate (e.g., [@mcgill2003; @volkov2003; @ulrich2010; @white2012]). Most comparisons of the different models: 1) use only a small subset of available models (typically two; e.g., [@mcgill2003; @volkov2003; @white2012]); 2) focus on a single ecosystem or taxonomic group (e.g., [@mcgill2003; @volkov2003]); or 3) fail to use the most appropriate statistical methods (e.g., [@ulrich2010]). This makes it difficult to draw general conclusions about which, if any, models provide the best empirical fit to species abundance distributions.
 
