@@ -95,7 +95,7 @@ Across all datasets, the log-series was the best fitting distribution most often
 
 ![Total wins by model for all datasets combined.](./sad-data/chapter1/total_wins.png)
 
-Evaluting the best fitting distributions within individual datasets and taxonomic groups, the log-series had the best model in the majority of cases (Figure 2). It was the most frequent best fitting model for all datasets except FIA, where it was outperformed by the geometric series (Figure 2). The relative performance of the other models varied among datasets and taxonomic groups. The negative binomial never won for the Coleoptera and Arachnida datasets, and the Poisson lognormal never won for the Coleoptera dataset; however, these datasets had the fewest number of sites (Figure 2).
+Evaluating the best fitting distributions within individual datasets and taxonomic groups, the log-series was the best model in the majority of cases (Figure 2). It was the most frequent best fitting model for all datasets except FIA, where it was outperformed by the geometric series (Figure 2). The relative performance of the other models varied among datasets and taxonomic groups. The negative binomial never won for the Coleoptera and Arachnida datasets, and the Poisson lognormal never won for the Coleoptera dataset; however, these datasets had the fewest number of sites (Figure 2).
 
 <!--
 The above paragraph would benefit from another couple of sentences describing patterns in Figure 2.
@@ -103,14 +103,18 @@ The above paragraph would benefit from another couple of sentences describing pa
 
 ![Total wins by model for each dataset individually.](./sad-data/chapter1/wins_by_dataset.png)
 
-The full distribution of AICc weights show some separation among models (Figure 3). On average, the Zipf and geometric distributions perform poorly, with the primary mode of the weight distribution occurring near 0 (Figure 3). However, the geometric distribution also exhibits better performance for a subset of communities, with a secondary mode near 0.5. The negative binomial and the Poisson lognormal distributions have peaks around 0.1, with the Poisson lognormal also having a small peak close to 1.0 (Figure 3).  The logseries performs the best overall, with has a gentle peak from approximately 0.3-0.5, and another from 0.6-0.7 (Figure 3).
+The full distribution of AICc weights show some separation among models (Figure 3). On average, the Zipf and geometric distributions perform poorly, with the primary mode of the weight distribution occurring near 0 (Figure 3). However, the geometric distribution also exhibits better performance for a subset of communities, with a secondary mode near 0.5. The negative binomial and the Poisson lognormal distributions have peaks around 0.1, with the Poisson lognormal also having a small peak close to 1.0 (Figure 3).  The logseries performs the best overall, with a gentle peak from approximately 0.3-0.5, and another from 0.6-0.7 (Figure 3).
 
 ![AICc weights by model for all datasets combined.](./sad-data/chapter1/AICc_weights.png)
  
-While the AICc weights show separation among models, these values include both a  correction for the number of parameters and show model performance relative to other models in the set of candidate models. Therefore we also compared the negative log-likelihoods of the different models to determine whether or not their absolute fits differed. The log-likelihoods show almost complete overlap among models (Figure 4), indicating that all models fit the data equivalently and that differences in AICc weights resulted primarily from differences in the number of parameters and differences in how similar different models in the set of models were.
+While the AICc weights show separation among models, these values include a correction for the number of parameters along with relative model performance. Therefore we also compared the negative log-likelihoods of the different models to determine whether or not their absolute fits differed. The log-likelihoods show almost complete overlap among models (Figure 4), indicating that all models fit the data equivalently and that differences in AICc weights resulted primarily from differences in the number of parameters and differences in how similar different models in the set of models were.
 
 ![Log-likelihoods by model for all datasets combined.](./sad-data/chapter1/likelihoods.png)
  
+<!-- Xiao's comment: I modified the above sentence so that the word "model" doesn't get repeated in one sentence. 
+
+The second half of the last sentence ("and differences in how similar different models in the set of models were") is a bit confusing to me. 
+-->
 
 # Discussion
 Our extensive comparison of different models for the species-abundance distribution using rigorous statistical methods demonstrates that most existing models provide equivalently good fits to empirical data. Since all models perform well, the models with the fewest parameters perform better in AIC-based model selection since these approaches penalize model complexity.  Since the logseries provides equivalent likelihoods to the other species distribution models, has a single fitted parameter, is easy to fit to empirical data, and is the best overall model using standard model selection, it provides a good naive model for fitting species abundance distributions. 
