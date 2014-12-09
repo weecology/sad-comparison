@@ -19,7 +19,7 @@ Here, we evaluate the performance of five of the most widely used models for the
 
 ### Data
 
-We compiled data from on citizen science projects, government surveys, and literature mining to produce a dataset with 16,218 communities, from nine taxonomic groups, representing nearly 50 million individual terrestrial, aquatic, and marine organisms. to test the performance of five species abundance distribution models. Data for the trees, birds, butterflies and mammals was compiled by White et al. 2012 from six data sources: the US Forest Service Forest Inventory and Analysis (FIA; [@fia]), the North American Butterfly Associations North American Butterfly Count (NABC; @naba), the Mammal Community Database (MCDB; Thibault et al. 2011), Alwyn Gentry's Forest Transect Data Set (Gentry; @phillips2002), the Audubon Society Christmas Bird Count (CBC; @cbc), and the US Geological Survey's North American Breeding Bird Survey (BBS; @pardieck2014). Details of the treatment of these datasets can be found in Appendix A of White et al. [@white2012]. In addition to the data selection described by White et al, we did not use Gentry sites 102 and 179 because NEED TO DESCRIBE THE SPECIFIC ISSUE THAT PREVENTED US FROM USING THEM. Data on Actinopterygii, Reptilia, Coleoptera, Arachnida, and Amphibia, were mined from literature by Baldridge (MiscDB, Baldridge 2012). All publicly available data were accessed using the EcoData Retriever [@morris2013].
+We compiled data from citizen science projects, government surveys, and literature mining to produce a dataset with 16,218 communities, from nine taxonomic groups, representing nearly 50 million individual terrestrial, aquatic, and marine organisms. to test the performance of five species abundance distribution models. Data for the trees, birds, butterflies and mammals was compiled by White et al. 2012 from six data sources: the US Forest Service Forest Inventory and Analysis (FIA; [@fia]), the North American Butterfly Associations North American Butterfly Count (NABC; @naba), the Mammal Community Database (MCDB; Thibault et al. 2011), Alwyn Gentry's Forest Transect Data Set (Gentry; @phillips2002), the Audubon Society Christmas Bird Count (CBC; @cbc), and the US Geological Survey's North American Breeding Bird Survey (BBS; @pardieck2014). Details of the treatment of these datasets can be found in Appendix A of White et al. [@white2012]. In addition to the data selection described by White et al, we did not use Gentry sites 102 and 179 because NEED TO DESCRIBE THE SPECIFIC ISSUE THAT PREVENTED US FROM USING THEM. Data on Actinopterygii, Reptilia, Coleoptera, Arachnida, and Amphibia, were mined from literature by Baldridge (MiscDB, Baldridge 2012). All publicly available data were accessed using the EcoData Retriever [@morris2013].
 
 Table 1: Details of datasets used to evaluate the form of the species-abundance distribution.
 
@@ -52,6 +52,10 @@ We need to add a couple of sentences about each distribution, where it comes fro
 -->
 
 <!--
+Xiao's comment: Is it possible to very briefly go over the 20-ish distributions from McGill et al. 2007 and discuss why we chose these five but excluded the others?
+-->
+
+<!--
 TODO: Add mathematical form of the distributions to the table. This can replace the "Code implementation" column since everything comes from the same place.
 
 I'd also recommend combining the model classification columns and then providing citations for each classification using footnotes. So, many of them, will simply footnote to McGill, but in the case of things like the negative binomial the "Purely statistical" footnote goes to McGill and the Population Dynamics footnote goes to Connolly. 
@@ -73,7 +77,7 @@ Following current best practices for fitting distributions to data and evaluatin
 
 For model comparison we used corrected Aikaike Information Criterion (AICc) weights to compare the fits of models while correcting for differences in the number of parameters and appropriately handling the small sample sizes (i.e., numbers of species) in some communities [@burnham2002]. The Poisson log-normal and the negative binomial each have two fitted parameters, while the log-series, geometric series, and Zipf distributions have one fitted parameter each. The model with the greatest AICc weight in each community was determined to be the best model for that community. We also assessed the full distribution of weights to evaluate how similar the fits of the different models were.
 
-In addition to evaluating AICc of each model, we also examined the log-likelihood values of the models directly. We did this to assess the fit of the model while ignoring corrections for the number of parameters and similarities to other models in the set of candidate models. If two models are very similar in shape this will be definition decrease their AICc weights because they will have very similar AICc's to one other.
+In addition to evaluating AICc of each model, we also examined the log-likelihood values of the models directly. We did this to assess the fit of the model while ignoring corrections for the number of parameters and similarities to other models in the set of candidate models. If two models are similar in shape, they will have similar log-likelihood values, while their AICc weights will be driven primarily by the number of parameters they have.
 
 <!-- What do you want to do about this?  Should we leave in the weirdness, or take it out?  I feel like this was a weirdness that we did to better visualize the results for ourselves, but it's distracting in the actual paper. -->
 
@@ -81,9 +85,9 @@ In addition to evaluating AICc of each model, we also examined the log-likelihoo
 In hindsight I don't think we actually need the relative likelihoods. Our main point is about the likelihoods themselves, we just need to figure out how to display them effectively. I've opened an issue with a possible solution. Feel free to delete these comments if you agree.
 -->
 
-Model fitting, log-likelihood, and AICc calculations were performed using the macroecotools Python package (https://github.com/weecology/macroecotools). All of the code and the majority of the data necessary to replicate these analyses is available at (https://github.com/weecology/sad-comparison). The CBC datasets and NABA datasets are not publicly available and therefore we are not allowed to make the raw data publicly available.
+Model fitting, log-likelihood, and AICc calculations were performed using the macroecotools Python package (https://github.com/weecology/macroecotools). All of the code and the majority of the data necessary to replicate these analyses is available at (https://github.com/weecology/sad-comparison). The CBC datasets and NABA datasets are not publicly available and therefore we are not allowed to redistribute the raw data.
 
-For sites where the maximum likelihood estimates for one or more models failed to converge (n=XXXX), AICc weights were calculated for only those models which successfully fit the data. ADD A SENTENCE OR TWO DESCRIBING WHICH DATASETS THESE CONVERGENCE FAILURES OCCURRED IN. All other model/data combinations ran successfully.
+For sites where the maximum likelihood estimates for one or more models failed to converge (n=XXXX), AICc weights were calculated for only those models which successfully converged. ADD A SENTENCE OR TWO DESCRIBING WHICH DATASETS THESE CONVERGENCE FAILURES OCCURRED IN. All other model/data combinations ran successfully.
 
 # Results
 
