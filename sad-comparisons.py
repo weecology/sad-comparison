@@ -192,12 +192,12 @@ def model_comparisons(raw_data, dataset_name, data_dir, cutoff = 9):
 analysis_ext = '_spab.csv' # Extension for raw species abundance files
 
 data_dir = input("Please provide the path to the data directory. ")
-if data_dir == None:
-    data_dir == './sad-data/chapter1/' # path to data directory
+if not data_dir:
+    data_dir = './sad-data/chapter1/' # path to data directory
 
 datasets = input("Please provide a list of dataset ID codes. ")
-if datasets == None:
-    datasets == ['bbs', 'cbc', 'fia', 'gentry', 'mcdb', 'naba'] # Dataset ID codes
+if not datasets:
+    datasets = ['bbs', 'cbc', 'fia', 'gentry', 'mcdb', 'naba'] # Dataset ID codes
 
 
 # Starts actual analyses for each dataset in turn.

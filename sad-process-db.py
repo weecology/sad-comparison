@@ -133,13 +133,13 @@ relative_ll_ext = '_relative_L.csv' # Extenstion for raw model relative likeliho
 database_name = input("Please provide the name of the output database. ")
 
 data_dir = input("Please provide the path to the data directory. ")
-if data_dir == None:
-    data_dir == './sad-data/chapter1/' # path to data directory
+if not data_dir:
+    data_dir = './sad-data/chapter1/' # path to data directory
 
 
 datasets = input("Please provide a list of dataset ID codes. ")
-if datasets == None:
-    datasets == ['bbs', 'cbc', 'fia', 'gentry', 'mcdb', 'naba', 'Reptilia', 'Coleoptera', 'Arachnida', 'Amphibia', 'Actinopterygii'] # Dataset ID codes
+if not datasets:
+    datasets = ['bbs', 'cbc', 'fia', 'gentry', 'mcdb', 'naba', 'Reptilia', 'Coleoptera', 'Arachnida', 'Amphibia', 'Actinopterygii'] # Dataset ID codes
 
 # Asks for toggle variable so I don't have to rerun all the setup if it is already processed.
 needs_processing = input("Data needs to be processed into an sqlite database, True or False?  ")  
