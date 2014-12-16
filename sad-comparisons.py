@@ -23,7 +23,7 @@ sys.float_info[3]
 
 def import_abundance(datafile):
     """Imports raw species abundance .csv files in the form: Site, Year, Species, Abundance."""
-    raw_data = np.genfromtxt(datafile, dtype = "S15,i8,S10,i8", names = ['site','year','sp','ab'], delimiter = ",",comments = "#")
+    raw_data = np.genfromtxt(datafile, dtype = "S15,i8,S50,i8", names = ['site','year','sp','ab'], delimiter = ",",comments = "#")
     return raw_data
 
 def model_comparisons(raw_data, dataset_name, data_dir, cutoff = 9):
