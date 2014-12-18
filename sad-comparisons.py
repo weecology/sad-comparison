@@ -126,7 +126,7 @@ def model_comparisons(raw_data, dataset_name, data_dir, cutoff = 9):
                 
 
             # Geometric series
-            p = p = S/N  # Solves for parameter p of the untruncated geometric series
+            p = S/N  # Solves for parameter p of the untruncated geometric series
             L_geometric = md.geom_ll(obsabundance, p) # Log-likelihood of geometric series
             AICc_geometric = macroecotools.AICc(k1, L_geometric, S) # AICc geometric series
             relative_ll_geometric = AICc_geometric # Relative log-likelihood of geometric series
