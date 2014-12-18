@@ -141,7 +141,7 @@ y = [ num for (s, num) in cbc_wins ]
 labels = [ s for (s, num) in cbc_wins ]
 width = 1
 bar1 = plt.bar( x, y, width, color="tomato" )
-plt.yticks(fontsize = 'xx-small')
+plt.yticks(fontsize = 'x-small')
 plt.ylabel( 'Wins', fontsize = 'small' )
 plt.xticks(x + width/2.0, labels, fontsize = 'x-small', rotation=15 , horizontalalignment = 'right'  )
 plt.xlabel( 'CBC' )
@@ -1250,7 +1250,7 @@ plt.close()
 
 #Zipf
 plt.figure()
-plt.hist(relative_model5, bins, range = [0,1], facecolor = 'orange', histtype="stepfilled", alpha=.7, label = "Geometric")
+plt.hist(relative_model5, bins, range = [0,1], facecolor = 'orange', histtype="stepfilled", alpha=.7, label = "Zipf")
 plt.xlabel("Zipf distribution")
 plt.ylabel("Frequency")
 plt.tight_layout()
