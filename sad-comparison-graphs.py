@@ -2,21 +2,9 @@
 
 from __future__ import division
 
-import csv
-import sys
-import multiprocessing
-import itertools
-import os
 import matplotlib.pyplot as plt
-import colorsys
 import numpy as np
-from math import log, exp
-from scipy import stats
 import sqlite3 as dbapi
-
-from mpl_toolkits.axes_grid.inset_locator import inset_axes
-
-
 
 # Set up database capabilities 
 # Set up ability to query data
