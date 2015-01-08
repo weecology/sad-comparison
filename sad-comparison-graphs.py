@@ -5,6 +5,8 @@ from __future__ import division
 import matplotlib.pyplot as plt
 import numpy as np
 import sqlite3 as dbapi
+import pandas as pd
+import sqlalchemy
 
 # Set up database capabilities 
 # Set up ability to query data
@@ -1249,3 +1251,25 @@ plt.close()
 
 # Close connection
 con.close()
+
+# 1:1 plots showing log-series likelihoods vs those of other models
+
+plt.figure()
+engine = sqlalchemy.create_engine('sqlite:///sad-data/chapter1/SummarizedResults.sqlite')
+likelihood_data = pd.read_sql_query("""SELECT dataset_code, site, model_name, value
+                                       FROM RawResults
+                                       WHERE value_type = 'likelihood'""", engine)
+pivoted_likelihoods = pd.pivot_table(likelihood_data, values='value',
+                                     index=['dataset_code', 'site'],
+                                     columns=['model_name'])
+rescaled_likelihoods = -1 * np.log(-1 * pivoted_likelihoods)
+
+models = ["Geometric series", "Negative binomial", "Poisson lognormal", "Zipf distribution"]
+colors = ['olivedrab', 'grey', 'teal', 'orange']
+for i, model in enumerate(models):
+    plt.subplot(2, 2, i)
+    plt.plot(rescaled_likelihoods['Logseries'], rescaled_likelihoods[model], 'o', color=colors[i])
+    plt.plot([-7, 0], [-7, 0], 'k-', linewidth=2)
+    plt.ylabel(model + " likelihood")
+plt.xlabel("Log-series likelihood")
+plt.savefig("./sad-data/chapter1/likelihoods_one_to_one.png")
