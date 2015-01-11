@@ -89,7 +89,7 @@ In addition to evaluating AICc of each model, we also examined the log-likelihoo
 
 Model fitting, log-likelihood, and AICc calculations were performed using the macroecotools Python package (https://github.com/weecology/macroecotools). All of the code and the majority of the data necessary to replicate these analyses is available at (https://github.com/weecology/sad-comparison). The CBC datasets and NABA datasets are not publicly available and therefore are not included.
 
-For sites where the maximum likelihood estimates for one or more models failed to converge (n=XXXX), AICc weights were calculated for only those models which successfully converged. <!-- ADD A SENTENCE OR TWO DESCRIBING WHICH DATASETS THESE CONVERGENCE FAILURES OCCURRED IN.--> All other model/data combinations ran successfully.
+The negative-binomial distribution failed to converge for 1444 sites in FIA (13.9%), 5 sites in Gentry (2.3%), 3 sites in Reptilia (2.2%), and 1 site in NABA (0.25%). For these sites likelihoods and AICc weights were calculated for only those models which successfully converged.
 
 # Results
 

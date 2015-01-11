@@ -1273,3 +1273,13 @@ for i, model in enumerate(models):
     plt.ylabel(model + " likelihood")
 plt.xlabel("Log-series likelihood")
 plt.savefig("./sad-data/chapter1/likelihoods_one_to_one.png")
+
+
+# Percent null likelihoods
+
+null_likelihoods = likelihood_data[pd.isnull(likelihood_data['value'])]
+null_likes_by_set_and_model = null_likelihoods.groupby(['dataset_code', 'model_name']).count()
+num_sites_by_set_and_model = likelihood_data.groupby(['dataset_code', 'model_name']).count()
+percent_null = null_likes_by_set_and_model / num_sites_by_set_and_model * 100
+print("Data on percent of null likelihoods by model and dataset:\n")
+print percent_null['site'].dropna()
