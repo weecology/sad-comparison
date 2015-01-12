@@ -43,7 +43,7 @@ All abundances in the compiled datasets where counts of individuals.
 
 The majority of species-abundance distributions (SADs) are constructed using counts of individuals (for discussion of alternative approaches see [@mcgill2007 and @morlon2009]). As such, the data are discrete and therefore the most appropriate models are discrete distributions. Therefore we used only abundance data based on individual counts and used only discrete distributions that have been used as models for SADs.
 
-[@mcgill2007] classified models into five different families: purely statistical, branching process, population dynamics, niche partitioning, and spatial distribution of individuals. We evaluated models from each of the separate families, excluding the spatial distribution family, which requires spatially explicit data. Specifically, we evaluated the log-series, the Poisson log-normal, the negative binomial, the geometric series, and the Zipf distributions (Table 2). All distributions were defined to have support defined by the positive integers (i.e., they are capable of having non-zero probability at values from 1 to infinity). We excluded models from analysis that do not have explicit likelihoods (e.g., some niche partitioning models; [@sugihara1980; @tokeshi1993]) so that we could use the likelihood based methods for fitting and evaluating distributions (see Analysis).
+[@mcgill2007] classified models into five different families: purely statistical, branching process, population dynamics, niche partitioning, and spatial distribution of individuals. We evaluated models from each of the separate families, excluding the spatial distribution family, which requires spatially explicit data. Specifically, we evaluated the log-series, the Poisson log-normal, the negative binomial, the geometric series, and the Zipf distributions. All distributions were defined to have support defined by the positive integers (i.e., they are capable of having non-zero probability at values from 1 to infinity). We excluded models from analysis that do not have explicit likelihoods (e.g., some niche partitioning models; [@sugihara1980; @tokeshi1993]) so that we could use the likelihood based methods for fitting and evaluating distributions (see Analysis).
 
 The log-series is one of the first distributions used to describe the SAD, being derived as a purely statistical distribution by Fisher [@fisher1943]. It has since been derived as the result of both ecological processes, the metacommunity SAD for ecological neutral theory [@hubbell2001; @volkov2003], and several different maximum entropy models [@pueyo2007; @harte2008].
 
@@ -54,30 +54,6 @@ The negative-binomial (which can be derived as a mixture of the Poisson and Gamm
 The geometric series was one of the first distributions derived as a model of the SAD and was derived based on niche partitioning [@motomura1932].
 
 The Zipf (or power law) distribution was derived based on branching processes and was one of the best fitting distributions in a recent meta-analysis of SADs [@ulrich2010]
-
-<!--
-We need to add a couple of sentences about each distribution, where it comes from, and why we chose it. We also need citations for each distribution as part of this description. This could possible go in the table instead of in the text, but the information definitely needs to be included somewhere.
--->
-
-<!--
-Xiao's comment: Is it possible to very briefly go over the 20-ish distributions from McGill et al. 2007 and discuss why we chose these five but excluded the others?
--->
-
-<!--
-TODO: Add mathematical form of the distributions to the table. This can replace the "Code implementation" column since everything comes from the same place.
-
-I'd also recommend combining the model classification columns and then providing citations for each classification using footnotes. So, many of them, will simply footnote to McGill, but in the case of things like the negative binomial the "Purely statistical" footnote goes to McGill and the Population Dynamics footnote goes to Connolly. 
--->
-
-Table 2: Species abundance distribution models evaluated, their mathematical forms and model classifications.
-
-| Species abundance distribution model     	| Code implementation                            	| Model classification  (McGill et al. 2007) 	| Additional model classifications                    	|
-|------------------------------------------	|------------------------------------------------	|--------------------------------------------	|-----------------------------------------------------	|
-| Untruncated logseries                    	| https://github.com/weecology/macroecotools.git 	| Purely statistical                         	|                                                     	|
-| Poisson lognormal                        	| https://github.com/weecology/macroecotools.git 	| Purely statistical                         	|                                                     	|
-| Negative binomial                        	| https://github.com/weecology/macroecotools.git 	| Purely statistical and population dynamics   	| Neutral theory approximation (Connolly et al. 2014) 	|
-| Geometric series                         	| https://github.com/weecology/macroecotools.git 	| Niche partitioning                         	|                                                     	|
-| Zipf distribution (Zipf-Mandelbrot)      	| https://github.com/weecology/macroecotools.git    | Branching process                          	| Power-law (Ulrich et al. 2010)                      	|
 
 ### Analysis
 
