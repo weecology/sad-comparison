@@ -15,37 +15,37 @@ Here, we evaluate the performance of five of the most widely used models for the
 
 ### Data
 
-We compiled data from citizen science projects, government surveys, and literature mining to produce a dataset with 16,218 communities, from nine taxonomic groups, representing nearly 50 million individual terrestrial, aquatic, and marine organisms. Data for trees, birds, butterflies and mammals was compiled by White et al. 2012 from six data sources: the US Forest Service Forest Inventory and Analysis (FIA; [@fia]), the North American Butterfly Associations North American Butterfly Count (NABC; @naba), the Mammal Community Database (MCDB; Thibault et al. 2011), Alwyn Gentry's Forest Transect Data Set (Gentry; @phillips2002), the Audubon Society Christmas Bird Count (CBC; @cbc), and the US Geological Survey's North American Breeding Bird Survey (BBS; @pardieck2014). The publicly available datasets (FIA, MCDB, Gentry, and BBS) were aquired using the EcoData Retriever [@morris2013]. Details of the treatment of these datasets can be found in Appendix A of White et al. [@white2012]. Data on Actinopterygii, Reptilia, Coleoptera, Arachnida, and Amphibia, were mined from literature by Baldridge (see details in Chapter 2 of this dissertation).
+We compiled data from citizen science projects, government surveys, and literature mining to produce a dataset with 16,218 communities, from nine taxonomic groups, representing nearly 50 million individual terrestrial, aquatic, and marine organisms. Data for trees, birds, butterflies and mammals was compiled by White et al. [-@white2012] from six data sources: the US Forest Service Forest Inventory and Analysis [FIA; @fia], the North American Butterfly Associations North American Butterfly Count [NABC; @naba], the Mammal Community Database [MCDB; @thibault2011], Alwyn Gentry's Forest Transect Data Set [Gentry; @phillips2002], the Audubon Society Christmas Bird Count [CBC; @cbc], and the US Geological Survey's North American Breeding Bird Survey [BBS; @pardieck2014]. The publicly available datasets (FIA, MCDB, Gentry, and BBS) were aquired using the EcoData Retriever [@morris2013]. Details of the treatment of these datasets can be found in Appendix A of White et al. [-@white2012]. Data on Actinopterygii, Reptilia, Coleoptera, Arachnida, and Amphibia, were mined from literature by Baldridge (see details in Chapter 2 of this dissertation).
 
 <!--
 Add note about not using Gentry sites 102 and 179 including detailed description of why we didn't use them.
 -->
 
-Table 1: Details of datasets used to evaluate the form of the species-abundance distribution.
+Table 1: Details of datasets used to evaluate the form of the species-abundance distribution. Datasets marked as Private were obtained through data requests to the providers resulting in Memorandums of Understanding governing data use.
 
 | Dataset                              	| Dataset code 	| Availability                                     	| Total sites 	| Citation                                         	|
-|--------------------------------------	|--------------	|--------------------------------------------------	|-------------	|--------------------------------------------------	|
-| North American  Breeding Bird Survey 	| BBS          	| Publicly available                               	|2769             	| BBS; Pardieck.                          	|
-| Christmas Bird Count                 	| CBC          	| Data request;  Memorandum of  Understanding      	|1999             	| CBC; National Audubon Society 2002.              	|
-| Alwyn Gentry's Forest Transects      	| Gentry       	| Publicly available                               	|10355             	| Gentry; Phillips and Miller 2002.                	|
-| Forest Inventory Analysis            	| FIA          	| Publicly available                               	|220             	| FIA; USDA Forest Service 2010.                   	|
-| Mammal Community Database            	| MCDB         	| Publicly available                               	|103             	| MCDB; Thibault et al. 2011.                      	|
-| North American Butterfly Count       	| NABA         	| Data request with  Memorandum of  Understanding  	|400             	| NABA; North American Butterfly Association 2009. 	|
-| Actinopterygii; Miscellaneous abundance database      	| Actinopterygii 	| Publicly available  	|161             	| MiscDB; Baldridge 2012. 	|
-| Reptilia; Miscellaneous abundance database      	| Reptilia         	| Publicly available  	|138            	| MiscDB; Baldridge 2012. 	|
-| Amphibia; Miscellaneous abundance database      	| Amphibia 	| Publicly available  	|43             	| MiscDB; Baldridge 2012. 	|
-| Coleoptera; Miscellaneous abundance database      	| Coleoptera        	| Publicly available  	|5             	| MiscDB; Baldridge 2012. 	|
-| Arachnida; Miscellaneous abundance database      	| Arachnida         	| Publicly available  	|25             	| MiscDB; Baldridge 2012. 	|
+|--------------------------------------	|--------------	|----------------------------------	|-------------	|--------------------------------------------------	|
+| Breeding Bird Survey 	                | BBS          	| Public                               	|2769             	| @pardieck2014                          	|
+| Christmas Bird Count                 	| CBC          	| Private      	|1999             	| @cbc.              	|
+| Alwyn Gentry's Forest Transects      	| Gentry       	| Public                               	|10355             	| @phillips2002                	|
+| Forest Inventory Analysis            	| FIA          	| Public                               	|220             	| @fia                   	|
+| Mammal Community Database            	| MCDB         	| Public                               	|103             	| @thibault2011                      	|
+| North American Butterfly Count       	| NABA         	| Private  	|400             	| @naba 	|
+| Actinopterygii      	                | Actinopterygii| Public  	|161             	| this dissertation	|
+| Reptilia      	                    | Reptilia      | Public  	|138            	| this dissertation 	|
+| Amphibia      	                    | Amphibia 	    | Public  	|43             	| this dissertation 	|
+| Coleoptera      	                    | Coleoptera    | Public  	|5             	| this dissertation 	|
+| Arachnida      	                    | Arachnida     | Public  	|25             	| this dissertation 	|
 
 All abundances in the compiled datasets where counts of individuals.
 
 ### Models
 
-The majority of species-abundance distributions (SADs) are constructed using counts of individuals (for discussion of alternative approaches see [@mcgill2007 and @morlon2009]). As such, the data are discrete and therefore the most appropriate models are discrete distributions. Therefore we used only abundance data based on individual counts and used only discrete distributions that have been used as models for SADs.
+The majority of species-abundance distributions (SADs) are constructed using counts of individuals [for discussion of alternative approaches see @mcgill2007 and @morlon2009]. As such, the data are discrete and therefore the most appropriate models are discrete distributions. Therefore we used only abundance data based on individual counts and used only discrete distributions that have been used as models for SADs.
 
-[@mcgill2007] classified models into five different families: purely statistical, branching process, population dynamics, niche partitioning, and spatial distribution of individuals. We evaluated models from each of the separate families, excluding the spatial distribution family, which requires spatially explicit data. Specifically, we evaluated the log-series, the Poisson log-normal, the negative binomial, the geometric series, and the Zipf distributions. All distributions were defined to have support defined by the positive integers (i.e., they are capable of having non-zero probability at values from 1 to infinity). We excluded models from analysis that do not have explicit likelihoods (e.g., some niche partitioning models; [@sugihara1980; @tokeshi1993]) so that we could use the likelihood based methods for fitting and evaluating distributions (see Analysis).
+McGill et al. [-@mcgill2007] classified models into five different families: purely statistical, branching process, population dynamics, niche partitioning, and spatial distribution of individuals. We evaluated models from each of the separate families, excluding the spatial distribution family, which requires spatially explicit data. Specifically, we evaluated the log-series, the Poisson log-normal, the negative binomial, the geometric series, and the Zipf distributions. All distributions were defined to have support defined by the positive integers (i.e., they are capable of having non-zero probability at values from 1 to infinity). We excluded models from analysis that do not have explicit likelihoods [e.g., some niche partitioning models; @sugihara1980; @tokeshi1993] so that we could use the likelihood based methods for fitting and evaluating distributions (see Analysis).
 
-The log-series is one of the first distributions used to describe the SAD, being derived as a purely statistical distribution by Fisher [@fisher1943]. It has since been derived as the result of both ecological processes, the metacommunity SAD for ecological neutral theory [@hubbell2001; @volkov2003], and several different maximum entropy models [@pueyo2007; @harte2008].
+The log-series is one of the first distributions used to describe the SAD, being derived as a purely statistical distribution by Fisher [-@fisher1943]. It has since been derived as the result of both ecological processes, the metacommunity SAD for ecological neutral theory [@hubbell2001; @volkov2003], and several different maximum entropy models [@pueyo2007; @harte2008].
 
 The lognormal is one of the most commonly used distributions for describing the SAD [@mcgill2003] and has been derived as a null form of the distribution resulting from the central limit theorem [@may1975], population dynamics [@engen1996], and niche partitioning [@sugihara1980]. We use the Poisson lognormal because it is a discrete form of the distribution appropriate for fitting discrete abundance data [@bulmer1974].
 
