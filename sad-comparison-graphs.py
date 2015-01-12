@@ -2,21 +2,11 @@
 
 from __future__ import division
 
-import csv
-import sys
-import multiprocessing
-import itertools
-import os
 import matplotlib.pyplot as plt
-import colorsys
 import numpy as np
-from math import log, exp
-from scipy import stats
 import sqlite3 as dbapi
-
-from mpl_toolkits.axes_grid.inset_locator import inset_axes
-
-
+import pandas as pd
+import sqlalchemy
 
 # Set up database capabilities 
 # Set up ability to query data
@@ -1261,3 +1251,35 @@ plt.close()
 
 # Close connection
 con.close()
+
+# 1:1 plots showing log-series likelihoods vs those of other models
+
+plt.figure()
+engine = sqlalchemy.create_engine('sqlite:///sad-data/chapter1/SummarizedResults.sqlite')
+likelihood_data = pd.read_sql_query("""SELECT dataset_code, site, model_name, value
+                                       FROM RawResults
+                                       WHERE value_type = 'likelihood'""", engine)
+pivoted_likelihoods = pd.pivot_table(likelihood_data, values='value',
+                                     index=['dataset_code', 'site'],
+                                     columns=['model_name'])
+rescaled_likelihoods = -1 * np.log(-1 * pivoted_likelihoods)
+
+models = ["Geometric series", "Negative binomial", "Poisson lognormal", "Zipf distribution"]
+colors = ['olivedrab', 'grey', 'teal', 'orange']
+for i, model in enumerate(models):
+    plt.subplot(2, 2, i)
+    plt.plot(rescaled_likelihoods['Logseries'], rescaled_likelihoods[model], 'o', color=colors[i])
+    plt.plot([-7, 0], [-7, 0], 'k-', linewidth=2)
+    plt.ylabel(model + " likelihood")
+plt.xlabel("Log-series likelihood")
+plt.savefig("./sad-data/chapter1/likelihoods_one_to_one.png")
+
+
+# Percent null likelihoods
+
+null_likelihoods = likelihood_data[pd.isnull(likelihood_data['value'])]
+null_likes_by_set_and_model = null_likelihoods.groupby(['dataset_code', 'model_name']).count()
+num_sites_by_set_and_model = likelihood_data.groupby(['dataset_code', 'model_name']).count()
+percent_null = null_likes_by_set_and_model / num_sites_by_set_and_model * 100
+print("Data on percent of null likelihoods by model and dataset:\n")
+print percent_null['site'].dropna()
