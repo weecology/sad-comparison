@@ -1,24 +1,26 @@
 #Chapter 2
-#Introduction
+
+#Abstract
+
+#Background & Summary
+<!-- Background and summary for collecting the data. -->
 
 #Methods
-##Data
-Data were downloaded from the Relative Abundance Database (RAD database) <!-- available through website --> The RAD database is a summarized form of the data, and contains species richness and abundance for each site, as well as additional variables of interest.  I obtained the raw data on request from Marcin Ollik and Werner Ulrich.
+<!-- How data were collected, verified, metadata-->
 
-<!-- I used raw data, paper used S and N from the RAD database to fit models. -->
-
+#Data Records
 
 
-##Models
-<!-- I used five models, they used three -->
-<!--Continuous vs. discrete-->
+#Technical Validation
+<!--Validation and figures (breakdown of data by taxa, etc.)-->
 
-##Analysis
-<!-- I used maximum likelihood methods to fit the data, paper used Fortran code available through website. -->
+#Usage Notes
+<!-- Best practices for using the data, EcoData Retriever compatible.  -->
 
-#Results
-I found that the logseries won, instead of the Poisson lognormal, which they found won.  
+#Additional Information
 
-#Discussion
+#References
 
-#Literature Cited
+#Data Citations
+
+#Acknowledgements
