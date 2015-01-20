@@ -5,6 +5,7 @@
 
 #Background & Summary
 <!-- Background and summary for collecting the data.  Publicly available community datasets suitable for macroecological research mostly birds, trees, mammals, North American focus.  Other taxa also good, compilation with abundances for greater comparisonability across taxa -->
+Small number of large, publicly available datasets that have been used extensively for macroecological comparisons/analysis, North American bias, birds, trees.  Lots of data in the literature, but the majority of compilations have not been made publicly available.  My compilation is useful because it allows for comparison of patterns across taxa.  
 
 #Methods
 <!-- How data were collected, verified, metadata-->
@@ -16,9 +17,9 @@ Data were compiled from the scientific literature.  References for data sources 
 
      Data Collection
 
-Data were hand entered into a raw data file as they came from the original source or extracted from the original source computationally.  All the data initially collected were not included in the final summary, because they were not deemed suitable for inclusion in the final database.
+Data were hand entered into a raw data file as they came from the original source or extracted from the original source computationally and then manually checked for consistency with the original source.  All the data initially collected were not included in the final database, because they were not deemed suitable for inclusion in the final product.
 
-The data have not been updated taxonomically; the species names were kept as given in the original source.  
+Species names were kept as given in the original source.  
 
  
 
@@ -101,6 +102,9 @@ Blanks indicate no data: no special characters used.
 
 #Usage Notes
 <!-- Best practices for using the data, EcoData Retriever compatible.  -->
+This is compiled data from a variety of literature sources.  Because of the nature of this data, it is more appropriate to treat each site individually, rather than grouping sites together.  
+
+The data are also available for direct import into the EcoData Retriever.
 
 #Additional Information
 
