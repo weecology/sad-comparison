@@ -1,14 +1,13 @@
-#Chapter 2
-<!-- I don't actually like the format for Scientific Data, it's not really the best for compilations.  More appropriate for experimental/ biomedical stuff.  -->
+#Chapter 3
 
 #Introduction
-<!-- Background and summary for collecting the data. -->
+<!-- Connolly et al 2014. -->
 
 #Methods
-<!-- How data were collected, verified, metadata-->
+<!-- Redid analyses with more data-->
 
-#Best practices
-<!-- Best practices for using the data, EcoData Retriever compatible.  -->
+#Results
+<!-- Graphs  -->
 
-#Summary
-<!--Validation and figures (breakdown of data by taxa, etc.)-->
+#Discussion
+<!--Big picture.-->
