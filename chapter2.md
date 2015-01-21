@@ -1,7 +1,8 @@
 #Chapter 2
 
 #Abstract
-<!--  Number of taxa, number of communities -->
+<!--  Number of taxa, number of communities -->Ray finned and cartilaginous fish, amphibians, spiders, birds, beetles, reptiles from 706 sites over all continents except Antarctica.
+
 
 #Background & Summary
 <!-- Background and summary for collecting the data.  Publicly available community datasets suitable for macroecological research mostly birds, trees, mammals, North American focus.  Other taxa also good, compilation with abundances for greater comparisonability across taxa -->
