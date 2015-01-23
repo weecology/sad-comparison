@@ -8,6 +8,10 @@
 <!-- Background and summary for collecting the data.  Publicly available community datasets suitable for macroecological research mostly birds, trees, mammals, North American focus.  Other taxa also good, compilation with abundances for greater comparisonability across taxa -->
 Small number of large, publicly available datasets that have been used extensively for macroecological comparisons/analysis, North American bias, birds, trees.  Lots of data in the literature, but the majority of compilations have not been made publicly available.  My compilation is useful because it allows for comparison of patterns across taxa.  
 
+
+While the majority of the data is Nearctic, there is a worldwide distribution of sites (Figure 1.)
+![Number of sites per biogeographic region.](./sad-data/chapter2/bioregions.png)
+
 #Methods
 <!-- How data were collected, verified, metadata-->
 Data Sources:
