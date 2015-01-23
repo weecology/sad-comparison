@@ -11,6 +11,21 @@ import numpy as np
 
 sys.float_info[2]
 
+# Function for bar graphing
+def bar_graph(filename, data, ylabel_name, xlabel_name):
+    N = len(data)
+    x = np.arange(1, N+1)
+    y = [ num for (s, num) in data ]
+    labels = [ s for (s, num) in data ]
+    width = 1
+    bar1 = plt.bar( x, y, width, color="grey" )
+    plt.ylabel(ylabel_name  )
+    plt.xticks(x + width/2.0, labels, fontsize = 'small' )
+    plt.xlabel( xlabel_name)
+    #Output figure
+    plt.savefig(filename, format="png" )
+    plt.close()    
+
 # Set up database capabilities 
 # Set up ability to query data
 con = dbapi.connect('./sad-data/chapter2/misc.sqlite')
@@ -25,6 +40,12 @@ bioregions = cur.execute("""SELECT DISTINCT(biogeographic_region) AS region, COU
 bioregions = cur.fetchall()
 
 #Make bar graph of sites per biogeographic region
+bioregions_graph = './sad-data/chapter2/bioregions.png'
+ylabel_name = "Number of sites"
+xlabel_name = "Biogeographic regions"
+bar_graph(bioregions_graph, bioregions, ylabel_name, xlabel_name)
+
+
 
 #Close connection
 con.close()
