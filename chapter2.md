@@ -1,16 +1,21 @@
 #Chapter 2
 
 #Abstract
-<!--  Number of taxa, number of communities -->Ray finned and cartilaginous fish, amphibians, spiders, birds, beetles, reptiles from 706 sites over all continents except Antarctica.
+<!--  Number of taxa, number of communities -->
+This dataset is compiled from the literature, including seven classes of animals, including ray finned and cartilaginous fish, amphibians, spiders, birds, beetles, and reptiles from 706 sites over all continents except Antarctica.
 
 
 #Background & Summary
 <!-- Background and summary for collecting the data.  Publicly available community datasets suitable for macroecological research mostly birds, trees, mammals, North American focus.  Other taxa also good, compilation with abundances for greater comparisonability across taxa -->
-Small number of large, publicly available datasets that have been used extensively for macroecological comparisons/analysis, North American bias, birds, trees.  Lots of data in the literature, but the majority of compilations have not been made publicly available.  My compilation is useful because it allows for comparison of patterns across taxa.  
+Comparing macroecological patterns across taxa is a valuable approach for identifying potential pattern-generating mechanisms and determining the generality of a pattern.  There is a great deal of community abundance data in the literature, but most include a single to a few communities.  Large, publicly available datasets with many sites have been primarily for a single taxa, making these multi-taxonomic comparisons difficult to achieve.  My compilation is useful because it contains abundance data for seven classes of animal, including vertebrates and invertebrates, endotherms and ectotherms, and includes taxa that are not currently well represented, if at all, in the common macroecological datasets.  This dataset will allow for a more robust comparison of patterns across taxa, especially when combined with existing macroecological datasets.  
 
 
 While the majority of the data is Nearctic, there is a worldwide distribution of sites (Figure 1.)
 ![Number of sites per biogeographic region.](./sad-data/chapter2/bioregions.png)
+
+![Number of sites per taxon](./sad-data/chapter2/taxa_sites.png)
+
+![Number of individuals per taxon.](./sad-data/chapter2/num_taxa.png)
 
 #Methods
 <!-- How data were collected, verified, metadata-->
