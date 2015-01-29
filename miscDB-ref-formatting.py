@@ -9,15 +9,27 @@ import re
 
 sys.float_info[2]
 
-#Make reference
-def bib_reference(ref_num, title, author, journal, volume, number, pages, year, publisher):
-    ref_entry = '@article{' + str(ref_num) + ',\n title={' + title + '},\n author={' + author + '},\n journal={' + journal + '},\n volume={' + volume + '},\n number={' + number + '},\n pages={' + pages + '},\n year={' + year + '},\n publisher={' + publisher + '}}\n'
-    
+#Make references
+def bib_reference(ref_data):
     refs = open('./miscDB_refs.bib','w')
-    refs.writelines(ref_entry)
+    
+    for row in ref_data:
+        ref_num = [ ref_id for (ref_id, article_title, authors, journal_name, issue, page_nums, yr) in row ]
+        title = [ article_title for (ref_id, article_title, authors, journal_name, issue, page_nums, yr) in row ]
+        author = [ authors for (ref_id, article_title, authors, journal_name, issue, page_nums, yr) in row ]
+        journal = [ journal_name for (ref_id, article_title, authors, journal_name, issue, page_nums, yr) in row ]
+        volume = [ issue for (ref_id, article_title, authors, journal_name, issue, page_nums, yr) in row ] 
+        pages = [ page_nums for (ref_id, article_title, authors, journal_name, issue, page_nums, yr) in row ] 
+        yr = [ yr for (ref_id, article_title, authors, journal_name, issue, page_nums, yr) in row ]
+    
+        #Format reference entry
+        ref_entry = '@article{' + str(ref_num) + ',\n title={' + title + '},\n author={' + author + '},\n journal={' + journal + '},\n volume={' + volume + '},\n pages={' + pages + '},\n year={' + year + '}}\n'
+    
+        refs = open('./miscDB_refs.bib','w')
+        refs.writelines(ref_entry)
+        
     refs.close()
-    ref_num += 1
-    return ref_num
+
 
 
 # Set up database capabilities 
@@ -27,7 +39,9 @@ cur = con.cursor()
 # Switch con data type to string
 con.text_factory = str 
 
-# Set up parameters
-ref_num = 1
+# Extract reference data.
+ref_data = cur.execute("""SELECT rowid AS ref_num, title, authors, journal, issue, pages, yr FROM
+                            miscabundancedb_citations""")
+ref_data = cur.fetchall()
 
-reference = bib_reference(ref_num, 'test', 'test', 'test', 'test', 'test', 'test', 'test', 'test')
+references = bib_reference(ref_data)
