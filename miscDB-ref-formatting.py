@@ -11,21 +11,23 @@ sys.float_info[2]
 
 #Make references
 def bib_reference(ref_data):
+    #Open output file
     refs = open('./miscDB_refs.bib','w')
     
-    for row in ref_data:
-        ref_num = [ ref_id for (ref_id, article_title, authors, journal_name, issue, page_nums, yr) in row ]
-        title = [ article_title for (ref_id, article_title, authors, journal_name, issue, page_nums, yr) in row ]
-        author = [ authors for (ref_id, article_title, authors, journal_name, issue, page_nums, yr) in row ]
-        journal = [ journal_name for (ref_id, article_title, authors, journal_name, issue, page_nums, yr) in row ]
-        volume = [ issue for (ref_id, article_title, authors, journal_name, issue, page_nums, yr) in row ] 
-        pages = [ page_nums for (ref_id, article_title, authors, journal_name, issue, page_nums, yr) in row ] 
-        yr = [ yr for (ref_id, article_title, authors, journal_name, issue, page_nums, yr) in row ]
-    
+    #Get parts of references sorted out
+    ref_num = [ ref_id for (ref_id, article_title, authors, journal_name, issue, page_nums, yr) in ref_data ]
+    title = [ article_title for (ref_id, article_title, authors, journal_name, issue, page_nums, yr) in ref_data ]
+    author = [ authors for (ref_id, article_title, authors, journal_name, issue, page_nums, yr) in ref_data ]
+    journal = [ journal_name for (ref_id, article_title, authors, journal_name, issue, page_nums, yr) in ref_data ]
+    volume = [ issue for (ref_id, article_title, authors, journal_name, issue, page_nums, yr) in ref_data ] 
+    pages = [ page_nums for (ref_id, article_title, authors, journal_name, issue, page_nums, yr) in ref_data ] 
+    year = [ yr for (ref_id, article_title, authors, journal_name, issue, page_nums, yr) in ref_data ]
+        
+    for i, v in enumerate(ref_data):
         #Format reference entry
-        ref_entry = '@article{' + str(ref_num) + ',\n title={' + title + '},\n author={' + author + '},\n journal={' + journal + '},\n volume={' + volume + '},\n pages={' + pages + '},\n year={' + year + '}}\n'
-    
-        refs = open('./miscDB_refs.bib','w')
+        ref_entry = '@article{' + str(ref_num[i] + ',\n title={' + title[i] + '},\n author={' + author[i] + '},\n journal={' + journal[i] + '},\n volume={' + str(volume[i]) + '},\n pages={' + str(pages[i]) + '},\n year={' + str(year[i]) + '}}\n'
+        #Output reference entry
+        print(ref_entry)
         refs.writelines(ref_entry)
         
     refs.close()
