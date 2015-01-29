@@ -11,11 +11,14 @@ sys.float_info[2]
 
 #Make reference
 def bib_reference(ref_num, title, author, journal, volume, number, pages, year, publisher):
-    ref_entry = '@article{' + ref_num + ', title={' + title + '}, author={' + author + '}, journal={' + journal + '}, volume={' + volume + '}, number={' + number + '}, pages={' + pages + '}, year={' + year + '}, publisher={' + publisher + '}}'
+    ref_entry = '@article{' + str(ref_num) + ',\n title={' + title + '},\n author={' + author + '}, journal={' + journal + '},\n volume={' + volume + '},\n number={' + number + '},\n pages={' + pages + '},\n year={' + year + '},\n publisher={' + publisher + '}}\n'
+    print(ref_entry)
     
-    with open('./sad-data/chapter2/miscDB_refs.bib','w') as archive_file:
-        refs = write(archive_file)
-        refs.writelines(ref_entry)
+    refs = open('./sad-data/chapter2/miscDB_refs.bib','a')
+    refs.writelines(ref_entry)
+    refs.close()
+    ref_num += 1
+    return ref_num
 
 
 # Set up database capabilities 
@@ -24,3 +27,8 @@ con = dbapi.connect('./sad-data/chapter2/misc.sqlite')
 cur = con.cursor()
 # Switch con data type to string
 con.text_factory = str 
+
+# Set up parameters
+ref_num = 1
+
+reference = bib_reference(ref_num, 'test', 'test', 'test', 'test', 'test', 'test', 'test', 'test')
