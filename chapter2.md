@@ -2,7 +2,7 @@
 
 #Abstract
 <!--  Number of taxa, number of communities -->
-This dataset is compiled from the literature, including seven classes of animals, including ray finned and cartilaginous fish, amphibians, spiders, birds, beetles, and reptiles from 706 sites over all continents except Antarctica.
+This dataset is compiled from the literature, including seven classes of animals, including ray finned and cartilaginous fish (references), amphibians(references), spiders(references), birds(references), beetles(references), and reptiles(references) from 706 sites over all continents except Antarctica.
 
 
 #Background & Summary

@@ -9,14 +9,57 @@ import re
 
 sys.float_info[2]
 
-#Make reference
-def bib_reference(ref_num, title, author, journal, volume, number, pages, year, publisher):
-    ref_entry = '@article{' + ref_num + ', title={' + title + '}, author={' + author + '}, journal={' + journal + '}, volume={' + volume + '}, number={' + number + '}, pages={' + pages + '}, year={' + year + '}, publisher={' + publisher + '}}'
-    
-    with open('./sad-data/chapter2/miscDB_refs.bib','w') as archive_file:
-        refs = write(archive_file)
-        refs.writelines(ref_entry)
+#Open output file
+refs = open('./miscDB_refs.bib','w')
 
+#Make references
+def bib_reference(ref_data):   
+    #Get parts of references sorted out
+    ref_num = [ ref_id for (ref_id, article_title, authors, journal_name, issue, page_nums, yr) in ref_data ]
+    title = [ article_title for (ref_id, article_title, authors, journal_name, issue, page_nums, yr) in ref_data ]
+    author = [ authors for (ref_id, article_title, authors, journal_name, issue, page_nums, yr) in ref_data ]
+    journal = [ journal_name for (ref_id, article_title, authors, journal_name, issue, page_nums, yr) in ref_data ]
+    volume = [ issue for (ref_id, article_title, authors, journal_name, issue, page_nums, yr) in ref_data ] 
+    pages = [ page_nums for (ref_id, article_title, authors, journal_name, issue, page_nums, yr) in ref_data ] 
+    year = [ yr for (ref_id, article_title, authors, journal_name, issue, page_nums, yr) in ref_data ]
+        
+    for i, v in enumerate(ref_data):
+        if ref_num[i] == None:
+            item1 = ''
+        else:    
+            item1 = str(ref_num[i])
+        if title[i] == None:
+            item2 = ''
+        else:
+            item2 = title[i]
+        if author[i] == None:
+            item3 = ''
+        else:
+            item3 = author[i]
+        if journal[i] == None:
+            item4 = ''
+        else:
+            item4 = journal[i] 
+        if volume[i] == None:
+            item5 = ''
+        else:    
+            item5 = str(volume[i])
+        if pages[i] == None:
+            item6 = ''
+        else:
+            item6 = str(pages[i])
+        if year[i] == None:
+            item7 = ''
+        else:
+            item7 = str(year[i]) 
+            
+        #Format reference entry
+        try:
+            ref_entry = '@article{' + item1 + ',\n title={' + item2 + '},\n author={' + item3 + '},\n journal={' + item4 + '},\n volume={' + item5 + '},\n pages={' + item6 + '},\n year={' + item7 + '}}\n'
+    
+            refs.writelines(ref_entry)
+        except:
+            print('Incomplete reference')
 
 # Set up database capabilities 
 # Set up ability to query data
@@ -24,3 +67,14 @@ con = dbapi.connect('./sad-data/chapter2/misc.sqlite')
 cur = con.cursor()
 # Switch con data type to string
 con.text_factory = str 
+
+# Extract reference data.
+ref_data = cur.execute("""SELECT rowid AS ref_num, title, authors, journal, issue, pages, yr FROM
+                            miscabundancedb_citations""")
+ref_data = cur.fetchall()
+
+#Stuff references into .bib file
+references = bib_reference(ref_data)
+ 
+#Close file    
+refs.close()
