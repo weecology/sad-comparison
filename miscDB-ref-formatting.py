@@ -11,10 +11,9 @@ sys.float_info[2]
 
 #Make reference
 def bib_reference(ref_num, title, author, journal, volume, number, pages, year, publisher):
-    ref_entry = '@article{' + str(ref_num) + ',\n title={' + title + '},\n author={' + author + '}, journal={' + journal + '},\n volume={' + volume + '},\n number={' + number + '},\n pages={' + pages + '},\n year={' + year + '},\n publisher={' + publisher + '}}\n'
-    print(ref_entry)
+    ref_entry = '@article{' + str(ref_num) + ',\n title={' + title + '},\n author={' + author + '},\n journal={' + journal + '},\n volume={' + volume + '},\n number={' + number + '},\n pages={' + pages + '},\n year={' + year + '},\n publisher={' + publisher + '}}\n'
     
-    refs = open('./sad-data/chapter2/miscDB_refs.bib','a')
+    refs = open('./miscDB_refs.bib','w')
     refs.writelines(ref_entry)
     refs.close()
     ref_num += 1
