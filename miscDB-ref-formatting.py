@@ -25,9 +25,8 @@ def bib_reference(ref_data):
         
     for i, v in enumerate(ref_data):
         #Format reference entry
-        ref_entry = '@article{' + str(ref_num[i] + ',\n title={' + title[i] + '},\n author={' + author[i] + '},\n journal={' + journal[i] + '},\n volume={' + str(volume[i]) + '},\n pages={' + str(pages[i]) + '},\n year={' + str(year[i]) + '}}\n'
-        #Output reference entry
-        print(ref_entry)
+        ref_entry = '@article{' + str(ref_num[i]) + ',\n title={' + title[i] + '},\n author={' + author[i] + '},\n journal={' + journal[i] + '},\n volume={' + str(volume[i]) + '},\n pages={' + str(pages[i]) + '},\n year={' + str(year[i]) + '}}\n'
+    
         refs.writelines(ref_entry)
         
     refs.close()
