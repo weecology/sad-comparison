@@ -9,11 +9,11 @@ import re
 
 sys.float_info[2]
 
+#Open output file
+refs = open('./miscDB_refs.bib','w')
+
 #Make references
-def bib_reference(ref_data):
-    #Open output file
-    refs = open('./miscDB_refs.bib','w')
-    
+def bib_reference(ref_data):   
     #Get parts of references sorted out
     ref_num = [ ref_id for (ref_id, article_title, authors, journal_name, issue, page_nums, yr) in ref_data ]
     title = [ article_title for (ref_id, article_title, authors, journal_name, issue, page_nums, yr) in ref_data ]
@@ -60,11 +60,6 @@ def bib_reference(ref_data):
             refs.writelines(ref_entry)
         except:
             print('Incomplete reference')
-        
-        
-    refs.close()
-
-
 
 # Set up database capabilities 
 # Set up ability to query data
@@ -78,4 +73,8 @@ ref_data = cur.execute("""SELECT rowid AS ref_num, title, authors, journal, issu
                             miscabundancedb_citations""")
 ref_data = cur.fetchall()
 
+#Stuff references into .bib file
 references = bib_reference(ref_data)
+ 
+#Close file    
+refs.close()
