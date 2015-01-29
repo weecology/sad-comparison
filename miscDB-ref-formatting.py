@@ -24,10 +24,43 @@ def bib_reference(ref_data):
     year = [ yr for (ref_id, article_title, authors, journal_name, issue, page_nums, yr) in ref_data ]
         
     for i, v in enumerate(ref_data):
+        if ref_num[i] == None:
+            item1 = ''
+        else:    
+            item1 = str(ref_num[i])
+        if title[i] == None:
+            item2 = ''
+        else:
+            item2 = title[i]
+        if author[i] == None:
+            item3 = ''
+        else:
+            item3 = author[i]
+        if journal[i] == None:
+            item4 = ''
+        else:
+            item4 = journal[i] 
+        if volume[i] == None:
+            item5 = ''
+        else:    
+            item5 = str(volume[i])
+        if pages[i] == None:
+            item6 = ''
+        else:
+            item6 = str(pages[i])
+        if year[i] == None:
+            item7 = ''
+        else:
+            item7 = str(year[i]) 
+            
         #Format reference entry
-        ref_entry = '@article{' + str(ref_num[i]) + ',\n title={' + title[i] + '},\n author={' + author[i] + '},\n journal={' + journal[i] + '},\n volume={' + str(volume[i]) + '},\n pages={' + str(pages[i]) + '},\n year={' + str(year[i]) + '}}\n'
+        try:
+            ref_entry = '@article{' + item1 + ',\n title={' + item2 + '},\n author={' + item3 + '},\n journal={' + item4 + '},\n volume={' + item5 + '},\n pages={' + item6 + '},\n year={' + item7 + '}}\n'
     
-        refs.writelines(ref_entry)
+            refs.writelines(ref_entry)
+        except:
+            print('Incomplete reference')
+        
         
     refs.close()
 
