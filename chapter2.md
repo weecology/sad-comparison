@@ -31,12 +31,34 @@ Data Sources:
 Data were compiled from the scientific literature.  References for data sources are presented in a separate file, citations_table_abundances.csv, as well as in the reference section.
 
 <!-- search terms, how I filtered, http://wiki.weecology.org/w/page/36018991/Database--Find unique, add table of sources that I checked but which were ultimately rejected -->
-
- 
+I did an intial quick search of the literature for community abundance data to get a sense of what data were available, and which taxa were likely to have a good amount of data available. After the initial search, I began a more systematic approach to searching through the literature, and selected fish, amphibians, and reptiles as the main focus of data collection. 
+| Search Parameters                                                                              | Search engine                        | Date Accessed |
+|------------------------------------------------------------------------------------------------|--------------------------------------|---------------|
+| community abundance in Biology, Life Sciences, etc.                                           | Google Scholar                       | 29 Nov 2010   |
+| fish assemblage abundance, fish community* abundance in Biology, Life Sciences, etc.           | Google Scholar                       | 14 Feb 2011   |
+| fish community* abundance, fish assemblage abundance                                           | ProQuest UMI Dissertations & Theses  | 15 Feb 2011   |
+| reptile assemblage abundance, reptile community* abundance in Biology, Life Sciences, etc.     | Google Scholar                       | 20 Aug 2011   |
+| reptile community* abundance, reptile assemblage abundance                                     | ProQuest UMI Dissertations & Theses  | 21 Aug 2011   |
+| amphibian assemblage abundance, amphibian community* abundance in Biology, Life Sciences, etc. | Google Scholar                       | 7 Oct 2011    |
+| amphibian community* abundance, amphibian assemblage abundance                                 | ProQuest UMI Dissertations & Theses  | 7 Oct 2011    |
 
 Data Collection
+After initial download of the references found by various searches, I manually scanned each article to determine if it met the criteria for inclusion in the database. Selection criteria are as follows:
 
-Data were hand entered into a raw data file as they came from the original source or extracted from the original source computationally and then manually checked for consistency with the original source.  All the data initially collected were not included in the final database, because they were not deemed suitable for inclusion in the final product.
+*Papers with incomplete data (i.e., not all community sampled or reported) excluded
+
+*Papers where the majority of species were poorly identified were excluded for vertebrate taxa, but not for invertebrate taxa, due to the number of individuals per sample and the state of taxonomy for the invertebrate groups.
+
+*Papers with incidence (presence-absence) only data excluded.
+
+*Papers with heavily summarized or processed data excluded.
+
+*Must have quantitative abundances, preferably total number of individuals.
+
+*Must be animal data.
+
+
+Data were hand entered into a raw data file as they came from the original source or extracted from the original source computationally and then manually checked for consistency with the original source.  All the references initially collected were not included in the final database, because they were not deemed suitable for inclusion in the final product.  A table with a list of excluded references and the reason for exclusion will be presented in the appendix.
 
 Species names were kept as given in the original source.  
 
