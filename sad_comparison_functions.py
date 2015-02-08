@@ -2,6 +2,7 @@
 from __future__ import division
 import numpy as np
 import macroeco_distributions as md
+import macroecotools
 import scipy.stats.distributions as sd
 import mete
 import csv
@@ -48,6 +49,23 @@ def get_pred_iterative(cdf_obs, dist, *pars):
                 return np.array(abundance)
         i += 1
 
+def get_sample_multi_dists(S, dist_name, pars):
+    """Returns a random sample of length S from the designated distribution."""
+    dist = 0
+    if dist_name == 'logser': dist = sd.logser
+    elif dist_name == 'geom': dist = sd.geom
+    elif dist_name == 'zipf': dist = sd.zipf
+    if dist:
+        rand_smp = dist.rvs(pars, size = S)
+    else:
+        if dist_name == 'negbin':
+            n, p = pars
+            rand_smp = md.nbinom_lower_trunc.rvs(n, p, size = S)
+        elif dist_name == 'pln':
+            mu, sigma = pars
+            rand_smp = md.pln.rvs(mu, sigma, True, size = S)
+    return rand_smp
+
 def get_pred_multi_dists(S, dist_name, pars):
     """Returns the predicted abundances given species richness, 
     
@@ -72,6 +90,50 @@ def get_pred_multi_dists(S, dist_name, pars):
         print "Error: distribution not recognized."
         pred = None
     return pred
+
+def get_loglik_multi_dists(ab, dist_name, pars):
+    """Returns the log-likelihood given abundances, 
+    
+    the designated distribution, and the parameters.
+    
+    """
+    dist = 0
+    if dist_name == 'logser': dist = sd.logser
+    elif dist_name == 'geom': dist = sd.geom
+    elif dist_name == 'zipf': dist = sd.zipf
+    if dist: # If one of the above three cases:
+        loglik = sum(dist.logpmf(ab, pars))
+    else:
+        if dist_name == 'negbin':
+            n, p = pars
+            loglik = sum(np.log(md.nbinom_lower_trunc.pmf(ab, n, p)))
+        elif dist_name == 'pln':
+            mu, sigma = pars
+            loglik = sum(np.log(md.pln.pmf(ab, mu, sigma, True)))
+    return loglik
+
+def get_ks_multi_dists(ab, dist_name, pars):
+    """Returns the K-S statistic given abundances, 
+    
+    the designated distribution, and the parameters.
+    
+    """
+    ab = sorted(ab)
+    emp_cdf = (np.arange(1, len(ab) + 1) - 0.5) / len(ab)  
+    dist = 0
+    if dist_name == 'logser': dist = sd.logser
+    elif dist_name == 'geom': dist = sd.geom
+    elif dist_name == 'zipf': dist = sd.zipf
+    if dist: # If one of the above three cases:
+        ks = max(abs(emp_cdf - np.array([dist.cdf(x, pars) for x in ab])))
+    else:
+        if dist_name == 'negbin':
+            n, p = pars
+            ks = max(abs(emp_cdf - np.array([md.nbinom_lower_trunc.cdf(x, n, p) for x in ab])))
+        elif dist_name == 'pln':
+            mu, sigma = pars
+            ks = max(abs(emp_cdf - np.array([md.pln.cdf(x, mu, sigma, True) for x in ab])))
+    return ks
     
 def get_obs_pred_multi_dists(dat_dir, file_name, dist_name, cutoff = 9):
     """Obtain obs-pred RADs for each site in each dataset and write to file."""
@@ -93,3 +155,29 @@ def get_obs_pred_multi_dists(dat_dir, file_name, dist_name, cutoff = 9):
                 out.writerows(results)
     out_write.close()
             
+def sim_stats(ab, dist_name, Nsim, test_stat):
+    """Obtain Nsim abundance lists from the proposed distribution 
+    
+    and compare their fit with the empirical data (Connolly et al. 2009).
+    Inputs:
+    ab - list of empirical abundaces
+    dist_name - name of the distribution under examination
+    Nsim - number of simulated abundance lists
+    test_stat - can be either log-likelihood ('loglik'), Kolmogorov-Smirnov statistic ('ks'), or R^2 ('r2')
+    Output: 
+    A list where the first element is the stat value for the empirical SAD and the remaining values are stats for the simulated SADs.
+    
+    """
+    pars = get_par_multi_dists(ab, dist_name)
+    if test_stat == 'loglik': test_func = get_loglik_multi_dists
+    elif test_stat == 'ks': test_func = get_ks_multi_dists
+    elif test_stat == 'r2': 
+        def test_func(ab, dist_name, pars):
+            pred = get_pred_multi_dists(len(ab), dist_name, pars)
+            r2 = macroecotools.obs_pred_rsquare(sorted(ab, reverse = True), pred)
+            return r2
+    out_list = [test_func(ab, dist_name, pars)]
+    for i in range(Nsim + 1):
+        sim_sad = get_sample_multi_dists(len(ab), dist_name, pars)
+        out_list.append(test_func(sim_sad, dist_name, pars))
+    return out_list
