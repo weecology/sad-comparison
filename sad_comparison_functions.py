@@ -177,7 +177,7 @@ def sim_stats(ab, dist_name, Nsim, test_stat):
             r2 = macroecotools.obs_pred_rsquare(sorted(ab, reverse = True), pred)
             return r2
     out_list = [test_func(ab, dist_name, pars)]
-    for i in range(Nsim + 1):
+    for i in range(Nsim):
         sim_sad = get_sample_multi_dists(len(ab), dist_name, pars)
         out_list.append(test_func(sim_sad, dist_name, pars))
     return out_list
