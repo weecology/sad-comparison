@@ -7,8 +7,9 @@ Understanding what processes are involved structuring and maintaining ecological
 
 Can check for neutrality using abundance distribution data
 Building on work by Pueyo [@Pueyo2006], Connolly et al. were able to identify non-neutral species abundance distributions in marine environments by comparing model fits of a lognormal distribution (non-neutral) to a gamma distribution (neutral).
+
 Works for marine systems, does it work with more data, both terrestrial and marine.
-Connolly et al. 
+While this approach has been preliminarily tested with marine communities over a broad geographic extent, it has not yet been tested in terrestrial systems <!--with a really expansive dataset-->.  We tested this approach for vertebrate and invertebrate taxa, as well as plants, for 16,218 communities. 
 
 #Methods
 <!-- Redid analyses with more data-->
