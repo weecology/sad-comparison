@@ -1,4 +1,4 @@
-#Chapter 2
+#Chapter 2- Community abundance data of underrepresented taxonomic groups.
 
 #Abstract
 <!--  Number of taxa, number of communities -->

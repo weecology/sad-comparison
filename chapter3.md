@@ -1,14 +1,13 @@
-#Chapter 3
+#Chapter 3- Evaluating abundance distribution based signals of neutrality.
 
 #Introduction
-<!-- Connolly et al 2014. -->
-Neutral theory is a big important theory
+<!--Neutral theory is a big important theory-->
 Understanding what processes are involved structuring and maintaining ecological communities is a much studied ecological question. <!-- The previous sentence feels clunky and needs fixing.-->  One theoretical approach that has been given a great deal of attention in recent years is the unified neutral theory of biodiversity (@citation).  While there are multiple formulations of neutral theory, all models are based on the assumptions that species and individuals are ecologically and demographically equivalent to one another, causing stochastic variation in birth, death, immigration, and speciation to ultimately result in differences in species abundance (@citations). 
 
-Can check for neutrality using abundance distribution data
+<!--Can check for neutrality using abundance distribution data-->
 Building on work by Pueyo [@pueyo2006], Connolly et al. were able to identify non-neutral species abundance distributions in marine environments by comparing model fits of a lognormal distribution (non-neutral) to a gamma distribution (neutral)[@connolly2014].  This approach shows promise as a robust method for identifying communities that exhibit non-neutrality.
 
-Works for marine systems, does it work with more data, both terrestrial and marine.
+<!--Works for marine systems, does it work with more data, both terrestrial and marine.-->
 While this approach has been preliminarily tested with marine communities over a broad geographic extent, it has not yet been tested in terrestrial systems <!--with a really expansive dataset-->.  Here, we evaluate the approach used by Connolly et al. [@connolly2014] over a much broader range of ecosystems and taxa.  We tested this approach for vertebrate, invertebrate and plant communities in terrestrial, aquatic, and marine ecosystems.  In total, we used abundance data from 16,218 communities to determine whether we observe patterns that are more consistent with neutrality or non-neutrality.
 
 #Methods
