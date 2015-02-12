@@ -6,3 +6,10 @@
 
 #Introduction
 <!--Overarching introduction that ties all three chapters together -->
+Macroecology is a data-driven science.  
+
+There are some criticisms of macroecology, one of which is the terrestrial focus, also lots of birds and North America
+
+Best practices for testing macroecological theory
+
+I used best practices and a bunch of data to test species abundance distribution. 
