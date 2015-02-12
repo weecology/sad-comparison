@@ -59,7 +59,7 @@ After initial download of the references found by various searches, I manually s
 *Must be animal data.
 
 
-Data were hand entered into a raw data file as they came from the original source or extracted from the original source computationally and then manually checked for consistency with the original source.  All the references initially collected were not included in the final database, because they were not deemed suitable for inclusion in the final product.  A table with a list of excluded references and the reason for exclusion will be presented in the appendix.
+Data were hand entered into a raw data file as they came from the original source or extracted from the original source computationally and then manually checked for consistency with the original source.  All the references initially collected were not included in the final database, because they were not deemed suitable for inclusion in the final product.  A table with a list of excluded references and the reason for exclusion is given in appendix 1.
 
 Species names were kept as given in the original source.  
 
@@ -143,7 +143,7 @@ Authentication procedures:
 
 #Usage Notes
 <!-- Best practices for using the data, EcoData Retriever compatible.  -->
-This is compiled data from a variety of literature sources.  Among studies within the same taxonomic grouping, methods of collection, capture success, etc. vary, and the differences among taxa are even greater.  However, within a study, methods of data collection are the same.  Because of the methodological variation present in compiled data, it is more appropriate to treat each site individually, rather than aggregating sites across studies.  Aggregating data across sites can lead to false signals in species richness, abundance,  etc. that are due to methodological rather than biological/ecological differences.<!--Why should these be done one at a time  (methods aren't the same, why this is important)-->  
+This is compiled data from a variety of literature sources.  Within a study, methods of data collection are the same.  However, among studies within the same taxonomic grouping, methods of collection, capture success, etc. vary, and the differences among taxa are even greater.  , Because of the methodological variation present in compiled data, it is more appropriate to treat each site individually, rather than aggregating sites across studies.  Aggregating data across sites can lead to false signals in species richness, abundance,  etc. that are due to methodological rather than biological/ecological differences.  <!--Why should these be done one at a time  (methods aren't the same, why this is important)-->  
 
 #References
 
