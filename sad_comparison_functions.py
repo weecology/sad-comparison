@@ -99,7 +99,7 @@ def get_loglik_multi_dists(ab, dist_name, *pars):
     loglik = sum(np.log(dist.pmf(ab, *pars)))
     return loglik
 
-def get_ks_multi_dists(ab, dist_name, pars):
+def get_ks_multi_dists(ab, dist_name, *pars):
     """Returns the K-S statistic given abundances, 
     
     the designated distribution, and the parameters.
@@ -107,19 +107,9 @@ def get_ks_multi_dists(ab, dist_name, pars):
     """
     ab = sorted(ab)
     emp_cdf = (np.arange(1, len(ab) + 1) - 0.5) / len(ab)  
-    dist = 0
-    if dist_name == 'logser': dist = sd.logser
-    elif dist_name == 'geom': dist = sd.geom
-    elif dist_name == 'zipf': dist = sd.zipf
-    if dist: # If one of the above three cases:
-        ks = max(abs(emp_cdf - np.array([dist.cdf(x, pars) for x in ab])))
-    else:
-        if dist_name == 'negbin':
-            n, p = pars
-            ks = max(abs(emp_cdf - np.array([md.nbinom_lower_trunc.cdf(x, n, p) for x in ab])))
-        elif dist_name == 'pln':
-            mu, sigma = pars
-            ks = max(abs(emp_cdf - np.array([md.pln.cdf(x, mu, sigma, True) for x in ab])))
+    dist = DIST_DIC[dist_name]
+    if dist_name == 'pln': pars += (True, )
+    ks = max(abs(emp_cdf - np.array([dist.cdf(x, *pars) for x in ab])))
     return ks
     
 def get_obs_pred_multi_dists(dat_dir, file_name, dist_name, cutoff = 9):
