@@ -23,17 +23,17 @@ def get_par_multi_dists(ab, dist_name):
     """Returns the parameters given the observed abundances and the designated distribution."""
     if dist_name == 'logser':
         beta = mete.get_beta(len(ab), sum(ab), version = 'untruncated')
-        par = np.exp(-beta)
+        par = (np.exp(-beta), )
     elif dist_name == 'pln':
         par = md.pln_solver(ab)
     elif dist_name == 'geom':
-        par = len(ab) / sum(ab)
+        par = (len(ab) / sum(ab), )
     elif dist_name == 'negbin':
         par = md.negbin_solver(ab)
         if np.isnan(par[0]):
             par = None
     elif dist_name == 'zipf':
-        par = md.zipf_solver(ab)
+        par = (md.zipf_solver(ab), )
     else: 
         print "Error: distribution not recognized."
         par = None    
@@ -114,7 +114,7 @@ def get_obs_pred_multi_dists(dat_dir, file_name, dist_name, cutoff = 9):
         if len(obs_site) > cutoff: 
             pars_dist_site = get_par_multi_dists(obs_site, dist_name)
             if pars_dist_site and (np.any(np.isnan(pars_dist_site)) == 0):  # The estimated parameters exist and are not NANs
-                pred_dist_site = get_pred_multi_dists(len(obs_site), dist_name, pars_dist_site)
+                pred_dist_site = get_pred_multi_dists(len(obs_site), dist_name, *pars_dist_site)
                 results = np.zeros((len(obs_site), ), dtype = ('S30, i8, i8'))
                 results['f0'] = np.array([site] * len(obs_site))
                 results['f1'] = obs_site
@@ -132,19 +132,20 @@ def sim_stats(ab, dist_name, Nsim, test_stat):
     Nsim - number of simulated abundance lists
     test_stat - can be either log-likelihood ('loglik'), Kolmogorov-Smirnov statistic ('ks'), or R^2 ('r2')
     Output: 
-    A list where the first element is the stat value for the empirical SAD and the remaining values are stats for the simulated SADs.
+    A list with two elements, where the first element is the output for empirical ab, 
+    and the second element is a list of length Nsim with the output for each simulated ab.
     
     """
     pars = get_par_multi_dists(ab, dist_name)
     if test_stat == 'loglik': test_func = get_loglik_multi_dists
     elif test_stat == 'ks': test_func = get_ks_multi_dists
     elif test_stat == 'r2': 
-        def test_func(ab, dist_name, pars):
-            pred = get_pred_multi_dists(len(ab), dist_name, pars)
+        def test_func(ab, dist_name, *pars):
+            pred = get_pred_multi_dists(len(ab), dist_name, *pars)
             r2 = macroecotools.obs_pred_rsquare(sorted(ab, reverse = True), pred)
             return r2
-    out_list = [test_func(ab, dist_name, pars)]
+    out_list = []
     for i in range(Nsim):
-        sim_sad = get_sample_multi_dists(len(ab), dist_name, pars)
-        out_list.append(test_func(sim_sad, dist_name, pars))
-    return out_list
+        sim_sad = get_sample_multi_dists(len(ab), dist_name, *pars)
+        out_list.append(test_func(sim_sad, dist_name, *pars))
+    return [test_func(ab, dist_name, *pars), out_list]
