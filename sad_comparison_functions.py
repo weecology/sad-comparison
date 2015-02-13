@@ -7,6 +7,13 @@ import scipy.stats.distributions as sd
 import mete
 import csv
 
+# Define dictionary to match names to distributions
+DIST_DIC = {'logser': sd.logser,
+            'geom': sd.geom,
+            'zipf': sd.zipf,
+            'negbin': md.nbinom_lower_trunc,
+            'pln': md.pln}
+
 def import_abundance(datafile):
     """Imports raw species abundance .csv files in the form: Site, Year, Species, Abundance."""
     raw_data = np.genfromtxt(datafile, dtype = "S30,i8,S30,i8", names = ['site','year','sp','ab'], delimiter = ",",comments = "#")
@@ -49,22 +56,28 @@ def get_pred_iterative(cdf_obs, dist, *pars):
                 return np.array(abundance)
         i += 1
 
-def get_sample_multi_dists(S, dist_name, pars):
+def get_sample_multi_dists(S, dist_name, *pars):
     """Returns a random sample of length S from the designated distribution."""
-    dist = 0
-    if dist_name == 'logser': dist = sd.logser
-    elif dist_name == 'geom': dist = sd.geom
-    elif dist_name == 'zipf': dist = sd.zipf
-    if dist:
-        rand_smp = dist.rvs(pars, size = S)
-    else:
-        if dist_name == 'negbin':
-            n, p = pars
-            rand_smp = md.nbinom_lower_trunc.rvs(n, p, size = S)
-        elif dist_name == 'pln':
-            mu, sigma = pars
-            rand_smp = md.pln.rvs(mu, sigma, True, size = S)
+    dist = DIST_DIC[dist_name]
+    if dist_name == 'pln': pars += (True, )
+    rand_smp = dist.rvs(*pars, size = S)
     return rand_smp
+#def get_sample_multi_dists(S, dist_name, pars):
+    #"""Returns a random sample of length S from the designated distribution."""
+    #dist = 0
+    #if dist_name == 'logser': dist = sd.logser
+    #elif dist_name == 'geom': dist = sd.geom
+    #elif dist_name == 'zipf': dist = sd.zipf
+    #if dist:
+        #rand_smp = dist.rvs(pars, size = S)
+    #else:
+        #if dist_name == 'negbin':
+            #n, p = pars
+            #rand_smp = md.nbinom_lower_trunc.rvs(n, p, size = S)
+        #elif dist_name == 'pln':
+            #mu, sigma = pars
+            #rand_smp = md.pln.rvs(mu, sigma, True, size = S)
+    #return rand_smp
 
 def get_pred_multi_dists(S, dist_name, pars):
     """Returns the predicted abundances given species richness, 
