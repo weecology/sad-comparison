@@ -62,22 +62,6 @@ def get_sample_multi_dists(S, dist_name, *pars):
     if dist_name == 'pln': pars += (True, )
     rand_smp = dist.rvs(*pars, size = S)
     return rand_smp
-#def get_sample_multi_dists(S, dist_name, pars):
-    #"""Returns a random sample of length S from the designated distribution."""
-    #dist = 0
-    #if dist_name == 'logser': dist = sd.logser
-    #elif dist_name == 'geom': dist = sd.geom
-    #elif dist_name == 'zipf': dist = sd.zipf
-    #if dist:
-        #rand_smp = dist.rvs(pars, size = S)
-    #else:
-        #if dist_name == 'negbin':
-            #n, p = pars
-            #rand_smp = md.nbinom_lower_trunc.rvs(n, p, size = S)
-        #elif dist_name == 'pln':
-            #mu, sigma = pars
-            #rand_smp = md.pln.rvs(mu, sigma, True, size = S)
-    #return rand_smp
 
 def get_pred_multi_dists(S, dist_name, pars):
     """Returns the predicted abundances given species richness, 
@@ -104,25 +88,15 @@ def get_pred_multi_dists(S, dist_name, pars):
         pred = None
     return pred
 
-def get_loglik_multi_dists(ab, dist_name, pars):
+def get_loglik_multi_dists(ab, dist_name, *pars):
     """Returns the log-likelihood given abundances, 
     
     the designated distribution, and the parameters.
     
     """
-    dist = 0
-    if dist_name == 'logser': dist = sd.logser
-    elif dist_name == 'geom': dist = sd.geom
-    elif dist_name == 'zipf': dist = sd.zipf
-    if dist: # If one of the above three cases:
-        loglik = sum(dist.logpmf(ab, pars))
-    else:
-        if dist_name == 'negbin':
-            n, p = pars
-            loglik = sum(np.log(md.nbinom_lower_trunc.pmf(ab, n, p)))
-        elif dist_name == 'pln':
-            mu, sigma = pars
-            loglik = sum(np.log(md.pln.pmf(ab, mu, sigma, True)))
+    dist = DIST_DIC[dist_name]
+    if dist_name == 'pln': pars += (True,)
+    loglik = sum(np.log(dist.pmf(ab, *pars)))
     return loglik
 
 def get_ks_multi_dists(ab, dist_name, pars):
