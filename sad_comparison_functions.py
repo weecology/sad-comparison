@@ -63,7 +63,7 @@ def get_sample_multi_dists(S, dist_name, *pars):
     rand_smp = dist.rvs(*pars, size = S)
     return rand_smp
 
-def get_pred_multi_dists(S, dist_name, pars):
+def get_pred_multi_dists(S, dist_name, *pars):
     """Returns the predicted abundances given species richness, 
     
     the designated distribution, and the parameters.
@@ -71,21 +71,11 @@ def get_pred_multi_dists(S, dist_name, pars):
     """
     cdf = (np.arange(1, S + 1) - 0.5) / S
     cdf = cdf[::-1]
-    if dist_name == 'logser':
-        pred = get_pred_iterative(cdf, sd.logser, pars)
-    elif dist_name == 'pln':
-        mu, sigma = pars
-        pred = get_pred_iterative(cdf, md.pln, mu, sigma, True)
-    elif dist_name == 'geom':
-        pred = sd.geom.ppf(cdf, pars)
-    elif dist_name == 'negbin':
-        n, p = pars
-        pred = get_pred_iterative(cdf, md.nbinom_lower_trunc, n, p)
-    elif dist_name == 'zipf':
-        pred = get_pred_iterative(cdf, sd.zipf, pars)
-    else: 
-        print "Error: distribution not recognized."
-        pred = None
+    dist = DIST_DIC[dist_name]
+    if dist_name == 'pln': pars += (True, )
+    if dist_name == 'geom': pred = dist.ppf(cdf, *pars)
+    else:  # For all other distributions, need to call the iterative method
+        pred = get_pred_iterative(cdf, dist, *pars)
     return pred
 
 def get_loglik_multi_dists(ab, dist_name, *pars):
