@@ -3,15 +3,20 @@
 #Introduction
 <!-- Connolly et al 2014. -->
 Neutral theory is a big important theory
+Understanding what processes are involved structuring and maintaining ecological communities is a much studied ecological question. <!-- The previous sentence feels clunky and needs fixing.-->  One theoretical approach that has been given a great deal of attention in recent years is the unified neutral theory of biodiversity (@citation).  While there are multiple formulations of neutral theory, all models are based on the assumptions that species and individuals are ecologically and demographically equivalent to one another, causing stochastic variation in birth, death, immigration, and speciation to ultimately result in differences in species abundance (@citations). 
 
 Can check for neutrality using abundance distribution data
+Building on work by Pueyo [@pueyo2006], Connolly et al. were able to identify non-neutral species abundance distributions in marine environments by comparing model fits of a lognormal distribution (non-neutral) to a gamma distribution (neutral)[@connolly2014].  This approach shows promise as a robust method for identifying communities that exhibit non-neutrality.
 
 Works for marine systems, does it work with more data, both terrestrial and marine.
+While this approach has been preliminarily tested with marine communities over a broad geographic extent, it has not yet been tested in terrestrial systems <!--with a really expansive dataset-->.  Here, we evaluate the approach used by Connolly et al. [@connolly2014] over a much broader range of ecosystems and taxa.  We tested this approach for vertebrate, invertebrate and plant communities in terrestrial, aquatic, and marine ecosystems.  In total, we used abundance data from 16,218 communities to determine whether we observe patterns that are more consistent with neutrality or non-neutrality.
 
 #Methods
 <!-- Redid analyses with more data-->
 ### Data
-For this analysis, we used the data from White et al 2012 [@white2012], as well as the data described in chapter 2 of this dissertation.  These data cover 9 distinct taxonomic groups and include birds, mammals, reptiles, amphibians, bony fish, beetles, spiders, butterflies, and trees from 16,218 distinct communities over all major biogeographic regions.  The majority of the data are publicly available and were accessed through the EcoData Retriever [@morris2013] (US Geological Survey's North American Breeding Bird Survey [BBS; @pardieck2014], Mammal Community Database [MCDB; @thibault2011], US Forest Service Forest Inventory and Analysis [FIA; @fia], Gentry's Forest Transect Data Set [Gentry; @phillips2002]). The North American Butterfly Association count data [NABC; @naba] and the Audubon Society Christmas Bird Count [CBC; @cbc] are not publicly available and were obtained through Memorandums of Understanding with their respective organizations.
+For this study, we used the data from White et al. 2012 [@white2012], as well as the data described in chapter 2 of this dissertation.  These data cover 9 distinct taxonomic groups and include birds, mammals, reptiles, amphibians, bony fish, beetles, spiders, butterflies, and trees from 16,218 distinct communities over all major biogeographic regions.  The majority of the data are publicly available and were accessed through the EcoData Retriever [@morris2013] (US Geological Survey's North American Breeding Bird Survey [BBS; @pardieck2014], Mammal Community Database [MCDB; @thibault2011], US Forest Service Forest Inventory and Analysis [FIA; @fia], Gentry's Forest Transect Data Set [Gentry; @phillips2002]). The North American Butterfly Association count data [NABC; @naba] and the Audubon Society Christmas Bird Count [CBC; @cbc] are not publicly available and were obtained through Memorandums of Understanding with their respective organizations.
+
+Table 1: Description of total number of sites per taxa and dataset.
 
 | Taxa        | Dataset(s)     | Total sites |
 |-------------|----------------|-------------|
@@ -33,10 +38,10 @@ We followed the current best practice recommendations to use maximum likelihood 
 Connolly et al. used Akaike Information Criterion (AIC) weights for model selection.  We used weights calculated from the corrected Akaike Information Criterion (AICc) values because the corrected form is more robust to small sample sizes, which was a consideration for some communities.  We used corrected Aikaike Information Criterion (AICc) weights to determine which model best approximated the data out of the set of fitted models.
 
 <!--negative binomial vs. Poisson gamma:  Needs help regarding language and correctness-->
-Negative binomial
+Negative binomial  
 Connolly et al. used the Poisson gamma distribution as a good description of the neutral theory model in their analysis [@connolly2014].  We used the negative binomial as an alternative formulation of the Poisson gamma.
 
-Lognormal
+Lognormal  
 The lognormal distribution is one of the classic and most frequently used models used to describe the shape of the species abundance distribution [@mcgill2003].  While there are both continuous and discrete forms of this distribution, the discrete form of the distribution is more appropriate to use with abundance data [@citation].  We used the Poisson lognormal, the discrete form of the distribution, in our analyses.
 
 #Results

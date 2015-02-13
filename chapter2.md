@@ -8,12 +8,12 @@ This dataset is compiled from the literature, including seven classes of animals
 #Background & Summary
 <!-- Background and summary for collecting the data.  Publicly available community datasets suitable for macroecological research mostly birds, trees, mammals, North American focus.  Other taxa also good, compilation with abundances for greater comparisonability across taxa -->
 <!-- Why does this data matter, lots of it available for certain taxonomic groups? -->
-Comparing macroecological patterns across taxa is a valuable approach for identifying potential pattern-generating mechanisms and determining the generality of a pattern.  There is a great deal of community abundance data in the literature, but most include a single to a few communities.  Large, publicly available datasets with many sites have been primarily for a single taxa, making these multi-taxonomic comparisons difficult to achieve.  
-
-<!-- Why are these data special.  Focus on the taxonomy, cite papers on taxonomic bias in macroecological datasets.  http://www.biodiversity-plants.de/downloads/JD158.pdf ->
+Comparing macroecological patterns across taxa is a valuable approach for identifying potential pattern-generating mechanisms and determining the generality of a pattern or process.  One major criticism of macroecology is that the majority of research has been driven by a few major datasets, primarily terrestrial North American and European birds and mammals [@beck2012]. In additional, large, publicly available datasets with many sites have been primarily for a single taxa, restricting the majority of macroecological comparisons to a single taxa. One suggestion for improving macroecology is to make better use of existing data [@beck2012]. There is a great deal of community abundance data in the literature, but most include a single to a few communities, and the majority of the data require further processing to be useable in other analyses (i.e., presented in a table in the text of the paper). 
+<!-- Why are these data special.  Focus on the taxonomy, cite papers on taxonomic bias in macroecological datasets.  http://www.biodiversity-plants.de/downloads/JD158.pdf -->
+This dataset gathers and combines data for multiple taxa and biogeographic regions from the literature into a single, open access, publicly available source.  This will allow researchers to make macroecological comparisons for a wider range of taxa without having to gather and process the data from the literature before use, resulting in more robust comparisons, and a better assessment of generality of pattern and process across taxa and biogeographic regions.  
 
 <!-- Filling in the gaps -->
-My compilation is useful because it contains abundance data for seven classes of animal, including vertebrates and invertebrates, endotherms and ectotherms, and includes taxa that are not currently well represented, if at all, in the common macroecological datasets.  This dataset will allow for a more robust comparison of patterns across taxa, especially when combined with existing macroecological datasets.  
+My compilation is useful because it contains abundance data for seven classes of animal, including vertebrates and invertebrates, endotherms and ectotherms, and includes taxa that are not currently well represented, if at all, in the common macroecological datasets.  This dataset will allow for a more robust comparison of patterns across taxa, especially when combined with existing macroecological datasets.  The primary focus of this dataset was to provide a single source for community abundance data for fish, amphibians and reptiles, as there are currently large publicly available datasets for birds and mammals [e.g., North American Breeding Bird Survey, BBS; @pardieck2014, Mammal Community Database, MCDB; @thibault2011].  While the primary focus of data collection was filling in the gaps for vertebrate taxa,  I also collected community abundance data on other taxa as I ran across it.  
 
 
 
@@ -32,6 +32,7 @@ Data were compiled from the scientific literature.  References for data sources 
 
 <!-- search terms, how I filtered, http://wiki.weecology.org/w/page/36018991/Database--Find unique, add table of sources that I checked but which were ultimately rejected -->
 I did an intial quick search of the literature for community abundance data to get a sense of what data were available, and which taxa were likely to have a good amount of data available. After the initial search, I began a more systematic approach to searching through the literature, and selected fish, amphibians, and reptiles as the main focus of data collection. 
+
 | Search Parameters                                                                              | Search engine                        | Date Accessed |
 |------------------------------------------------------------------------------------------------|--------------------------------------|---------------|
 | community abundance in Biology, Life Sciences, etc.                                           | Google Scholar                       | 29 Nov 2010   |
@@ -63,7 +64,6 @@ Data were hand entered into a raw data file as they came from the original sourc
 Species names were kept as given in the original source.  
 
  
-
 Variables:
 
 | Variable name | Variable definition | Units | Storage type | Range of values |
@@ -143,7 +143,7 @@ Authentication procedures:
 
 #Usage Notes
 <!-- Best practices for using the data, EcoData Retriever compatible.  -->
-This is compiled data from a variety of literature sources.  Because of the nature of this data, it is more appropriate to treat each site individually, rather than aggregating sites. <!--Why should these be done one at a time  (methods aren't the same, why this is important)-->  
+This is compiled data from a variety of literature sources.  Among studies within the same taxonomic grouping, methods of collection, capture success, etc. vary, and the differences among taxa are even greater.  However, within a study, methods of data collection are the same.  Because of the methodological variation present in compiled data, it is more appropriate to treat each site individually, rather than aggregating sites across studies.  Aggregating data across sites can lead to false signals in species richness, abundance,  etc. that are due to methodological rather than biological/ecological differences.<!--Why should these be done one at a time  (methods aren't the same, why this is important)-->  
 
 #References
 
