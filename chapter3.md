@@ -45,7 +45,8 @@ The lognormal distribution is one of the classic and most frequently used models
 
 #Results
 <!-- Graphs  -->
-Figures similar to Figure 1 minus the map and figure 2B.
+Figures similar to figure 2B.
+![Log of distinct abundance values versus AICc weight of the lognormal distribution for each dataset.](./sad-data/chapter3/distabclasses_vs_lognormwgt.png)
 
 #Discussion
 <!--Big picture.-->
