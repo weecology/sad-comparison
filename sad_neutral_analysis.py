@@ -11,6 +11,7 @@ import functools
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
+import seaborn as sns
 
 from macroecotools import AICc, aic_weight
 from sad_comparison_functions import get_par_multi_dists, get_loglik_multi_dists
@@ -80,3 +81,14 @@ else:
     sads['pln_aicc_wgt'] = get_pln_aicc_wgts(sads)
     sads.reset_index(inplace=True)
     sads.to_csv('./sad-data/chapter3/distribution_data.csv', index=False)
+
+sads = sads.dropna()
+sads['log_distinct_ab_vals'] = np.log(sads['distinct_ab_vals'])
+ax = sns.lmplot('log_distinct_ab_vals', 'pln_aicc_wgt', data=sads, col='dataset', col_wrap=3,
+                hue='dataset', fit_reg=False)
+ax.set(xlabel="Distinct Abundance Values (log)", ylabel="AIC wgt for log-normal")
+ax.set(xlim=[np.log(5), np.log(300)], ylim=[0, 1])
+xticks = [10, 20, 50, 100, 200]
+ax.set(xticks=np.log(xticks))
+ax.set(xticklabels=xticks)
+ax.savefig('./sad-data/chapter3/distabclasses_vs_lognormwgt.png')
