@@ -82,6 +82,7 @@ else:
     sads.reset_index(inplace=True)
     sads.to_csv('./sad-data/chapter3/distribution_data.csv', index=False)
 
+# Create figure similar to figure 2b in the Connolly 2014 paper.
 sads = sads.dropna()
 sads['log_distinct_ab_vals'] = np.log(sads['distinct_ab_vals'])
 sns.set_style("whitegrid")
