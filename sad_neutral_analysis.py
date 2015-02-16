@@ -82,8 +82,10 @@ else:
     sads.reset_index(inplace=True)
     sads.to_csv('./sad-data/chapter3/distribution_data.csv', index=False)
 
+# Create figure similar to figure 2b in the Connolly 2014 paper.
 sads = sads.dropna()
 sads['log_distinct_ab_vals'] = np.log(sads['distinct_ab_vals'])
+sns.set_style("whitegrid")
 ax = sns.lmplot('log_distinct_ab_vals', 'pln_aicc_wgt', data=sads, col='dataset', col_wrap=3,
                 hue='dataset', fit_reg=False)
 ax.set(xlabel="Distinct Abundance Values (log)", ylabel="AIC wgt for log-normal")
