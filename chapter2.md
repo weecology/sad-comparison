@@ -2,7 +2,7 @@
 
 #Abstract
 <!--  Number of taxa, number of communities -->
-One majority of publicly available dataset used for macroecological research have had a North American terrestrial bias, and have primarily been for warm-blooded vertebrates.  This dataset helps to improve the availablity of data suitable for macroecological questions for a diversity of taxa.  The data are compiled from the literature, including seven classes of animals, including ray finned and cartilaginous fish (references), amphibians(references), spiders(references), birds(references), beetles(references), and reptiles(references) from 706 sites over all continents except Antarctica.
+One majority of publicly available dataset used for macroecological research have had a North American terrestrial bias, and have primarily been for warm-blooded vertebrates.  This dataset helps to improve the availablity of data suitable for macroecological questions for a diversity of taxa.  The data were compiled from the literature, including seven classes of animals, including ray finned and cartilaginous fish (references), amphibians(references), spiders(references), birds(references), beetles(references), and reptiles(references) from 706 sites over all continents except Antarctica.
 
 
 #Background & Summary
