@@ -45,8 +45,10 @@ The lognormal distribution is one of the classic and most frequently used models
 
 #Results
 <!-- Graphs  -->
-Figures similar to figure 2B.
-![Log of distinct abundance values versus AICc weight of the lognormal distribution for each dataset.](./sad-data/chapter3/distabclasses_vs_lognormwgt.png)
+Connolly et al. found that species abundance for empirical communities were best approximated by a lognormal rather than a negative binomial (gamma) distribution [@connolly2014].  However, our results found that there was no overwhelming support for the lognormal over the negative binomial distribution (Figure 1). 
+![Figure 1. Log of distinct abundance values versus AICc weight of the lognormal distribution for each dataset.](./sad-data/chapter3/distabclasses_vs_lognormwgt.png)
 
 #Discussion
 <!--Big picture.-->
+<!-- Our results differ from the Connolly results-->
+<!--There are possible explanations for this.-->
