@@ -99,10 +99,11 @@ ax.savefig('./sad-data/chapter3/distabclasses_vs_lognormwgt.png')
 
 sads_by_dataset = sads.groupby('dataset').mean().reset_index()
 ax = sns.lmplot('log_distinct_ab_vals', 'pln_aicc_wgt', data=sads_by_dataset,
-                hue='dataset', fit_reg=False)
+                hue='dataset', fit_reg=False, scatter_kws={"s": 60, "alpha": 1})
 ax.set(xlabel="Distinct Abundance Values (log)", ylabel="AIC wgt for log-normal")
 ax.set(xlim=[np.log(5), np.log(300)], ylim=[0, 1])
 xticks = [10, 20, 50, 100, 200]
 ax.set(xticks=np.log(xticks))
 ax.set(xticklabels=xticks)
+ax.savefig('./sad-data/chapter3/avgvals_by_dataset.png')
 plt.show()
