@@ -7,20 +7,21 @@
 
 #Introduction
 <!--Overarching introduction that ties all three chapters together -->
-Macroecology is a data-driven approach to answering ecological questions.  
+Macroecology is a data-intensive approach to answering ecological questions.  
 
 There are some criticisms of macroecology, one of which is the terrestrial focus, also lots of birds and North America
 <!-- cite some of the recent critiques and directional papers -->
 
-In response to, as the discipline has matured, a set of best practices for testing patterns and theory with macroecological techniques have been developed.
+As the discipline has matured, a set of best practices for testing patterns and theory with macroecological techniques have been developed.
 
 Best practices for testing macroecological theory <!--citations-->
 Multiple taxonomic groups
 Multiple ecosystems
 Multiple patterns
 
-I used best practices and a bunch of data to test species abundance distribution.
-I compiled a set of data from the literature to address some of the concerns about the lack of data for certain taxonomic groups.
+I followed these best practice recommendations to expand the amount of publicly available data for underrepresented taxonomic groups.  I then combined that data with additional publicly available data to rigorously test models of the species abundance distribution.
+
+I compiled a set of data from the literature to address some of the concerns about the lack of data for underrepresented taxonomic groups.  My primary focus for data collection was to collect data for those vertebrate taxa which are not already well represented by publicly available data.  I selected these taxa, because their taxonomy is fairly well resolved when compared to invertebrate groups.  While my primary focus was on fish, reptiles, and amphibians, I also compiled data on spiders and beetles.  In addition, I also collected a small amount of bird data, which could potentially be used in comparision with the large, publicly available bird datasets to determine if the dataset affects the results.
 Data filling in gaps, data, data, data.
 
 
