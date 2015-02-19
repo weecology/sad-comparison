@@ -45,13 +45,18 @@ The lognormal distribution is one of the classic and most frequently used models
 
 #Results
 <!-- Graphs  -->
- 
+Connolly et al. found that species abundance for empirical communities were best approximated by a lognormal rather than a negative binomial (gamma) distribution [@connolly2014].  However, our results found that there was no overwhelming support for the lognormal over the negative binomial distribution (Figure 1) at the site level. 
 ![Figure 1. Log of distinct abundance values versus AIC weight of the lognormal distribution for each dataset.](./sad-data/chapter3/distabclasses_vs_lognormwgt.png)
 
+
+We also averaged the AIC weight of the lognormal distribution for each dataset, and did not observe a clear signal for one distribution over another.
 ![Figure 2. Average AIC weight of the lognormal distribution for each dataset.](./sad-data/chapter3/avgvals_by_dataset.png)
 
 
 #Discussion
 <!--Big picture.-->
 <!-- Our results differ from the Connolly results-->
+<!-- Our results are consistent with chapter 1, in that it seems to be really hard to pick a clear winner among/between models.-->
 <!--There are possible explanations for this.-->
+<!--Could be a terrestrial vs. marine thing, although fish showed the same pattern.  The fish data was a little over half freshwater, a few estuary, and the rest marine, but a lot of near shore, mangrove-y areas.  No deep water sites.-->
+<!--Connolly paper showed smaller scale tended to be more toward the middle, larger scale tended toward upper end.-->
