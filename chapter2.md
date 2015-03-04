@@ -59,7 +59,7 @@ After initial download of the references found by various searches, I manually s
 *Must be animal data.
 
 
-Data were hand entered into a raw data file as they came from the original source or extracted from the original source computationally and then manually checked for consistency with the original source.  All the references initially collected were not included in the final database, because they were not deemed suitable for inclusion in the final product.  A table with a list of excluded references and the reason for exclusion is given in appendix 1.
+Data were hand entered into a raw data file as they came from the original source or extracted from the original source computationally and then manually checked for consistency with the original source.  All the references initially collected were not included in the final database, because they were not deemed suitable for inclusion in the final product.
 
 Species names were kept as given in the original source.  
 
