@@ -2,7 +2,7 @@
 
 #Introduction
 <!--Neutral theory is a big important theory-->
-Understanding what processes are involved structuring and maintaining ecological communities is a much studied ecological question. <!-- The previous sentence feels clunky and needs fixing.-->  One theoretical approach that has been given a great deal of attention in recent years is the unified neutral theory of biodiversity (@citation).  While there are multiple formulations of neutral theory, all models are based on the assumptions that species and individuals are ecologically and demographically equivalent to one another, causing stochastic variation in birth, death, immigration, and speciation to ultimately result in differences in species abundance (@citations). 
+Understanding what processes are involved structuring and maintaining ecological communities is a much studied ecological question. <!-- The previous sentence feels clunky and needs fixing.-->  One theoretical approach that has been given a great deal of attention in recent years is the unified neutral theory of biodiversity [@matthews2014, @rosindelletal2012<!--http://www.sciencedirect.com/science/article/pii/S0169534712000237, http://userwww.sfsu.edu/parker/bio840/pdfs/neutral/Case4EcolNeutralTheory.pdf-->.  While there are multiple formulations of neutral theory, all models are based on the assumptions that species and individuals are ecologically and demographically equivalent to one another, causing stochastic variation in birth, death, immigration, and speciation to ultimately result in differences in species abundance [@rosindelletal2011]<!--http://izt.ciens.ucv.ve/ecologia/Archivos/ECO_POB%202011/ECOPO7_2011/Rosindell%20et%20al%202011.pdf-->. 
 
 <!--Can check for neutrality using abundance distribution data-->
 Building on work by Pueyo [@pueyo2006], Connolly et al. were able to identify non-neutral species abundance distributions in marine environments by comparing model fits of a lognormal distribution (non-neutral) to a gamma distribution (neutral)[@connolly2014].  This approach shows promise as a robust method for identifying communities that exhibit non-neutrality.
@@ -41,14 +41,22 @@ Negative binomial
 Connolly et al. used the Poisson gamma distribution as a good description of the neutral theory model in their analysis [@connolly2014].  We used the negative binomial as an alternative formulation of the Poisson gamma.
 
 Lognormal  
-The lognormal distribution is one of the classic and most frequently used models used to describe the shape of the species abundance distribution [@mcgill2003].  While there are both continuous and discrete forms of this distribution, the discrete form of the distribution is more appropriate to use with abundance data [@citation].  We used the Poisson lognormal, the discrete form of the distribution, in our analyses.
+The lognormal distribution is one of the classic and most frequently used models used to describe the shape of the species abundance distribution [@mcgill2003].  While there are both continuous and discrete forms of this distribution, the discrete form of the distribution is more appropriate to use with abundance data [@bulmer1974].  We used the Poisson lognormal, the discrete form of the distribution, in our analyses.
 
 #Results
 <!-- Graphs  -->
-Connolly et al. found that species abundance for empirical communities were best approximated by a lognormal rather than a negative binomial (gamma) distribution [@connolly2014].  However, our results found that there was no overwhelming support for the lognormal over the negative binomial distribution (Figure 1). 
-![Figure 1. Log of distinct abundance values versus AICc weight of the lognormal distribution for each dataset.](./sad-data/chapter3/distabclasses_vs_lognormwgt.png)
+Connolly et al. found that species abundance for empirical communities were best approximated by a lognormal rather than a negative binomial (gamma) distribution [@connolly2014].  However, our results found that there was no overwhelming support for the lognormal over the negative binomial distribution (Figure 1) at the site level. 
+![Figure 1. Log of distinct abundance values versus AIC weight of the lognormal distribution for each dataset.](./sad-data/chapter3/distabclasses_vs_lognormwgt.png)
+
+
+We also averaged the AIC weight of the lognormal distribution for each dataset, and did not observe a clear signal for one distribution over another.
+![Figure 2. Average AIC weight of the lognormal distribution for each dataset.](./sad-data/chapter3/avgvals_by_dataset.png)
+
 
 #Discussion
 <!--Big picture.-->
+<!-- Our results are consistent with chapter 1, in that it seems to be really hard to pick a clear winner among/between models.-->
 <!-- Our results differ from the Connolly results-->
 <!--There are possible explanations for this.-->
+<!--Could be a terrestrial vs. marine thing, although fish showed the same pattern.  The fish data was a little over half freshwater, a few estuary, and the rest marine, but a lot of near shore, mangrove-y areas.  No deep water sites.-->
+<!--Connolly paper showed smaller scale tended to be more toward the middle, larger scale tended toward upper end.-->

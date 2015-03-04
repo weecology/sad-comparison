@@ -94,6 +94,7 @@ xticks = [10, 20, 50, 100, 200]
 ax.set(xticks=np.log(xticks))
 ax.set(xticklabels=xticks)
 ax.savefig('./sad-data/chapter3/distabclasses_vs_lognormwgt.png')
+plt.close()
 
 # Create figure showing average values for each datasets
 
@@ -107,3 +108,4 @@ ax.set(xticks=np.log(xticks))
 ax.set(xticklabels=xticks)
 ax.savefig('./sad-data/chapter3/avgvals_by_dataset.png')
 plt.show()
+plt.close()

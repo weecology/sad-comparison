@@ -2,7 +2,7 @@
 
 #Abstract
 <!--  Number of taxa, number of communities -->
-One majority of publicly available dataset used for macroecological research have had a North American terrestrial bias, and have primarily been for warm-blooded vertebrates.  This dataset helps to improve the availablity of data suitable for macroecological questions for a diversity of taxa.  The data were compiled from the literature, including seven classes of animals, including ray finned and cartilaginous fish (references), amphibians(references), spiders(references), birds(references), beetles(references), and reptiles(references) from 706 sites over all continents except Antarctica.
+The majority of publicly available datasets used for macroecological research have had a North American terrestrial bias, and have primarily been for warm-blooded vertebrates.  This dataset helps to improve the availablity of data suitable for macroecological questions for a diversity of taxa.  The data were compiled from the literature, including seven classes of animals, including ray finned and cartilaginous fish (references), amphibians(references), spiders(references), birds(references), beetles(references), and reptiles(references) from 706 sites over all continents except Antarctica.
 
 
 #Background & Summary
@@ -13,7 +13,7 @@ Comparing macroecological patterns across taxa is a valuable approach for identi
 This dataset gathers and combines data for multiple taxa and biogeographic regions from the literature into a single, open access, publicly available source.  This will allow researchers to make macroecological comparisons for a wider range of taxa without having to gather and process the data from the literature before use, resulting in more robust comparisons, and a better assessment of generality of pattern and process across taxa and biogeographic regions.  
 
 <!-- Filling in the gaps -->
-My compilation is useful because it contains abundance data for seven classes of animal, including vertebrates and invertebrates, endotherms and ectotherms, and includes taxa that are not currently well represented, if at all, in the common macroecological datasets.  This dataset will allow for a more robust comparison of patterns across taxa, especially when combined with existing macroecological datasets.  The primary focus of this dataset was to provide a single source for community abundance data for fish, amphibians and reptiles, as there are currently large publicly available datasets for birds and mammals [e.g., North American Breeding Bird Survey, BBS; @pardieck2014, Mammal Community Database, MCDB; @thibault2011].  While the primary focus of data collection was filling in the gaps for vertebrate taxa,  I also collected community abundance data on other taxa as I ran across it.  
+My compilation is useful because it contains abundance data for seven classes of animal, including vertebrates and invertebrates, endotherms and ectotherms, and includes taxa that are not currently well represented, if at all, in the common macroecological datasets.  This dataset will allow for a more robust comparison of patterns across taxa, especially when combined with existing macroecological datasets.  The primary focus of this dataset was to provide a single source for community abundance data for fish, amphibians and reptiles, as there are currently large publicly available datasets for birds and mammals [e.g., North American Breeding Bird Survey, BBS; @pardieck2014, Mammal Community Database, MCDB; @thibault2011].  While the primary focus of data collection was filling in the gaps for vertebrate taxa,  I also collected community abundance data on other taxa incidentally.  
 
 
 
@@ -59,7 +59,7 @@ After initial download of the references found by various searches, I manually s
 *Must be animal data.
 
 
-Data were hand entered into a raw data file as they came from the original source or extracted from the original source computationally and then manually checked for consistency with the original source.  All the references initially collected were not included in the final database, because they were not deemed suitable for inclusion in the final product.  A table with a list of excluded references and the reason for exclusion is given in appendix 1.
+Data were hand entered into a raw data file as they came from the original source or extracted from the original source computationally and then manually checked for consistency with the original source.  All the references initially collected were not included in the final database, because they were not deemed suitable for inclusion in the final product.
 
 Species names were kept as given in the original source.  
 
@@ -143,7 +143,7 @@ Authentication procedures:
 
 #Usage Notes
 <!-- Best practices for using the data, EcoData Retriever compatible.  -->
-This is compiled data from a variety of literature sources.  Within a study, methods of data collection are the same.  However, among studies within the same taxonomic grouping, methods of collection, capture success, etc. vary, and the differences among taxa are even greater.  , Because of the methodological variation present in compiled data, it is more appropriate to treat each site individually, rather than aggregating sites across studies.  Aggregating data across sites can lead to false signals in species richness, abundance,  etc. that are due to methodological rather than biological/ecological differences.  <!--Why should these be done one at a time  (methods aren't the same, why this is important)-->  
+This is compiled data from a variety of literature sources.  Within a study, methods of data collection are the same.  However, among studies within the same taxonomic grouping, methods of collection, capture success, etc. vary, and the differences among taxa are even greater.  Because of the methodological variation present in compiled data, it is more appropriate to treat each site individually, rather than aggregating sites across studies.  Aggregating data across sites can lead to false signals in species richness, abundance,  etc. that are due to methodological rather than biological/ecological differences.  <!--Why should these be done one at a time  (methods aren't the same, why this is important)-->  
 
 #References
 
