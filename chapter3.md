@@ -61,4 +61,4 @@ We also averaged the AIC weight of the lognormal distribution for each dataset, 
 <!-- Our results differ from the Connolly results-->
 <!--There are possible explanations for this.-->
 <!--Could be a terrestrial vs. marine thing, although fish showed the same pattern.  The fish data was a little over half freshwater, a few estuary, and the rest marine, but a lot of near shore, mangrove-y areas.  No deep water sites.-->
-<!--Connolly paper showed smaller scale tended to be more toward the middle, larger scale tended toward upper end.-->
+<!--Connolly paper showed smaller scale tended to be more toward the middle, larger scale tended toward upper end.  Could do something about scale matters, but don't have the data with this paper to really say anything on that end.  Might be something to think about for publication?  That would tend to make sense from a conceptual standpoint though- I would expect to see less neutrality at a local scale, more neutrality at larger scales.-->
