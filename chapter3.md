@@ -2,7 +2,9 @@
 
 #Introduction
 <!--Neutral theory is a big important theory-->
-Understanding what processes are involved structuring and maintaining ecological communities is a much studied ecological question. <!-- The previous sentence feels clunky and needs fixing.-->  One theoretical approach that has been given a great deal of attention in recent years is the unified neutral theory of biodiversity [@matthews2014, @rosindelletal2012<!--http://www.sciencedirect.com/science/article/pii/S0169534712000237, http://userwww.sfsu.edu/parker/bio840/pdfs/neutral/Case4EcolNeutralTheory.pdf-->.  While there are multiple formulations of neutral theory, all models are based on the assumptions that species and individuals are ecologically and demographically equivalent to one another, causing stochastic variation in birth, death, immigration, and speciation to ultimately result in differences in species abundance [@rosindelletal2011]<!--http://izt.ciens.ucv.ve/ecologia/Archivos/ECO_POB%202011/ECOPO7_2011/Rosindell%20et%20al%202011.pdf-->. 
+Understanding what processes are involved structuring and maintaining ecological communities is a much studied ecological question. <!-- The previous sentence feels clunky and needs fixing.-->  One theoretical approach that has been given a great deal of attention in recent years is the unified neutral theory of biodiversity [@matthews2014, @rosindelletal2012.  While there are multiple formulations of neutral theory, all models are based on the assumptions that species and individuals are ecologically and demographically equivalent to one another, causing stochastic variation in birth, death, immigration, and speciation to ultimately result in differences in species abundance [@rosindelletal2011].
+
+<!-- Early evaluations of neutral theory were based on comparing the fit of empirical species abundance distributions to the neutral prediction [@citations]. Later evaluations of neutral theory thought that species abundance comparisons weren't sufficient for a rigorous test of neutrality [@mcgill2006]. Recent work by Connolly et al. suggests that comparisons of species abundance distributions may be sufficient for the evaluation of neutral theory against competing models.--> 
 
 <!--Can check for neutrality using abundance distribution data-->
 Building on work by Pueyo [@pueyo2006], Connolly et al. were able to identify non-neutral species abundance distributions in marine environments by comparing model fits of a lognormal distribution (non-neutral) to a gamma distribution (neutral)[@connolly2014].  This approach shows promise as a robust method for identifying communities that exhibit non-neutrality.
@@ -38,7 +40,7 @@ Connolly et al. used Akaike Information Criterion (AIC) weights for model select
 
 <!--negative binomial vs. Poisson gamma:  Needs help regarding language and correctness-->
 Negative binomial  
-Connolly et al. used the Poisson gamma distribution as a good description of the neutral theory model in their analysis [@connolly2014].  We used the negative binomial as an alternative formulation of the Poisson gamma.
+Connolly et al. used the negative binomial (referred to in their paper as the Poisson gamma distribution) as a good description of the neutral theory model in their analysis [@connolly2014].
 
 Lognormal  
 The lognormal distribution is one of the classic and most frequently used models used to describe the shape of the species abundance distribution [@mcgill2003].  While there are both continuous and discrete forms of this distribution, the discrete form of the distribution is more appropriate to use with abundance data [@bulmer1974].  We used the Poisson lognormal, the discrete form of the distribution, in our analyses.
