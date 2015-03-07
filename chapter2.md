@@ -1,9 +1,9 @@
-#Chapter 2- Community abundance data of underrepresented taxonomic groups.
+# Chapter 2- Community abundance data of underrepresented taxonomic groups.
 
-#Abstract
+## Abstract
 The majority of publicly available datasets used for macroecological research have a North American terrestrial bias, and focus primarily on warm-blooded vertebrates and plants. This dataset helps to improve the availability of data suitable for macroecological questions for less frequently studied taxa. The data were compiled from the literature by focusing on less frequently studied groups, and includes seven classes of animals, amphibians, spiders, beetles, reptiles, birds, and ray finned and cartilaginous fish. The data contains data representing over 2000 species and more than 1.3 million individuals from over 700 sites including locations on all continents except Antarctica.
 
-#Background & Summary
+## Background & Summary
 Increasingly large amounts of data are available for studying ecological systems [@reichman2011]. One of the most common forms of ecological data is community abundance data, which is composed of counts of the number of individuals of each species occuring in a community or assemblage. These kinds of data can be used to address a broad array of questions and have become central to research in macroecology.
 
 One major criticism of macroecology is that the majority of research has been driven by a few major datasets, primarily terrestrial North American and European birds, mammals, and plants [@beck2012]. This is due, in part, to the fact that large publicly available datasets with many sites tend to focus on these taxonomic groups [e.g., @pardieck2014, @fia, @thibault2011]. This makes it difficult to determine if observed patterns are general or whether they only apply to the few taxa for which large amounts of easy to analyze data is available. It also makes it difficult to perform meaningful cross-taxonomic comparisons, which can be valuable to understanding the processes driving ecological systems. One suggestion for improving macroecology in this regard is to make better use of existing data [@beck2012]. There is a great deal of community abundance data in the literature, but most include a single to a few communities, and the majority of the data requires data entry and processing to be useable in analyses. In particular, much of this data is only available tables in the text of papers.
