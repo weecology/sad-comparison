@@ -1,9 +1,7 @@
 #Chapter 2- Community abundance data of underrepresented taxonomic groups.
 
 #Abstract
-<!--  Number of taxa, number of communities -->
-The majority of publicly available datasets used for macroecological research have had a North American terrestrial bias, and have primarily been for warm-blooded vertebrates.  This dataset helps to improve the availablity of data suitable for macroecological questions for a diversity of taxa.  The data were compiled from the literature, including seven classes of animals, including ray finned and cartilaginous fish (references), amphibians(references), spiders(references), birds(references), beetles(references), and reptiles(references) from 706 sites over all continents except Antarctica.
-
+The majority of publicly available datasets used for macroecological research have a North American terrestrial bias, and focus primarily on warm-blooded vertebrates and plants. This dataset helps to improve the availability of data suitable for macroecological questions for less frequently studied taxa. The data were compiled from the literature by focusing on less frequently studied groups, and includes seven classes of animals, amphibians, spiders, beetles, reptiles, birds, and ray finned and cartilaginous fish. The data contains data representing over 2000 species and more than 1.3 million individuals from over 700 sites including locations on all continents except Antarctica.
 
 #Background & Summary
 <!-- Background and summary for collecting the data.  Publicly available community datasets suitable for macroecological research mostly birds, trees, mammals, North American focus.  Other taxa also good, compilation with abundances for greater comparisonability across taxa -->
