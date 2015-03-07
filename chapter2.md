@@ -96,17 +96,17 @@ The data are stored in comma-separated values files using a relational database 
 2. Sites data : *Sites_table_abundances.csv*
 3. Reference data: *Citations_table_abundances.csv*
 
-### Format and Storage mode:
+### Format and Storage mode
 
 ASCII text, comma delimited, not compressed.
 
-### Header information:
+### Header information
 
 1. Class, Family, Genus, Species, Relative_abundance, Abundance, Site_ID, Citation_ID 
 2. Site_ID, Collection_Year, End_Collection, Citation_ID, Site_Name, Biogeographic_region, Site_notes
 3. Citation_ID, Authors, Yr, Title, Journal, Issue, Pages
 
-### Special characters/fields:
+### Special characters/fields
 
 Blanks indicate no data: no special characters used.
 
