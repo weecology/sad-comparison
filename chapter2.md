@@ -84,70 +84,67 @@ Variables collected are listed in Table 2.
 | Biogeographic_region | Biogeographic region | N/A | Character | N/A |
 | Site_notes | Additional site information | N/A | Character | N/A |
 
-#Data Records
-The data are presented here in the following files: 
- 
-Abundance data: Species_abundances.csv
+Table: List of variables collected for each dataset
 
-Reference file: Citations_table_abundances.csv
+## Data Records
 
-Sites data file : Sites_table_abundances.csv
-    
+The data are stored in comma-separated values files using a relational database structure with three separate tables.
 
-#Technical Validation
-<!--Validation and figures (breakdown of data by taxa, etc.)-->
-Data have undergone initial quality and assurance checking.  Data were entered directly from the source material into the raw data file and values were double checked on entry.  
-  
+### Data files
 
-Identity:
+1. Abundance data: *Species_abundances.csv*
+2. Sites data : *Sites_table_abundances.csv*
+3. Reference data: *Citations_table_abundances.csv*
 
-1. Abundance data: Species_abundances.csv
-
-2. Sites data file : Sites_table_abundances.csv
-
-3. Reference file: Citations_table_abundances.csv
-
- 
-
-Size:
-
-1. 22143 records, including header row.
-
-2. 707 records, including header row.
-
-3. 117 records, including header row.
-
-     
-Format and Storage mode:
+### Format and Storage mode:
 
 ASCII text, comma delimited, not compressed.
 
-
-Header information:
+### Header information:
 
 1. Class, Family, Genus, Species, Relative_abundance, Abundance, Site_ID, Citation_ID 
-
 2. Site_ID, Collection_Year, End_Collection, Citation_ID, Site_Name, Biogeographic_region, Site_notes
-
-
 3. Citation_ID, Authors, Yr, Title, Journal, Issue, Pages
 
-
-Special characters/fields:
+### Special characters/fields:
 
 Blanks indicate no data: no special characters used.
 
- 
 
-Authentication procedures:
+## Technical Validation
 
-1. Sum of Relative_abundance = 10797.37352
-	
-   Sum of Abundance = 1320592
+Data have undergone manual quality and assurance checking. Data were entered directly from the source material into the raw data file and values were double checked on entry. Validation of proper downloading and importing of the data can be determined using the following information.
 
-#Usage Notes
-<!-- Best practices for using the data, EcoData Retriever compatible.  -->
-This is compiled data from a variety of literature sources.  Within a study, methods of data collection are the same.  However, among studies within the same taxonomic grouping, methods of collection, capture success, etc. vary, and the differences among taxa are even greater.  Because of the methodological variation present in compiled data, it is more appropriate to treat each site individually, rather than aggregating sites across studies.  Aggregating data across sites can lead to false signals in species richness, abundance,  etc. that are due to methodological rather than biological/ecological differences.  <!--Why should these be done one at a time  (methods aren't the same, why this is important)-->  
+#### Abundance table
 
-#References
+1. Number of records, not including header row = 22142
+2. Sum of Relative_abundance = 10797.37352
+3. Sum of Abundance = 1320592
+5. Number of distinct values in species = 1953
+5. Number of distinct values in genus = 1262
+6. md5 checksum for file = 225508ec2acc8cadd230b5e80446504e
+
+#### Sites table
+
+1. Number of records, not including header row = 706
+2. Number of distinct values in collection_year = 48
+3. Number of distinct values in biogeographic_region = 6
+4. Sum of collection_year = 1378306
+5. md5 checksum for file = 9935391079863726d24a9204ea68149d
+
+#### References table
+
+1. Number of records, not including header row = 116
+2. Sum of yr = 231916
+3. Number of distinct values in journal = 83
+4. md5 checksum for file = e42838ee418a44e9e5d33ff99bf96ebb
+
+
+## Usage Notes
+
+This is compiled data from a variety of literature sources.  Within a study, methods of data collection are the same. However, among studies, even within the same taxonomic grouping, methods of collection, capture success, etc. vary substantially. Because of the methodological variation present in compiled data, it is more appropriate to treat each site individually, rather than aggregating sites across studies for doing things like looking for geographic patterns.  Aggregating data across sites can lead to false signals in species richness, abundance,  etc. that are due to methodological rather than biological/ecological differences.
+
+The data can be easily downloaded an installed into a variety of database management and programming environments using the EcoData Retriever [@morris2013].
+
+## References
 
