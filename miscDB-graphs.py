@@ -66,6 +66,18 @@ ylabel_name = "Number of sites"
 xlabel_name = "Class"
 bar_graph(taxa_sites_graph, sites_taxa, ylabel_name, xlabel_name)
 
+#Get summary stats on the number of species, individuals and sites
+num_species = cur.execute("""SELECT COUNT(DISTINCT(genus || ' ' || species))
+                             FROM MiscAbundanceDB_main
+                             WHERE abundance > 0;""")
+num_species = cur.fetchall()
+num_indivs = cur.execute("SELECT SUM(abundance) FROM MiscAbundanceDB_main;")
+num_indivs = cur.fetchall()
+num_sites = cur.execute("SELECT COUNT(DISTINCT(site_id)) FROM MiscAbundanceDB_sites;")
+num_sites = cur.fetchall()
+print("Number of species: {}".format(num_species))
+print("Number of individuals: {}".format(num_indivs))
+print("Number of sites: {}".format(num_sites))
 
 #Close connection
 con.close()
