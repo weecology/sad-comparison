@@ -33,6 +33,7 @@ def import_data(datasets, datadir):
         print "Importing {} data".format(dataset)
         datafile = os.path.join(datadir, dataset + '_spab.csv')
         new_data = pd.read_csv(datafile, comment='#', usecols=['site_ID', 'abundance'])
+        new_data = new_data[new_data['abundance'] > 0]
         new_data.insert(0, 'dataset', dataset)
         data = data.append(new_data, ignore_index=True)
     return data
