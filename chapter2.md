@@ -144,7 +144,7 @@ Data have undergone manual quality and assurance checking. Data were entered dir
 
 ## Usage Notes
 
-This is compiled data from a variety of literature sources.  Within a study, methods of data collection are the same. However, among studies, even within the same taxonomic grouping, methods of collection, capture success, etc. vary substantially. Because of the methodological variation present in compiled data, it is more appropriate to treat each site individually, rather than aggregating sites across studies for doing things like looking for geographic patterns.  Aggregating data across sites can lead to false signals in species richness, abundance,  etc. that are due to methodological rather than biological/ecological differences.
+This is compiled data from a variety of literature sources.  Within a study, methods of data collection are the same. However, among studies, even within the same taxonomic grouping, methods of collection, capture success, etc. vary substantially. Because of the methodological variation present in compiled data, it is more appropriate to treat each site individually, rather than aggregating sites across studies for doing things like looking for geographic patterns.  Aggregating data across sites can lead to false signals in species richness, abundance,  etc. that are due to methodological rather than biological/ecological differences.  In addition, some sites also have recorded absences (zeros); in cases where zeros should not be included, data queries should be written accordingly.
 
 The data can be easily downloaded an installed into a variety of database management and programming environments using the EcoData Retriever [@morris2013].
 
