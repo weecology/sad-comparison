@@ -89,7 +89,7 @@ sads['log_distinct_ab_vals'] = np.log(sads['distinct_ab_vals'])
 sns.set_style("whitegrid")
 ax = sns.lmplot('log_distinct_ab_vals', 'pln_aicc_wgt', data=sads, col='dataset', col_wrap=4,
                 hue='dataset', fit_reg=False)
-ax.set(xlabel="Distinct Abundance Values (log)", ylabel="AIC wgt for log-normal")
+ax.set(xlabel="Distinct Abundance Values (log)", ylabel="AICc weight for log-normal")
 ax.set(xlim=[np.log(5), np.log(300)], ylim=[0, 1])
 xticks = [10, 20, 50, 100, 200]
 ax.set(xticks=np.log(xticks))
@@ -102,7 +102,7 @@ plt.close()
 sads_by_dataset = sads.groupby('dataset').mean().reset_index()
 ax = sns.lmplot('log_distinct_ab_vals', 'pln_aicc_wgt', data=sads_by_dataset,
                 hue='dataset', fit_reg=False, scatter_kws={"s": 60, "alpha": 1})
-ax.set(xlabel="Distinct Abundance Values (log)", ylabel="AIC wgt for log-normal")
+ax.set(xlabel="Distinct Abundance Values (log)", ylabel="AICc weight for log-normal")
 ax.set(xlim=[np.log(5), np.log(300)], ylim=[0, 1])
 xticks = [10, 20, 50, 100, 200]
 ax.set(xticks=np.log(xticks))
