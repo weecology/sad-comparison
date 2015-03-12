@@ -26,5 +26,7 @@ Data filling in gaps, data, data, data.
 
 
 Questions answered with the data 
-Two major focuses in ecology in general, and macroecology in particular are pattern and process.  <!--In chapter 1, I demonstrated something about how more data are better by competing several forms of the species abundance distribution something about can't remember, got interrupted.  In chapter 3, I used the data I compiled to additional test something about process and neutral theory.-->
+Two major focuses in ecology in general, and macroecology in particular are pattern and process.  
+
+Here we present a unique dataset for addressing macroecological questions, and demonstrate how the data can be applied, in combination with additional data to perform the largest test of the species abundance distribution to date. <!--In chapter 1, I demonstrated something about how more data are better by competing several forms of the species abundance distribution something about can't remember, got interrupted.  In chapter 3, I used the data I compiled to additional test something about process and neutral theory.-->
 
