@@ -4,9 +4,7 @@
 <!--Neutral theory is a big important theory-->
 A major set of ecological questions are what processes are involved structuring and maintaining ecological communities.  One theoretical approach that has been given a great deal of attention in recent years is the unified neutral theory of biodiversity [@matthews2014, @rosindelletal2012.  While there are multiple formulations of neutral theory, all models are based on the assumptions that species and individuals are ecologically and demographically equivalent to one another, causing stochastic variation in birth, death, immigration, and speciation to ultimately result in differences in species abundance [@rosindelletal2011].
 
-<!-- Early evaluations of neutral theory were based on comparing the fit of empirical species abundance distributions to the neutral prediction [@citations]. Later evaluations of neutral theory thought that species abundance comparisons weren't sufficient for a rigorous test of neutrality [@mcgill2006]. Recent work by Connolly et al. suggests that comparisons of species abundance distributions may be sufficient for the evaluation of neutral theory against competing models.--> 
-
-<!--Can check for neutrality using abundance distribution data-->
+Early evaluations of neutral theory were based on comparing the fit of empirical species abundance distributions to the neutral prediction [@citations]. Later evaluations of neutral theory thought that species abundance comparisons were not sufficient for a rigorous test of neutrality [@mcgill2006]. Recent work by Connolly et al. suggests that comparisons of species abundance distributions may be sufficient for the evaluation of neutral theory against competing models.
 Building on work by Pueyo [@pueyo2006], Connolly et al. were able to identify non-neutral species abundance distributions in marine environments by comparing model fits of a lognormal distribution (non-neutral) to a gamma distribution (neutral)[@connolly2014].  This approach shows promise as a robust method for identifying communities that exhibit non-neutrality.
 
 <!--Works for marine systems, does it work with more data, both terrestrial and marine.-->
