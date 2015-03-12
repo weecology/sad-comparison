@@ -2,11 +2,9 @@
 
 #Introduction
 <!--Neutral theory is a big important theory-->
-Understanding what processes are involved structuring and maintaining ecological communities is a much studied ecological question. <!-- The previous sentence feels clunky and needs fixing.-->  One theoretical approach that has been given a great deal of attention in recent years is the unified neutral theory of biodiversity [@matthews2014, @rosindelletal2012.  While there are multiple formulations of neutral theory, all models are based on the assumptions that species and individuals are ecologically and demographically equivalent to one another, causing stochastic variation in birth, death, immigration, and speciation to ultimately result in differences in species abundance [@rosindelletal2011].
+A major set of ecological questions are what processes are involved structuring and maintaining ecological communities.  One theoretical approach that has been given a great deal of attention in recent years is the unified neutral theory of biodiversity [@matthews2014, @rosindelletal2012.  While there are multiple formulations of neutral theory, all models are based on the assumptions that species and individuals are ecologically and demographically equivalent to one another, causing stochastic variation in birth, death, immigration, and speciation to ultimately result in differences in species abundance [@rosindelletal2011].
 
-<!-- Early evaluations of neutral theory were based on comparing the fit of empirical species abundance distributions to the neutral prediction [@citations]. Later evaluations of neutral theory thought that species abundance comparisons weren't sufficient for a rigorous test of neutrality [@mcgill2006]. Recent work by Connolly et al. suggests that comparisons of species abundance distributions may be sufficient for the evaluation of neutral theory against competing models.--> 
-
-<!--Can check for neutrality using abundance distribution data-->
+Early evaluations of neutral theory were based on comparing the fit of empirical species abundance distributions to the neutral prediction [@citations]. Later evaluations of neutral theory thought that species abundance comparisons were not sufficient for a rigorous test of neutrality [@mcgill2006]. Recent work by Connolly et al. suggests that comparisons of species abundance distributions may be sufficient for the evaluation of neutral theory against competing models.
 Building on work by Pueyo [@pueyo2006], Connolly et al. were able to identify non-neutral species abundance distributions in marine environments by comparing model fits of a lognormal distribution (non-neutral) to a gamma distribution (neutral)[@connolly2014].  This approach shows promise as a robust method for identifying communities that exhibit non-neutrality.
 
 <!--Works for marine systems, does it work with more data, both terrestrial and marine.-->
@@ -51,14 +49,16 @@ Connolly et al. found that species abundance for empirical communities were best
 ![Figure 1. Log of distinct abundance values versus AIC weight of the lognormal distribution for each dataset.](./sad-data/chapter3/distabclasses_vs_lognormwgt.png)
 
 
-We also averaged the AIC weight of the lognormal distribution for each dataset, and did not observe a clear signal for one distribution over another.
+We also averaged the AIC weight of the Poisson lognormal distribution for each dataset, and did not observe a clear signal for one distribution over another.
 ![Figure 2. Average AIC weight of the lognormal distribution for each dataset.](./sad-data/chapter3/avgvals_by_dataset.png)
 
 
 #Discussion
 <!--Big picture.-->
 <!-- Our results are consistent with chapter 1, in that it seems to be really hard to pick a clear winner among/between models.-->
-<!-- Our results differ from the Connolly results-->
+Our results were consistent with our simultaneous comparisons of multiple species abundance distribution models in that it was difficult to identify a clear winning model (see details in Chapter 1 of this dissertation).  T<!-- Our results differ from the Connolly results-->These results were contrary to what was predicted by Connolly et al, who demonstrated that the Poisson lognormal (non-neutral) outperformed the negative binomial (neutral) in marine systems [@connolly2014].  This suggests that marine systems are more generally approximated by non-neutral dynamics, while terrestrial and aquatic systems show more variability between neutral and non-neutral dynamics.  
+
+Differences in marine vs. terrestrial systems are one possible explanation for the difference in our results relative to the results from Connolly et al. 2014.  However, while marine systems have not been as extensively studied as part of the macroecological research program as terrestrial systems, marine and terrestrial systems exhibit the same general macroecological patterns [@webb2012marine].  However, Webb 2012 raises the caveat that while the same general patterns apply, the processes generating those patterns may be different.  The results of this study could suggest that marine communities are more consistently structured by non-neutral processes than terrestrial communities.  While the vast majority of the data that we tested was terrestrial (approximately 99%), we did have 161 sites for fish.  Of these, the majority were freshwater, rather than marine; however we observed the same general pattern of results for fish as we did for the rest of the taxa.  
 <!--There are possible explanations for this.-->
 <!--Could be a terrestrial vs. marine thing, although fish showed the same pattern.  The fish data was a little over half freshwater, a few estuary, and the rest marine, but a lot of near shore, mangrove-y areas.  No deep water sites.-->
 <!--Connolly paper showed smaller scale tended to be more toward the middle, larger scale tended toward upper end.  Could do something about scale matters, but don't have the data with this paper to really say anything on that end.  Might be something to think about for publication?  That would tend to make sense from a conceptual standpoint though- I would expect to see less neutrality at a local scale, more neutrality at larger scales.-->
