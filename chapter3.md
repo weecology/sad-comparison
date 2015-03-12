@@ -49,13 +49,14 @@ Connolly et al. found that species abundance for empirical communities were best
 ![Figure 1. Log of distinct abundance values versus AIC weight of the lognormal distribution for each dataset.](./sad-data/chapter3/distabclasses_vs_lognormwgt.png)
 
 
-We also averaged the AIC weight of the lognormal distribution for each dataset, and did not observe a clear signal for one distribution over another.
+We also averaged the AIC weight of the Poisson lognormal distribution for each dataset, and did not observe a clear signal for one distribution over another.
 ![Figure 2. Average AIC weight of the lognormal distribution for each dataset.](./sad-data/chapter3/avgvals_by_dataset.png)
 
 
 #Discussion
 <!--Big picture.-->
 <!-- Our results are consistent with chapter 1, in that it seems to be really hard to pick a clear winner among/between models.-->
+Our results were consistent with our simultaneous comparisons of multiple species abundance distribution models in that it was difficult to identify a clear winning model (see details in Chapter 1 of this dissertation).  These results were contrary to what was predicted by Connolly et al, who demonstrated that the Poisson lognormal (non-neutral) outperformed the negative binomial (neutral) in marine systems [@connolly2014].  This suggests that marine systems are more generally approximated by non-neutral dynamics, while terrestrial and aquatic systems show more variability between neutral and non-neutral dynamics.  
 <!-- Our results differ from the Connolly results-->
 <!--There are possible explanations for this.-->
 <!--Could be a terrestrial vs. marine thing, although fish showed the same pattern.  The fish data was a little over half freshwater, a few estuary, and the rest marine, but a lot of near shore, mangrove-y areas.  No deep water sites.-->
