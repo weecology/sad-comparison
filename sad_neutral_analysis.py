@@ -143,14 +143,14 @@ for i, dataset in enumerate(datasets):
     
 
 #Make legend
-l1 = plt.scatter([],[], s=100, facecolors='teal',  edgecolors='teal')
-l2 = plt.scatter([],[], s=100, facecolors='palegreen', edgecolors='palegreen')
-l3 = plt.scatter([],[], s=100, facecolors='m', edgecolors='m')
-l4 = plt.scatter([],[], s=100, facecolors='gold', edgecolors='gold')
+l1 = plt.scatter([],[], s=100, facecolors='teal',  edgecolors='black')
+l2 = plt.scatter([],[], s=100, facecolors='palegreen', edgecolors='black')
+l3 = plt.scatter([],[], s=100, facecolors='m', edgecolors='black')
+l4 = plt.scatter([],[], s=100, facecolors='gold', edgecolors='black')
 
 labels = ["BBS", "FIA", "Gentry", "MCDB"]
 
-leg = plt.legend([l1, l2, l3, l4], labels, frameon=False, fontsize=12, loc = 2, title='Datasets', scatterpoints = 1)
+leg = plt.legend([l1, l2, l3, l4], labels, frameon=False, fontsize=12, loc = 6, title='Datasets', scatterpoints = 1)
     
 plt.savefig('./sad-data/chapter3/partial_sites_map.png', pad_inches=0)
 plt.close()
