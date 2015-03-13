@@ -123,25 +123,23 @@ plt.close()
 """Generate a world map with sites color-coded by database"""
 map = Basemap(projection='moll',lon_0=0,resolution='l') #Sets up map for Mollweide projection- chosen for equal area properties.
 
-map.drawcoastlines(linewidth = 1.25)
+map.drawcoastlines(linewidth = 1.00)
 
 datasets = ['bbs', 'fia', 'gentry', 'mcdb'] # The rest of the data do not have lat-longs.
 data_dir = './sad-data/chapter1/'
 markers=['o','o','s','s','D','v']
-markersizes=4
+markersizes=3
+colors=["red", "green", "olivedrab", "sienna"]
 
-all_colors = {'bbs': '#87a4ef', 'cbc': '#0033cc', 'fia': '#97ca82',
-'gentry': '#339900', 'mcdb': '#ff6600', 'nabc': '#990000'}
-colors = [all_colors[dataset] for dataset in datasets]
 
 for i, dataset in enumerate(datasets):
     latlong_data = import_latlong_data(data_dir + dataset + '_lat_long.csv')
     lats = latlong_data["lat"]
     longs = latlong_data["long"]
     x,y = map(longs,lats)
-    map.plot(x,y, ls='', marker=markers[i], markerfacecolor=colors[i],
+    map.plot(x,y, ls='', marker=markers[i], markerfacecolor= colors[i],
     markeredgewidth=0.25, markersize=markersizes)
 
     
-plt.savefig('partial_sites_map.png', bbox_inches = 'tight', pad_inches=0)
+plt.savefig('./sad-data/chapter3/partial_sites_map.png', bbox_inches = 'tight', pad_inches=0)
 plt.close()
