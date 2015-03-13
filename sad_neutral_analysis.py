@@ -128,7 +128,7 @@ map.fillcontinents(color='black',lake_color='white')
 
 datasets = ['bbs', 'fia', 'gentry', 'mcdb'] # The rest of the data do not have lat-longs.
 data_dir = './sad-data/chapter1/'
-markers=['o','o','s','s','D','v']
+markers=['o','s','D','v']
 markersizes=3
 colors=["teal", "palegreen", "m", "gold"]
 
@@ -138,19 +138,19 @@ for i, dataset in enumerate(datasets):
     lats = latlong_data["lat"]
     longs = latlong_data["long"]
     x,y = map(longs,lats)
-    map.plot(x,y, ls='', marker=markers[i], markerfacecolor= colors[i],
-    markeredgewidth=0.25, markersize=markersizes)
+    map.plot(x,y, ls='', marker=markers[i], markeredgecolor= colors[i],
+    markeredgewidth=0.75, markersize=markersizes, fillstyle='none')
     
 
 #Make legend
-l1 = plt.scatter([],[], s=100, facecolors='teal',  edgecolors='black')
-l2 = plt.scatter([],[], s=100, facecolors='palegreen', edgecolors='black')
-l3 = plt.scatter([],[], s=100, facecolors='m', edgecolors='black')
-l4 = plt.scatter([],[], s=100, facecolors='gold', edgecolors='black')
+l1 = plt.scatter([],[], s=100, marker = 'o', facecolors='teal',  edgecolors='black')
+l2 = plt.scatter([],[], s=100, marker = 's', facecolors='palegreen', edgecolors='black')
+l3 = plt.scatter([],[], s=100, marker = 'D', facecolors='m', edgecolors='black')
+l4 = plt.scatter([],[], s=100, marker = 'v', facecolors='gold', edgecolors='black')
 
 labels = ["BBS", "FIA", "Gentry", "MCDB"]
 
 leg = plt.legend([l1, l2, l3, l4], labels, frameon=False, fontsize=12, loc = 6, title='Datasets', scatterpoints = 1)
     
-plt.savefig('./sad-data/chapter3/partial_sites_map.png', pad_inches=0)
+plt.savefig('./sad-data/chapter3/partial_sites_map.png', dpi=250, pad_inches=0)
 plt.close()
