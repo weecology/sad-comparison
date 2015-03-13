@@ -13,6 +13,9 @@ import numpy as np
 import pandas as pd
 import seaborn as sns
 
+from mpl_toolkits.axes_grid.inset_locator import inset_axes
+from mpl_toolkits.basemap import Basemap
+
 from macroecotools import AICc, aic_weight
 from sad_comparison_functions import get_par_multi_dists, get_loglik_multi_dists
 
@@ -36,6 +39,11 @@ def import_data(datasets, datadir):
         new_data = new_data[new_data['abundance'] > 0]
         new_data.insert(0, 'dataset', dataset)
         data = data.append(new_data, ignore_index=True)
+    return data
+
+def import_latlong_data(input_filename, comments='#'):
+    data = np.genfromtxt(input_filename, dtype = "f8,f8",
+                         names = ['lat','long'], delimiter = ",")
     return data
 
 def filter_data_minS(data, minS):
@@ -109,4 +117,28 @@ ax.set(xticks=np.log(xticks))
 ax.set(xticklabels=xticks)
 ax.savefig('./sad-data/chapter3/avgvals_by_dataset.png')
 plt.show()
+plt.close()
+
+#Mapping code modified from White et al. 2012
+"""Generate a world map with sites color-coded by database"""
+map = Basemap(projection='moll',lon_0=0,resolution='l') #Sets up map for Mollweide projection- chosen for equal area properties.
+
+map.drawcoastlines(linewidth = .70)
+
+datasets = ['bbs', 'fia', 'gentry', 'mcdb'] # The rest of the data do not have lat-longs.
+data_dir = './sad-data/chapter1/'
+markers=['o','o','s','s','D','v']
+markersizes=3
+colors=["teal", "palegreen", "m", "gold"]
+
+
+for i, dataset in enumerate(datasets):
+    latlong_data = import_latlong_data(data_dir + dataset + '_lat_long.csv')
+    lats = latlong_data["lat"]
+    longs = latlong_data["long"]
+    x,y = map(longs,lats)
+    map.plot(x,y, ls='', marker=markers[i], markerfacecolor= colors[i],
+    markeredgewidth=0.25, markersize=markersizes)
+    
+plt.savefig('./sad-data/chapter3/partial_sites_map.png')
 plt.close()

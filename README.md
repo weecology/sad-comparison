@@ -13,10 +13,11 @@ Additional community data for Actinopterygii, Reptilia, Coleoptera, Arachnida, a
 METE: https://github.com/weecology/METE.git  
 macroecotools: https://github.com/weecology/macroecotools.git  
 matplotlib  
-numpy  
-scipy
-pandas
-seaborn 
+basemap for matplotlib: http://matplotlib.org/basemap/users/installing.html#installation
+numpy    
+scipy  
+pandas  
+seaborn   
 
 The METE module and the macroecotools module can be installed from the command line (with appropriate permissions)  
 git clone https://github.com/weecology/METE.git  
