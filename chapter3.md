@@ -29,6 +29,8 @@ Table 1: Description of total number of sites per taxa and dataset.
 | Butterflies | NABC           | 400         |
 | Trees       | FIA, Gentry    | 10575       |
 
+![Figure 1. Map of the georeferenced portion of the data.  Note that the data for reptiles, amphibians, bony fish, beetles, spiders, and butterflies are not represented.](./sad-data/chapter3/partial_sites_map.png)
+
   
 ### Analysis
 <!--Robust test with maximum likelihood methods and AiCc weights.-->
@@ -45,20 +47,21 @@ The lognormal distribution is one of the classic and most frequently used models
 
 #Results
 <!-- Graphs  -->
-Connolly et al. found that species abundance for empirical communities were best approximated by a lognormal rather than a negative binomial (gamma) distribution [@connolly2014].  However, our results found that there was no overwhelming support for the lognormal over the negative binomial distribution (Figure 1) at the site level. 
-![Figure 1. Log of distinct abundance values versus AIC weight of the lognormal distribution for each dataset.](./sad-data/chapter3/distabclasses_vs_lognormwgt.png)
+Connolly et al. found that species abundance for empirical communities were best approximated by a lognormal rather than a negative binomial (gamma) distribution [@connolly2014].  However, our results found that there was no overwhelming support for the lognormal over the negative binomial distribution (Figure 2) at the site level. 
+![Figure 2. Log of distinct abundance values versus AIC weight of the lognormal distribution for each dataset.](./sad-data/chapter3/distabclasses_vs_lognormwgt.png)
 
 
-We also averaged the AIC weight of the Poisson lognormal distribution for each dataset, and did not observe a clear signal for one distribution over another.
-![Figure 2. Average AIC weight of the lognormal distribution for each dataset.](./sad-data/chapter3/avgvals_by_dataset.png)
+We also averaged the AIC weight of the Poisson lognormal distribution for each dataset, and did not observe a clear signal for one distribution over another (Figure 3).
+![Figure 3. Average AIC weight of the lognormal distribution for each dataset.](./sad-data/chapter3/avgvals_by_dataset.png)
 
 
 #Discussion
 <!--Big picture.-->
 <!-- Our results are consistent with chapter 1, in that it seems to be really hard to pick a clear winner among/between models.-->
-Our results were consistent with our simultaneous comparisons of multiple species abundance distribution models in that it was difficult to identify a clear winning model (see details in Chapter 1 of this dissertation).  T<!-- Our results differ from the Connolly results-->These results were contrary to what was predicted by Connolly et al, who demonstrated that the Poisson lognormal (non-neutral) outperformed the negative binomial (neutral) in marine systems [@connolly2014].  This suggests that marine systems are more generally approximated by non-neutral dynamics, while terrestrial and aquatic systems show more variability between neutral and non-neutral dynamics.  
+Our results were consistent with our simultaneous comparisons of multiple species abundance distribution models in that it was difficult to identify a clear winning model (see details in Chapter 1 of this dissertation).  <!-- Our results differ from the Connolly results-->These results were contrary to what was predicted by Connolly et al, who demonstrated that the Poisson lognormal (non-neutral) outperformed the negative binomial (neutral) in marine systems [@connolly2014].  This suggests that marine systems are more generally approximated by non-neutral dynamics, while terrestrial and aquatic systems show more variability between neutral and non-neutral dynamics.  
 
-Differences in marine vs. terrestrial systems are one possible explanation for the difference in our results relative to the results from Connolly et al. 2014.  However, while marine systems have not been as extensively studied as part of the macroecological research program as terrestrial systems, marine and terrestrial systems exhibit the same general macroecological patterns [@webb2012marine].  However, Webb 2012 raises the caveat that while the same general patterns apply, the processes generating those patterns may be different.  The results of this study could suggest that marine communities are more consistently structured by non-neutral processes than terrestrial communities.  While the vast majority of the data that we tested was terrestrial (approximately 99%), we did have 161 sites for fish.  Of these, the majority were freshwater, rather than marine; however we observed the same general pattern of results for fish as we did for the rest of the taxa.  
 <!--There are possible explanations for this.-->
 <!--Could be a terrestrial vs. marine thing, although fish showed the same pattern.  The fish data was a little over half freshwater, a few estuary, and the rest marine, but a lot of near shore, mangrove-y areas.  No deep water sites.-->
-<!--Connolly paper showed smaller scale tended to be more toward the middle, larger scale tended toward upper end.  Could do something about scale matters, but don't have the data with this paper to really say anything on that end.  Might be something to think about for publication?  That would tend to make sense from a conceptual standpoint though- I would expect to see less neutrality at a local scale, more neutrality at larger scales.-->
+Differences in marine vs. terrestrial systems are one possible explanation for the difference in our results relative to the results from Connolly et al. 2014.  However, while marine systems have not been as extensively studied as part of the macroecological research program as terrestrial systems, marine and terrestrial systems exhibit the same general macroecological patterns [@webb2012marine].  However, Webb 2012 raises the caveat that while the same general patterns apply, the processes generating those patterns may be different[@webb2012marine].  The results of this study could suggest that marine communities are more consistently structured by non-neutral processes than terrestrial communities.  While the vast majority of the data that we tested was terrestrial (approximately 99%), we did have 161 sites for fish.  Of these, the majority were freshwater, rather than marine; however we observed the same general pattern of results for fish as we did for the other taxa.
+
+  
