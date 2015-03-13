@@ -116,8 +116,7 @@ plt.close()
 
 #Mapping code modified from White et al. 2012
 """Generate a world map with sites color-coded by database"""
-map = Basemap(projection='laea',llcrnrlat=-57,urcrnrlat=71,\
-llcrnrlon=-180,urcrnrlon=180,lat_ts=20,resolution='l')
+map = Basemap(projection='moll',lon_0=0,resolution='l') #Sets up map for Mollweide projection- chosen for equal area properties.
 
 map.drawcoastlines(linewidth = 1.25)
 
@@ -134,5 +133,5 @@ if len(focal_sites) > 0:
     map.plot(focal_x, focal_y, ls = '', marker='o',
     markerfacecolor='w', markeredgewidth=4, markersize=50)
     
-plt.savefig('map_of_sites.png', dpi=160, bbox_inches = 'tight', pad_inches=0)
+plt.savefig('partial_sites_map.png', dpi=160, bbox_inches = 'tight', pad_inches=0)
 plt.close()
