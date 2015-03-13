@@ -13,6 +13,9 @@ import numpy as np
 import pandas as pd
 import seaborn as sns
 
+from mpl_toolkits.axes_grid.inset_locator import inset_axes
+from mpl_toolkits.basemap import Basemap
+
 from macroecotools import AICc, aic_weight
 from sad_comparison_functions import get_par_multi_dists, get_loglik_multi_dists
 
@@ -109,4 +112,27 @@ ax.set(xticks=np.log(xticks))
 ax.set(xticklabels=xticks)
 ax.savefig('./sad-data/chapter3/avgvals_by_dataset.png')
 plt.show()
+plt.close()
+
+#Mapping code modified from White et al. 2012
+"""Generate a world map with sites color-coded by database"""
+map = Basemap(projection='laea',llcrnrlat=-57,urcrnrlat=71,\
+llcrnrlon=-180,urcrnrlon=180,lat_ts=20,resolution='l')
+
+map.drawcoastlines(linewidth = 1.25)
+
+for i, dataset in enumerate(datasets):
+    latlong_data = import_latlong_data(data_dir + dataset + '_lat_long.csv')
+    lats = latlong_data["lat"]
+    longs = latlong_data["long"]
+    x,y = map(longs,lats)
+    map.plot(x,y, ls='', marker=markers[i], markerfacecolor=colors[i],
+    markeredgewidth=0.25, markersize=markersizes)
+
+if len(focal_sites) > 0:
+    focal_x, focal_y = map(focal_sites[1], focal_sites[0])
+    map.plot(focal_x, focal_y, ls = '', marker='o',
+    markerfacecolor='w', markeredgewidth=4, markersize=50)
+    
+plt.savefig('map_of_sites.png', dpi=160, bbox_inches = 'tight', pad_inches=0)
 plt.close()
