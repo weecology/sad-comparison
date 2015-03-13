@@ -12,7 +12,7 @@ Additional community data for Actinopterygii, Reptilia, Coleoptera, Arachnida, a
 #####Python dependencies:  
 METE: https://github.com/weecology/METE.git  
 macroecotools: https://github.com/weecology/macroecotools.git  
-matplotlib
+matplotlib  
 basemap for matplotlib: http://matplotlib.org/basemap/users/installing.html#installation
 numpy    
 scipy  
