@@ -121,9 +121,9 @@ plt.close()
 
 #Mapping code modified from White et al. 2012
 """Generate a world map with sites color-coded by database"""
-map = Basemap(projection='moll',lon_0=0,resolution='c') #Sets up map for Mollweide projection- chosen for equal area properties.
+map = Basemap(projection='moll',lon_0=0,resolution='i') #Sets up map for Mollweide projection- chosen for equal area properties.
 
-map.drawcoastlines(linewidth = .50)
+map.drawcoastlines(linewidth = .10)
 map.fillcontinents(color='black',lake_color='white')
 
 datasets = ['bbs', 'fia', 'gentry', 'mcdb'] # The rest of the data do not have lat-longs.
