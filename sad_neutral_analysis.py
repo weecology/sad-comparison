@@ -41,6 +41,11 @@ def import_data(datasets, datadir):
         data = data.append(new_data, ignore_index=True)
     return data
 
+def import_latlong_data(input_filename, comments='#'):
+    data = np.genfromtxt(input_filename, dtype = "f8,f8",
+                         names = ['lat','long'], delimiter = ",")
+    return data
+
 def filter_data_minS(data, minS):
     """Only keep data with S>=minS for analysis"""
     return data.groupby(['dataset', 'site_ID']).filter(lambda x: len(x) >= minS)
@@ -120,6 +125,15 @@ map = Basemap(projection='moll',lon_0=0,resolution='l') #Sets up map for Mollwei
 
 map.drawcoastlines(linewidth = 1.25)
 
+datasets = ['bbs', 'fia', 'gentry', 'mcdb'] # The rest of the data do not have lat-longs.
+data_dir = './sad-data/chapter1/'
+markers=['o','o','s','s','D','v']
+markersizes=4
+
+all_colors = {'bbs': '#87a4ef', 'cbc': '#0033cc', 'fia': '#97ca82',
+'gentry': '#339900', 'mcdb': '#ff6600', 'nabc': '#990000'}
+colors = [all_colors[dataset] for dataset in datasets]
+
 for i, dataset in enumerate(datasets):
     latlong_data = import_latlong_data(data_dir + dataset + '_lat_long.csv')
     lats = latlong_data["lat"]
@@ -128,10 +142,6 @@ for i, dataset in enumerate(datasets):
     map.plot(x,y, ls='', marker=markers[i], markerfacecolor=colors[i],
     markeredgewidth=0.25, markersize=markersizes)
 
-if len(focal_sites) > 0:
-    focal_x, focal_y = map(focal_sites[1], focal_sites[0])
-    map.plot(focal_x, focal_y, ls = '', marker='o',
-    markerfacecolor='w', markeredgewidth=4, markersize=50)
     
-plt.savefig('partial_sites_map.png', dpi=160, bbox_inches = 'tight', pad_inches=0)
+plt.savefig('partial_sites_map.png', bbox_inches = 'tight', pad_inches=0)
 plt.close()
