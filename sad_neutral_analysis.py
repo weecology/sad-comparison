@@ -123,13 +123,13 @@ plt.close()
 """Generate a world map with sites color-coded by database"""
 map = Basemap(projection='moll',lon_0=0,resolution='l') #Sets up map for Mollweide projection- chosen for equal area properties.
 
-map.drawcoastlines(linewidth = 1.00)
+map.drawcoastlines(linewidth = .70)
 
 datasets = ['bbs', 'fia', 'gentry', 'mcdb'] # The rest of the data do not have lat-longs.
 data_dir = './sad-data/chapter1/'
 markers=['o','o','s','s','D','v']
 markersizes=3
-colors=["red", "green", "olivedrab", "sienna"]
+colors=["teal", "palegreen", "m", "gold"]
 
 
 for i, dataset in enumerate(datasets):
@@ -139,7 +139,6 @@ for i, dataset in enumerate(datasets):
     x,y = map(longs,lats)
     map.plot(x,y, ls='', marker=markers[i], markerfacecolor= colors[i],
     markeredgewidth=0.25, markersize=markersizes)
-
     
-plt.savefig('./sad-data/chapter3/partial_sites_map.png', bbox_inches = 'tight', pad_inches=0)
+plt.savefig('./sad-data/chapter3/partial_sites_map.png')
 plt.close()
