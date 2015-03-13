@@ -121,9 +121,10 @@ plt.close()
 
 #Mapping code modified from White et al. 2012
 """Generate a world map with sites color-coded by database"""
-map = Basemap(projection='moll',lon_0=0,resolution='l') #Sets up map for Mollweide projection- chosen for equal area properties.
+map = Basemap(projection='moll',lon_0=0,resolution='c') #Sets up map for Mollweide projection- chosen for equal area properties.
 
-map.drawcoastlines(linewidth = .70)
+map.drawcoastlines(linewidth = .50)
+map.fillcontinents(color='black',lake_color='white')
 
 datasets = ['bbs', 'fia', 'gentry', 'mcdb'] # The rest of the data do not have lat-longs.
 data_dir = './sad-data/chapter1/'
@@ -140,5 +141,16 @@ for i, dataset in enumerate(datasets):
     map.plot(x,y, ls='', marker=markers[i], markerfacecolor= colors[i],
     markeredgewidth=0.25, markersize=markersizes)
     
-plt.savefig('./sad-data/chapter3/partial_sites_map.png')
+
+#Make legend
+l1 = plt.scatter([],[], s=100, facecolors='teal',  edgecolors='teal')
+l2 = plt.scatter([],[], s=100, facecolors='palegreen', edgecolors='palegreen')
+l3 = plt.scatter([],[], s=100, facecolors='m', edgecolors='m')
+l4 = plt.scatter([],[], s=100, facecolors='gold', edgecolors='gold')
+
+labels = ["BBS", "FIA", "Gentry", "MCDB"]
+
+leg = plt.legend([l1, l2, l3, l4], labels, frameon=False, fontsize=12, loc = 2, title='Datasets', scatterpoints = 1)
+    
+plt.savefig('./sad-data/chapter3/partial_sites_map.png', pad_inches=0)
 plt.close()
