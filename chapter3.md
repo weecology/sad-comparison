@@ -29,6 +29,7 @@ Table 1: Description of total number of sites per taxa and dataset.
 | Butterflies | NABC           | 400         |
 | Trees       | FIA, Gentry    | 10575       |
 
+All of the georeferenced data are presented in figure 1, redrawn from White et al. 2012.  Note that the data for reptiles, amphibians, bony fish, beetles, spiders, and butterflies are not represented, due to a lack of location data. 
 ![Figure 1. Map of the georeferenced portion of the data.  Note that the data for reptiles, amphibians, bony fish, beetles, spiders, and butterflies are not represented.](./sad-data/chapter3/partial_sites_map.png)
 
   
