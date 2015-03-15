@@ -7,25 +7,17 @@
 
 #Introduction
 <!--Overarching introduction that ties all three chapters together -->
-Macroecology is a data-intensive approach to studying ecological patterns and processes. As the field has matured, increasingly greater amounts of data have become available to address these questions [@reichman2011].  Although the macroecological research program has matured a great deal since its introduction [@mcgill2010mechanisms; @keith2012macroecology], there have been some recent critiques of the macroecological approach, both rejections of the macroecological approach [@paine2010macroecology], as well as directions for improvement [@beck2012].  One of the major criticisms of macroecology is the traditonal North American terrestrial focus [@beck2012], a legacy of the academic heritage of the scientists who developed macroecology, as well as the availablity of large ecological datasets suitable for testing macroecological questions. 
+Macroecology is a data-intensive approach to studying ecological patterns and processes. As the field has matured, increasingly greater amounts of data have become available to address these questions [@reichman2011].  Although the macroecological research program has matured a great deal since its introduction [@mcgill2010mechanisms; @keith2012macroecology], there have been some recent critiques of the macroecological approach, both rejections of the macroecological approach [@paine2010macroecology], as well as directions for improvement [@beck2012].  One of the major criticisms of macroecology is the traditonal North American terrestrial focus [@beck2012], a legacy of the academic heritage of the scientists who developed macroecology, as well as the availablity of large ecological datasets suitable for testing macroecological questions.  Another major criticism has been the focus on pattern description, but a lack of identification of pattern generating mechanisms [@beck2012].   
 <!-- cite some of the recent critiques and directional papers -->
-
-As the discipline has matured, a set of best practices for testing patterns and theory with macroecological techniques have been developed.
-wo major focuses in ecology in general, and macroecology in particular are pattern and process.  
-
-Here we present a unique dataset for addressing macroecological questions, and demonstrate how the data can be applied, in combination with additional data to address questions involving one of the most ubiquitious macroecological patterns, the hollow curve species abundance distribution.  While there have been numerous comparisons of species abundance distribution models, few have tested more than two models against each other.  We perform the largest test of the species abundance distribution to date, competing five models from each of four different model families: purely statistical, branching process, population dynamics, and niche partitioning [@mcgill2007].  We also build off work by Connolly et al. 2014 to determine if species abundance data is suffiencient for identifying neutral vs. non-neutral processes [@connolly2014]. <!--In chapter 1, I demonstrated something about how more data are better by competing several forms of the species abundance distribution something about can't remember, got interrupted.  In chapter 3, I used the data I compiled to additional test something about process and neutral theory.-->
-
-
-
-Best practices for testing macroecological theory <!--citations-->
-Multiple taxonomic groups
-Multiple ecosystems
-Multiple patterns
 
 
 I compiled a set of data from the literature to address some of the concerns about the lack of data for underrepresented taxonomic groups.  My primary focus for data collection was to collect data for those vertebrate taxa which are not already well represented by publicly available data.  I selected these taxa, because their taxonomy is fairly well resolved when compared to invertebrate groups.  While my primary focus was on fish, reptiles, and amphibians, I also compiled data on spiders and beetles.  In addition, I also collected a small amount of bird data, which could potentially be used in comparision with the large, publicly available bird datasets to determine if the dataset affects the results.
-Data filling in gaps, data, data, data.
 
+As the discipline has matured, a set of best practices for testing patterns and theory with macroecological techniques have been developed [@clark1999; @mcgill2007; @white2008; @burnham2002].  
+Best practices for testing macroecological theory: <!--citations-->  
 
-Questions answered with the data 
-T
+* Multiple taxonomic groups  
+* Multiple ecosystems  
+* Multiple patterns  
+
+Here we address these two criticisms of the macroecological research program by presenting a unique dataset for addressing macroecological questions and demonstrate how the data can be applied, in combination with additional data, to address questions involving one of the most ubiquitious macroecological patterns, the hollow curve species abundance distribution.  The hollow curve species abundance distribution is one of the most ubiquitous patterns in nature, and many models have been proposed to explain the mechanisms that generate this pattern.  While there have been numerous comparisons of species abundance distribution models, few have tested more than two models against each other.  We use the data I compiled from the literature perform the largest test of the species abundance distribution to date, competing five models from each of four different model families: purely statistical, branching process, population dynamics, and niche partitioning [@mcgill2007] with community abundance data from the database described in this dissertation for reptiles, amphibians, bony fish, beetles, and spiders and add to this data from birds, trees, mammals, and butterflies.  We use the same data to build off work by Connolly et al. 2014 to determine if species abundance data is suffiencient for identifying neutral vs. non-neutral processes [@connolly2014]. <!--In chapter 1, I demonstrated something about how more data are better by competing several forms of the species abundance distribution something about can't remember, got interrupted.  In chapter 3, I used the data I compiled to additional test something about process and neutral theory.-->
