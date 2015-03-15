@@ -126,7 +126,7 @@ map = Basemap(projection='moll',lon_0=0,resolution='i') #Sets up map for Mollwei
 map.drawcoastlines(linewidth = .10)
 map.fillcontinents(color='black',lake_color='white')
 
-datasets = ['bbs', 'cbc', 'fia', 'gentry', 'mcdb', 'naba'] # The rest of the data do not have lat-longs.
+datasets = ['bbs', 'cbc', 'fia', 'naba', 'mcdb', 'gentry' ] # The rest of the data do not have lat-longs.
 data_dir = './sad-data/chapter1/'
 markers=['o', '^', 's','D','v', 'p']
 markersizes=3
@@ -139,7 +139,7 @@ for i, dataset in enumerate(datasets):
     longs = latlong_data["long"]
     x,y = map(longs,lats)
     map.plot(x,y, ls='', marker=markers[i], markeredgecolor= colors[i],
-    markeredgewidth=0.75, markersize=markersizes, fillstyle='none')
+    markeredgewidth=0.5, markersize=markersizes, fillstyle='none')
     
 
 #Make legend
@@ -150,7 +150,7 @@ l4 = plt.scatter([],[], s=60, marker = 'D', facecolors='m', edgecolors='black')
 l5 = plt.scatter([],[], s=60, marker = 'v', facecolors='gold', edgecolors='black')
 l6 = plt.scatter([],[], s=60, marker = 'p', facecolors='palegreen', edgecolors='black')
 
-labels = ["BBS", "CBC", "FIA", "Gentry", "MCDB", "NABA"]
+labels = ["BBS", "CBC", "FIA", "NABA", "MCDB", "Gentry"]
 
 leg = plt.legend([l1, l2, l3, l4, l5, l6], labels, frameon=False, fontsize=8, loc = 6, scatterpoints = 1)
     
