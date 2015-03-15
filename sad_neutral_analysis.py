@@ -130,7 +130,7 @@ datasets = ['bbs', 'cbc', 'fia', 'gentry', 'mcdb', 'naba'] # The rest of the dat
 data_dir = './sad-data/chapter1/'
 markers=['o', '^', 's','D','v', 'p']
 markersizes=3
-colors=["teal", 'c', "palegreen", "m", "gold", 'orchid']
+colors=["teal", 'c', "seagreen", "m", "gold", 'orchid']
 
 
 for i, dataset in enumerate(datasets):
@@ -143,16 +143,16 @@ for i, dataset in enumerate(datasets):
     
 
 #Make legend
-l1 = plt.scatter([],[], s=100, marker = 'o', facecolors='teal',  edgecolors='black')
-l3 = plt.scatter([],[], s=100, marker = '^', facecolors='c', edgecolors='black')
-l3 = plt.scatter([],[], s=100, marker = 's', facecolors='palegreen', edgecolors='black')
-l4 = plt.scatter([],[], s=100, marker = 'D', facecolors='m', edgecolors='black')
-l5 = plt.scatter([],[], s=100, marker = 'v', facecolors='gold', edgecolors='black')
-l3 = plt.scatter([],[], s=100, marker = 'p', facecolors='orchid', edgecolors='black')
+l1 = plt.scatter([],[], s=75, marker = 'o', facecolors='teal',  edgecolors='black')
+l3 = plt.scatter([],[], s=75, marker = '^', facecolors='c', edgecolors='black')
+l3 = plt.scatter([],[], s=75, marker = 's', facecolors='seagreen', edgecolors='black')
+l4 = plt.scatter([],[], s=75, marker = 'D', facecolors='m', edgecolors='black')
+l5 = plt.scatter([],[], s=75, marker = 'v', facecolors='gold', edgecolors='black')
+l3 = plt.scatter([],[], s=75, marker = 'p', facecolors='orchid', edgecolors='black')
 
 labels = ["BBS", "CBC", "FIA", "Gentry", "MCDB", "NABA"]
 
-leg = plt.legend([l1, l2, l3, l4, l5, l6], labels, frameon=False, fontsize=12, loc = 6, title='Datasets', scatterpoints = 1)
+leg = plt.legend([l1, l2, l3, l4, l5, l6], labels, frameon=False, fontsize=10, loc = 6, title='Datasets', scatterpoints = 1)
     
 plt.savefig('./sad-data/chapter3/partial_sites_map.png', dpi=250, pad_inches=0)
 plt.close()
