@@ -37,7 +37,7 @@ Table 1: Details of datasets used to evaluate the form of the species-abundance 
 | Coleoptera      	                    | Coleoptera    | Public  	|5             	| this dissertation 	|
 | Arachnida      	                    | Arachnida     | Public  	|25             	| this dissertation 	|
 
-All abundances in the compiled datasets where counts of individuals.
+All abundances in the compiled datasets were counts of individuals.
 
 ### Models
 
