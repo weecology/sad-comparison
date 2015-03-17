@@ -27,41 +27,97 @@
 \titlepage
 \end{frame}
 
+\section{Data}
+\subsection{Compiled Data}
+\subsection{Additional Data}
+
+\section{Species abundance distribution comparisons}
+\subsection{Analysis}
+\subsection{Results}
+
+\section{Neutral analysis}
+\subsection{Analysis}
+\subsection{Results}
+
+\section{Conclusions}
+
+\section{Acknowledgements}
+\subsection{Accessibility}
+
 
 %\begin{frame}
 %\tableofcontents
 %\end{frame}
 
+\AtBeginSection[]{
+\begin{frame}{Table of Contents}
+\tableofcontents[Data]
+\end{frame}
+}
+
 \begin{frame}{}
+\frametitle{Data}
 \includegraphics[scale=.5]{./sad-data/chapter2/bioregions.png}
 \end{frame}
 
 \begin{frame}{}
+\frametitle{Data}
 \includegraphics[scale=.5]{./sad-data/chapter2/taxa_sites.png}
 \end{frame}
 
 \begin{frame}{}
+\frametitle{Data}
 \includegraphics[scale=.5]{./sad-data/chapter2/num_taxa.png}
+\end{frame}
+
+\begin{frame}{}
+\frametitle{Data}
+\includegraphics[scale=.5]{./sad-data/chapter3/partial_sites_map.png}
+\end{frame}
+
+\begin{frame}{}
+\frametitle{Data}
+%\begin{table}
+%\begin{tabular}{| Variable name | Variable definition | Units | Storage type | Range of values |
+%|----------------------|-------------------------------|-------|--------------|-----------------|
+%| Class | Taxonomic class of species | N/A | Character | N/A |
+%| Family | Taxonomic family of species | N/A | Character | N/A |
+%| Genus | Taxonomic genus of species | N/A | Character | N/A |
+%| Species | Specific epithet of species | N/A | Character | N/A |
+%| Relative_abundance | Relative abundance of species | N/A | Double | 0 - 309 |
+%| Abundance | Abundance of species | N/A | Integer | 0-181726 |
+%| Collection_Year | Start of collecting | N/A | Integer | 1952-2008 |
+%| End_Collection | End of collecting | N/A | Integer | 1977-2009 |
+%| Site_Name | Name/description of site | N/A | Character | N/A |
+%| Biogeographic_region | Biogeographic region | N/A | Character | N/A |
+%| Site_notes | Additional site information | N/A | Character | N/A |}
+%\end{tabular}
+%\end{table}
 \end{frame}
 
 
 \begin{frame}{}
+\frametitle{SAD Comparisons}
 \includegraphics[scale=.5]{./sad-data/chapter1/AICc_weights.png}
 \end{frame}
 
 \begin{frame}{}
+\frametitle{SAD Comparisons}
 \includegraphics[scale=.5]{./sad-data/chapter1/likelihoods.png}
 \end{frame}
 
 \begin{frame}{}
+\frametitle{SAD Comparisons}
 \includegraphics[scale=.5]{./sad-data/chapter1/likelihoods_one_to_one.png}
 \end{frame}
 
 \begin{frame}{}
+\frametitle{Neutral Analysis}
 \includegraphics[scale=.25]{./sad-data/chapter3/distabclasses_vs_lognormwgt.png}
 \end{frame}
 
 \begin{frame}{}
+\frametitle{Neutral Analysis}
 \includegraphics[scale=.6]{./sad-data/chapter3/avgvals_by_dataset.png}
 \end{frame}
 
