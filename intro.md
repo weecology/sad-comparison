@@ -1,6 +1,7 @@
 #A data-intensive assessment of the species abundance distribution.
 #Abstract
 <!-- 350 words or less, no subheading, citations, drawings, diagrams, tables, or abbreviations.  Include total number of pages in the paper (including preliminary pages and appendices) in parentheses at the end, do not use boldface on the abstract title, see sample in Appendix A of grad school Pub Guide.-->
+The hollow curve species abundance distribution is one of the most ubiquitous patterns in nature, and many models have been proposed to explain the mechanisms that generate this pattern.  While there have been numerous comparisons of species abundance distribution models, few have tested more than two models against each other.  I compiled data from the literature to fill gaps in available data for underrepresented taxonomic groups, and combined this with other macroecological datasets to perform two tests of the species abundance distribution, a multiple model comparison, and a targeted comparison of neutral theory against a non-neutral model of species abundance.  
 
 #Public abstract
 <!-- One page, written in the style of an executive summary, whatever that means.  Explains in common language the research objective and societal benefits, see Appendix A -->
@@ -25,8 +26,5 @@ Second,  we compete five models from each of four different model families: pure
 
 Third, we expand our exploration of the hollow curve species abundance distribution using the same data used in the previous objective to build off work by Connolly et al. 2014 to determine if species abundance data is suffiencient for identifying neutral vs. non-neutral processes [@connolly2014].
 
-<!--The following bit is good, but I don't think it has a place anymore.  Perhaps the abstract? -->
-
-<!--The hollow curve species abundance distribution is one of the most ubiquitous patterns in nature, and many models have been proposed to explain the mechanisms that generate this pattern.  While there have been numerous comparisons of species abundance distribution models, few have tested more than two models against each other.-->
 
 <!--In chapter 1, I demonstrated something about how more data are better by competing several forms of the species abundance distribution something about can't remember, got interrupted.  In chapter 3, I used the data I compiled to additional test something about process and neutral theory.-->
