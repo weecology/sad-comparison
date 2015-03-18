@@ -65,4 +65,17 @@ Our results were consistent with our simultaneous comparisons of multiple specie
 <!--Could be a terrestrial vs. marine thing, although fish showed the same pattern.  The fish data was a little over half freshwater, a few estuary, and the rest marine, but a lot of near shore, mangrove-y areas.  No deep water sites.-->
 Differences in marine vs. terrestrial systems are one possible explanation for the difference in our results relative to the results from Connolly et al. 2014.  However, while marine systems have not been as extensively studied as part of the macroecological research program as terrestrial systems, marine and terrestrial systems exhibit the same general macroecological patterns [@webb2012marine].  However, Webb 2012 raises the caveat that while the same general patterns apply, the processes generating those patterns may be different[@webb2012marine].  The results of this study could suggest that marine communities are more consistently structured by non-neutral processes than terrestrial communities.  While the vast majority of the data that we tested was terrestrial (approximately 99%), we did have 161 sites for fish.  Of these, the majority were freshwater, rather than marine; however we observed the same general pattern of results for fish as we did for the other taxa.
 
+<!--Data structure differences: their data is structured in natural spatial groupings, ours does not.  Spatial grouping may lead to different results than our widely dispersed sites.-->
+
+<!-- Way in which marine communities are sampled is different from sampling of terrestrial communities, intensiveness of sampling.The diversity of data we used should cover the range of possible sampling if it was a sampling difference, ranging from completely sampled (trees), to less completely sampled (spiders, beetles), unless marine communities are just really poorly sampled. -->
+
+<!-- Range of spatial scales (very local FIA) to very large spatial scales (CBC, BBS)-->
+
+<!-- Because of the diversity of data that we used, with a wide range of sampling approachs, it is unlikely that the differences are due to the sampling approach rather than biological differences.-->
+
+<!-- Why do marine and terrestrial systems differ.  Migration, dispersal?  -->
+
+<!-- Magurran and Henderson 2003, core-occasional species concept, difference in core vs. transient between terrestrial and marine -->
+
+<!-- Differences in number of individuals, number of species terrestrial vs. marine-->
   
