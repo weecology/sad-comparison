@@ -1,7 +1,11 @@
 #Summary and conclusions
 <!-- Integrates all of the chapters, and only has to be something like a page.  Should be easy to whip out. -->
 
+
 It is difficult to infer process from species abundance distributions alone.
+<!--Sampling differences vs. biological differences.  -->
+
+<!-- Leveraging data with my dataset allows for identifying differences between marine vs. terrestrial that we might not otherwise have been able to distinguish.-->
 
 May not be one single suite of processes that have equal importance in all communities, i.e., non-neutral processes may be more important in some communities, but not in others.
 
