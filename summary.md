@@ -1,13 +1,9 @@
 #Summary and conclusions
-<!-- Integrates all of the chapters, and only has to be something like a page.  Should be easy to whip out. -->
 
+It is difficult to infer process from species abundance distributions alone.  Part of the difficulty in distinguishing process from species abundance distribution is due to the multiple mechanisms that have been proposed for each formulation of the species abundance distribution.  Subsuming some of these differences into broad categories such as neutral or non-neutral (sensu Connolly 2014) may be a more productive approach to narrowing the field of possibility, but there may not be one single suite of processes that have equal importance in all communities, i.e., non-neutral processes may be more important in some communities, but not in others.
 
-It is difficult to infer process from species abundance distributions alone.
-<!--Sampling differences vs. biological differences.  -->
+Another potentially confounding factor when trying to identify pattern generating mechanisms is non-biological differences (sampling intensity, etc.) vs. biological differences.  Using data from different taxonomic groups and from different geographic regions assists in removing some of the uncertainty relating to non-biological data differences through covering a range of sampling intensities and scales of collection.   This suggests that we may be able to identify differences between marine vs. terrestrial that we might not otherwise have been able to distinguish.
 
-<!-- Leveraging data with my dataset allows for identifying differences between marine vs. terrestrial that we might not otherwise have been able to distinguish.-->
-
-May not be one single suite of processes that have equal importance in all communities, i.e., non-neutral processes may be more important in some communities, but not in others.
 
 A traditional hierarchy of scientific research is to identify general patterns, then pattern generating mechanisms (process), then use those processes to generate predictions.  While this has been the traditional approach, pattern to process to prediction, identification of process may not be neccesary for prediction.  It may be possible to generate robust ecological predictions from general patterns without specific knowledge of the pattern generating mechanisms [@frank2009, @frank2014, @locey2013]  Process and prediction may be two separate research goals [@mcgill2010mechanisms].
 
