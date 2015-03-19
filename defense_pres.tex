@@ -154,7 +154,8 @@ Lots of data in the literature.\\
 \includegraphics[scale=.5]{./sad-data/chapter2/num_taxa.png}
 \end{frame}
 
-\section{Species abundance distribution}
+\section{The species abundance distribution}
+\subsection{Pattern description}
 \begin{frame}[t]{}
 \frametitle{Commonness \& rarity}
 ~\\
@@ -174,8 +175,83 @@ The species abundance distribution:
 \end{itemize}
 \end{frame}
 
+\subsection{Forms of the distribution}
+\begin{frame}
+\frametitle{Forms of the SAD}
+\begin{large}
+Model classes:
+\end{large}
+\begin{itemize}
+\item Purely statistical
+\item Branching process
+\item Population dynamics
+\item Niche partitioning
+\item Maximum entropy
+\item Feasible set/combinatorics
+\end{itemize}
+\end{frame}
+
+
 \section{Species abundance distribution comparisons}
+\begin{frame}
+\frametitle{SAD Comparisons}
+\begin{large}
+Most comparisons of the different models:
+\end{large}
+\begin{itemize}
+\item Use only a small subset of available models (typically two).
+\item Focus on a single ecosystem or taxonomic group
+\item Fail to use the most appropriate statistical methods. 
+\end{itemize}
+\end{frame}
+
 \subsection{Analysis}
+\begin{frame}[shrink=10]
+\frametitle{SAD Comparisons}
+~\\
+~\\
+Selected five models from four classes for comparison.
+\begin{table}
+\begin{tabular}{l|l}
+ Model class & Form of the distribution\\ 
+\hline
+ Purely statistical & Logseries, Poisson lognormal\\
+ Branching process & Zipf \\
+ Population dynamics & Negative binomial\\
+ Niche partitioning & Geometric \\
+\end{tabular}
+~\\
+~\\
+~\\
+~\\
+\caption{After B.J. McGill et al. 2007. Species abundance distributions: moving beyond single prediction theories to integration within an ecological framework. Ecology letters 10: 995-1015.}
+\end{table}
+\end{frame}
+
+\begin{frame}[shrink=35]
+\frametitle{SAD Comparisons}
+\begin{center}
+\begin{table}
+\begin{tabular}{l|c|l|r}
+ Dataset &Dataset code &Availability &Total sites\\
+\hline
+ Breeding Bird Survey &BBS &Public &2769\\
+ Christmas Bird Count &CBC &Private &1999\\
+ Gentry's Forest Transects &Gentry &Public &10355\\
+ Forest Inventory Analysis &FIA	 &Public &220\\
+ Mammal Community Database &MCDB &Public &103\\
+ N. American Butterfly Count &NABA &Private &400\\
+ Actinopterygii, this dissertation	 &Actinopterygii &Public &161\\
+ Reptilia, this dissertation &Reptilia &Public &138\\
+ Amphibia, this dissertation &Amphibia &Public &43\\
+ Coleoptera, this dissertation &Coleoptera &Public &5\\
+ Arachnida, this dissertation &Arachnida &Public &25\\
+\end{tabular}
+\caption{Datasets used for species-abundance distribution comparisons. Datasets marked as Private were obtained through data requests to the providers resulting in Memorandums of Understanding governing data use.}
+\end{table}
+\end{center}
+\end{frame}
+
 \subsection{Results}
 \begin{frame}{}
 \frametitle{SAD Comparisons}
