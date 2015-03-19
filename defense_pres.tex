@@ -154,6 +154,15 @@ Lots of data in the literature.\\
 \includegraphics[scale=.5]{./sad-data/chapter2/num_taxa.png}
 \end{frame}
 
+\subsection{Data Availability}
+\begin{frame}[t]
+\frametitle{Data}
+~\\
+~\\
+The final community abundance database is publicly available and importable through the EcoData Retriever.\\ 
+(http://www.ecodataretriever.org/)
+\end{frame}
+
 \section{The species abundance distribution}
 \subsection{Pattern description}
 \begin{frame}[t]{}
@@ -205,7 +214,8 @@ Most comparisons of the different models:
 \end{itemize}
 \end{frame}
 
-\subsection{Analysis}
+\subsection{Data & Analysis}
+\subsubsection{Model selection}
 \begin{frame}[shrink=10]
 \frametitle{SAD Comparisons}
 ~\\
@@ -228,6 +238,36 @@ Selected five models from four classes for comparison.
 \end{table}
 \end{frame}
 
+\subsubsection{Analysis}
+\begin{frame}
+\frametitle{SAD Comparisons}
+~\\
+Analysis:
+\begin{itemize}
+\item Model fitting with maximum likelihood estimation. 
+\item Likelihood based model selection to compare the fits of the different models.
+\item Model comparison with corrected Aikaike Information Criterion (AICc) weights.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{SAD Comparisons}
+~\\
+Computational tools:
+\begin{itemize}
+\item Model fitting, log-likelihood, and AICc calculations performed with macroecotools Python package.\\
+\begin{small}
+(https://github.com/weecology/macroecotools)
+\end{small}
+\item All of the analysis code and the majority of the data is publicly available.
+\begin{small}
+(https://github.com/weecology/sad-comparison)
+\end{small}
+\end{itemize}
+\end{frame}
+
+
+\subsubsection{Data}
 \begin{frame}[shrink=35]
 \frametitle{SAD Comparisons}
 \begin{center}
