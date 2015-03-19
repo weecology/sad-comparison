@@ -8,7 +8,7 @@ Early evaluations of neutral theory were based on comparing the fit of empirical
 Building on work by Pueyo [@pueyo2006], Connolly et al. were able to identify non-neutral species abundance distributions in marine environments by comparing model fits of a lognormal distribution (non-neutral) to a gamma distribution (neutral)[@connolly2014].  This approach shows promise as a robust method for identifying communities that exhibit non-neutrality.
 
 <!--Works for marine systems, does it work with more data, both terrestrial and marine.-->
-While this approach has been preliminarily tested with marine communities over a broad geographic extent, it has not yet been tested in terrestrial systems <!--with a really expansive dataset-->.  Here, we evaluate the approach used by Connolly et al. [@connolly2014] over a much broader range of ecosystems and taxa.  We tested this approach for vertebrate, invertebrate and plant communities in terrestrial, aquatic, and marine ecosystems.  In total, we used abundance data from 16,218 communities to determine whether we observe patterns that are more consistent with neutrality or non-neutrality.
+While this approach has been preliminarily tested with marine communities over a broad geographic extent, it has not yet been tested in terrestrial systems <!--with a really expansive dataset-->.  Here, we evaluate the approach used by Connolly et al. [@connolly2014] over a much broader range of ecosystems and taxa.  We tested this approach for vertebrate, invertebrate and plant communities in primarily terrestrial ecosystems.  In total, we used abundance data from 16,218 communities to determine whether we observe patterns that are more consistent with neutrality or non-neutrality.
 
 #Methods
 <!-- Redid analyses with more data-->
@@ -73,12 +73,7 @@ Another potential non-biological explanation is related to sampling intensity.  
 
 Because of the diversity of data that we used, with a wide range of sampling approaches, it is unlikely that the differences are due to the sampling approach rather than biological differences.  While more research needs to be done to determine what the differences are between the terrestrial and marine sites in this case, there are several possible biological explanations for the difference in results.
 
-While many macroecological patterns hold true for marine systems, there are some significant difference between terrestrial and marine systems.
-<!-- Inverted biomass pyramid for marine vs. terrestrial systems. -->
+While many macroecological patterns hold true for marine systems, there are some significant differences between terrestrial and marine systems.  For example, many marine ecosystems exhibit an inverted biomass pyramid when compared to terrestrial systems. Biological/ecological diferences between marine and terrestrial systems could provide insight into differences in patterns of species abundance distributions.  One potential explanation comes from the core-occasional/core-transient species concept, in which core species, which are both common and temporally persistent demonstrate a different shape of the species abundance distribution than transient species, which are rare and temporally variable [@magurran2003explaining]. Differences in core vs. transient species between terrestrial and marine systems could provide an explanation for the difference in results.  
 
-<!-- Why do marine and terrestrial systems differ.  Migration, dispersal?  -->
-
-<!-- Magurran and Henderson 2003, core-occasional species concept, difference in core vs. transient between terrestrial and marine -->
-
-<!-- Differences in number of individuals, number of species terrestrial vs. marine-->
+Various approaches for generating species abundance distributions suggest that species richness (S) and the total number of individuals (N) are important inputs into determining the shape of the species abundance distribution (citations, Harte, white2012, xiao, locey).  Differences in the ratio of S/N for terrestrial vs. marine communities could provide another potential explanation.  Further research needs to be done to determine if there is a difference in S/N ratios between the terrestrial data used in this study and the marine data used in Connolly 2014.-->
   
