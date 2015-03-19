@@ -1,4 +1,4 @@
-\documentclass[17pt]{beamer}
+\documentclass[14pt]{beamer}
 \usetheme{Pittsburgh}
 \usepackage{xcolor}
 \definecolor{USUBlue}{RGB}{26,57,89}
@@ -13,7 +13,8 @@
 \usefonttheme{serif}
 \setbeamercolor{author}{fg=USUBlue}
 \setbeamerfont{author}{size=\small}
-\setbeamerfont{frametitle}{size=\small}
+\setbeamerfont{frametitle}{size=\large}
+\setbeamertemplate{enumerate items}[default]
 \author{Elita Baldridge}
 \title[17pt]{A data-intensive assessment of the species-abundance distribution.}
 \setbeamertemplate{navigation symbols}{}
@@ -35,22 +36,33 @@
 
 \section{Introduction}
 \subsection{What is macroecology?}
-\begin{frame}
+\begin{frame}[t]
 \frametitle{Macroecology}
-One approach to studying ecological patterns and processes.
+\normalsize One approach to studying ecological patterns and processes.
+~\\ %Adds vertical space for better aesthetics
 \begin{itemize}
+\begin{small}
 \item Data intensive.
-\item Large scales (spatial, temporal, taxonomic).
+\item Large scales
+\begin{itemize}
+\item Spatial
+\item Temporal
+\item Taxonomic
+\end{itemize}
 \item Search for generality.
+\item Search for generality.
+\end{small}
 \end{itemize}
 \end{frame}
 
-\begin{frame}
+\begin{frame}[t]
 \frametitle{Macroecology}
 Criticisms of macroecology
 \begin{itemize}
+\begin{small}
 \item North American terrestrial bias.
 \item Lack of identification of pattern generating mechanisms.
+\end{small}
 \end{itemize}
 \end{frame}
 
@@ -110,17 +122,17 @@ Criticisms of macroecology
 \subsection{Analysis}
 \subsection{Results}
 \begin{frame}{}
-\frametitle{Abundance distribution Comparisons}
+\frametitle{SAD Comparisons}
 \includegraphics[scale=.5]{./sad-data/chapter1/AICc_weights.png}
 \end{frame}
 
 \begin{frame}{}
-\frametitle{Abundance distribution Comparisons}
+\frametitle{SAD Comparisons}
 \includegraphics[scale=.5]{./sad-data/chapter1/likelihoods.png}
 \end{frame}
 
 \begin{frame}{}
-\frametitle{Abundance distribution Comparisons}
+\frametitle{SAD Comparisons}
 \includegraphics[scale=.5]{./sad-data/chapter1/likelihoods_one_to_one.png}
 \end{frame}
 
