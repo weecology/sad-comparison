@@ -1,4 +1,4 @@
-\documentclass[17pt]{beamer}
+\documentclass[14pt]{beamer}
 \usetheme{Pittsburgh}
 \usepackage{xcolor}
 \definecolor{USUBlue}{RGB}{26,57,89}
@@ -13,7 +13,8 @@
 \usefonttheme{serif}
 \setbeamercolor{author}{fg=USUBlue}
 \setbeamerfont{author}{size=\small}
-\setbeamerfont{frametitle}{size=\small}
+\setbeamerfont{frametitle}{size=\large}
+\setbeamertemplate{enumerate items}[default]
 \author{Elita Baldridge}
 \title[17pt]{A data-intensive assessment of the species-abundance distribution.}
 \setbeamertemplate{navigation symbols}{}
@@ -25,7 +26,7 @@
 \begin{document}
 
 
-\begin{frame}
+\begin{frame}[t]
 \titlepage
 \end{frame}
 
@@ -33,7 +34,85 @@
 %\tableofcontents
 %\end{frame}
 
+\section{Introduction}
+\subsection{What is macroecology?}
+\begin{frame}[t]
+\frametitle{Macroecology}
+\normalsize One approach to studying ecological patterns and processes.\\
+\begin{itemize}
+\item Data intensive.
+\item Large scales.
+\begin{itemize}
+\item Spatial
+\item Temporal
+\item Taxonomic
+\end{itemize}
+\item Search for generality.
+\end{itemize}
+\end{frame}
+
+\subsection{Criticisms of macroecology}
+\begin{frame}[t]
+\frametitle{Macroecology}
+Criticisms of macroecology\\
+\begin{itemize}
+\item North American terrestrial bias.
+\item Lack of identification of pattern generating mechanisms.
+\end{itemize}
+\end{frame}
+
+\subsection{Best practices}
+\begin{frame}[t]
+\frametitle{Macroecology}
+Best practice recommendations\\
+\begin{itemize}
+\begin{small}
+\item Test patterns with multiple taxonomic groups/ecosystems.  
+\item Simultaneous testing of competing models and model predictions with a consistent statistical approach.
+\end{small}
+\end{itemize}
+\end{frame}
+
 \section{Data}
+\subsection{Introduction to Ecoinformatics}
+\begin{frame}[t]
+\frametitle{The Rules of Ecoinformatics}
+\begin{Large}
+Garbage in, garbage out.\\
+\end{Large}
+\begin{itemize}
+\item All data are good, not all data are appropriate.
+\item Fit the data to the question.
+\end{itemize}
+\end{frame}
+
+\subsection{Current Data}
+\begin{frame}[t]
+\frametitle{Data}
+\vspace{-7pt}
+\includegraphics[scale=.55]{./sad-data/chapter3/presentation_map.png}
+\end{frame}
+
+\begin{frame}[t]{}
+\frametitle{Data}
+\begin{large}
+Major macroecological datasets\\
+\end{large}
+\begin{itemize}
+\item Largely terrestrial
+\item Largely North American
+\item Many publicly available, some not.
+\end{itemize}
+~\\
+~\\
+~\\
+~\\
+\begin{large}
+Lots of data in the literature.\\
+\end{large}
+\end{frame}
+
+
 
 \subsection{Compiled Data}
 \subsubsection{Data Collection}
@@ -75,37 +154,233 @@
 \includegraphics[scale=.5]{./sad-data/chapter2/num_taxa.png}
 \end{frame}
 
-
-
-\subsection{Additional Data}
-
-\begin{frame}{}
+\subsection{Data Availability}
+\begin{frame}[t]
 \frametitle{Data}
-\includegraphics[scale=.55]{./sad-data/chapter3/presentation_map.png}
+~\\
+~\\
+The final community abundance database is publicly available and importable through the EcoData Retriever.\\ 
+(http://www.ecodataretriever.org/)
+\end{frame}
+
+\section{The species abundance distribution}
+\subsection{Pattern description}
+\begin{frame}[t]{}
+\frametitle{Commonness \& rarity}
+~\\
+\begin{large}
+The species abundance distribution:
+\end{large}
+\begin{itemize}
+\item Describes the distribution of commonness \& rarity of species.
+\item One of the most fundamental and ubiquitous patterns in ecology.
+\item Exhibits a hollow curve distribution.
+\begin{itemize}
+\item Many rare species.
+\item Few common species.
+~\\
+\end{itemize}
+\item Many forms of the species abundance distribution (SAD).
+\end{itemize}
+\end{frame}
+
+\subsection{Forms of the distribution}
+\begin{frame}
+\frametitle{Forms of the SAD}
+\begin{large}
+Model classes:
+\end{large}
+\begin{itemize}
+\item Purely statistical
+\item Branching process
+\item Population dynamics
+\item Niche partitioning
+\item Maximum entropy
+\item Feasible set/combinatorics
+\end{itemize}
 \end{frame}
 
 
-
 \section{Species abundance distribution comparisons}
-\subsection{Analysis}
+\begin{frame}
+\frametitle{SAD Comparisons}
+\begin{large}
+Most comparisons of the different models:
+\end{large}
+\begin{itemize}
+\item Use only a small subset of available models (typically two).
+\item Focus on a single ecosystem or taxonomic group
+\item Fail to use the most appropriate statistical methods. 
+\end{itemize}
+\end{frame}
+
+\subsection{Data & Analysis}
+\subsubsection{Model selection}
+\begin{frame}[shrink=10]
+\frametitle{SAD Comparisons}
+~\\
+~\\
+Selected five models from four classes for comparison.
+\begin{table}
+\begin{tabular}{l|l}
+ Model class & Form of the distribution\\ 
+\hline
+ Purely statistical & Logseries, Poisson lognormal\\
+ Branching process & Zipf \\
+ Population dynamics & Negative binomial\\
+ Niche partitioning & Geometric \\
+\end{tabular}
+~\\
+~\\
+~\\
+~\\
+\caption{After B.J. McGill et al. 2007. Species abundance distributions: moving beyond single prediction theories to integration within an ecological framework. Ecology letters 10: 995-1015.}
+\end{table}
+\end{frame}
+
+\subsubsection{Analysis}
+\begin{frame}
+\frametitle{SAD Comparisons}
+~\\
+Analysis:
+\begin{itemize}
+\item Model fitting with maximum likelihood estimation. 
+\item Likelihood based model selection to compare the fits of the different models.
+\item Model comparison with corrected Aikaike Information Criterion (AICc) weights.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{SAD Comparisons}
+~\\
+Computational tools:
+\begin{itemize}
+\item Model fitting, log-likelihood, and AICc calculations performed with macroecotools Python package.\\
+\begin{small}
+(https://github.com/weecology/macroecotools)
+\end{small}
+\item All of the analysis code and the majority of the data is publicly available.
+\begin{small}
+(https://github.com/weecology/sad-comparison)
+\end{small}
+\end{itemize}
+\end{frame}
+
+
+\subsubsection{Data}
+\begin{frame}[shrink=35]
+\frametitle{SAD Comparisons}
+\begin{center}
+\begin{table}
+\begin{tabular}{l|c|l|r}
+ Dataset &Dataset code &Availability &Total sites\\
+\hline
+ Breeding Bird Survey &BBS &Public &2769\\
+ Christmas Bird Count &CBC &Private &1999\\
+ Gentry's Forest Transects &Gentry &Public &10355\\
+ Forest Inventory Analysis &FIA	 &Public &220\\
+ Mammal Community Database &MCDB &Public &103\\
+ N. American Butterfly Count &NABA &Private &400\\
+ Actinopterygii, this dissertation	 &Actinopterygii &Public &161\\
+ Reptilia, this dissertation &Reptilia &Public &138\\
+ Amphibia, this dissertation &Amphibia &Public &43\\
+ Coleoptera, this dissertation &Coleoptera &Public &5\\
+ Arachnida, this dissertation &Arachnida &Public &25\\
+\end{tabular}
+\caption{Datasets used for species-abundance distribution comparisons. Datasets marked as Private were obtained through data requests to the providers resulting in Memorandums of Understanding governing data use.}
+\end{table}
+\end{center}
+\end{frame}
+
 \subsection{Results}
 \begin{frame}{}
-\frametitle{Abundance distribution Comparisons}
+\frametitle{SAD Comparisons}
 \includegraphics[scale=.5]{./sad-data/chapter1/AICc_weights.png}
 \end{frame}
 
 \begin{frame}{}
-\frametitle{Abundance distribution Comparisons}
+\frametitle{SAD Comparisons}
 \includegraphics[scale=.5]{./sad-data/chapter1/likelihoods.png}
 \end{frame}
 
 \begin{frame}{}
-\frametitle{Abundance distribution Comparisons}
+\frametitle{SAD Comparisons}
 \includegraphics[scale=.5]{./sad-data/chapter1/likelihoods_one_to_one.png}
 \end{frame}
 
+\subsection{Conclusions}
+\begin{frame}
+\frametitle{SAD Comparisons}
+Existing models provide equivalently good absolute fits to empirical data.
+\begin{itemize}
+\item Models with fewer parameters perform better in AIC-based model selection.\\
+\item Logseries provides a good naive model for fitting SADs.\\
+\begin{itemize}
+\item Produces equivalent likelihoods.
+\item Has a single fitted parameter.
+\item Easy to fit to empirical data.
+\item Best overall model.
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[t]
+\frametitle{SAD Comparisons}
+Identifying pattern generating mechanisms:
+\begin{itemize}
+\item Compare predictions of different models using multiple macroecological patterns simultaneously.\\
+\item Examine scale dependence of pattern.
+\end{itemize}
+~\\
+~\\
+However, identification of mechanism may not be necessary for prediction.
+\end{frame}
+
 \section{Neutral analysis}
-\subsection{Analysis}
+\begin{frame}[t]
+\frametitle{Neutral Analysis}
+~\\
+The unified neutral theory of biodiversity:\\
+~\\
+\begin{itemize}
+\item Multiple formulations.
+\begin{itemize}
+\item Species and individuals are ecologically and demographically equivalent.\\
+\item Stochastic variation in birth, death, immigration, \& speciation results in species abundance differences.
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Neutral Analysis}
+Early tests of neutral theory based on comparing the fit of empirical species abundance distributions to the neutral prediction.\\
+~\\
+Later tests suggested species abundance comparisons were insufficient for a rigorous test of neutrality.\\
+~\\
+\end{frame}
+
+\begin{frame}
+\frametitle{Neutral Analysis}
+Connolly et al. 2014 identified non-neutral species abundance distributions in marine communities.\\
+\begin{small}
+\begin{itemize}
+\item Compared model fits of a non-neutral distribution (Poisson lognormal) to a neutral distribution (negative binomial distribution).\\
+\end{itemize}
+\end{small}
+~\\
+May be a robust method for identifying communities that exhibit non-neutrality.\\
+\begin{tiny}
+S.R. Connolly et al. 2014. Commonness and rarity in the marine biosphere. PNAS 111: 8524-8529.
+\end{tiny}
+\end{frame}
+
+\subsection{Data & Analysis}
+\begin{frame}
+\frametitle{Neutral Analysis}
+Used the same data and model fitting approach.\\
+Compared a non-neutral model (Poisson lognormal) to a neutral model (negative binomial).\\
+\end{frame}
+
 \subsection{Results}
 \begin{frame}{}
 \frametitle{Neutral Analysis}
@@ -117,9 +392,115 @@
 \includegraphics[scale=.6]{./sad-data/chapter3/avgvals_by_dataset.png}
 \end{frame}
 
-\section{Conclusions}
+\subsection{Conclusions}
+\begin{frame}
+\frametitle{Neutral analysis}
+Difficult to identify a clear winning model.
+\begin{itemize}
+\item Results consistent with our species abundance distribution model comparisons. 
+\item Results different from Connolly et al. 2014.
+\begin{itemize}
+\item Non-neutral model outperforms the neutral model in marine systems.
+\item Our results suggest marine systems more generally approximated by non-neutral dynamics; terrestrial systems more variable between neutral and non-neutral dynamics.
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\section{General Conclusions}
+\begin{frame}{}
+~\\ 
+\frametitle{Conclusions}\
+Challenging to infer process from species abundance distributions alone.
+~\\ 
+\begin{itemize}
+\item Multiple mechanisms proposed for each SAD formulation.
+\item Broad model categorization (i.e. neutral or non-neutral) may be more productive.
+\item May not be one single suite of processes that dominates.
+\end{itemize} 
+\end{frame}
+
+\begin{frame}[t]{}
+\frametitle{Conclusions}\
+~\\ 
+Challenges in identifying mechanism among datasets.
+~\\ 
+\begin{itemize}
+\item Biological vs. non-biological differences (spatial structuring, sampling intensity).
+\item Diverse data removes uncertainty about non-biological pattern generating mechanisms.
+\item Even with a great deal of data, identifying mechanism is still challenging.
+\end{itemize} 
+\end{frame}
+
+\begin{frame}[t]{}
+\frametitle{Conclusions}\
+~\\ 
+\begin{large}
+Predictive macroecology
+\end{large}
+~\\ 
+\begin{itemize}
+\item Traditional approach is pattern to process to prediction.
+\item May be possible to generate robust ecological predictions from general patterns.
+\item Process and prediction may be two separate research goals.
+\end{itemize} 
+\end{frame}
 
 \section{Acknowledgements}
+\begin{frame}[t]{}
+\frametitle{Acknowledgements}
+~\\ %Adds vertical space for better aesthetics
+\small{Funding sources:}
+\begin{small}
+\begin{itemize}
+\item USU Department of Biology
+\item Intellectual Ventures, private funding to Morgan Ernest
+\item National Science Foundation CAREER Grant to Ethan White
+\item Gordon \& Betty Moore Foundation's Data-Driven Discovery Initiative Grant to Ethan White.
+\item USU Graduate School Dissertation Fellowship
+\end{itemize}
+\end{small}
+\end{frame}
+
+\begin{frame}{}
+\frametitle{Acknowledgements}
+Weecologists past, present, \& future\\
+\includegraphics[scale=.3]{../Miscellaneous/Pictures/Phd/whiteboard.png}
+\begin{tiny}
+(especially Xiao Xiao \& Ken Locey (creator of the whiteboard))
+\end{tiny}
+\end{frame}
+
+\begin{frame}[t]{}
+\frametitle{Acknowledgements}
+~\\ %Adds vertical space for better aesthetics
+Dr. Thomas Price \& USU Student Health Center.\\
+~\\
+The Flint Hills of Kansas.\\
+~\\
+Tea, electric blankets, \& heating pads.\\
+~\\
+A very supportive husband \& family.\\
+\end{frame}
+
 \subsection{Accessibility}
+\begin{frame}[t]{}
+\frametitle{Accessibility}
+\begin{center}
+This dissertation brought to you by:
+\end{center}
+\begin{Large}
+Disability accommodations\\
+\end{Large}
+~\\
+\begin{itemize}
+\item Remote access \& participation.\\
+\item Computational tools \& tricks.
+\begin{itemize}
+\item Version control (GitHub).
+\item Publicly available data.
+\item Programming skills (data manipulation \& analysis).
+\end{itemize}
+\end{itemize}
+\end{frame}
 
 \end{document}
