@@ -7,6 +7,13 @@ The hollow curve species abundance distribution, which describes the fact that t
 
 #Public abstract
 <!-- One page, written in the style of an executive summary, whatever that means.  Explains in common language the research objective and societal benefits, see Appendix A -->
+One of the most commonly observed patterns in ecology is that fact that at most locations there are a large number of relatively rare species, composed of only a few individuals per species, and a small number of relatively common species. This pattern of commonness and rarity is quantified by the species abundance distribution.
+
+As one of the most commonly observed patterns in ecology, it has been studied intensively for over 100 years. A major emphasis of this research has been developing models to try to understand the forces that generate such a general pattern. As a result, there are now dozens of different models for how this pattern might be generated, and these models are based on at least five different major categories of forces. Since many of these models appear to match ecological observations reasonably well, it is difficult to tell which model or models are most likely to be correct.
+
+In order to address this issue I compiled data on over 16,000 ecological systems. I then used the best available statistical methods to compare a number of different models to observed data. While there have been numerous comparisons of species abundance distribution models, most of these comparisons only use only a small subset of available models, focus on a single ecosystem or type of species, and fail to use the most appropriate statistical methods. My approach overcomes all of these challenges and thus provides the best opportunity for figuring out which models provide the best description of real data.
+
+Both broad stroke and detailed comparisons of this pattern of commonness and rarity suggest that even when using large amounts of data from across the world and the diversity of life, and the most current and powerful statistical methods, that it is generally not possible to distinguish between many common models of the species abundance distribution. I could exclude some models as clearly poorer descriptions of the pattern than others, but several models provided equivalently good descriptions of the data. This calls into question the potential for using the species abundance distribution to understand what processes are driving ecological systems.
 
 #Introduction
 <!--Overarching introduction that ties all three chapters together -->
