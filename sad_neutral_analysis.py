@@ -113,7 +113,7 @@ def make_hist_empir_model(datasets, analysis_ext, data_dir, fig_ext):
                     
                 plt.xticks(xticks, xvalues,  rotation='vertical', fontsize = 'x-small')
                 plt.yticks(fontsize = 'x-small')
-                plt.title(dataset)                
+                plt.title(dataset, fontsize = 'small')               
 
                 plt.tight_layout()
     
