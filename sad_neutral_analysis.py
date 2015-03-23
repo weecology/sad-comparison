@@ -68,6 +68,47 @@ def get_pln_aicc_wgts(sads):
     negbin_rel_lik = np.exp(-(negbin_delta_aicc) / 2)
     return pln_rel_lik / (pln_rel_lik + negbin_rel_lik)
 
+#Mapping code modified from White et al. 2012
+def map_sites(projection, output_file):
+    """Generate a world map with sites color-coded by database"""
+    map = Basemap(projection=projection,lon_0=0,resolution='i') #Sets up map for Mollweide projection- chosen for equal area properties.
+
+    map.drawcoastlines(linewidth = .10)
+    map.fillcontinents(color='black',lake_color='white')
+
+    datasets = ['bbs', 'cbc', 'fia', 'naba', 'mcdb', 'gentry' ] # The rest of the data do not have lat-longs.
+    data_dir = './sad-data/chapter1/'
+    markers=['o', '^', 's','D','v', 'p']
+    markersizes=3
+    colors=["teal", 'c', "seagreen", "m", "gold", 'palegreen']
+
+
+    for i, dataset in enumerate(datasets):
+        latlong_data = import_latlong_data(data_dir + dataset + '_lat_long.csv')
+        lats = latlong_data["lat"]
+        longs = latlong_data["long"]
+        x,y = map(longs,lats)
+        map.plot(x,y, ls='', marker=markers[i], markeredgecolor= colors[i],
+        markeredgewidth=0.5, markersize=markersizes, fillstyle='none')
+
+
+    #Make legend
+    l1 = plt.scatter([],[], s=60, marker = 'o', facecolors='teal',  edgecolors='black')
+    l2 = plt.scatter([],[], s=60, marker = '^', facecolors='c', edgecolors='black')
+    l3 = plt.scatter([],[], s=60, marker = 's', facecolors='seagreen', edgecolors='black')
+    l4 = plt.scatter([],[], s=60, marker = 'D', facecolors='m', edgecolors='black')
+    l5 = plt.scatter([],[], s=60, marker = 'v', facecolors='gold', edgecolors='black')
+    l6 = plt.scatter([],[], s=60, marker = 'p', facecolors='palegreen', edgecolors='black')
+
+    labels = ["BBS", "CBC", "FIA", "NABA", "MCDB", "Gentry"]
+
+    leg = plt.legend([l1, l2, l3, l4, l5, l6], labels, frameon=False, fontsize=8, loc = 6, scatterpoints = 1)
+
+    plt.tight_layout()
+
+    plt.savefig(output_file, dpi=250)
+    plt.close()
+
 get_negbin_llik = functools.partial(get_llik, dist='negbin')
 get_pln_llik = functools.partial(get_llik, dist='pln')
 
@@ -119,46 +160,6 @@ ax.savefig('./sad-data/chapter3/avgvals_by_dataset.png')
 plt.show()
 plt.close()
 
-#Mapping code modified from White et al. 2012
-def map_sites(projection, output_file):
-    """Generate a world map with sites color-coded by database"""
-    map = Basemap(projection=projection,lon_0=0,resolution='i') #Sets up map for Mollweide projection- chosen for equal area properties.
-
-    map.drawcoastlines(linewidth = .10)
-    map.fillcontinents(color='black',lake_color='white')
-
-    datasets = ['bbs', 'cbc', 'fia', 'naba', 'mcdb', 'gentry' ] # The rest of the data do not have lat-longs.
-    data_dir = './sad-data/chapter1/'
-    markers=['o', '^', 's','D','v', 'p']
-    markersizes=3
-    colors=["teal", 'c', "seagreen", "m", "gold", 'palegreen']
-
-
-    for i, dataset in enumerate(datasets):
-        latlong_data = import_latlong_data(data_dir + dataset + '_lat_long.csv')
-        lats = latlong_data["lat"]
-        longs = latlong_data["long"]
-        x,y = map(longs,lats)
-        map.plot(x,y, ls='', marker=markers[i], markeredgecolor= colors[i],
-        markeredgewidth=0.5, markersize=markersizes, fillstyle='none')
-    
-
-    #Make legend
-    l1 = plt.scatter([],[], s=60, marker = 'o', facecolors='teal',  edgecolors='black')
-    l2 = plt.scatter([],[], s=60, marker = '^', facecolors='c', edgecolors='black')
-    l3 = plt.scatter([],[], s=60, marker = 's', facecolors='seagreen', edgecolors='black')
-    l4 = plt.scatter([],[], s=60, marker = 'D', facecolors='m', edgecolors='black')
-    l5 = plt.scatter([],[], s=60, marker = 'v', facecolors='gold', edgecolors='black')
-    l6 = plt.scatter([],[], s=60, marker = 'p', facecolors='palegreen', edgecolors='black')
-
-    labels = ["BBS", "CBC", "FIA", "NABA", "MCDB", "Gentry"]
-
-    leg = plt.legend([l1, l2, l3, l4, l5, l6], labels, frameon=False, fontsize=8, loc = 6, scatterpoints = 1)
-    
-    plt.tight_layout()
-    
-    plt.savefig(output_file, dpi=250)
-    plt.close()
 
 map_sites('moll', './sad-data/chapter3/partial_sites_map.png') #Mollweide projection, for publication
 
