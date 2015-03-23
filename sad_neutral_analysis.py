@@ -91,11 +91,18 @@ def make_hist_empir_model(abunds, output_file):
     xticks = hist_bins_log[:-1] + 0.5
     xvalues =  [int(np.exp2(val)) for val in hist_bins_log[:-1]]
     plt.bar(hist_bins_log[:-1], hist_empir, color='gray', width=1)
-    pln_line = plt.plot(xticks, hist_pln, linewidth=4, color = 'm', label='Poisson lognormal')
-    negbin_line = plt.plot(xticks, hist_negbin, linewidth=4, color = 'c', label='Negative binomial')
+    plt.plot(xticks, hist_pln, linewidth=4, color = 'm')
+    plt.plot(xticks, hist_negbin, linewidth=4, color = 'c')
+       
     plt.xticks(xticks, xvalues)
     
-    plt.legend(handles=[pln_line, negbin_line])
+    pln_line = plt.scatter([],[], s=60, marker = 's', facecolors='m', edgecolors='black')
+    negbin_line = plt.scatter([],[], s=60, marker = 's', facecolors='c', edgecolors='black')    
+    
+    labels = ["Poisson lognormal", "Negative binomial"]
+
+ for l   plt.legend([pln_line, negbin_line], labels, frameon=False, fontsize=12, scatterpoints = 1)
+
     
     plt.tight_layout()
 
