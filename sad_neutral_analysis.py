@@ -91,9 +91,11 @@ def make_hist_empir_model(abunds, output_file):
     xticks = hist_bins_log[:-1] + 0.5
     xvalues =  [int(np.exp2(val)) for val in hist_bins_log[:-1]]
     plt.bar(hist_bins_log[:-1], hist_empir, color='gray', width=1)
-    plt.plot(xticks, hist_pln, linewidth=4)
-    plt.plot(xticks, hist_negbin, linewidth=4)
+    pln_line = plt.plot(xticks, hist_pln, linewidth=4, color = 'm', label='Poisson lognormal')
+    negbin_line = plt.plot(xticks, hist_negbin, linewidth=4, color = 'c', label='Negative binomial')
     plt.xticks(xticks, xvalues)
+    
+    plt.legend(handles=[pln_line, negbin_line])
     
     plt.tight_layout()
 
@@ -215,7 +217,7 @@ for dataset in datasets:
         
         N = sum(subabundance) # N = total abundance for a site
         S = len(subsites) # S = species richness at a site
-        if S > 10:        
+        if S > 15:        
             output_file = data_dir + dataset + fig_ext
             make_hist_empir_model(subabundance, output_file)  
             break
