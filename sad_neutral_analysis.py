@@ -4,6 +4,8 @@ Conducts analyses in Connolly et al. 2014 (in PNAS) using ~17,000 empirical SADS
 
 """
 
+from __future__ import division
+
 import os
 import glob
 import functools
@@ -16,7 +18,8 @@ import seaborn as sns
 from mpl_toolkits.axes_grid.inset_locator import inset_axes
 from mpl_toolkits.basemap import Basemap
 
-from macroecotools import AICc, aic_weight
+from macroecotools import AICc, aic_weight, preston_sad, hist_pmf
+from macroeco_distributions import pln, nbinom_lower_trunc
 from sad_comparison_functions import get_par_multi_dists, get_loglik_multi_dists
 
 def get_dataset_name(pathname):
@@ -67,6 +70,26 @@ def get_pln_aicc_wgts(sads):
     pln_rel_lik = np.exp(-(pln_delta_aicc) / 2)
     negbin_rel_lik = np.exp(-(negbin_delta_aicc) / 2)
     return pln_rel_lik / (pln_rel_lik + negbin_rel_lik)
+
+def make_hist_empir_model(abunds):
+    """Make a histogram comparing the two models to the empirical data"""
+    xs = range(1, max(abunds) * 2)
+    pln_paras = get_par_multi_dists(abunds, 'pln') + (1,) #add truncation at 1
+    negbin_paras = get_par_multi_dists(abunds, 'negbin')
+    pln_pmf = pln.pmf(xs, *pln_paras)
+    negbin_pmf = nbinom_lower_trunc.pmf(xs, *negbin_paras)
+    hist_empir, hist_bins = preston_sad(abunds)
+    hist_empir = hist_empir / sum(hist_empir)
+    hist_pln, _ = hist_pmf(xs, pln_pmf, hist_bins)
+    hist_negbin, _ = hist_pmf(xs, negbin_pmf, hist_bins)
+    hist_bins_log = np.log2(hist_bins)
+    xticks = hist_bins_log[:-1] + 0.5
+    xvalues =  [int(np.exp2(val)) for val in hist_bins_log[:-1]]
+    plt.bar(hist_bins_log[:-1], hist_empir, color='gray', width=1)
+    plt.plot(xticks, hist_pln, linewidth=4)
+    plt.plot(xticks, hist_negbin, linewidth=4)
+    plt.xticks(xticks, xvalues)
+    plt.show()
 
 #Mapping code modified from White et al. 2012
 def map_sites(projection, output_file):
