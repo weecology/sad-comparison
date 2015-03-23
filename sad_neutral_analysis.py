@@ -147,7 +147,6 @@ ax.savefig('./sad-data/chapter3/distabclasses_vs_lognormwgt.png')
 plt.close()
 
 # Create figure showing average values for each datasets
-
 sads_by_dataset = sads.groupby('dataset').mean().reset_index()
 ax = sns.lmplot('log_distinct_ab_vals', 'pln_aicc_wgt', data=sads_by_dataset,
                 hue='dataset', fit_reg=False, scatter_kws={"s": 60, "alpha": 1})
@@ -160,7 +159,6 @@ ax.savefig('./sad-data/chapter3/avgvals_by_dataset.png')
 plt.show()
 plt.close()
 
-
+# Create map of sites
 map_sites('moll', './sad-data/chapter3/partial_sites_map.png') #Mollweide projection, for publication
-
 map_sites('robin', './sad-data/chapter3/presentation_map.png') #Robinson projection, for presentation
