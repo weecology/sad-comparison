@@ -111,13 +111,10 @@ def make_hist_empir_model(datasets, analysis_ext, data_dir, fig_ext):
                 plt.plot(xticks, hist_pln, linewidth=2, color = 'm')
                 plt.plot(xticks, hist_negbin, linewidth=2, color = 'c')
                     
-                plt.xticks(xticks, xvalues)
+                plt.xticks(xticks, xvalues,  rotation=17)
                 plt.title(dataset)                
 
                 plt.tight_layout()
-            
-                               
-                
     
                 break   
             
