@@ -208,16 +208,14 @@ fig_ext = '_EmpirModelHist.png'
 for dataset in datasets:
     datafile = datafile = data_dir + dataset + analysis_ext
     raw_data = import_abundance(datafile)
-    for i,site in enumerate(sites):
-        usites = np.sort(list(set(raw_data["site"])))
-        if i == 0:
-            subsites = raw_data["site"][raw_data["site"] == site] 
-            subabundance = raw_data["ab"][raw_data["site"] == site]
-            output_file = data_dir + dataset + fig_ext
-            make_hist_empir_model(abunds, output_file)
-            
-        else:
-            break
-    
-    
+    usites = np.sort(list(set(raw_data["site"])))
+    for site in usites:
+        subsites = raw_data["site"][raw_data["site"] == site]        
+        subabundance = raw_data["ab"][raw_data["site"] == site]
         
+        N = sum(subabundance) # N = total abundance for a site
+        S = len(subsites) # S = species richness at a site
+        if S > 10:        
+            output_file = data_dir + dataset + fig_ext
+            make_hist_empir_model(subabundance, output_file)  
+            break
