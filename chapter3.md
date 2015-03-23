@@ -32,6 +32,10 @@ Table 1: Description of total number of sites per taxa and dataset.
 All of the georeferenced data are presented in figure 1, redrawn from White et al. 2012.  Note that the data for reptiles, amphibians, bony fish, beetles, spiders, and butterflies are not represented, due to a lack of location data. 
 ![Figure 1. Map of the georeferenced portion of the data.  Note that the data for reptiles, amphibians, bony fish, beetles, spiders, and butterflies are not represented.](./sad-data/chapter3/partial_sites_map.png)
 
+We generated a histogram of empirical data with lines representing the form of the simulated Poisson lognormal and negative binomial for each dataset.
+![Figure 2. Map of the georeferenced portion of the data.  Note that the data for reptiles, amphibians, bony fish, beetles, spiders, and butterflies are not represented.](./sad-data/chapter3/EmpirModelHist.png)
+
+
   
 ### Analysis
 <!--Robust test with maximum likelihood methods and AiCc weights.-->
@@ -49,11 +53,11 @@ The lognormal distribution is one of the classic and most frequently used models
 #Results
 <!-- Graphs  -->
 Connolly et al. found that species abundance for empirical communities were best approximated by a lognormal rather than a negative binomial (gamma) distribution [@connolly2014].  However, our results found that there was no overwhelming support for the lognormal over the negative binomial distribution (Figure 2) at the site level. 
-![Figure 2. Log of distinct abundance values versus AIC weight of the lognormal distribution for each dataset.](./sad-data/chapter3/distabclasses_vs_lognormwgt.png)
+![Figure 3. Log of distinct abundance values versus AIC weight of the lognormal distribution for each dataset.](./sad-data/chapter3/distabclasses_vs_lognormwgt.png)
 
 
 We also averaged the AIC weight of the Poisson lognormal distribution for each dataset, and did not observe a clear signal for one distribution over another (Figure 3).
-![Figure 3. Average AIC weight of the lognormal distribution for each dataset.](./sad-data/chapter3/avgvals_by_dataset.png)
+![Figure 4. Average AIC weight of the lognormal distribution for each dataset.](./sad-data/chapter3/avgvals_by_dataset.png)
 
 
 #Discussion
