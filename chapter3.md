@@ -33,7 +33,7 @@ All of the georeferenced data are presented in figure 1, redrawn from White et a
 ![Figure 1. Map of the georeferenced portion of the data.  Note that the data for reptiles, amphibians, bony fish, beetles, spiders, and butterflies are not represented.](./sad-data/chapter3/partial_sites_map.png)
 
 We generated a histogram of empirical data with lines representing the form of the simulated Poisson lognormal and negative binomial for each dataset.
-![Figure 2. Map of the georeferenced portion of the data.  Note that the data for reptiles, amphibians, bony fish, beetles, spiders, and butterflies are not represented.](./sad-data/chapter3/EmpirModelHist.png)
+![Figure 2. Preston plot of empirical data for each dataset with lines representing the Poisson lognormal and the negative binomial.](./sad-data/chapter3/EmpirModelHist.png)
 
 
   
