@@ -44,6 +44,11 @@ def import_data(datasets, datadir):
         data = data.append(new_data, ignore_index=True)
     return data
 
+def import_abundance(datafile):
+    """Imports raw species abundance .csv files in the form: Site, Year, Species, Abundance."""
+    raw_data = np.genfromtxt(datafile, dtype = "S15,i8,S50,i8", names = ['site','year','sp','ab'], delimiter = ",",comments = "#")
+    return raw_data
+
 def import_latlong_data(input_filename, comments='#'):
     data = np.genfromtxt(input_filename, dtype = "f8,f8",
                          names = ['lat','long'], delimiter = ",")
@@ -71,25 +76,65 @@ def get_pln_aicc_wgts(sads):
     negbin_rel_lik = np.exp(-(negbin_delta_aicc) / 2)
     return pln_rel_lik / (pln_rel_lik + negbin_rel_lik)
 
-def make_hist_empir_model(abunds):
-    """Make a histogram comparing the two models to the empirical data"""
-    xs = range(1, max(abunds) * 2)
-    pln_paras = get_par_multi_dists(abunds, 'pln') + (1,) #add truncation at 1
-    negbin_paras = get_par_multi_dists(abunds, 'negbin')
-    pln_pmf = pln.pmf(xs, *pln_paras)
-    negbin_pmf = nbinom_lower_trunc.pmf(xs, *negbin_paras)
-    hist_empir, hist_bins = preston_sad(abunds)
-    hist_empir = hist_empir / sum(hist_empir)
-    hist_pln, _ = hist_pmf(xs, pln_pmf, hist_bins)
-    hist_negbin, _ = hist_pmf(xs, negbin_pmf, hist_bins)
-    hist_bins_log = np.log2(hist_bins)
-    xticks = hist_bins_log[:-1] + 0.5
-    xvalues =  [int(np.exp2(val)) for val in hist_bins_log[:-1]]
-    plt.bar(hist_bins_log[:-1], hist_empir, color='gray', width=1)
-    plt.plot(xticks, hist_pln, linewidth=4)
-    plt.plot(xticks, hist_negbin, linewidth=4)
-    plt.xticks(xticks, xvalues)
+def make_hist_empir_model(datasets, analysis_ext, data_dir, fig_ext):
+    plt.figure()
+    for i, dataset in enumerate (datasets):
+        datafile = datafile = data_dir + dataset + analysis_ext
+        raw_data = import_abundance(datafile)
+        usites = np.sort(list(set(raw_data["site"])))
+        subplot = i + 1
+        ax  = plt.subplot(4,3, subplot)    
+        
+        for site in usites:
+            subsites = raw_data["site"][raw_data["site"] == site]        
+            abunds = raw_data["ab"][raw_data["site"] == site]
+            
+            N = sum(abunds) # N = total abundance for a site
+            S = len(subsites) # S = species richness at a site
+    
+            if S > 15:                     
+                #Graphing code
+                """Make a histogram comparing the two models to the empirical data"""
+                xs = range(1, max(abunds) * 2)
+                pln_paras = get_par_multi_dists(abunds, 'pln') + (1,) #add truncation at 1
+                negbin_paras = get_par_multi_dists(abunds, 'negbin')
+                pln_pmf = pln.pmf(xs, *pln_paras)
+                negbin_pmf = nbinom_lower_trunc.pmf(xs, *negbin_paras)
+                hist_empir, hist_bins = preston_sad(abunds)
+                hist_empir = hist_empir / sum(hist_empir)
+                hist_pln, _ = hist_pmf(xs, pln_pmf, hist_bins)
+                hist_negbin, _ = hist_pmf(xs, negbin_pmf, hist_bins)
+                hist_bins_log = np.log2(hist_bins)
+                xticks = hist_bins_log[:-1] + 0.5
+                xvalues =  [int(np.exp2(val)) for val in hist_bins_log[:-1]]
+                plt.bar(hist_bins_log[:-1], hist_empir, color='gray', width=1)
+                plt.plot(xticks, hist_pln, linewidth=2, color = 'm')
+                plt.plot(xticks, hist_negbin, linewidth=2, color = 'c')
+                    
+                plt.xticks(xticks, xvalues)
+                plt.title(dataset)                
+
+                plt.tight_layout()
+            
+                               
+                
+    
+                break   
+            
+    ax  = plt.subplot(4,3, 12) 
+    plt.axis('off')
+    pln_line = plt.scatter([],[], s=100, marker = 's', facecolors='m', edgecolors='black')
+    negbin_line = plt.scatter([],[], s=100, marker = 's', facecolors='c', edgecolors='black')    
+             
+    labels = ["Poisson lognormal", "Negative binomial"]
+         
+    plt.legend([pln_line, negbin_line], labels, frameon=False, fontsize=12, scatterpoints = 1)
+ 
+    output_file =  data_dir + fig_ext 
+    plt.savefig(output_file, dpi=250) 
     plt.show()
+    plt.close()    
+
 
 #Mapping code modified from White et al. 2012
 def map_sites(projection, output_file):
@@ -185,3 +230,13 @@ plt.close()
 # Create map of sites
 map_sites('moll', './sad-data/chapter3/partial_sites_map.png') #Mollweide projection, for publication
 map_sites('robin', './sad-data/chapter3/presentation_map.png') #Robinson projection, for presentation
+
+#Create histograms of empirical vs. model SADs
+datasets = ['Actinopterygii', 'Amphibia', 'Arachnida', 'bbs', 'cbc', 'Coleoptera',
+                'fia', 'gentry', 'mcdb', 'naba', 'Reptilia']
+
+analysis_ext = '_spab.csv'
+data_dir = './sad-data/chapter3/'
+fig_ext = 'EmpirModelHist.png'
+
+make_hist_empir_model(datasets, analysis_ext, data_dir, fig_ext) 
