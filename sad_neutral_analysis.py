@@ -71,7 +71,7 @@ def get_pln_aicc_wgts(sads):
     negbin_rel_lik = np.exp(-(negbin_delta_aicc) / 2)
     return pln_rel_lik / (pln_rel_lik + negbin_rel_lik)
 
-def make_hist_empir_model(abunds):
+def make_hist_empir_model(abunds, output_file):
     """Make a histogram comparing the two models to the empirical data"""
     xs = range(1, max(abunds) * 2)
     pln_paras = get_par_multi_dists(abunds, 'pln') + (1,) #add truncation at 1
@@ -89,7 +89,13 @@ def make_hist_empir_model(abunds):
     plt.plot(xticks, hist_pln, linewidth=4)
     plt.plot(xticks, hist_negbin, linewidth=4)
     plt.xticks(xticks, xvalues)
+    
+    plt.tight_layout()
+
+    plt.savefig(output_file, dpi=250)
     plt.show()
+    plt.close()    
+
 
 #Mapping code modified from White et al. 2012
 def map_sites(projection, output_file):
@@ -185,3 +191,25 @@ plt.close()
 # Create map of sites
 map_sites('moll', './sad-data/chapter3/partial_sites_map.png') #Mollweide projection, for publication
 map_sites('robin', './sad-data/chapter3/presentation_map.png') #Robinson projection, for presentation
+
+#Create histograms of empirical vs. model SADs
+datasets = ['Actinopterygii', 'Amphibia', 'Arachnida', 'bbs', 'cbc', 'Coleoptera',
+                'fia', 'gentry', 'mcdb', 'naba', 'Reptilia']
+
+for dataset in datasets:
+    raw_data = import_data(dataset, './sad-data/chapter3/')
+    
+    usites = np.sort(list(set(raw_data["site"])))
+
+    for i,site in enumerate(sites):
+        if i == 0:
+            subsites = raw_data["site"][raw_data["site"] == site] 
+            subabundance = raw_data["ab"][raw_data["site"] == site]
+            output_file = './sad-data/chapter3/EmpirModelHist_' + dataset + '.png'
+            make_hist_empir_model(abunds, output_file)
+            
+        else:
+            break
+    
+    
+        
