@@ -202,7 +202,7 @@ datasets = ['Actinopterygii', 'Amphibia', 'Arachnida', 'bbs', 'cbc', 'Coleoptera
                 'fia', 'gentry', 'mcdb', 'naba', 'Reptilia']
 
 analysis_ext = '_spab.csv'
-data_dir = './sad-data/chapter3/EmpirModelHist_'
+data_dir = './sad-data/chapter3/'
 fig_ext = '_EmpirModelHist.png'
 
 for dataset in datasets:
