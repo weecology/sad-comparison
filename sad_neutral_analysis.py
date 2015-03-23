@@ -44,6 +44,11 @@ def import_data(datasets, datadir):
         data = data.append(new_data, ignore_index=True)
     return data
 
+def import_abundance(datafile):
+    """Imports raw species abundance .csv files in the form: Site, Year, Species, Abundance."""
+    raw_data = np.genfromtxt(datafile, dtype = "S15,i8,S50,i8", names = ['site','year','sp','ab'], delimiter = ",",comments = "#")
+    return raw_data
+
 def import_latlong_data(input_filename, comments='#'):
     data = np.genfromtxt(input_filename, dtype = "f8,f8",
                          names = ['lat','long'], delimiter = ",")
@@ -196,16 +201,19 @@ map_sites('robin', './sad-data/chapter3/presentation_map.png') #Robinson project
 datasets = ['Actinopterygii', 'Amphibia', 'Arachnida', 'bbs', 'cbc', 'Coleoptera',
                 'fia', 'gentry', 'mcdb', 'naba', 'Reptilia']
 
-for dataset in datasets:
-    raw_data = import_data(dataset, './sad-data/chapter3/')
-    
-    usites = np.sort(list(set(raw_data["site"])))
+analysis_ext = '_spab.csv'
+data_dir = './sad-data/chapter3/EmpirModelHist_'
+fig_ext = '_EmpirModelHist.png'
 
+for dataset in datasets:
+    datafile = datafile = data_dir + dataset + analysis_ext
+    raw_data = import_abundance(datafile)
     for i,site in enumerate(sites):
+        usites = np.sort(list(set(raw_data["site"])))
         if i == 0:
             subsites = raw_data["site"][raw_data["site"] == site] 
             subabundance = raw_data["ab"][raw_data["site"] == site]
-            output_file = './sad-data/chapter3/EmpirModelHist_' + dataset + '.png'
+            output_file = data_dir + dataset + fig_ext
             make_hist_empir_model(abunds, output_file)
             
         else:
