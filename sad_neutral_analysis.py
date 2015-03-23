@@ -76,7 +76,7 @@ def get_pln_aicc_wgts(sads):
     negbin_rel_lik = np.exp(-(negbin_delta_aicc) / 2)
     return pln_rel_lik / (pln_rel_lik + negbin_rel_lik)
 
-def make_hist_empir_model(abunds, output_file):
+def make_hist_empir_model(abunds, dataset, output_file):
     """Make a histogram comparing the two models to the empirical data"""
     xs = range(1, max(abunds) * 2)
     pln_paras = get_par_multi_dists(abunds, 'pln') + (1,) #add truncation at 1
@@ -101,9 +101,8 @@ def make_hist_empir_model(abunds, output_file):
     
     labels = ["Poisson lognormal", "Negative binomial"]
 
- for l   plt.legend([pln_line, negbin_line], labels, frameon=False, fontsize=12, scatterpoints = 1)
-
-    
+    plt.legend([pln_line, negbin_line], labels, frameon=False, fontsize=12, scatterpoints = 1, title = dataset)
+        
     plt.tight_layout()
 
     plt.savefig(output_file, dpi=250)
@@ -226,5 +225,5 @@ for dataset in datasets:
         S = len(subsites) # S = species richness at a site
         if S > 15:        
             output_file = data_dir + dataset + fig_ext
-            make_hist_empir_model(subabundance, output_file)  
+            make_hist_empir_model(subabundance, dataset, output_file)  
             break
