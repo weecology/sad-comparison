@@ -1,4 +1,4 @@
-#Chapter 3- Evaluating abundance distribution based signals of neutrality.
+#Chapter 3- Evaluating abundance distribution based signals of neutrality in terrestrial systems
 
 #Introduction
 <!--Neutral theory is a big important theory-->
@@ -29,14 +29,14 @@ Table 1: Description of total number of sites per taxa and dataset.
 | Butterflies | NABC           | 400         |
 | Trees       | FIA, Gentry    | 10575       |
 
-All of the georeferenced data are presented in figure 1, redrawn from White et al. 2012.  Note that the data for reptiles, amphibians, bony fish, beetles, spiders, and butterflies are not represented, due to a lack of location data. 
+All of the georeferenced data are presented in figure 1, redrawn from White et al. 2012.  Note that the data for reptiles, amphibians, bony fish, beetles, spiders, and butterflies are not represented, due to a lack of location data.
 ![Figure 1. Map of the georeferenced portion of the data.  Note that the data for reptiles, amphibians, bony fish, beetles, spiders, and butterflies are not represented.](./sad-data/chapter3/partial_sites_map.png)
 
 We generated a histogram of empirical data with lines representing the form of the simulated Poisson lognormal and negative binomial for each dataset.
 ![Figure 2. Preston plot of empirical data for each dataset with lines representing the Poisson lognormal and the negative binomial.](./sad-data/chapter3/EmpirModelHist.png)
 
 
-  
+
 ### Analysis
 <!--Robust test with maximum likelihood methods and AiCc weights.-->
 We followed the current best practice recommendations to use maximum likelihood methods for fitting and evaluating species abundance distributions models to data [@white2008; @connolly2014; @matthews2014].  This is the same approach used by Connolly et al. [@connolly2014].
@@ -52,7 +52,7 @@ The lognormal distribution is one of the classic and most frequently used models
 
 #Results
 <!-- Graphs  -->
-Connolly et al. found that species abundance for empirical communities were best approximated by a lognormal rather than a negative binomial (gamma) distribution [@connolly2014].  However, our results found that there was no overwhelming support for the lognormal over the negative binomial distribution (Figure 2) at the site level. 
+Connolly et al. found that species abundance for empirical communities were best approximated by a lognormal rather than a negative binomial (gamma) distribution [@connolly2014].  However, our results found that there was no overwhelming support for the lognormal over the negative binomial distribution (Figure 2) at the site level.
 ![Figure 3. Log of distinct abundance values versus AIC weight of the lognormal distribution for each dataset.](./sad-data/chapter3/distabclasses_vs_lognormwgt.png)
 
 
@@ -79,6 +79,3 @@ Because of the diversity of data that we used, with a wide range of sampling app
 
 
 Various approaches for generating species abundance distributions suggest that species richness (S) and the total number of individuals (N) are important inputs into determining the shape of the species abundance distribution (citations, Harte, white2012, xiao, locey).  Differences in the ratio of S/N for terrestrial vs. marine communities could provide another potential explanation.  Further research needs to be done to determine if there is a difference in S/N ratios between the terrestrial data used in this study and the marine data used in Connolly 2014.  
-
-
-  
