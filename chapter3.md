@@ -32,7 +32,7 @@ Table 1: Description of total number of sites per taxa and dataset. Taxonomic gr
 
 The locations of all of the data with detailed georeferencing information are presented in Figure 1. Note that the data for reptiles, amphibians, bony fish, beetles, spiders, and butterflies are not represented, due to a lack of detailed location data.
 
-![Figure 1. Map of the georeferenced portion of the data.  Note that the data for reptiles, amphibians, bony fish, beetles, spiders, and butterflies are not represented. Redrawn from White et al. 2012](./sad-data/chapter3/partial_sites_map.png)
+![Map of the georeferenced portion of the data.  Note that the data for reptiles, amphibians, bony fish, beetles, spiders, and butterflies are not represented. Redrawn from White et al. 2012](./sad-data/chapter3/partial_sites_map.png)
 
 
 ### Analysis
@@ -40,7 +40,7 @@ The locations of all of the data with detailed georeferencing information are pr
 
 Following Connolly et al., we used maximum likelihood methods for fitting and evaluating species abundance distributions models to data (the currently accepted best practice) [@white2008; @connolly2014; @matthews2014]. This yielded fits of each distribution to each of the 16,000 communities in the dataset (Figure 2).
 
-![Figure 2. Preston plot of empirical data for each dataset with lines representing the Poisson lognormal and the negative binomial.](./sad-data/chapter3/EmpirModelHist.png)
+![Preston plot of empirical data for each dataset with lines representing the Poisson lognormal and the negative binomial.](./sad-data/chapter3/EmpirModelHist.png)
 
 Connolly et al. used Akaike Information Criterion (AIC) weights to compare the fits of the negative-binomial and Poisson lognormal distributions to the empirical data. We modified this approach slightly by using weights calculated from the corrected Akaike Information Criterion (AICc) values, because AICc is more robust to small sample sizes [@burnham2002], which was a consideration for some communities. Model weights were calculated relative to the Poisson lognormal, meaning that weights near zero support the negative-binomial as the better fitting model while weights near one support the Poisson lognormal as the better fitting model.
 
@@ -50,13 +50,14 @@ Data were first analyzed at the level of the individual site. We also evaluated 
 
 
 #Results
-<!-- Graphs  -->
-Connolly et al. found that species abundance for empirical communities were best approximated by a lognormal rather than a negative binomial (gamma) distribution [@connolly2014].  However, our results found that there was no overwhelming support for the lognormal over the negative binomial distribution (Figure 2) at the site level.
-![Figure 3. Log of distinct abundance values versus AIC weight of the lognormal distribution for each dataset.](./sad-data/chapter3/distabclasses_vs_lognormwgt.png)
 
+The site level results show a large amount of scatter in the values of AICc both within and among datasets (Figure 3). Values in all datasets with reasonably large numbers of data points range from near zero to near 1. There is no consistent directional trend in AICc weight as a function of the number of distinct abundance values. In datasets where there is some directional trend in AICc with the number of distinct abundance values (Reptilia, BBS, FIA), the trend tends to be towards zero (i.e., a better fit for the negative binomial distribution) as opposed to the trend toward one (i.e., a better fit for the Poisson lognormal) observed by Connolly et al. in marine systems (Figure 3).
 
-We also averaged the AIC weight of the Poisson lognormal distribution for each dataset, and did not observe a clear signal for one distribution over another (Figure 3).
-![Figure 4. Average AIC weight of the lognormal distribution for each dataset.](./sad-data/chapter3/avgvals_by_dataset.png)
+![Log of distinct abundance values versus AIC weight of the lognormal distribution for each dataset.](./sad-data/chapter3/distabclasses_vs_lognormwgt.png)
+
+Averaging the AICc weights and distinct abundance values across all sites in a dataset yielded similar results, with all average AICc values being between 0.35 and 0.7, and no notable trend in average AICc as a function of the number of distinct abundance values (Figure 4).
+
+![Average AIC weight of the lognormal distribution for each dataset.](./sad-data/chapter3/avgvals_by_dataset.png)
 
 
 #Discussion
