@@ -2,7 +2,7 @@
 
 #Introduction
 <!--Neutral theory is a big important theory-->
-One of the fundamental goals of ecology is understanding what processes are important in structuring ecological communities. One of the major areas of debate surrounding goal is whether simple neutral models that ignore differences between species can explain many of the empirical patterns observed in ecological systems [@mcgill20006; @rosindelletal2012; @matthews2014]. While there are multiple formulations of neutral theory, all models are based on the assumptions that species and individuals are ecologically and demographically equivalent to one another, meaning that stochastic variation in birth, death, immigration, and speciation drives differences in a broad array of ecological patterns including the species abundance distribution, the species-area relationship, and the distance decay of similarity [@rosindelletal2011].
+One of the fundamental goals of ecology is understanding what processes are important in structuring ecological communities. One of the major areas of debate surrounding goal is whether simple neutral models that ignore differences between species can explain many of the empirical patterns observed in ecological systems [@mcgill2006; @rosindelletal2012; @matthews2014]. While there are multiple formulations of neutral theory, all models are based on the assumptions that species and individuals are ecologically and demographically equivalent to one another, meaning that stochastic variation in birth, death, immigration, and speciation drives differences in a broad array of ecological patterns including the species abundance distribution, the species-area relationship, and the distance decay of similarity [@rosindelletal2011].
 
 Early evaluations of neutral theory were based, in part, on comparing the fit of empirical species abundance distributions to the neutral prediction [e.g., @hubbell2001; @mcgill2003; @volkov2003]. However, further evaluations of neutral theory suggested that comparisons based on the species abundance distribution were not sufficient for rigorous tests of neutrality [@volkov2005; @mcgill2006; @volkov2006]. This idea is further supported by work suggesting that species abundance distributions may contain little information about the detailed processes operating in ecological system more generally [@pielou1975; @white2012; @locey2013]. In contrast, recent work by Connolly et al. (2014) suggests that comparisons of species abundance distributions may be sufficient for evaluating whether or not neutral processes are dominant or whether other processes are important in structuring communities.
 Building on work by Pueyo [@pueyo2006], Connolly et al. (2014) were able to demonstrate that simulated neutral communities were typically better fit by negative-binomial distributions (referred to as Poisson gamma distributions by Connolly et al. 2014) than by Poisson lognormal distributions. They then performed the same analysis on over 1000 marine communities, and showed that the empirical communities were better fit by the lognormal [@connolly2014]. This suggests that, at least in marine environments, the shape of the species abundance distribution can be used to exclude neutral processes as the sole determinant of community structure. By focusing on the detailed fits of alternative models, this approach takes advantage of 'second-order effects', which have been proposed to provide an avenue for inferring ecological process  based on patterns of community structure [@blonder2014].
@@ -11,44 +11,39 @@ Building on work by Pueyo [@pueyo2006], Connolly et al. (2014) were able to demo
 While this approach has been well tested within marine communities, it has not yet been used in terrestrial systems. Here, we use Connolly et al.'s [@connolly2014] method to assess potential patterns of neutrality across a broad range of ecosystems and taxonomic groups. We tested this approach for vertebrate, invertebrate and plant communities in primarily terrestrial ecosystems. In total, we used abundance data from 16,218 communities from across to globe to determine whether we observe patterns that are more consistent with neutrality or non-neutrality.
 
 #Methods
-<!-- Redid analyses with more data-->
-### Data
-For this study, we used the data from White et al. 2012 [@white2012], as well as the data described in chapter 2 of this dissertation.  These data cover 9 distinct taxonomic groups and include birds, mammals, reptiles, amphibians, bony fish, beetles, spiders, butterflies, and trees from 16,218 distinct communities over all major biogeographic regions.  The majority of the data are publicly available and were accessed through the EcoData Retriever [@morris2013] (US Geological Survey's North American Breeding Bird Survey [BBS; @pardieck2014], Mammal Community Database [MCDB; @thibault2011], US Forest Service Forest Inventory and Analysis [FIA; @fia], Gentry's Forest Transect Data Set [Gentry; @phillips2002]). The North American Butterfly Association count data [NABC; @naba] and the Audubon Society Christmas Bird Count [CBC; @cbc] are not publicly available and were obtained through Memorandums of Understanding with their respective organizations.
 
-Table 1: Description of total number of sites per taxa and dataset.
+### Data
+We compiled data from 9 distinct taxonomic groups and include birds, mammals, reptiles, amphibians, beetles, spiders, butterflies, trees, and bony fish from 16,218 distinct communities over all major biogeographic regions (Table 1, Figure 1). This dataset is a combination fo the data compiled by White et al. 2012 [@white2012] and the data described in Chapter 1 of this dissertation. The majority of the data are publicly available and were accessed through the EcoData Retriever [@morris2013]. These data included the US Geological Survey's North American Breeding Bird Survey [BBS; @pardieck2014], Mammal Community Database [MCDB; @thibault2011], US Forest Service Forest Inventory and Analysis [FIA; @fia], and Gentry's Forest Transect Data Set [Gentry; @phillips2002], and the data from Chapter 1. The North American Butterfly Association count data [NABC; @naba] and the Audubon Society Christmas Bird Count [CBC; @cbc] are not publicly available and were obtained through Memorandums of Understanding with their respective organizations.
+
+Table 1: Description of total number of sites per taxa and dataset. Taxonomic groups are ordered by the total number of sites in the compiled dataset.
 
 | Taxa        | Dataset(s)     | Total sites |
 |-------------|----------------|-------------|
-| Birds       | BBS, CBC       | 4768        |
-| Mammals     | MCDB           | 103         |
-| Reptiles    | Reptilia       | 138         |
-| Amphibians  | Amphibia       | 43          |
-| Bony fish   | Actinopterygii | 161         |
-| Beetles     | Coleoptera     | 5           |
-| Spiders     | Arachnida      | 25          |
-| Butterflies | NABC           | 400         |
 | Trees       | FIA, Gentry    | 10575       |
+| Birds       | BBS, CBC       | 4768        |
+| Butterflies | NABC           | 400         |
+| Reptiles    | Reptilia       | 138         |
+| Bony fish   | Actinopterygii | 161         |
+| Mammals     | MCDB           | 103         |
+| Amphibians  | Amphibia       | 43          |
+| Spiders     | Arachnida      | 25          |
+| Beetles     | Coleoptera     | 5           |
 
-All of the georeferenced data are presented in figure 1, redrawn from White et al. 2012.  Note that the data for reptiles, amphibians, bony fish, beetles, spiders, and butterflies are not represented, due to a lack of location data.
-![Figure 1. Map of the georeferenced portion of the data.  Note that the data for reptiles, amphibians, bony fish, beetles, spiders, and butterflies are not represented.](./sad-data/chapter3/partial_sites_map.png)
 
-We generated a histogram of empirical data with lines representing the form of the simulated Poisson lognormal and negative binomial for each dataset.
-![Figure 2. Preston plot of empirical data for each dataset with lines representing the Poisson lognormal and the negative binomial.](./sad-data/chapter3/EmpirModelHist.png)
+The locations of all of the data with detailed georeferencing information are presented in Figure 1. Note that the data for reptiles, amphibians, bony fish, beetles, spiders, and butterflies are not represented, due to a lack of detailed location data.
 
+![Figure 1. Map of the georeferenced portion of the data.  Note that the data for reptiles, amphibians, bony fish, beetles, spiders, and butterflies are not represented. Redrawn from White et al. 2012](./sad-data/chapter3/partial_sites_map.png)
 
 
 ### Analysis
 <!--Robust test with maximum likelihood methods and AiCc weights.-->
-We followed the current best practice recommendations to use maximum likelihood methods for fitting and evaluating species abundance distributions models to data [@white2008; @connolly2014; @matthews2014].  This is the same approach used by Connolly et al. [@connolly2014].
 
-Connolly et al. used Akaike Information Criterion (AIC) weights for model selection.  We used weights calculated from the corrected Akaike Information Criterion (AICc) values because the corrected form is more robust to small sample sizes, which was a consideration for some communities.  We used corrected Aikaike Information Criterion (AICc) weights to determine which model best approximated the data out of the set of fitted models.
+Following Connolly et al., we used maximum likelihood methods for fitting and evaluating species abundance distributions models to data (the currently accepted best practice) [@white2008; @connolly2014; @matthews2014]. This yielded fits of each distribution to each of the 16,000 communities in the dataset (Figure 2).
 
-<!--negative binomial vs. Poisson gamma:  Needs help regarding language and correctness-->
-Negative binomial  
-Connolly et al. used the negative binomial (referred to in their paper as the Poisson gamma distribution) as a good description of the neutral theory model in their analysis [@connolly2014].
+![Figure 2. Preston plot of empirical data for each dataset with lines representing the Poisson lognormal and the negative binomial.](./sad-data/chapter3/EmpirModelHist.png)
 
-Lognormal  
-The lognormal distribution is one of the classic and most frequently used models used to describe the shape of the species abundance distribution [@mcgill2003].  While there are both continuous and discrete forms of this distribution, the discrete form of the distribution is more appropriate to use with abundance data [@bulmer1974].  We used the Poisson lognormal, the discrete form of the distribution, in our analyses.
+Connolly et al. used Akaike Information Criterion (AIC) weights to compare the fits of the negative-binomial and Poisson lognormal distributions to the empirical data. We modified this approach slightly by using weights calculated from the corrected Akaike Information Criterion (AICc) values, because AICc is more robust to small sample sizes [@burnham2002], which was a consideration for some communities. Model weights were calculated relative to the Poisson lognormal, meaning that weights near zero support the negative-binomial as the better fitting model while weights near one support the Poisson lognormal as the better fitting model.
+
 
 #Results
 <!-- Graphs  -->
