@@ -44,6 +44,10 @@ Following Connolly et al., we used maximum likelihood methods for fitting and ev
 
 Connolly et al. used Akaike Information Criterion (AIC) weights to compare the fits of the negative-binomial and Poisson lognormal distributions to the empirical data. We modified this approach slightly by using weights calculated from the corrected Akaike Information Criterion (AICc) values, because AICc is more robust to small sample sizes [@burnham2002], which was a consideration for some communities. Model weights were calculated relative to the Poisson lognormal, meaning that weights near zero support the negative-binomial as the better fitting model while weights near one support the Poisson lognormal as the better fitting model.
 
+Following the approach of Connolly et al. (2014) we looked at the relationship between the AICc weight and the number of distinct abundance values in the dataset. Connolly et al. (2014) have argued that sites with more distinct abundance values provide greater power for differentiating between the fit of different models of the abundance distribution. Therefore the prediction is that if the Poisson lognormal is superior to the negative-binomial distribution the AICc weights should approach one as the number of distinct abundance values increase. In Connolly et al.'s analysis, distinct abundance values greater than ~15 yielded AICc weights consistently above 0.8.
+
+Data were first analyzed at the level of the individual site. We also evaluated the patterns of the average AICc and number of distinct abundance values for each dataset as a whole. These approaches differ somewhat from those of Connolly et al., in that: 1) does not present individual site level results; and 2) the structure of our data is different from Connolly et al.'s in that there aren't natural spatial groupings, and therefore grouping at different spatial scales is less natural. Therefore we have only analyzed the patterns at the site and whole dataset levels.
+
 
 #Results
 <!-- Graphs  -->
