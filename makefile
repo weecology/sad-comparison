@@ -1,4 +1,7 @@
-all: chapter1.pdf chapter2.pdf chapter3.pdf
+all: intro.pdf chapter1.pdf chapter2.pdf chapter3.pdf 
+
+intro.pdf: intro.md intro_refs.bib format.sty
+	pandoc -H format.sty -V fontsize=12pt --bibliography intro_refs.bib --csl=ecology.csl intro.md -o intro.pdf
 
 chapter1.pdf: chapter1.md sad_comparison_refs.bib format.sty
 	pandoc -H format.sty -V fontsize=12pt --bibliography sad_comparison_refs.bib --csl=ecology.csl chapter1.md -o chapter1.pdf
