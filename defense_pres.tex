@@ -36,6 +36,31 @@
 %\end{frame}
 
 \section{Introduction}
+\subsection{Commonness & rarity}
+\begin{frame}[t]
+\frametitle{Commonness \& rarity}
+"Who can explain why one species ranges widely, and is very numerous, and why another allied species has a narrow range and is rare?  Yet these relations are of the highest important, for they determine the present welfare and, as I believe, the future success and modification of every inhabitant of this world."  
+
+
+Darwin, 1859.
+
+\note{
+Few common species.
+Many rare species.
+One of the most fundamental and ubiquitous patterns in ecology.}
+\end{frame}
+
+\begin{frame}
+Species abundance distribution
+\begin{itemize}
+\item Describes the distribution of commonness \& rarity of species.
+\item Exhibits a hollow curve distribution.
+\end{itemize}
+\note{
+Relative abundance distribution (RAD)
+Species abundance distribution (SAD)}
+\end{frame}
+
 \subsection{What is macroecology?}
 \begin{frame}[t]
 \frametitle{Macroecology}
@@ -71,37 +96,26 @@ Prediction
 \end{Huge}
 \end{frame}
 
+\subsection{Challenges of macroecology}
+\begin{frame}[t]
+\frametitle{Macroecology}
+Challenges of macroecology\\
+\begin{itemize}
+\item Studies performed with a limited number of large datasets.
+\item Lack of identification of pattern generating mechanisms.
+\end{itemize}
+\note{
+Taxonomic and ecosystem limitations in datasets, e.g.North American terrestrial bias.}
+\end{frame}
+
 \subsection{Signal and Noise}
 \begin{frame}[t]
 \frametitle{Signal \& Noise}
 \begin{center}
-\includegraphics[scale=.28]{../Miscellaneous/Pictures/Maps/TheMapsCoarse.jpg}
+\includegraphics[scale=.4]{./sad-data/dissertation/SignalNoise.png}
 \end{center}
 \end{frame}
 
-\begin{frame}[t]
-\frametitle{Signal \& Noise}
-\begin{center}
-\includegraphics[scale=.28]{../Miscellaneous/Pictures/Maps/TheMapsMiddle.jpg}
-\end{center}
-\end{frame}
-
-\begin{frame}[t]
-\frametitle{Signal \& Noise}
-\begin{center}
-\includegraphics[scale=.28]{../Miscellaneous/Pictures/Maps/TheMaps.jpg}
-\end{center}
-\end{frame}
-
-\subsection{Criticisms of macroecology}
-\begin{frame}[t]
-\frametitle{Macroecology}
-Criticisms of macroecology\\
-\begin{itemize}
-\item North American terrestrial bias.
-\item Lack of identification of pattern generating mechanisms.
-\end{itemize}
-\end{frame}
 
 \subsection{Best practices}
 \begin{frame}[t]
@@ -165,6 +179,29 @@ Lots of data in the literature.\\
 \end{frame}
 
 \subsubsection{Data Collection}
+\begin{frame}[t]{}
+\frametitle{Data}
+Inclusion criteria:
+\begin{itemize}
+\item Quantitative abundances
+\item Animals
+\item Complete sampling
+\item Must not be heavily summarized or processed
+\item High degree of taxonomic resolution
+\item Observational
+\end{itemize}
+\end{frame}
+
+\begin{frame}[t]
+\frametitle{Data wrangling}
+\begin{center}
+\includegraphics[scale=.27]{./sad-data/dissertation/Wrangling.png}
+\end{center}
+\begin{tiny}
+Cavitt 2000.
+\end{tiny}
+\end{frame}
+
 \begin{frame}[shrink=30]
 \frametitle{Data}
 \begin{table}
@@ -204,12 +241,18 @@ Lots of data in the literature.\\
 \end{frame}
 
 \subsection{Data Availability}
-\begin{frame}[t]
-\frametitle{Data}
+\begin{frame}[fragile]
+\frametitle{Data Availability}
 ~\\
 ~\\
-The final community abundance database is publicly available and importable through the EcoData Retriever.\\ 
-(http://www.ecodataretriever.org/)
+Public \& open access through figshare.\\
+EcoData Retriever importable.\\
+\begin{verbatim}
+(http://figshare.com)
+(http://www.ecodataretriever.org)
+\end{verbatim}
+\includegraphics[scale=.3]{./sad-data/dissertation/retriever_logo_wtext.png}
+\includegraphics[scale=.5]{./sad-data/dissertation/figshare_FullColour.jpg}
 \end{frame}
 
 \section{The species abundance distribution}
@@ -236,17 +279,28 @@ The species abundance distribution:
 \subsection{Forms of the distribution}
 \begin{frame}
 \frametitle{Forms of the SAD}
-\begin{large}
-Model classes:
-\end{large}
+Statistical description\\  
+\includegraphics[scale=.2]{./sad-data/dissertation/Preston1948.png}\\
+
+\begin{tiny}
+Preston 1962a.\\
+\end{tiny}
+
+Process-based\\
+\includegraphics[scale=.25]{./sad-data/dissertation/Rosindelletal2011.png}\\
+
+\begin{tiny}
+Rosindell et al. 2011.
+\end{tiny}
+\note{
 \begin{itemize}
-\item Purely statistical
-\item Branching process
-\item Population dynamics
-\item Niche partitioning
+\item Purely statistical (Lognormal, logseries)
+\item Branching process (Zipf)
+\item Population dynamics (Neutral theory)
+\item Niche partitioning (Geometric)
 \item Maximum entropy
 \item Feasible set/combinatorics
-\end{itemize}
+\end{itemize}}
 \end{frame}
  
 
@@ -283,7 +337,7 @@ Selected five models from four classes for comparison.
 ~\\
 ~\\
 ~\\
-\caption{After B.J. McGill et al. 2007. Species abundance distributions: moving beyond single prediction theories to integration within an ecological framework. Ecology letters 10: 995-1015.}
+\caption{After B.J. McGill et al. 2007.}
 \end{table}
 \end{frame}
 
@@ -435,7 +489,7 @@ Connolly et al. 2014 identified non-neutral species abundance distributions in m
 ~\\
 May be a robust method for identifying communities that exhibit non-neutrality.\\
 \begin{tiny}
-S.R. Connolly et al. 2014. Commonness and rarity in the marine biosphere. PNAS 111: 8524-8529.
+Connolly et al. 2014.
 \end{tiny}
 \end{frame}
 
@@ -444,6 +498,14 @@ S.R. Connolly et al. 2014. Commonness and rarity in the marine biosphere. PNAS 1
 \frametitle{Neutral Analysis}
 Used the same data and model fitting approach.\\
 Compared a non-neutral model (Poisson lognormal) to a neutral model (negative binomial).\\
+\end{frame}
+
+\begin{frame}{}
+\frametitle{Neutral Analysis}
+\includegraphics[scale=.43]{./sad-data/dissertation/Connolly2014AB.png}
+\begin{tiny}
+Connolly et al. 2014.
+\end{tiny}
 \end{frame}
 
 \begin{frame}{}
