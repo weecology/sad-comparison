@@ -22,7 +22,7 @@
 \date{}
 %\setbeamercovered{transparent} 
 %\logo{\includegraphics[scale=.03]{../Miscellaneous/Pictures/ecology_center_horizontal.jpg}\includegraphics[scale=0.07]{../Miscellaneous/Pictures/Weecology.png}} 
-\institute{\includegraphics[scale=.07]{../Miscellaneous/Pictures/ecology_center_horizontal.jpg}\includegraphics[scale=0.1]{../Miscellaneous/Pictures/Weecology.png}} 
+\institute{\includegraphics[scale=.07]{../Miscellaneous/Pictures/ecology_center_horizontal.jpg}\includegraphics[scale=0.35]{./sad-data/dissertation/WeecologyProduction.png}} 
 %\subject{} 
 \begin{document}
 
@@ -34,6 +34,32 @@
 %\begin{frame}
 %\tableofcontents
 %\end{frame}
+\section{Usage Notes}
+\begin{frame}
+\frametitle{Open science}
+\begin{itemize}
+\item Code: 
+\begin{itemize}
+\item github.com/embaldridge
+\item github.com/weecology
+\end{itemize}
+\item Data: figshare.com
+\item Twitter: @elitabaldridge
+\end{itemize}
+\includegraphics[scale=.5]{./sad-data/dissertation/Open_Access.png}  
+\includegraphics[scale=.4]{./sad-data/dissertation/osi_logo.png}
+\end{frame}
+
+\begin{frame}[t]
+\begin{huge}
+Feel free to:\\
+\end{huge}
+\includegraphics[scale=.5]{./sad-data/dissertation/use.png}\\
+\begin{huge}
+Provided that:\\
+\end{huge}
+\includegraphics[scale=.5]{./sad-data/dissertation/attribution.png}
+\end{frame}
 
 \section{Introduction}
 \subsection{Commonness & rarity}
@@ -56,6 +82,7 @@ Species abundance distribution
 \item Describes the distribution of commonness \& rarity of species.
 \item Exhibits a hollow curve distribution.
 \end{itemize}
+\includegraphics[scale=.5]{./sad-data/dissertation/generichollowcurves.png}
 \note{
 Relative abundance distribution (RAD)
 Species abundance distribution (SAD)}
@@ -75,6 +102,15 @@ Species abundance distribution (SAD)}
 \end{itemize}
 \item Search for generality.
 \end{itemize}
+\end{frame}
+
+
+\subsection{Signal and Noise}
+\begin{frame}[t]
+\frametitle{Signal \& Noise}
+\begin{center}
+\includegraphics[scale=.4]{./sad-data/dissertation/SignalNoise.png}
+\end{center}
 \end{frame}
 
 \begin{frame}
@@ -108,13 +144,6 @@ Challenges of macroecology\\
 Taxonomic and ecosystem limitations in datasets, e.g.North American terrestrial bias.}
 \end{frame}
 
-\subsection{Signal and Noise}
-\begin{frame}[t]
-\frametitle{Signal \& Noise}
-\begin{center}
-\includegraphics[scale=.4]{./sad-data/dissertation/SignalNoise.png}
-\end{center}
-\end{frame}
 
 
 \subsection{Best practices}
@@ -240,7 +269,7 @@ Cavitt 2000.
 \includegraphics[scale=.45]{./sad-data/dissertation/num_taxa.png}
 \end{frame}
 
-\subsection{Data Availability}
+\subsubsection{Data Availability}
 \begin{frame}[fragile]
 \frametitle{Data Availability}
 ~\\
@@ -250,6 +279,8 @@ EcoData Retriever importable.\\
 \begin{verbatim}
 (http://figshare.com)
 (http://www.ecodataretriever.org)
+sad_data = 
+ecoretriever::fetch('MiscAbundanceDB')
 \end{verbatim}
 \includegraphics[scale=.3]{./sad-data/dissertation/retriever_logo_wtext.png}
 \includegraphics[scale=.5]{./sad-data/dissertation/figshare_FullColour.jpg}
@@ -604,14 +635,15 @@ Weecologists past, present, \& future\\
 
 \begin{frame}[t]{}
 \frametitle{Acknowledgements}
-~\\ %Adds vertical space for better aesthetics
 Dr. Thomas Price \& USU Student Health Center.\\
 ~\\
-The Flint Hills of Kansas.\\
-~\\
-Tea, electric blankets, \& heating pads.\\
+Tea, heating pads, \& the Flint Hills of Kansas.\\
 ~\\
 A very supportive husband \& family.\\
+~\\
+\begin{Large}
+Publicly available data, \& the citizen scientists that make that possible.\\
+\end{Large}
 \end{frame}
 
 \subsection{Accessibility}
