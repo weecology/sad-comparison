@@ -293,6 +293,10 @@ ecoretriever::fetch('MiscAbundanceDB')
 \begin{large}
 The species abundance distribution:
 \end{large}
+\begin{center}
+\includegraphics[scale=.52]{./sad-data/dissertation/genericRAD.png}\\
+\end{center}
+\note{
 \begin{itemize}
 \item Describes the distribution of commonness \& rarity of species.
 \item One of the most fundamental and ubiquitous patterns in ecology.
@@ -302,13 +306,13 @@ The species abundance distribution:
 \item Few common species.
 ~\\
 \end{itemize}
-\item Many forms of the species abundance distribution (SAD).
-\end{itemize}
+\end{itemize}}
+Many models of the species abundance distribution (SAD).
 \end{frame}
 
 \subsection{Forms of the distribution}
-\begin{frame}
-\frametitle{Forms of the SAD}
+\begin{frame}[t]
+\frametitle{SAD models}
 Statistical description\\  
 \includegraphics[scale=.2]{./sad-data/dissertation/Preston1948.png}\\
 
@@ -372,14 +376,41 @@ Selected five models from four classes for comparison.
 \end{frame}
 
 \subsubsection{Analysis}
-\begin{frame}
+\begin{frame}[t]
 \frametitle{SAD Comparisons}
 ~\\
 Analysis:
 \begin{itemize}
-\item Model fitting with maximum likelihood estimation. 
+\item Model fitting with maximum likelihood estimation.\\
+~\\
+$l_x(\theta) = \log h(x) + \log f_\theta(x)$
+\end{itemize}
+\end{frame} 
+
+
+\begin{frame}[t]
+\frametitle{SAD Comparisons}
+~\\
+Analysis:
+\begin{itemize}
 \item Likelihood based model selection to compare the fits of the different models.
+\begin{itemize}
+\item Assess the fit of the model without corrections for parameter number or similarity to other models.
+\item How well does the model describe the data?
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[t]
+\frametitle{SAD Comparisons}
+~\\
+Analysis:
+\begin{itemize}
 \item Model comparison with corrected Aikaike Information Criterion (AICc) weights.
+\begin{itemize}
+\item Assess the fit of the model correcting for parameter number and small sample size.
+\item How well does the model describe the data relative to the number of parameters?
+\end{itemize}
 \end{itemize}
 \end{frame}
 
@@ -444,12 +475,23 @@ Computational tools:
 
 \begin{frame}{}
 \frametitle{SAD Comparisons}
+\includegraphics[scale=.5]{./sad-data/chapter1/Zipf_weights.png}
+\end{frame}
+
+
+\begin{frame}{}
+\frametitle{SAD Comparisons}
 \includegraphics[scale=.5]{./sad-data/dissertation/AICc_weights.png}
 \end{frame}
 
 \begin{frame}{}
 \frametitle{SAD Comparisons}
 \includegraphics[scale=.5]{./sad-data/dissertation/likelihoods.png}
+\end{frame}
+
+\begin{frame}{}
+\frametitle{SAD Comparisons}
+\includegraphics[scale= 1]{./sad-data/dissertation/Zipf_one_to_one.png}
 \end{frame}
 
 \begin{frame}{}
