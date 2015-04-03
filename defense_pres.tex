@@ -174,6 +174,7 @@ Taxonomic and ecosystem limitations in datasets, e.g.North American terrestrial 
 \item Test multiple models with consistent statistical approach.
 \item Test with multiple taxonomic groups/ecosystems.  
 \end{itemize}
+\vspace{-7pt}
 \begin{center}
 \includegraphics[scale=.2]{./sad-data/dissertation/SpatialTaxonomic.png}
 \end{center}
@@ -185,7 +186,9 @@ Taxonomic and ecosystem limitations in datasets, e.g.North American terrestrial 
 \begin{frame}[t]
 \frametitle{Current Data}
 \vspace{-7pt}
-\includegraphics[scale=.55]{./sad-data/chapter3/presentation_map.png}
+\begin{center}
+\includegraphics[scale=.45]{./sad-data/dissertation/ExistingDataMap.png}
+\end{center}
 \note{
 \begin{large}
 Major macroecological datasets\\
@@ -263,7 +266,7 @@ Record decisions at all steps:\\
 
 \subsubsection{Data Collection}
 \begin{frame}[t]{}
-\frametitle{Data}
+\frametitle{Abundance database}
 Inclusion criteria:
 \begin{itemize}
 \item Quantitative abundances
@@ -276,7 +279,7 @@ Inclusion criteria:
 \end{frame}
 
 \begin{frame}[shrink=30]
-\frametitle{Data}
+\frametitle{Abundance database}
 \begin{table}
 \begin{tabular}{l} 
  Variables collected\\ 
@@ -322,22 +325,22 @@ Inclusion criteria:
 
 \subsubsection{Data Summary}
 \begin{frame}{}
-\frametitle{Data}
+\frametitle{Abundance database}
 \includegraphics[scale=.35]{../Miscellaneous/Pictures/Phd/CompiledData.png}
 \end{frame}
 
 \begin{frame}{}
-\frametitle{Data}
+\frametitle{Abundance database}
 \includegraphics[scale=.27]{./sad-data/dissertation/bioregions.png}
 \end{frame}
 
 \begin{frame}{}
-\frametitle{Data}
+\frametitle{Abundance database}
 \includegraphics[scale=.45]{./sad-data/dissertation/taxa_sites.png}
 \end{frame}
 
 \begin{frame}{}
-\frametitle{Data}
+\frametitle{Abundance database}
 \includegraphics[scale=.45]{./sad-data/dissertation/num_taxa.png}
 \end{frame}
 
@@ -356,6 +359,44 @@ ecoretriever::fetch('MiscAbundanceDB')
 \end{verbatim}
 \includegraphics[scale=.3]{./sad-data/dissertation/retriever_logo_wtext.png}
 \includegraphics[scale=.5]{./sad-data/dissertation/figshare_FullColour.jpg}
+\end{frame}
+
+\subsection{Analysis Data}
+\begin{frame}{}
+\frametitle{Data}
+\begin{center}
+\includegraphics[scale=.4]{./sad-data/dissertation/Database.png}
+\end{center}
+\end{frame}
+
+
+\begin{frame}{}
+\frametitle{Data}
+\includegraphics[scale=.4]{./sad-data/dissertation/AllDatasets.png}
+\end{frame}
+
+\begin{frame}[shrink=35]
+\frametitle{SAD Comparisons}
+\begin{center}
+\begin{table}
+\begin{tabular}{l|c|l|r}
+ Dataset &Dataset code &Availability &Sites\\
+\hline
+ Gentry's Forest Transects &Gentry &Public &10355\\
+ Breeding Bird Survey &BBS &Public &2769\\
+ Christmas Bird Count &CBC &Private &1999\\
+ Forest Inventory Analysis &FIA	 &Public &220\\
+ N. American Butterfly Count &NABA &Private &400\\
+ Actinopterygii, compiled &Actinopterygii &Public &161\\
+ Reptilia, compiled &Reptilia &Public &138\\
+ Mammal Community Database &MCDB &Public &103\\
+ Amphibia, compiled &Amphibia &Public &43\\
+ Arachnida, compiled &Arachnida &Public &25\\
+ Coleoptera, compiled &Coleoptera &Public &5\\
+\end{tabular}
+\caption{Datasets used for species-abundance distribution comparisons. Datasets marked as Private obtained through data requests to the providers with Memorandums of Understanding.}
+\end{table}
+\end{center}
 \end{frame}
 
 \section{The species abundance distribution}
@@ -528,37 +569,6 @@ More accessible.\\
 \end{frame}
 
 
-\subsubsection{Data}
-\begin{frame}{}
-\frametitle{Data}
-\includegraphics[scale=.4]{../Miscellaneous/Pictures/Phd/MapCreatures.png}
-\end{frame}
-
-\begin{frame}[shrink=35]
-\frametitle{SAD Comparisons}
-\begin{center}
-\begin{table}
-\begin{tabular}{l|c|l|r}
- Dataset &Dataset code &Availability &Sites\\
-\hline
- Gentry's Forest Transects &Gentry &Public &10355\\
- Breeding Bird Survey &BBS &Public &2769\\
- Christmas Bird Count &CBC &Private &1999\\
- Forest Inventory Analysis &FIA	 &Public &220\\
- N. American Butterfly Count &NABA &Private &400\\
- Actinopterygii, compiled &Actinopterygii &Public &161\\
- Reptilia, compiled &Reptilia &Public &138\\
- Mammal Community Database &MCDB &Public &103\\
- Amphibia, compiled &Amphibia &Public &43\\
- Arachnida, compiled &Arachnida &Public &25\\
- Coleoptera, compiled &Coleoptera &Public &5\\
-\end{tabular}
-\caption{Datasets used for species-abundance distribution comparisons. Datasets marked as Private obtained through data requests to the providers with Memorandums of Understanding.}
-\end{table}
-\end{center}
-\end{frame}
-
-
 \subsection{Results}
 \begin{frame}{}
 \frametitle{SAD Comparisons}
@@ -718,8 +728,10 @@ Difficult to identify a clear winning model.
 \item Results consistent with our species abundance distribution model comparisons. 
 \item Results different from Connolly et al. 2014.
 \begin{itemize}
+\item May be biological mechanisms responsible for differences between marine and terrestrial communities.
+\note{
 \item Non-neutral model outperforms the neutral model in marine systems.
-\item Our results suggest marine systems more generally approximated by non-neutral dynamics; terrestrial systems more variable between neutral and non-neutral dynamics.
+\item Our results suggest marine systems more generally approximated by non-neutral dynamics; terrestrial systems more variable between neutral and non-neutral dynamics.}
 \end{itemize}
 \end{itemize}
 \end{frame}
