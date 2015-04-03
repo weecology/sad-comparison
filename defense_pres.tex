@@ -68,40 +68,64 @@ Provided that:\\
 \subsection{What is macroecology?}
 \begin{frame}[t]
 \frametitle{Macroecology}
-\normalsize Search for general patterns \& processes.\\
+\normalsize One approach for identifying general ecological patterns \& processes.
 \begin{center}
-\includegraphics[scale=.35]{./sad-data/dissertation/PatternProcess_example.png}
+\includegraphics[scale=.30]{./sad-data/dissertation/SpatialTaxonomic.png}
 \end{center}
 \note{
 \begin{itemize}
 \item Data intensive.
 \item Large scales.
+\end{itemize}
 \begin{itemize}
 \item Spatial
 \item Temporal
 \item Taxonomic
 \end{itemize}
+\begin{itemize}
 \item Search for general patterns \& processes.
 \end{itemize}}
 \end{frame}
 
+\subsection{Let's begin with an example..}
 \begin{frame}
-Species abundance distribution
+\frametitle{Let's begin with an example...}
 \note{
 Few common species.
 Many rare species.
 One of the most fundamental and ubiquitous patterns in ecology.}
+Species abundance distribution (SAD)
 \begin{itemize}
 \item Describes the distribution of commonness \& rarity of species.
-\item Exhibits a hollow curve distribution.
 \end{itemize}
-\includegraphics[scale=.5]{./sad-data/dissertation/generichollowcurves.png}\\
+\begin{center}
+\includegraphics[scale=.4]{./sad-data/dissertation/generichollowcurves.png}\\
+\end{center}
+\note{
 \begin{itemize}
 \item Many potential pattern-generating mechanisms.
+\item Exhibits a hollow curve distribution.
 \end{itemize}
-\note{
 Relative abundance distribution (RAD)
 Species abundance distribution (SAD)}
+\end{frame}
+
+\begin{frame}
+\frametitle{Let's begin with an example...}
+\begin{center}
+\includegraphics[scale=.35]{./sad-data/dissertation/PatternProcess_example_text.png}\\
+\end{center}
+\end{frame}
+
+\begin{frame}
+\frametitle{Patterns \& process.}
+\begin{huge}
+\begin{center}
+Process\\ 
+\includegraphics[scale=.35]{./sad-data/dissertation/ProcessesPatterns.png}\\
+Pattern\\
+\end{center}
+\end{huge}
 \end{frame}
 
 \begin{frame}
@@ -121,7 +145,7 @@ Prediction
 \end{Huge}}
 \end{frame}
 
-\subsection{Commonness & rarity}
+%\subsection{Commonness & rarity}
 %\begin{frame}[t]
 %\frametitle{Commonness \& rarity}
 %"Who can explain why one species ranges widely, and is very numerous, and why another %allied species has a narrow range and is rare?  Yet these relations are of the highest %important, for they determine the present welfare and, as I believe, the future success %and modification of every inhabitant of this world."\\ 
@@ -132,8 +156,7 @@ Prediction
 
 \subsection{Challenges of macroecology}
 \begin{frame}[t]
-\frametitle{Macroecology}
-Challenges of macroecology\\
+\frametitle{Challenges of macroecology}
 \begin{itemize}
 \item Studies performed with a limited number of large datasets.
 \item Lack of identification of pattern generating mechanisms.
@@ -146,19 +169,21 @@ Taxonomic and ecosystem limitations in datasets, e.g.North American terrestrial 
 
 \subsection{Best practices}
 \begin{frame}[t]
-\frametitle{Macroecology}
-Best practice recommendations\\
+\frametitle{Best practice recommendations}
 \begin{itemize}
-\item Simultaneous testing of competing models and model predictions with a consistent statistical approach.
-\item Test patterns with multiple taxonomic groups/ecosystems.  
+\item Test multiple models with consistent statistical approach.
+\item Test with multiple taxonomic groups/ecosystems.  
 \end{itemize}
+\begin{center}
+\includegraphics[scale=.2]{./sad-data/dissertation/SpatialTaxonomic.png}
+\end{center}
 \end{frame}
 
 
 \section{Data}
 \subsection{Current Data}
 \begin{frame}[t]
-\frametitle{Data}
+\frametitle{Current Data}
 \vspace{-7pt}
 \includegraphics[scale=.55]{./sad-data/chapter3/presentation_map.png}
 \note{
@@ -181,6 +206,28 @@ Lots of data in the literature.\\
 
 
 \subsection{Compiled Data}
+\begin{frame}[t]
+\frametitle{Macroecological data}
+Challenges of macroecology\\
+\begin{small}
+\begin{itemize}
+\item Limited number of large datasets.
+\item Lack of identification of process.
+\end{itemize}
+\end{small}
+Best practice recommendations
+\begin{small}
+\begin{itemize}
+\item Test with multiple taxonomic groups/ecosystems. 
+\end{itemize}
+\end{small} 
+\begin{large}
+~\\
+Plenty of data in the literature.
+\end{large}
+\end{frame}
+
+
 \subsubsection{Introduction to Ecoinformatics}
 \begin{frame}[t]
 \frametitle{The Rules of Ecoinformatics}
@@ -192,6 +239,28 @@ Garbage in, garbage out.\\
 \item Fit the data to the question.
 \end{itemize}
 \end{frame}
+
+\begin{frame}[t]{}
+\frametitle{Building a database}
+\begin{itemize}
+\item Decide on inclusion criteria.
+\item Decide what variables to collect.
+\item Decide on handling of missing data.
+\item Decide on database structure.
+\item Search for data.
+\item Sort papers into useable and not.
+\item Collect data.
+\end{itemize}
+\begin{center}
+Record decisions at all steps:\\
+~\\
+\begin{large}
+\emph{Metadata are important.}
+\end{large}
+\end{center}
+\end{frame}
+
+
 \subsubsection{Data Collection}
 \begin{frame}[t]{}
 \frametitle{Data}
@@ -229,14 +298,26 @@ Inclusion criteria:
 \end{table}
 \end{frame}
 
+\subsubsection{Data Wrangling}
 \begin{frame}[t]
 \frametitle{Data wrangling}
 \begin{center}
-\includegraphics[scale=.27]{./sad-data/dissertation/Wrangling.png}
+\includegraphics[scale=.37]{./sad-data/dissertation/WranglingRaw.png}
 \end{center}
-\begin{tiny}
-Cavitt 2000.
-\end{tiny}
+\end{frame}
+
+\begin{frame}[t]
+\frametitle{Data wrangling}
+\begin{center}
+\includegraphics[scale=.32]{./sad-data/dissertation/WranglingEntry.png}
+\end{center}
+\end{frame}
+
+\begin{frame}[t]
+\frametitle{Data wrangling}
+\begin{center}
+\includegraphics[scale=.32]{./sad-data/dissertation/WranglingEnd.png}
+\end{center}
 \end{frame}
 
 \subsubsection{Data Summary}
@@ -404,6 +485,7 @@ Analysis:
 \item Assess the fit of the model correcting for parameter number and small sample size.
 \item How well does the model describe the data relative to the number of parameters?
 \end{itemize}
+\item The model with the greatest AICc weight was the "winner". 
 \end{itemize}
 \end{frame}
 
@@ -535,6 +617,14 @@ Existing models provide equivalently good absolute fits to empirical data.
 Identifying pattern generating mechanisms:
 \begin{itemize}
 \item Compare predictions of different models using multiple macroecological patterns simultaneously.\\
+\end{itemize}
+\includegraphics[scale=.3]{./sad-data/dissertation/MacroecologicalPatterns.png}
+\end{frame}
+
+\begin{frame}[t]
+\frametitle{SAD Comparisons}
+Identifying pattern generating mechanisms:
+\begin{itemize}
 \item Examine scale dependence of pattern.
 \item More general approach to process.
 \end{itemize}
