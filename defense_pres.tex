@@ -16,7 +16,7 @@
 \setbeamerfont{author}{size=\small}
 \setbeamerfont{frametitle}{size=\large}
 \setbeamertemplate{enumerate items}[default]
-\author{Elita Baldridge}
+\author{Elita Baldridge\\ @elitabaldridge}
 \title[17pt]{A data-intensive assessment of the species-abundance distribution.}
 \setbeamertemplate{navigation symbols}{}
 \date{}
@@ -35,26 +35,6 @@
 %\tableofcontents
 %\end{frame}
 \section{Usage Notes}
-\begin{frame}
-\frametitle{Open science}
-\begin{itemize}
-\item Code: 
-\begin{itemize}
-\item github.com/embaldridge
-\item github.com/weecology
-\end{itemize}
-\item Data: figshare.com
-\item Twitter: @elitabaldridge
-\end{itemize}
-\begin{center}
-\includegraphics[scale=.40]{./sad-data/dissertation/GitHub-Mark-120px-plus.png}
-\includegraphics[scale=.45]{./sad-data/dissertation/figshare_FullColour.jpg} 
-\includegraphics[scale=.2]{./sad-data/dissertation/Open_Access.png}  
-\includegraphics[scale=.15]{./sad-data/dissertation/osi_logo.png}
-
-\end{center}
-\end{frame}
-
 \begin{frame}[t]
 \begin{huge}
 Feel free to:\\
@@ -64,6 +44,24 @@ Feel free to:\\
 Provided that:\\
 \end{huge}
 \includegraphics[scale=.5]{./sad-data/dissertation/attribution.png}
+\end{frame}
+
+\begin{frame}
+\frametitle{Open science}
+\begin{itemize}
+\item Code: 
+\begin{itemize}
+\item github.com/embaldridge
+\item github.com/weecology
+\end{itemize}
+\item Data: figshare.com
+\end{itemize}
+\begin{center}
+\includegraphics[scale=.40]{./sad-data/dissertation/GitHub-Mark-120px-plus.png}
+\includegraphics[scale=.45]{./sad-data/dissertation/figshare_FullColour.jpg} 
+\includegraphics[scale=.2]{./sad-data/dissertation/Open_Access.png}  
+\includegraphics[scale=.15]{./sad-data/dissertation/osi_logo.png}
+\end{center}
 \end{frame}
 
 \section{Introduction}
@@ -151,22 +149,10 @@ Taxonomic and ecosystem limitations in datasets, e.g.North American terrestrial 
 \frametitle{Macroecology}
 Best practice recommendations\\
 \begin{itemize}
-\item Test patterns with multiple taxonomic groups/ecosystems.  
 \item Simultaneous testing of competing models and model predictions with a consistent statistical approach.
+\item Test patterns with multiple taxonomic groups/ecosystems.  
 \end{itemize}
 \end{frame}
-\subsection{Introduction to Ecoinformatics}
-\begin{frame}[t]
-\frametitle{The Rules of Ecoinformatics}
-\begin{Large}
-Garbage in, garbage out.\\
-\end{Large}
-\begin{itemize}
-\item All data are good, not all data are appropriate.
-\item Fit the data to the question.
-\end{itemize}
-\end{frame}
-
 
 
 \section{Data}
@@ -175,10 +161,7 @@ Garbage in, garbage out.\\
 \frametitle{Data}
 \vspace{-7pt}
 \includegraphics[scale=.55]{./sad-data/chapter3/presentation_map.png}
-\end{frame}
-
-\begin{frame}[t]{}
-\frametitle{Data}
+\note{
 \begin{large}
 Major macroecological datasets\\
 \end{large}
@@ -193,16 +176,22 @@ Major macroecological datasets\\
 ~\\
 \begin{large}
 Lots of data in the literature.\\
-\end{large}
+\end{large}}
 \end{frame}
 
 
 \subsection{Compiled Data}
-\begin{frame}{}
-\frametitle{Data}
-\includegraphics[scale=.35]{../Miscellaneous/Pictures/Phd/CompiledData.png}
+\subsubsection{Introduction to Ecoinformatics}
+\begin{frame}[t]
+\frametitle{The Rules of Ecoinformatics}
+\begin{Large}
+Garbage in, garbage out.\\
+\end{Large}
+\begin{itemize}
+\item All data are good, not all data are appropriate.
+\item Fit the data to the question.
+\end{itemize}
 \end{frame}
-
 \subsubsection{Data Collection}
 \begin{frame}[t]{}
 \frametitle{Data}
@@ -215,16 +204,6 @@ Inclusion criteria:
 \item High degree of taxonomic resolution
 \item Observational
 \end{itemize}
-\end{frame}
-
-\begin{frame}[t]
-\frametitle{Data wrangling}
-\begin{center}
-\includegraphics[scale=.27]{./sad-data/dissertation/Wrangling.png}
-\end{center}
-\begin{tiny}
-Cavitt 2000.
-\end{tiny}
 \end{frame}
 
 \begin{frame}[shrink=30]
@@ -250,7 +229,22 @@ Cavitt 2000.
 \end{table}
 \end{frame}
 
+\begin{frame}[t]
+\frametitle{Data wrangling}
+\begin{center}
+\includegraphics[scale=.27]{./sad-data/dissertation/Wrangling.png}
+\end{center}
+\begin{tiny}
+Cavitt 2000.
+\end{tiny}
+\end{frame}
+
 \subsubsection{Data Summary}
+\begin{frame}{}
+\frametitle{Data}
+\includegraphics[scale=.35]{../Miscellaneous/Pictures/Phd/CompiledData.png}
+\end{frame}
+
 \begin{frame}{}
 \frametitle{Data}
 \includegraphics[scale=.27]{./sad-data/dissertation/bioregions.png}
@@ -453,6 +447,11 @@ More accessible.\\
 
 
 \subsubsection{Data}
+\begin{frame}{}
+\frametitle{Data}
+\includegraphics[scale=.4]{../Miscellaneous/Pictures/Phd/MapCreatures.png}
+\end{frame}
+
 \begin{frame}[shrink=35]
 \frametitle{SAD Comparisons}
 \begin{center}
@@ -475,11 +474,6 @@ More accessible.\\
 \caption{Datasets used for species-abundance distribution comparisons. Datasets marked as Private obtained through data requests to the providers with Memorandums of Understanding.}
 \end{table}
 \end{center}
-\end{frame}
-
-\begin{frame}{}
-\frametitle{Data}
-\includegraphics[scale=.4]{../Miscellaneous/Pictures/Phd/MapCreatures.png}
 \end{frame}
 
 
@@ -549,25 +543,6 @@ However, identification of mechanism may not be necessary for prediction.
 \end{frame}
 
 \section{Neutral analysis}
-\begin{frame}[t]
-\frametitle{Neutral theory}
-~\\
-Many formulations, but:
-~\\
-\begin{itemize}
-\item Species \& individuals ecologically \& demographically equivalent.\\
-\end{itemize}
-\includegraphics[scale=.35]{./sad-data/dissertation/Rosindelletal2011.png}\\
-\begin{tiny}
-Rosindell et al. 2011.
-\end{tiny}
-\note{
-\begin{itemize}
-\item Species \& individuals ecologically \& demographically equivalent.\\
-\item Stochastic variation in birth, death, immigration, \& speciation results in species abundance differences.
-\end{itemize}}
-\end{frame}
-
 \begin{frame}
 \frametitle{Neutral Analysis}
 Early tests of neutral theory compared the fit of empirical species abundance distributions to the neutral prediction.\\
@@ -594,11 +569,37 @@ Connolly et al. 2014 identified non-neutral species abundance distributions in m
 May be a robust method for identifying communities that exhibit non-neutrality.\\
 \end{frame}
 
+\begin{frame}[t]
+\frametitle{Neutral theory}
+~\\
+Many formulations, but:
+~\\
+\begin{itemize}
+\item Species \& individuals ecologically \& demographically equivalent.\\
+\end{itemize}
+\includegraphics[scale=.35]{./sad-data/dissertation/Rosindelletal2011.png}\\
+\begin{tiny}
+Rosindell et al. 2011.
+\end{tiny}
+\note{
+\begin{itemize}
+\item Species \& individuals ecologically \& demographically equivalent.\\
+\item Stochastic variation in birth, death, immigration, \& speciation results in species abundance differences.
+\end{itemize}}
+\end{frame}
+
+
+
 \subsection{Data & Analysis}
 \begin{frame}
 \frametitle{Neutral Analysis}
 Used the same data and model fitting approach.\\
 Compared a non-neutral model (Poisson lognormal) to a neutral model (negative binomial).\\
+\end{frame}
+
+\begin{frame}{}
+\frametitle{Neutral Analysis}
+\includegraphics[scale=.43]{./sad-data/dissertation/EmpirModelHist.png}
 \end{frame}
 
 \begin{frame}{}
@@ -609,20 +610,16 @@ Connolly et al. 2014.
 \end{tiny}
 \end{frame}
 
-\begin{frame}{}
-\frametitle{Neutral Analysis}
-\includegraphics[scale=.43]{./sad-data/dissertation/EmpirModelHist.png}
-\end{frame}
 
 \subsection{Results}
 \begin{frame}{}
 \frametitle{Neutral Analysis}
-\includegraphics[scale=.45]{./sad-data/dissertation/distabclasses_vs_lognormwgt.png}
+\includegraphics[scale=.40]{./sad-data/dissertation/avgvals_by_dataset.png}
 \end{frame}
 
 \begin{frame}{}
 \frametitle{Neutral Analysis}
-\includegraphics[scale=.40]{./sad-data/dissertation/avgvals_by_dataset.png}
+\includegraphics[scale=.45]{./sad-data/dissertation/distabclasses_vs_lognormwgt.png}
 \end{frame}
 
 \subsection{Conclusions}
