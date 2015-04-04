@@ -65,75 +65,98 @@ Provided that:\\
 \end{frame}
 
 \section{Introduction}
-\subsection{Commonness & rarity}
-\begin{frame}[t]
-\frametitle{Commonness \& rarity}
-"Who can explain why one species ranges widely, and is very numerous, and why another allied species has a narrow range and is rare?  Yet these relations are of the highest important, for they determine the present welfare and, as I believe, the future success and modification of every inhabitant of this world."  
-
-
-Darwin, 1859.
-
-\note{
-Few common species.
-Many rare species.
-One of the most fundamental and ubiquitous patterns in ecology.}
-\end{frame}
-
-\begin{frame}
-Species abundance distribution
-\begin{itemize}
-\item Describes the distribution of commonness \& rarity of species.
-\item Exhibits a hollow curve distribution.
-\end{itemize}
-\includegraphics[scale=.5]{./sad-data/dissertation/generichollowcurves.png}
-\note{
-Relative abundance distribution (RAD)
-Species abundance distribution (SAD)}
-\end{frame}
-
 \subsection{What is macroecology?}
 \begin{frame}[t]
 \frametitle{Macroecology}
-\normalsize One approach to studying ecological patterns and processes.\\
+\normalsize One approach for identifying general ecological patterns \& processes.
 \begin{center}
-\includegraphics[scale=.4]{./sad-data/dissertation/SignalNoise.png}
+\includegraphics[scale=.30]{./sad-data/dissertation/SpatialTaxonomic.png}
 \end{center}
 \note{
 \begin{itemize}
 \item Data intensive.
 \item Large scales.
+\end{itemize}
 \begin{itemize}
 \item Spatial
 \item Temporal
 \item Taxonomic
 \end{itemize}
-\item Search for generality.
+\begin{itemize}
+\item Search for general patterns \& processes.
 \end{itemize}}
 \end{frame}
 
+\subsection{Let's begin with an example..}
 \begin{frame}
-\frametitle{Macroecology}
+\frametitle{Let's begin with an example...}
+\note{
+Few common species.
+Many rare species.
+One of the most fundamental and ubiquitous patterns in ecology.}
+Species abundance distribution (SAD)
+\begin{itemize}
+\item Describes the distribution of commonness \& rarity of species.
+\end{itemize}
+\begin{center}
+\includegraphics[scale=.4]{./sad-data/dissertation/generichollowcurves.png}\\
+\end{center}
+\note{
+\begin{itemize}
+\item Many potential pattern-generating mechanisms.
+\item Exhibits a hollow curve distribution.
+\end{itemize}
+Relative abundance distribution (RAD)
+Species abundance distribution (SAD)}
+\end{frame}
+
+\begin{frame}
+\frametitle{Let's begin with an example...}
+\begin{center}
+\includegraphics[scale=.35]{./sad-data/dissertation/PatternProcess_example_text.png}\\
+\end{center}
+\end{frame}
+
+\begin{frame}
+\frametitle{Patterns \& process.}
+\begin{huge}
+\begin{center}
+Process\\ 
+\includegraphics[scale=.35]{./sad-data/dissertation/ProcessesPatterns.png}\\
+Pattern\\
+\end{center}
+\end{huge}
+\end{frame}
+
+\begin{frame}
+\frametitle{Pattern \& Process;\\ Signal \& Noise}
+\begin{center}
+\includegraphics[scale=.4]{./sad-data/dissertation/SignalNoise.png}
+\end{center}
+\note{
 \begin{Huge}
 \begin{center}
-
-Pattern 
-
-\MVArrowDown{}  
-
-Process  
-
-\MVArrowDown{}
- 
+Pattern\\ 
+\MVArrowDown{}\\  
+Process\\  
+\MVArrowDown{}\\
 Prediction
-
 \end{center}
-\end{Huge}
+\end{Huge}}
 \end{frame}
+
+%\subsection{Commonness & rarity}
+%\begin{frame}[t]
+%\frametitle{Commonness \& rarity}
+%"Who can explain why one species ranges widely, and is very numerous, and why another %allied species has a narrow range and is rare?  Yet these relations are of the highest %important, for they determine the present welfare and, as I believe, the future success %and modification of every inhabitant of this world."\\ 
+%~\\ 
+%Darwin, 1859.\\
+%\end{frame}
+
 
 \subsection{Challenges of macroecology}
 \begin{frame}[t]
-\frametitle{Macroecology}
-Challenges of macroecology\\
+\frametitle{Challenges of macroecology}
 \begin{itemize}
 \item Studies performed with a limited number of large datasets.
 \item Lack of identification of pattern generating mechanisms.
@@ -146,21 +169,26 @@ Taxonomic and ecosystem limitations in datasets, e.g.North American terrestrial 
 
 \subsection{Best practices}
 \begin{frame}[t]
-\frametitle{Macroecology}
-Best practice recommendations\\
+\frametitle{Best practice recommendations}
 \begin{itemize}
-\item Simultaneous testing of competing models and model predictions with a consistent statistical approach.
-\item Test patterns with multiple taxonomic groups/ecosystems.  
+\item Test multiple models with consistent statistical approach.
+\item Test with multiple taxonomic groups/ecosystems.  
 \end{itemize}
+\vspace{-7pt}
+\begin{center}
+\includegraphics[scale=.2]{./sad-data/dissertation/SpatialTaxonomic.png}
+\end{center}
 \end{frame}
 
 
 \section{Data}
 \subsection{Current Data}
 \begin{frame}[t]
-\frametitle{Data}
+\frametitle{Current Data}
 \vspace{-7pt}
-\includegraphics[scale=.55]{./sad-data/chapter3/presentation_map.png}
+\begin{center}
+\includegraphics[scale=.45]{./sad-data/dissertation/ExistingDataMap.png}
+\end{center}
 \note{
 \begin{large}
 Major macroecological datasets\\
@@ -181,6 +209,28 @@ Lots of data in the literature.\\
 
 
 \subsection{Compiled Data}
+\begin{frame}[t]
+\frametitle{Macroecological data}
+Challenges of macroecology\\
+\begin{small}
+\begin{itemize}
+\item Limited number of large datasets.
+\item Lack of identification of process.
+\end{itemize}
+\end{small}
+Best practice recommendations
+\begin{small}
+\begin{itemize}
+\item Test with multiple taxonomic groups/ecosystems. 
+\end{itemize}
+\end{small} 
+\begin{large}
+~\\
+Plenty of data in the literature.
+\end{large}
+\end{frame}
+
+
 \subsubsection{Introduction to Ecoinformatics}
 \begin{frame}[t]
 \frametitle{The Rules of Ecoinformatics}
@@ -192,9 +242,31 @@ Garbage in, garbage out.\\
 \item Fit the data to the question.
 \end{itemize}
 \end{frame}
+
+\begin{frame}[t]{}
+\frametitle{Building a database}
+\begin{itemize}
+\item Decide on inclusion criteria.
+\item Decide what variables to collect.
+\item Decide on handling of missing data.
+\item Decide on database structure.
+\item Search for data.
+\item Sort papers into useable and not.
+\item Collect data.
+\end{itemize}
+\begin{center}
+Record decisions at all steps:\\
+~\\
+\begin{large}
+\emph{Metadata are important.}
+\end{large}
+\end{center}
+\end{frame}
+
+
 \subsubsection{Data Collection}
 \begin{frame}[t]{}
-\frametitle{Data}
+\frametitle{Abundance database}
 Inclusion criteria:
 \begin{itemize}
 \item Quantitative abundances
@@ -207,7 +279,7 @@ Inclusion criteria:
 \end{frame}
 
 \begin{frame}[shrink=30]
-\frametitle{Data}
+\frametitle{Abundance database}
 \begin{table}
 \begin{tabular}{l} 
  Variables collected\\ 
@@ -229,34 +301,46 @@ Inclusion criteria:
 \end{table}
 \end{frame}
 
+\subsubsection{Data Wrangling}
 \begin{frame}[t]
 \frametitle{Data wrangling}
 \begin{center}
-\includegraphics[scale=.27]{./sad-data/dissertation/Wrangling.png}
+\includegraphics[scale=.37]{./sad-data/dissertation/WranglingRaw.png}
 \end{center}
-\begin{tiny}
-Cavitt 2000.
-\end{tiny}
+\end{frame}
+
+\begin{frame}[t]
+\frametitle{Data wrangling}
+\begin{center}
+\includegraphics[scale=.32]{./sad-data/dissertation/WranglingEntry.png}
+\end{center}
+\end{frame}
+
+\begin{frame}[t]
+\frametitle{Data wrangling}
+\begin{center}
+\includegraphics[scale=.32]{./sad-data/dissertation/WranglingEnd.png}
+\end{center}
 \end{frame}
 
 \subsubsection{Data Summary}
 \begin{frame}{}
-\frametitle{Data}
+\frametitle{Abundance database}
 \includegraphics[scale=.35]{../Miscellaneous/Pictures/Phd/CompiledData.png}
 \end{frame}
 
 \begin{frame}{}
-\frametitle{Data}
+\frametitle{Abundance database}
 \includegraphics[scale=.27]{./sad-data/dissertation/bioregions.png}
 \end{frame}
 
 \begin{frame}{}
-\frametitle{Data}
+\frametitle{Abundance database}
 \includegraphics[scale=.45]{./sad-data/dissertation/taxa_sites.png}
 \end{frame}
 
 \begin{frame}{}
-\frametitle{Data}
+\frametitle{Abundance database}
 \includegraphics[scale=.45]{./sad-data/dissertation/num_taxa.png}
 \end{frame}
 
@@ -275,6 +359,44 @@ ecoretriever::fetch('MiscAbundanceDB')
 \end{verbatim}
 \includegraphics[scale=.3]{./sad-data/dissertation/retriever_logo_wtext.png}
 \includegraphics[scale=.5]{./sad-data/dissertation/figshare_FullColour.jpg}
+\end{frame}
+
+\subsection{Analysis Data}
+\begin{frame}{}
+\frametitle{Data}
+\begin{center}
+\includegraphics[scale=.4]{./sad-data/dissertation/Database.png}
+\end{center}
+\end{frame}
+
+
+\begin{frame}{}
+\frametitle{Data}
+\includegraphics[scale=.4]{./sad-data/dissertation/AllDatasets.png}
+\end{frame}
+
+\begin{frame}[shrink=35]
+\frametitle{SAD Comparisons}
+\begin{center}
+\begin{table}
+\begin{tabular}{l|c|l|r}
+ Dataset &Dataset code &Availability &Sites\\
+\hline
+ Gentry's Forest Transects &Gentry &Public &10355\\
+ Breeding Bird Survey &BBS &Public &2769\\
+ Christmas Bird Count &CBC &Private &1999\\
+ Forest Inventory Analysis &FIA	 &Public &220\\
+ N. American Butterfly Count &NABA &Private &400\\
+ Actinopterygii, compiled &Actinopterygii &Public &161\\
+ Reptilia, compiled &Reptilia &Public &138\\
+ Mammal Community Database &MCDB &Public &103\\
+ Amphibia, compiled &Amphibia &Public &43\\
+ Arachnida, compiled &Arachnida &Public &25\\
+ Coleoptera, compiled &Coleoptera &Public &5\\
+\end{tabular}
+\caption{Datasets used for species-abundance distribution comparisons. Datasets marked as Private obtained through data requests to the providers with Memorandums of Understanding.}
+\end{table}
+\end{center}
 \end{frame}
 
 \section{The species abundance distribution}
@@ -404,6 +526,7 @@ Analysis:
 \item Assess the fit of the model correcting for parameter number and small sample size.
 \item How well does the model describe the data relative to the number of parameters?
 \end{itemize}
+\item The model with the greatest AICc weight was the "winner". 
 \end{itemize}
 \end{frame}
 
@@ -442,37 +565,6 @@ More accessible.\\
 \includegraphics[scale=.2]{./sad-data/dissertation/Open_Access.png}  
 \includegraphics[scale=.15]{./sad-data/dissertation/osi_logo.png}
 
-\end{center}
-\end{frame}
-
-
-\subsubsection{Data}
-\begin{frame}{}
-\frametitle{Data}
-\includegraphics[scale=.4]{../Miscellaneous/Pictures/Phd/MapCreatures.png}
-\end{frame}
-
-\begin{frame}[shrink=35]
-\frametitle{SAD Comparisons}
-\begin{center}
-\begin{table}
-\begin{tabular}{l|c|l|r}
- Dataset &Dataset code &Availability &Sites\\
-\hline
- Gentry's Forest Transects &Gentry &Public &10355\\
- Breeding Bird Survey &BBS &Public &2769\\
- Christmas Bird Count &CBC &Private &1999\\
- Forest Inventory Analysis &FIA	 &Public &220\\
- N. American Butterfly Count &NABA &Private &400\\
- Actinopterygii, compiled &Actinopterygii &Public &161\\
- Reptilia, compiled &Reptilia &Public &138\\
- Mammal Community Database &MCDB &Public &103\\
- Amphibia, compiled &Amphibia &Public &43\\
- Arachnida, compiled &Arachnida &Public &25\\
- Coleoptera, compiled &Coleoptera &Public &5\\
-\end{tabular}
-\caption{Datasets used for species-abundance distribution comparisons. Datasets marked as Private obtained through data requests to the providers with Memorandums of Understanding.}
-\end{table}
 \end{center}
 \end{frame}
 
@@ -535,11 +627,17 @@ Existing models provide equivalently good absolute fits to empirical data.
 Identifying pattern generating mechanisms:
 \begin{itemize}
 \item Compare predictions of different models using multiple macroecological patterns simultaneously.\\
-\item Examine scale dependence of pattern.
 \end{itemize}
-~\\
-~\\
-However, identification of mechanism may not be necessary for prediction.
+\includegraphics[scale=.3]{./sad-data/dissertation/MacroecologicalPatterns.png}
+\end{frame}
+
+\begin{frame}[t]
+\frametitle{SAD Comparisons}
+Identifying pattern generating mechanisms:
+\begin{itemize}
+\item Examine scale dependence of pattern.
+\item More general approach to process.
+\end{itemize}
 \end{frame}
 
 \section{Neutral analysis}
@@ -630,8 +728,10 @@ Difficult to identify a clear winning model.
 \item Results consistent with our species abundance distribution model comparisons. 
 \item Results different from Connolly et al. 2014.
 \begin{itemize}
+\item May be biological mechanisms responsible for differences between marine and terrestrial communities.
+\note{
 \item Non-neutral model outperforms the neutral model in marine systems.
-\item Our results suggest marine systems more generally approximated by non-neutral dynamics; terrestrial systems more variable between neutral and non-neutral dynamics.
+\item Our results suggest marine systems more generally approximated by non-neutral dynamics; terrestrial systems more variable between neutral and non-neutral dynamics.}
 \end{itemize}
 \end{itemize}
 \end{frame}
@@ -661,19 +761,19 @@ Challenges in identifying mechanism among datasets.
 \end{itemize} 
 \end{frame}
 
-\begin{frame}[t]{}
-\frametitle{Conclusions}\
-~\\ 
-\begin{large}
-Predictive macroecology
-\end{large}
-~\\ 
-\begin{itemize}
-\item Traditional approach is pattern to process to prediction.
-\item May be possible to generate robust ecological predictions from general patterns.
-\item Process and prediction may be two separate research goals.
-\end{itemize} 
-\end{frame}
+%\begin{frame}[t]{}
+%\frametitle{Conclusions}\
+%~\\ 
+%\begin{large}
+%Predictive macroecology
+%\end{large}
+%~\\ 
+%\begin{itemize}
+%\item Traditional approach is pattern to process to prediction.
+%\item May be possible to generate robust ecological predictions from general patterns.
+%\item Process and prediction may be two separate research goals.
+%\end{itemize} 
+%\end{frame}
 
 \section{Acknowledgements}
 \begin{frame}[t]{}
@@ -725,12 +825,14 @@ Disability accommodations\\
 ~\\
 \begin{itemize}
 \item Remote access \& participation.\\
+\item Accessibility information
+\note{
 \item Computational tools \& tricks.
 \begin{itemize}
 \item Version control (GitHub).
 \item Publicly available data.
 \item Programming skills (data manipulation \& analysis).
-\end{itemize}
+\end{itemize}}
 \end{itemize}
 \end{frame}
 
