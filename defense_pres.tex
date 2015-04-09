@@ -195,20 +195,6 @@ Pattern\\
 %Darwin, 1859.\\
 %\end{frame}
 
-
-\subsection{Challenges of macroecology}
-\begin{frame}[t]
-\frametitle{Challenges of macroecology}
-\begin{itemize}
-\item Studies performed with a limited number of large datasets.
-\item Lack of identification of pattern generating mechanisms.
-\end{itemize}
-\note{
-Taxonomic and ecosystem limitations in datasets, e.g.North American terrestrial bias.}
-\end{frame}
-
-
-
 \begin{frame}
 \frametitle{Pattern \& Process;\\ Signal \& Noise}
 \begin{center}
@@ -226,27 +212,43 @@ Prediction
 \end{Huge}}
 \end{frame}
 
+%\subsection{Challenges of macroecology}
+%\begin{frame}[t]
+%\frametitle{Challenges of macroecology}
+%\begin{itemize}
+%\item Studies performed with a limited number of large datasets.
+%\item Lack of identification of pattern generating mechanisms.
+%\end{itemize}
+%\note{
+%Taxonomic and ecosystem limitations in datasets, e.g.North American terrestrial bias.}
+%\end{frame}
 
-\subsection{Best practices}
-\begin{frame}[t]
-\frametitle{Best practice recommendations}
-\begin{itemize}
-\item Test multiple models with consistent statistical approach.
-\item Test with multiple taxonomic groups/ecosystems.  
-\end{itemize}
-\vspace{-7pt}
-\begin{center}
-\includegraphics[scale=.2]{./sad-data/dissertation/SpatialTaxonomic.png}
-\end{center}
-\end{frame}
+%\subsection{Best practices}
+%\begin{frame}[t]
+%\frametitle{Best practice recommendations}
+%\begin{itemize}
+%\item Test multiple models with consistent statistical approach.
+%\item Test with multiple taxonomic groups/ecosystems.  
+%\end{itemize}
+%\vspace{-7pt}
+%\begin{center}
+%\includegraphics[scale=.2]{./sad-data/dissertation/SpatialTaxonomic.png}
+%\end{center}
+%\end{frame}
 
 \section{Outline}
 \begin{frame}
-
+\frametitle{Data-intensive ecology}
+\begin{itemize}
+\item Leveraging existing ecological data.
+\item The species abundance distribution.
+\item The statistical approach.
+\item The mechanistic approach.
+\end{itemize}
 \end{frame}
 
 
-\section{Data}
+\section{Leveraging existing ecological data}
 \subsection{Current Data}
 \begin{frame}[t]
 \frametitle{Current Data}
@@ -404,11 +406,6 @@ Inclusion criteria:
 \includegraphics[scale=.45]{./sad-data/dissertation/taxa_sites.png}
 \end{frame}
 
-\begin{frame}{}
-\frametitle{Abundance database}
-\includegraphics[scale=.45]{./sad-data/dissertation/num_taxa.png}
-\end{frame}
-
 \subsubsection{Data Availability}
 \begin{frame}[fragile]
 \frametitle{Data Availability}
@@ -518,9 +515,9 @@ Rosindell et al. 2011.\\
 \end{frame}
  
 
-\section{Species abundance distribution comparisons}
+\section{SAD comparisons: The statistical approach.}
 \begin{frame}
-\frametitle{SAD Comparisons}
+\frametitle{SAD comparisons: The statistical approach.}
 \begin{large}
 Most comparisons of the different models:
 \end{large}
@@ -705,9 +702,9 @@ Existing models provide equivalently good absolute fits to empirical data.
 \end{itemize}
 \end{frame}
 
-\section{Neutral analysis}
+\section{The mechanistic approach: Neutral analysis.}
 \begin{frame}
-\frametitle{Neutral Analysis}
+\frametitle{The mechanistic approach: Neutral analysis.}
 Early tests of neutral theory compared the fit of empirical species abundance distributions to the neutral prediction.\\
 ~\\
 Later tests suggested species abundance comparisons were insufficient for a rigorous test of neutrality.\\
@@ -727,6 +724,7 @@ Connolly et al. 2014 simulated neutral communities.\\
 \begin{small}
 \begin{itemize}
 \item Compared model fits of a non-neutral distribution (Poisson lognormal) to a neutral distribution (negative binomial distribution).\\
+\item Distinct abundance values a measure of power related to the number of species in a community to fit models.
 \end{itemize}
 \end{small}}
 Identified a signal of neutrality.\\
@@ -745,6 +743,7 @@ Connolly et al. 2014 identified non-neutral species abundance distributions in m
 \end{itemize}
 \end{small}}
 May be a robust method for identifying communities that exhibit non-neutrality.\\
+Untested in terrestrial systems.
 \end{frame}
 
 \begin{frame}[t]
@@ -768,18 +767,15 @@ Rosindell et al. 2011.
 
 \begin{frame}[t]
 \frametitle{Non-neutral processes}
-~\\
+\begin{center}
+\includegraphics[scale=.4]{./sad-data/dissertation/non-neutral-processes.png}\\
+\end{center}
 Many specific mechanisms, but:
 ~\\
 \begin{itemize}
 \item Shape of the abundance distribution due to differences among species.\\
 \end{itemize}
-\begin{center}
-\includegraphics[scale=.2]{./sad-data/dissertation/non-neutral-processes.png}
-\end{center}
 \end{frame}
-
-
 
 \subsection{Data & Analysis}
 \begin{frame}
@@ -822,6 +818,10 @@ Connolly et al. 2014.
 \frametitle{Neutral analysis}
 Difficult to identify a clear winning model.
 \begin{itemize}
+\item Demonstrates the importance of testing with multiple ecosystems.
+\end{itemize}
+\note{
+\begin{itemize}
 \item Results consistent with our species abundance distribution model comparisons. 
 \item Results different from Connolly et al. 2014.
 \begin{itemize}
@@ -830,7 +830,7 @@ Difficult to identify a clear winning model.
 \item Non-neutral model outperforms the neutral model in marine systems.
 \item Our results suggest marine systems more generally approximated by non-neutral dynamics; terrestrial systems more variable between neutral and non-neutral dynamics.}
 \end{itemize}
-\end{itemize}
+\end{itemize}}
 \end{frame}
 
 \section{General Conclusions}
@@ -936,6 +936,12 @@ https://trinket.io/python/2df3ea45cf
 \begin{center}
 \includegraphics[scale=.28]{../Miscellaneous/Pictures/Maps/TheMaps.jpg}
 \end{center}
+\end{frame}
+
+
+\begin{frame}{}
+\frametitle{Abundance database}
+\includegraphics[scale=.45]{./sad-data/dissertation/num_taxa.png}
 \end{frame}
 
 \end{document}
