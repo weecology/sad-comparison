@@ -72,13 +72,6 @@ Provided that:\\
 \begin{frame}
 \frametitle{Let's begin with an example...}
 \begin{center}
-\includegraphics[scale=.4]{./sad-data/dissertation/beetleabunds.png}\\
-\end{center}
-\end{frame}
-
-\begin{frame}
-\frametitle{Let's begin with an example...}
-\begin{center}
 \includegraphics[scale=.4]{./sad-data/dissertation/BeetleRAD.png}\\
 \end{center}
 \end{frame}
@@ -178,15 +171,6 @@ Pattern\\
 \end{center}
 \end{frame}
 
-\begin{frame}[t]
-\frametitle{Knowledge gaps}
-\vspace{-7pt}
-\begin{center}
-\includegraphics[scale=.45]{./sad-data/dissertation/birdmap.png}
-\end{center}
-\end{frame}
-
-
 %\subsection{Commonness & rarity}
 %\begin{frame}[t]
 %\frametitle{Commonness \& rarity}
@@ -281,7 +265,6 @@ Lots of data in the literature.\\
 Challenges of macroecology\\
 \begin{small}
 \begin{itemize}
-\item Limited number of large datasets.
 \item Lack of identification of process.
 \end{itemize}
 \end{small}
@@ -503,15 +486,6 @@ Process-based\\
 Rosindell et al. 2011.\\
 \end{tiny}
 \end{center}
-\note{
-\begin{itemize}
-\item Purely statistical (Lognormal, logseries)
-\item Branching process (Zipf)
-\item Population dynamics (Neutral theory)
-\item Niche partitioning (Geometric)
-\item Maximum entropy
-\item Feasible set/combinatorics
-\end{itemize}}
 \end{frame}
  
 
@@ -566,8 +540,12 @@ Selected five models from four classes for comparison.
 Analysis:
 \begin{itemize}
 \item Model fitting with maximum likelihood estimation.\\
+\begin{itemize}
+\item For a given model, estimates model parameters that provide the most likely characterization of the data.
+\item Best practice for fitting species abundance distributions. \begin{tiny} Matthews \& Whittaker 2014.\end{tiny}
+\end{itemize}
 ~\\
-$l_x(\theta) = \log h(x) + \log f_\theta(x)$
+%$l_x(\theta) = \log h(x) + \log f_\theta(x)$
 \end{itemize}
 \end{frame} 
 
@@ -579,7 +557,6 @@ Analysis:
 \begin{itemize}
 \item Likelihood based model selection to compare the fits of the different models.
 \begin{itemize}
-\item Assess the fit of the model without corrections for parameter number or similarity to other models.
 \item How well does the model describe the data?
 \end{itemize}
 \end{itemize}
@@ -592,10 +569,9 @@ Analysis:
 \begin{itemize}
 \item Model comparison with corrected Aikaike Information Criterion (AICc) weights.
 \begin{itemize}
-\item Assess the fit of the model correcting for parameter number and small sample size.
 \item How well does the model describe the data relative to the number of parameters?
 \end{itemize}
-\item The model with the greatest AICc weight was the "winner". 
+\item The best fitting model had the greatest AICc weight. 
 \end{itemize}
 \end{frame}
 
@@ -681,12 +657,13 @@ Existing models provide equivalently good absolute fits to empirical data.
 \begin{itemize}
 \item Models with fewer parameters perform better in AIC-based model selection.\\
 \item Logseries provides a good naive model for fitting SADs.\\
+\note{
 \begin{itemize}
 \item Produces equivalent likelihoods.
 \item Has a single fitted parameter.
 \item Easy to fit to empirical data.
 \item Best overall model.
-\end{itemize}
+\end{itemize}}
 \end{itemize}
 \end{frame}
 
@@ -703,49 +680,7 @@ Existing models provide equivalently good absolute fits to empirical data.
 \end{frame}
 
 \section{The mechanistic approach: Neutral analysis.}
-\begin{frame}
-\frametitle{The mechanistic approach: Neutral analysis.}
-Early tests of neutral theory compared the fit of empirical species abundance distributions to the neutral prediction.\\
-~\\
-Later tests suggested species abundance comparisons were insufficient for a rigorous test of neutrality.\\
-~\\
-\begin{Large}
-\emph{However...}
-\end{Large}
-\end{frame}
-
-\begin{frame}
-\frametitle{Neutral Analysis}
-Connolly et al. 2014 simulated neutral communities.\\
-\begin{center}
-\includegraphics[scale=.25]{./sad-data/dissertation/Connolly2014A.png}
-\end{center}
-\note{
-\begin{small}
-\begin{itemize}
-\item Compared model fits of a non-neutral distribution (Poisson lognormal) to a neutral distribution (negative binomial distribution).\\
-\item Distinct abundance values a measure of power related to the number of species in a community to fit models.
-\end{itemize}
-\end{small}}
-Identified a signal of neutrality.\\
-\end{frame}
-
-\begin{frame}
-\frametitle{Neutral Analysis}
-Connolly et al. 2014 identified non-neutral species abundance distributions in marine communities.\\
-\begin{center}
-\includegraphics[scale=.25]{./sad-data/dissertation/Connolly2014B.png}
-\end{center}
-\note{
-\begin{small}
-\begin{itemize}
-\item Compared model fits of a non-neutral distribution (Poisson lognormal) to a neutral distribution (negative binomial distribution).\\
-\end{itemize}
-\end{small}}
-May be a robust method for identifying communities that exhibit non-neutrality.\\
-Untested in terrestrial systems.
-\end{frame}
-
+\subsection{Neutral & non-neutral processes}
 \begin{frame}[t]
 \frametitle{Neutral processes}
 ~\\
@@ -777,6 +712,51 @@ Many specific mechanisms, but:
 \end{itemize}
 \end{frame}
 
+\subsection{Neutral Analysis}
+\begin{frame}
+\frametitle{The mechanistic approach: Neutral analysis.}
+Early tests of neutral theory compared the fit of empirical species abundance distributions to the neutral prediction.\\
+~\\
+Later tests suggested species abundance comparisons were insufficient for a rigorous test of neutrality.\\
+~\\
+\begin{Large}
+\emph{However...}
+\end{Large}
+\end{frame}
+
+\begin{frame}
+\frametitle{Neutral Analysis}
+Connolly et al. 2014 simulated neutral communities.\\
+\begin{center}
+\includegraphics[scale=.4]{./sad-data/dissertation/Connolly2014A.png}
+\end{center}
+\note{
+\begin{small}
+\begin{itemize}
+\item Compared model fits of a non-neutral distribution (Poisson lognormal) to a neutral distribution (negative binomial distribution).\\
+\item Distinct abundance values a measure of power related to the number of species in a community to fit models.
+\end{itemize}
+\end{small}}
+Identified a signal of neutrality.\\
+\end{frame}
+
+\begin{frame}
+\frametitle{Neutral Analysis}
+Connolly et al. 2014 identified non-neutral species abundance distributions in marine communities.\\
+\begin{center}
+\includegraphics[scale=.4]{./sad-data/dissertation/Connolly2014B.png}
+\end{center}
+\note{
+\begin{small}
+\begin{itemize}
+\item Compared model fits of a non-neutral distribution (Poisson lognormal) to a neutral distribution (negative binomial distribution).\\
+\end{itemize}
+\end{small}}
+May be a robust method for identifying communities that exhibit non-neutrality.\\
+Untested in terrestrial systems.
+\end{frame}
+
+
 \subsection{Data & Analysis}
 \begin{frame}
 \frametitle{Neutral Analysis}
@@ -785,7 +765,18 @@ Many specific mechanisms, but:
 \includegraphics[scale=.2]{./sad-data/dissertation/SpatialTaxonomic.png}
 \end{center}
 Used the same data and model fitting approach.\\
-Compared a non-neutral model (Poisson lognormal) to a neutral model (negative binomial).\\
+\end{frame}
+
+\begin{frame}{}
+\frametitle{Neutral Analysis}
+Non-neutral model (Poisson lognormal)\\
+\begin{itemize}
+\item Describes communities generated by non-neutral processes.
+\end{itemize}
+Neutral model (negative binomial).\\
+\begin{itemize}
+\item Describes communities generated by neutral processes.
+\end{itemize}
 \end{frame}
 
 \begin{frame}{}
@@ -795,7 +786,9 @@ Compared a non-neutral model (Poisson lognormal) to a neutral model (negative bi
 
 \begin{frame}{}
 \frametitle{Neutral Analysis}
-\includegraphics[scale=.43]{./sad-data/dissertation/Connolly2014AB.png}
+\begin{center}
+\includegraphics[scale=.43]{./sad-data/dissertation/Connolly2014B.png}
+\end{center}
 \begin{tiny}
 Connolly et al. 2014.
 \end{tiny}
@@ -820,34 +813,22 @@ Difficult to identify a clear winning model.
 \begin{itemize}
 \item Demonstrates the importance of testing with multiple ecosystems.
 \end{itemize}
-\note{
-\begin{itemize}
-\item Results consistent with our species abundance distribution model comparisons. 
-\item Results different from Connolly et al. 2014.
-\begin{itemize}
-\item May be biological mechanisms responsible for differences between marine and terrestrial communities.
-\note{
-\item Non-neutral model outperforms the neutral model in marine systems.
-\item Our results suggest marine systems more generally approximated by non-neutral dynamics; terrestrial systems more variable between neutral and non-neutral dynamics.}
-\end{itemize}
-\end{itemize}}
 \end{frame}
 
 \section{General Conclusions}
 \begin{frame}{}
 ~\\ 
-\frametitle{Conclusions}\
+\frametitle{A data-intensive approach}\
 Challenging to infer process from species abundance distributions alone.
 ~\\ 
 \begin{itemize}
-\item Multiple mechanisms proposed for each SAD formulation.
 \item Broad model categorization (i.e. neutral or non-neutral) may be more productive.
 \item May not be one single suite of processes that dominates.
 \end{itemize} 
 \end{frame}
 
 \begin{frame}[t]{}
-\frametitle{Conclusions}\
+\frametitle{A data-intensive approach}\
 ~\\ 
 Challenges in identifying mechanism among datasets.
 ~\\ 
@@ -892,9 +873,9 @@ Challenges in identifying mechanism among datasets.
 \frametitle{Acknowledgements}
 Weecologists past, present, \& future\\
 \includegraphics[scale=.3]{../Miscellaneous/Pictures/Phd/whiteboard.png}
-\begin{tiny}
-(especially Xiao Xiao \& Ken Locey (creator of the whiteboard))
-\end{tiny}
+\begin{small}
+(especially Xiao Xiao \& Ken Locey \begin{tiny}(creator of the whiteboard)\end{tiny})
+\end{small}
 \end{frame}
 
 \begin{frame}[t]{}
@@ -917,7 +898,7 @@ Disability accommodations\\
 Tea, heating pads, \& the Flint Hills of Kansas.\\
 Accessibility statement generator
 \begin{center}
-\includegraphics[scale=.4]{./sad-data/dissertation/trinket-access-generator.png}\\
+\includegraphics[scale=.35]{./sad-data/dissertation/trinket-access-generator.png}\\
 https://trinket.io/python/2df3ea45cf
 \end{center}
 \note{
@@ -937,7 +918,6 @@ https://trinket.io/python/2df3ea45cf
 \includegraphics[scale=.28]{../Miscellaneous/Pictures/Maps/TheMaps.jpg}
 \end{center}
 \end{frame}
-
 
 \begin{frame}{}
 \frametitle{Abundance database}
