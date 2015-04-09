@@ -107,6 +107,21 @@ Species abundance distribution (SAD)}
 
 \begin{frame}
 \frametitle{Pattern \& process.}
+\note{
+Few common species.
+Many rare species.
+One of the most fundamental and ubiquitous patterns in ecology.}
+Species abundance distribution (SAD)
+\begin{itemize}
+\item Reveals pattern-generating mechanisms of community structure.
+\end{itemize}
+\begin{center}
+\includegraphics[scale=.4]{./sad-data/dissertation/realistic_even_RAD.png}\\
+\end{center}
+\end{frame}
+
+\begin{frame}
+\frametitle{Pattern \& process.}
 \begin{center}
 \includegraphics[scale=.35]{./sad-data/dissertation/PatternProcess_example_text.png}\\
 \end{center}
@@ -114,14 +129,37 @@ Species abundance distribution (SAD)}
 
 \begin{frame}
 \frametitle{Patterns \& process.}
-\begin{huge}
+\begin{Large}
 \begin{center}
 Process\\ 
 \includegraphics[scale=.35]{./sad-data/dissertation/ProcessesPattern.png}\\
 Pattern\\
 \end{center}
-\end{huge}
+\end{Large}
 \end{frame}
+
+\subsection{What is macroecology?}
+\begin{frame}[t]
+\frametitle{Macroecology}
+\normalsize One approach for identifying general ecological patterns \& processes.
+\begin{center}
+\includegraphics[scale=.30]{./sad-data/dissertation/SpatialTaxonomic.png}
+\end{center}
+\note{
+\begin{itemize}
+\item Data intensive.
+\item Large scales.
+\end{itemize}
+\begin{itemize}
+\item Spatial
+\item Temporal
+\item Taxonomic
+\end{itemize}
+\begin{itemize}
+\item Search for general patterns \& processes.
+\end{itemize}}
+\end{frame}
+
 
 \begin{frame}[t]
 \frametitle{Traditional approach}
@@ -148,44 +186,6 @@ Pattern\\
 \end{center}
 \end{frame}
 
-\subsection{What is macroecology?}
-\begin{frame}[t]
-\frametitle{Macroecology}
-\normalsize One approach for identifying general ecological patterns \& processes.
-\begin{center}
-\includegraphics[scale=.30]{./sad-data/dissertation/SpatialTaxonomic.png}
-\end{center}
-\note{
-\begin{itemize}
-\item Data intensive.
-\item Large scales.
-\end{itemize}
-\begin{itemize}
-\item Spatial
-\item Temporal
-\item Taxonomic
-\end{itemize}
-\begin{itemize}
-\item Search for general patterns \& processes.
-\end{itemize}}
-\end{frame}
-
-\begin{frame}
-\frametitle{Pattern \& Process;\\ Signal \& Noise}
-\begin{center}
-\includegraphics[scale=.4]{./sad-data/dissertation/SignalNoise.png}
-\end{center}
-\note{
-\begin{Huge}
-\begin{center}
-Pattern\\ 
-\MVArrowDown{}\\  
-Process\\  
-\MVArrowDown{}\\
-Prediction
-\end{center}
-\end{Huge}}
-\end{frame}
 
 %\subsection{Commonness & rarity}
 %\begin{frame}[t]
@@ -209,6 +209,24 @@ Taxonomic and ecosystem limitations in datasets, e.g.North American terrestrial 
 
 
 
+\begin{frame}
+\frametitle{Pattern \& Process;\\ Signal \& Noise}
+\begin{center}
+\includegraphics[scale=.4]{./sad-data/dissertation/SignalNoise.png}
+\end{center}
+\note{
+\begin{Huge}
+\begin{center}
+Pattern\\ 
+\MVArrowDown{}\\  
+Process\\  
+\MVArrowDown{}\\
+Prediction
+\end{center}
+\end{Huge}}
+\end{frame}
+
+
 \subsection{Best practices}
 \begin{frame}[t]
 \frametitle{Best practice recommendations}
@@ -222,7 +240,10 @@ Taxonomic and ecosystem limitations in datasets, e.g.North American terrestrial 
 \end{center}
 \end{frame}
 
+\section{Outline}
+\begin{frame}
 
+\end{frame}
 
 
 \section{Data}
@@ -673,22 +694,14 @@ Existing models provide equivalently good absolute fits to empirical data.
 \end{frame}
 
 \begin{frame}[t]
-\frametitle{SAD Comparisons}
-Identifying pattern generating mechanisms:
-\begin{itemize}
-\item Compare predictions of different models using multiple macroecological patterns simultaneously.\\
-\end{itemize}
-\begin{center}  
-\includegraphics[scale=.4]{./sad-data/dissertation/MacroecologicalPatterns.png}
+\frametitle{Identifying process:}
+\vspace{-7pt}
+\begin{center}
+\includegraphics[scale=.3]{./sad-data/dissertation/SpatialTaxonomic.png}
 \end{center}
-\end{frame}
-
-\begin{frame}[t]
-\frametitle{SAD Comparisons}
-Identifying pattern generating mechanisms:
 \begin{itemize}
 \item Examine scale dependence of pattern.
-\item More general approach to process.
+\item More general approach to process?
 \end{itemize}
 \end{frame}
 
@@ -706,9 +719,24 @@ Later tests suggested species abundance comparisons were insufficient for a rigo
 
 \begin{frame}
 \frametitle{Neutral Analysis}
+Connolly et al. 2014 simulated neutral communities.\\
+\begin{center}
+\includegraphics[scale=.25]{./sad-data/dissertation/Connolly2014A.png}
+\end{center}
+\note{
+\begin{small}
+\begin{itemize}
+\item Compared model fits of a non-neutral distribution (Poisson lognormal) to a neutral distribution (negative binomial distribution).\\
+\end{itemize}
+\end{small}}
+Identified a signal of neutrality.\\
+\end{frame}
+
+\begin{frame}
+\frametitle{Neutral Analysis}
 Connolly et al. 2014 identified non-neutral species abundance distributions in marine communities.\\
 \begin{center}
-\includegraphics[scale=.25]{./sad-data/dissertation/Connolly2014AB.png}
+\includegraphics[scale=.25]{./sad-data/dissertation/Connolly2014B.png}
 \end{center}
 \note{
 \begin{small}
@@ -720,9 +748,9 @@ May be a robust method for identifying communities that exhibit non-neutrality.\
 \end{frame}
 
 \begin{frame}[t]
-\frametitle{Neutral theory}
+\frametitle{Neutral processes}
 ~\\
-Many formulations, but:
+Many formulations of neutral theory, but:
 ~\\
 \begin{itemize}
 \item Species \& individuals ecologically \& demographically equivalent.\\
@@ -736,6 +764,19 @@ Rosindell et al. 2011.
 \item Species \& individuals ecologically \& demographically equivalent.\\
 \item Stochastic variation in birth, death, immigration, \& speciation results in species abundance differences.
 \end{itemize}}
+\end{frame}
+
+\begin{frame}[t]
+\frametitle{Non-neutral processes}
+~\\
+Many specific mechanisms, but:
+~\\
+\begin{itemize}
+\item Shape of the abundance distribution due to differences among species.\\
+\end{itemize}
+\begin{center}
+\includegraphics[scale=.2]{./sad-data/dissertation/non-neutral-processes.png}
+\end{center}
 \end{frame}
 
 
