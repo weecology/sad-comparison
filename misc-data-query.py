@@ -19,7 +19,7 @@ con.text_factory = str
 #Query for communities that are in the misc main database and have integer abundances
 #Query for taxa
 taxa = cur.execute("""SELECT DISTINCT Class FROM miscabundancedb_main
-                      WHERE Class IS NOT 'Chondrichthyes' AND Class IS NOT 'Aves'
+                      WHERE Class IS NOT 'Chondrichthyes' AND Class IS NOT 'Aves' AND Class is NOT ''
                       ORDER BY Class""") #Excludes Chondrichthyes because that class has too few species. (2, for 2 sites), and Aves, because it has no integer abundance data."
 taxa = cur.fetchall()
 
@@ -35,7 +35,7 @@ con.close()
 
 for taxa_class in taxa:
     taxon_str = str(taxa_class)
-    taxon = findall(r"\'([A-Za-z]+)\'", taxon_str) #Strips out just the taxon name
+    taxon = re.findall(r"\'([A-Za-z]+)\'", taxon_str) #Strips out just the taxon name
     #Run through communities, pull out all data that matches the taxon and output as a .csv
     #Output abundances
     output_file = './sad-data/chapter1/' + taxon[0] + '_spab.csv'
