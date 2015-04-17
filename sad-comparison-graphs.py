@@ -6,6 +6,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import sqlite3 as dbapi
 import pandas as pd
+import sqlalchemy
 
 # Set up database capabilities 
 # Set up ability to query data
@@ -1268,6 +1269,7 @@ for i, model in enumerate(models):
     plt.ylabel(model + " likelihood")
 plt.xlabel("Log-series likelihood")
 plt.savefig("./sad-data/chapter1/likelihoods_one_to_one.png")
+plt.close()
 
 
 # Percent null likelihoods
