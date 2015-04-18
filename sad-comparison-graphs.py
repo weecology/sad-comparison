@@ -1249,16 +1249,12 @@ fileName = "./sad-data/chapter1/zipf_relative.png"
 plt.savefig(fileName, format="png" )
 plt.close()
 
-# Close connection
-con.close()
-
 # 1:1 plots showing log-series likelihoods vs those of other models
 
 plt.figure()
-engine = sqlalchemy.create_engine('sqlite:///sad-data/chapter1/SummarizedResults.sqlite')
-likelihood_data = pd.read_sql_query("""SELECT dataset_code, site, model_name, value
+likelihood_data = pd.read_sql("""SELECT dataset_code, site, model_name, value
                                        FROM RawResults
-                                       WHERE value_type = 'likelihood'""", engine)
+                                       WHERE value_type = 'likelihood'""", con)
 pivoted_likelihoods = pd.pivot_table(likelihood_data, values='value',
                                      index=['dataset_code', 'site'],
                                      columns=['model_name'])
@@ -1273,6 +1269,7 @@ for i, model in enumerate(models):
     plt.ylabel(model + " likelihood")
 plt.xlabel("Log-series likelihood")
 plt.savefig("./sad-data/chapter1/likelihoods_one_to_one.png")
+plt.close()
 
 
 # Percent null likelihoods
@@ -1283,3 +1280,6 @@ num_sites_by_set_and_model = likelihood_data.groupby(['dataset_code', 'model_nam
 percent_null = null_likes_by_set_and_model / num_sites_by_set_and_model * 100
 print("Data on percent of null likelihoods by model and dataset:\n")
 print percent_null['site'].dropna()
+
+# Close connection
+con.close()
