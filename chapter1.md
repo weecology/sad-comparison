@@ -15,7 +15,7 @@ Here, we evaluate the performance of five of the most widely used models for the
 
 ### Data
 
-We compiled data from citizen science projects, government surveys, and literature mining to produce a dataset with 16,218 communities, from nine taxonomic groups, representing nearly 50 million individual terrestrial, aquatic, and marine organisms. Data for trees, birds, butterflies and mammals was compiled by White et al. [-@white2012] from six data sources: the US Forest Service Forest Inventory and Analysis [FIA; @fia], the North American Butterfly Associations North American Butterfly Count [NABC; @naba], the Mammal Community Database [MCDB; @thibault2011], Alwyn Gentry's Forest Transect Data Set [Gentry; @phillips2002], the Audubon Society Christmas Bird Count [CBC; @cbc], and the US Geological Survey's North American Breeding Bird Survey [BBS; @pardieck2014]. The publicly available datasets (FIA, MCDB, Gentry, and BBS) were acquired using the EcoData Retriever [@morris2013]. Details of the treatment of these datasets can be found in Appendix A of White et al. [-@white2012]. Data on Actinopterygii, Reptilia, Coleoptera, Arachnida, and Amphibia, were mined from literature by Baldridge (see details in Chapter 1 of this dissertation).
+We compiled data from citizen science projects, government surveys, and literature mining to produce a dataset with 16,218 communities, from nine taxonomic groups, representing nearly 50 million individual terrestrial, aquatic, and marine organisms. Data for trees, birds, butterflies and mammals was compiled by White et al. [-@white2012] from six data sources: the US Forest Service Forest Inventory and Analysis [FIA; @fia], the North American Butterfly Associations North American Butterfly Count [NABC; @naba], the Mammal Community Database [MCDB; @thibault2011], Alwyn Gentry's Forest Transect Data Set [Gentry; @phillips2002], the Audubon Society Christmas Bird Count [CBC; @cbc], and the US Geological Survey's North American Breeding Bird Survey [BBS; @pardieck2014]. The publicly available datasets (FIA, MCDB, Gentry, and BBS) were acquired using the EcoData Retriever [@morris2013]. Details of the treatment of these datasets can be found in Appendix A of White et al. [-@white2012]. Data on Actinopterygii, Reptilia, Coleoptera, Arachnida, and Amphibia, were mined from literature by Baldridge and are publicly available [@Baldridge2013].
 
 <!--
 Add note about not using Gentry sites 102 and 179 including detailed description of why we didn't use them.
@@ -31,11 +31,11 @@ Table 1: Details of datasets used to evaluate the form of the species-abundance 
 | Forest Inventory Analysis            	| FIA          	| Public                               	|220             	| @fia                   	|
 | Mammal Community Database            	| MCDB         	| Public                               	|103             	| @thibault2011                      	|
 | North American Butterfly Count       	| NABA         	| Private  	|400             	| @naba 	|
-| Actinopterygii      	                | Actinopterygii| Public  	|161             	| this dissertation	|
-| Reptilia      	                    | Reptilia      | Public  	|138            	| this dissertation 	|
-| Amphibia      	                    | Amphibia 	    | Public  	|43             	| this dissertation 	|
-| Coleoptera      	                    | Coleoptera    | Public  	|5             	| this dissertation 	|
-| Arachnida      	                    | Arachnida     | Public  	|25             	| this dissertation 	|
+| Actinopterygii      	                | Actinopterygii| Public  	|161             	| @Baldridge2013	|
+| Reptilia      	                    | Reptilia      | Public  	|138            	| @Baldridge2013 	|
+| Amphibia      	                    | Amphibia 	    | Public  	|43             	| @Baldridge2013	|
+| Coleoptera      	                    | Coleoptera    | Public  	|5             	| @Baldridge2013 	|
+| Arachnida      	                    | Arachnida     | Public  	|25             	| @Baldridge2013 	|
 
 All abundances in the compiled datasets were counts of individuals.
 
