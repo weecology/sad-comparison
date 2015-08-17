@@ -31,11 +31,11 @@ Table 1: Details of datasets used to evaluate the form of the species-abundance 
 | Forest Inventory Analysis            	| FIA          	| Public                               	|220             	| @fia                   	|
 | Mammal Community Database            	| MCDB         	| Public                               	|103             	| @thibault2011                      	|
 | North American Butterfly Count       	| NABA         	| Private  	|400             	| @naba 	|
-| Actinopterygii      	                | Actinopterygii| Public  	|161             	| this dissertation	|
-| Reptilia      	                    | Reptilia      | Public  	|138            	| this dissertation 	|
-| Amphibia      	                    | Amphibia 	    | Public  	|43             	| this dissertation 	|
-| Coleoptera      	                    | Coleoptera    | Public  	|5             	| this dissertation 	|
-| Arachnida      	                    | Arachnida     | Public  	|25             	| this dissertation 	|
+| Actinopterygii      	                | Actinopterygii| Public  	|161             	| @Baldridge2013	|
+| Reptilia      	                    | Reptilia      | Public  	|138            	| @Baldridge2013 	|
+| Amphibia      	                    | Amphibia 	    | Public  	|43             	| @Baldridge2013	|
+| Coleoptera      	                    | Coleoptera    | Public  	|5             	| @Baldridge2013 	|
+| Arachnida      	                    | Arachnida     | Public  	|25             	| @Baldridge2013 	|
 
 All abundances in the compiled datasets were counts of individuals.
 
