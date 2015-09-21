@@ -21,8 +21,8 @@ def filter_data_minS(data, minS):
     return data.groupby(['dataset', 'site_ID']).filter(lambda x: len(x) >= minS)
 
 
-datasets = ['Actinopterygii', 'Amphibia', 'Arachnida', 'bbs', 'cbc', 'Coleoptera',
-            'fia', 'gentry', 'mcdb', 'naba', 'Reptilia']
+datasets = ['Actinopterygii_morphos', 'Amphibia', 'Arachnida_morphos', 'bbs', 'cbc', 'Coleoptera',
+            'fia', 'gentry', 'mcdb', 'naba', 'Reptilia_morphos']
 data = import_data(datasets, './sad-data/chapter3/')
 data = filter_data_minS(data, minS=5)
 data_by_dataset = data.groupby(['dataset'])
