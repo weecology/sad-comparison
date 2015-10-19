@@ -1,4 +1,4 @@
-#Chapter 1 - An extensive comparison of species-abundance distribution models
+An extensive comparison of species-abundance distribution models
 
 # Introduction
 
