@@ -1,5 +1,7 @@
 An extensive comparison of species-abundance distribution models
 
+Elita Baldridge, *elita.baldridge@weecology.org, Utah State University*, Xiao Xiao, *Utah State University, University of Maine*; and Ethan P. White, *Utah State University, University of Florida* 
+
 # Introduction
 
 The species abundance distribution (SAD) describes the full distribution of commonness and rarity in ecological systems. It is one of the most fundamental and ubiquitous patterns in ecology, and exhibits a consistent general form with many rare species and few abundant species occurring within a community. This general shape is often referred to as a hollow curve distribution.
