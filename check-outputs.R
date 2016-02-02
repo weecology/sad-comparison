@@ -1,8 +1,10 @@
 # This script tests two things:
+#
 # 1) Does sad-comparisons.py produce the correct values for site, N, and S
 # 2) Do the negative binomial likelihoods match expectations (e.g. are they in the correct order
 #    and approximately correct)
-
+#
+# If the script runs without errors, then it didn't find any mistakes
 
 library(dplyr)
 
@@ -57,4 +59,4 @@ for (site in my_df$site) {
 # expectations
 # Numerical tolerance is a bit lax, but I attribute that to my own carelessness
 # with rounding error in `nb_nll`, not to problems with the Python code
-all.equal(my_ll, ll$likelihood_negbin, check.attributes = FALSE, tol = 1E-5)
+stopifnot(all.equal(my_ll, ll$likelihood_negbin, check.attributes = FALSE, tol = 1E-5))
