@@ -38,12 +38,12 @@ nb_nll = function(x, log_size, log_mu) {
   size = exp(log_size)
   mu = exp(log_mu)
   
-  p0 = dnbinom(0, size = size, mu = mu)
-  full_l = dnbinom(x, size = size, mu = mu)
+  p0 = dnbinom(0, size = size, mu = mu, log = FALSE)
+  full_ll = dnbinom(x, size = size, mu = mu, log = TRUE)
   
   # Would have better numerical precision if I used logs throughout, but this is
   # good enough as a quick check
-  -sum(log(full_l / (1 - p0)))
+  -sum(full_ll - log(1 - p0))
 }
 
 my_ll = structure(rep(NA, nrow(my_df)), names = my_df$site)
@@ -65,8 +65,9 @@ for (site in my_df$site) {
 
 # Assert that the negative binomial likelihoods from the Python code match 
 # expectations
-# Numerical tolerance is a bit lax, but I attribute that to my own carelessness
-# with rounding error in `nb_nll`, not to problems with the Python code
+# Numerical tolerance is a bit lax, but I attribute that to minor differences in
+# which negative binomial parameter values were found by the optimizer for the 
+# MLE, rather than to differences in the log-likelihood code.
 stopifnot(all.equal(my_ll, ll$likelihood_negbin, check.attributes = FALSE, tol = 1E-5))
 
 
