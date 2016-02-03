@@ -2,7 +2,7 @@ from __future__ import print_function
 import os
 
 
-datasets = ['bbs', 'mcdb']
+datasets = ['bbs', 'cbc', 'fia', 'gentry', 'mcdb', 'naba']
 
 print('checking outputs:\n')
 
