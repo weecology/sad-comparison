@@ -5,12 +5,20 @@
 #    and approximately correct)
 #
 # If the script runs without errors, then it didn't find any mistakes
+#
+# It should be called from check.py
 
-library(dplyr)
 
-d = read.csv("sad-data/mcdb_spab.csv", skip = 2, header = FALSE)
+id = commandArgs(TRUE)
+
+suppressPackageStartupMessages(
+  library(dplyr, verbose = FALSE, quietly = TRUE)  
+)
+
+
+d = read.csv(paste0("sad-data/", id, "_spab.csv"), skip = 2, header = FALSE)
 colnames(d) = c('site','year','sp','ab')
-ll = read.csv("sad-data/mcdb_likelihoods.csv") %>% arrange(site)
+ll = read.csv(paste0("sad-data/", id, "_likelihoods.csv")) %>% arrange(site)
 
 cutoff = 9 
 
@@ -60,3 +68,6 @@ for (site in my_df$site) {
 # Numerical tolerance is a bit lax, but I attribute that to my own carelessness
 # with rounding error in `nb_nll`, not to problems with the Python code
 stopifnot(all.equal(my_ll, ll$likelihood_negbin, check.attributes = FALSE, tol = 1E-5))
+
+
+cat("  no problems found with output from ", id, "\n")
