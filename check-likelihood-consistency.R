@@ -2,10 +2,18 @@
 # and the relative likelihood data file, then compares them to make sure they're
 # consistent with one another and with the degrees of freedom vector k.
 # Any inconsistencies should trigger an error when the script is run.
+# It should be called from check.py
 
-likelihoods = read.csv("sad-data/mcdb_likelihoods.csv")
-AICc = read.csv("sad-data/mcdb_dist_test.csv")
-relative = read.csv("sad-data/mcdb_relative_L.csv")
+
+id = commandArgs(TRUE)
+
+make_filename = function(id, value) {
+  paste0("sad-data/", id, value)
+}
+
+likelihoods = read.csv(make_filename(id, "_likelihoods.csv"))
+AICc = read.csv(make_filename(id, "_dist_test.csv"))
+relative = read.csv(make_filename(id, "_relative_L.csv"))
 
 k = c(logseries = 1, pln = 2, negbin = 2, geometric = 1, zipf = 1)
 S = AICc$S
@@ -59,3 +67,5 @@ my_aicc_weights = exp(-1/2 * my_delta_aicc) / rowSums(exp(-1/2 * my_delta_aicc))
 stopifnot(
   all.equal(my_aicc_weights, as.matrix(AICc), check.attributes = FALSE)
 )
+
+cat("  no problems found with likelihood consistency from ", id, "\n")
