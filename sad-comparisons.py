@@ -158,26 +158,23 @@ def model_comparisons(raw_data, dataset_name, data_dir, cutoff = 9):
     f3.close()           
 
 
-""" Function to see which predicted model fits best with the empirical data for each community. """
-
-""" Plotting functions."""
-
-# Set up analysis parameters
-analysis_ext = '_spab.csv' # Extension for raw species abundance files
-
-data_dir = input("Please provide the path to the data directory. ")
-if not data_dir:
-    data_dir = './sad-data/chapter1/' # path to data directory
-
-datasets = input("Please provide a list of dataset ID codes. ")
-if not datasets:
-    datasets = ['bbs', 'cbc', 'fia', 'gentry', 'mcdb', 'naba'] # Dataset ID codes
-
-
-# Starts actual analyses for each dataset in turn.
-for dataset in datasets:
-    datafile = data_dir + dataset + analysis_ext
-        
-    raw_data = import_abundance(datafile) # Import data
-
-    model_comparisons(raw_data, dataset, data_dir, cutoff = 9) # Run analyses on data
+if __name__ == '__main__':
+    # Set up analysis parameters
+    analysis_ext = '_spab.csv' # Extension for raw species abundance files
+    
+    data_dir = input("Please provide the path to the data directory. ")
+    if not data_dir:
+        data_dir = './sad-data/chapter1/' # path to data directory
+    
+    datasets = input("Please provide a list of dataset ID codes. ")
+    if not datasets:
+        datasets = ['bbs', 'cbc', 'fia', 'gentry', 'mcdb', 'naba'] # Dataset ID codes
+    
+    
+    # Starts actual analyses for each dataset in turn.
+    for dataset in datasets:
+        datafile = data_dir + dataset + analysis_ext
+            
+        raw_data = import_abundance(datafile) # Import data
+    
+        model_comparisons(raw_data, dataset, data_dir, cutoff = 9) # Run analyses on data

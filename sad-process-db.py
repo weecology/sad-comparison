@@ -100,60 +100,61 @@ def process_results(data_dir, dataset_name, results, value_type):
         
     return processed_results   
 
-# Set up analysis parameters
-results_ext = '_dist_test.csv' # Extension for raw model AICc results files
-likelihood_ext = '_likelihoods.csv' # Extension for raw model likelihood files
-relative_ll_ext = '_relative_L.csv' # Extenstion for raw model relative likelihood files
-database_name = input("Please provide the name of the output database. ")
-
-data_dir = input("Please provide the path to the data directory. ")
-if not data_dir:
-    data_dir = './sad-data/chapter1/' # path to data directory
-
-
-datasets = input("Please provide a list of dataset ID codes. ")
-if not datasets:
-    datasets = ['bbs', 'cbc', 'fia', 'gentry', 'mcdb', 'naba', 'Reptilia', 'Coleoptera', 'Arachnida', 'Amphibia', 'Actinopterygii'] # Dataset ID codes
-
-# Asks for toggle variable so I don't have to rerun all the setup if it is already processed.
-needs_processing = input("Data needs to be processed into an sqlite database, True or False?  ")  
-
-# Starts actual processing for each set of results in turn.
-if needs_processing == True:
-    # Set up database capabilities 
-    # Set up ability to query data
-    database = data_dir + database_name
-    con = dbapi.connect(database)
-    cur = con.cursor()
+if __name__ == '__main__':
+    # Set up analysis parameters
+    results_ext = '_dist_test.csv' # Extension for raw model AICc results files
+    likelihood_ext = '_likelihoods.csv' # Extension for raw model likelihood files
+    relative_ll_ext = '_relative_L.csv' # Extenstion for raw model relative likelihood files
+    database_name = input("Please provide the name of the output database. ")
     
-    # Switch con data type to string
-    con.text_factory = str
-    drop_tables = input("Database needs to be rebuilt, True or False?  ")
-    if drop_tables == True:
-        cur.execute("""DROP TABLE IF EXISTS ResultsWin""")
-        cur.execute("""DROP TABLE IF EXISTS RawResults""")
-        con.commit()
-        
-        
-    for dataset in datasets:
-        datafile = data_dir + dataset + results_ext
-        datafile2 = data_dir + dataset + likelihood_ext
-        datafile3 = data_dir + dataset + relative_ll_ext
-        
-        raw_results = import_results(datafile) # Import AICc weight data
-        
-        raw_results_likelihood = import_results(datafile2) # Import log-likelihood data
-        
-        raw_results_relative_ll = import_results(datafile3) #Import relative likelihood data
-
-        winning_model(data_dir, dataset, raw_results) # Finds the winning model for each site
-        
-        process_results(data_dir, dataset, raw_results, 'AICc weight') #Turns the raw results into a database.
-        process_results(data_dir, dataset, raw_results_likelihood, 'likelihood') #Turns the raw results into a database.
-        process_results(data_dir, dataset, raw_results_relative_ll, 'relative likelihood') #Turns the raw results into a database.
-        
+    data_dir = input("Please provide the path to the data directory. ")
+    if not data_dir:
+        data_dir = './sad-data/chapter1/' # path to data directory
     
-    #Close connection to database
-    con.close()
     
-    print("Database complete.")
+    datasets = input("Please provide a list of dataset ID codes. ")
+    if not datasets:
+        datasets = ['bbs', 'cbc', 'fia', 'gentry', 'mcdb', 'naba', 'Reptilia', 'Coleoptera', 'Arachnida', 'Amphibia', 'Actinopterygii'] # Dataset ID codes
+    
+    # Asks for toggle variable so I don't have to rerun all the setup if it is already processed.
+    needs_processing = input("Data needs to be processed into an sqlite database, True or False?  ")  
+    
+    # Starts actual processing for each set of results in turn.
+    if needs_processing == True:
+        # Set up database capabilities 
+        # Set up ability to query data
+        database = data_dir + database_name
+        con = dbapi.connect(database)
+        cur = con.cursor()
+        
+        # Switch con data type to string
+        con.text_factory = str
+        drop_tables = input("Database needs to be rebuilt, True or False?  ")
+        if drop_tables == True:
+            cur.execute("""DROP TABLE IF EXISTS ResultsWin""")
+            cur.execute("""DROP TABLE IF EXISTS RawResults""")
+            con.commit()
+            
+            
+        for dataset in datasets:
+            datafile = data_dir + dataset + results_ext
+            datafile2 = data_dir + dataset + likelihood_ext
+            datafile3 = data_dir + dataset + relative_ll_ext
+            
+            raw_results = import_results(datafile) # Import AICc weight data
+            
+            raw_results_likelihood = import_results(datafile2) # Import log-likelihood data
+            
+            raw_results_relative_ll = import_results(datafile3) #Import relative likelihood data
+    
+            winning_model(data_dir, dataset, raw_results) # Finds the winning model for each site
+            
+            process_results(data_dir, dataset, raw_results, 'AICc weight') #Turns the raw results into a database.
+            process_results(data_dir, dataset, raw_results_likelihood, 'likelihood') #Turns the raw results into a database.
+            process_results(data_dir, dataset, raw_results_relative_ll, 'relative likelihood') #Turns the raw results into a database.
+            
+        
+        #Close connection to database
+        con.close()
+        
+        print("Database complete.")
