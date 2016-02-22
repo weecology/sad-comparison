@@ -149,9 +149,9 @@ def model_comparisons(raw_data, dataset_name, data_dir, cutoff = 9):
             results3 = [[site, S, N] + relative_likelihoods_output]
                                         
             # Save results to a csv file:
-            output1.writerow(results1)
-            output2.writerow(results2)
-            output3.writerow(results3)
+            output1.writerows(results1)
+            output2.writerows(results2)
+            output3.writerows(results3)
     
     f1.close()
     f2.close()
