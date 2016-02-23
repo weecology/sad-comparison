@@ -96,7 +96,6 @@ def model_comparisons(raw_data, dataset_name, data_dir, cutoff = 9):
             # Poisson lognormal
             mu, sigma = md.pln_solver(subabundance)
             L_pln = md.pln_ll(subabundance, mu,sigma) # Log-likelihood of Poisson lognormal
-            pln_blank = 0
             AICc_pln = macroecotools.AICc(k2, L_pln, S) # AICc Poisson lognormal
             relative_ll_pln = macroecotools.AICc(k1, L_pln, S) #Relative likelihood, Poisson lognormal
             # Add to AICc list
@@ -107,7 +106,6 @@ def model_comparisons(raw_data, dataset_name, data_dir, cutoff = 9):
             # Negative binomial
             n0, p0 = md.nbinom_lower_trunc_solver(subabundance)
             L_negbin = md.nbinom_lower_trunc_ll(subabundance, n0, p0) # Log-likelihood of negative binomial
-            negbin_blank = 0
             AICc_negbin = macroecotools.AICc(k2, L_negbin, S)# AICc negative binomial
             relative_ll_negbin = macroecotools.AICc(k1, L_negbin, S) # Relative log-likelihood of negative binomial
             # Add to AICc list
@@ -136,19 +134,7 @@ def model_comparisons(raw_data, dataset_name, data_dir, cutoff = 9):
             
             #Convert relative likelihoods to list
             relative_likelihoods_output = relative_likelihoods.tolist() 
-            
-            # Inserts a blank in the output if the Poisson lognormal returned -inf
-            if pln_blank == 1:
-                weights_output.insert(1, '')
-                likelihood_list.insert(1, '')
-                relative_likelihoods_output.insert(1, '')
-            
-            # Inserts a blank in the output if the negative binomial exceeded the max number of iterations
-            if negbin_blank == 1:
-                weights_output.insert(2, '')
-                likelihood_list.insert(2, '')
-                relative_likelihoods_output.insert(2, '')
-                                    
+                                                
             # Format results for output
             for weight in weights_output:
                 results1 = [[site, S, N] + weights_output]
