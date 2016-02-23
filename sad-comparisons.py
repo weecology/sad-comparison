@@ -3,6 +3,10 @@
 To run this code:
 
 python sad-comparisons.py
+
+To use a non-standard data directory:
+
+python sad-comparisons.py /path/to/data_dir
 This code depends on the most recent version of the macroecotools Python
 module, which can be installed directly from github using pip:
 
@@ -169,14 +173,15 @@ if __name__ == '__main__':
     # Set up analysis parameters
     analysis_ext = '_spab.csv' # Extension for raw species abundance files
     
-    data_dir = input("Please provide the path to the data directory. ")
-    if not data_dir:
-        data_dir = './sad-data/chapter1/' # path to data directory
-    
     datasets = input("Please provide a list of dataset ID codes. ")
     if not datasets:
         datasets = ['bbs', 'cbc', 'fia', 'gentry', 'mcdb', 'naba'] # Dataset ID codes
     
+
+    if len(sys.argv) > 1:
+        data_dir = sys.arv[1]
+    else:
+        data_dir = './sad-data/'
     
     # Starts actual analyses for each dataset in turn.
     for dataset in datasets:
