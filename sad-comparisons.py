@@ -78,7 +78,7 @@ def model_comparisons(raw_data, dataset_name, data_dir, cutoff = 9):
             # Poisson lognormal
             mu, sigma = md.pln_solver(subabundance)
             L_pln = md.pln_ll(subabundance, mu,sigma) # Log-likelihood of Poisson lognormal
-            if np.isinf(L_pln):
+            if np.isinf(L_pln) or np.isnan(L_pln):
                 pln_blank = 1  # The Poisson lognormal returned -inf
                 
             else:
@@ -93,11 +93,8 @@ def model_comparisons(raw_data, dataset_name, data_dir, cutoff = 9):
             # Negative binomial
             n0, p0 = md.nbinom_lower_trunc_solver(subabundance)
             L_negbin = md.nbinom_lower_trunc_ll(subabundance, n0, p0) # Log-likelihood of negative binomial
-            if np.isnan(L_negbin):
-                negbin_blank = 1 # The negative binomial distribution sometimes fails to come to a solution before the maximum number of iterations.
-                
-            elif np.isinf(L_negbin):
-                negbin_blank = 1 # The negative binomial distribution returned -inf            
+            if np.isnan(L_negbin) or np.isinf(L_negbin):
+                negbin_blank = 1             
                 
             else:
                 negbin_blank = 0
