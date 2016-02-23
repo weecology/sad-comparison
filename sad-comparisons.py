@@ -170,7 +170,7 @@ if __name__ == '__main__':
     analysis_ext = '_spab.csv' # Extension for raw species abundance files
 
     if len(sys.argv) > 1:
-        data_dir = sys.arv[1]
+        data_dir = sys.argv[1]
     else:
         data_dir = './sad-data/'
 
