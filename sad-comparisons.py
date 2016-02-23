@@ -55,7 +55,7 @@ def model_comparisons(raw_data, dataset_name, data_dir, cutoff = 9):
         subabundance = raw_data["ab"][raw_data["site"] == site]
         N = sum(subabundance) # N = total abundance for a site
         S = len(subsites) # S = species richness at a site
-        if S > cutoff:
+        if (min(subabundance) > 0) and (S > cutoff):
             print("%s, Site %s, S=%s, N=%s" % (dataset_name, site, S, N))
                         
             # Calculate Akaike weight of species abundance models:
