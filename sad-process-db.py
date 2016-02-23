@@ -14,7 +14,7 @@ import sqlite3 as dbapi
 
 # Function to import the AICc results.
 def import_results(datafile):
-    """Imports raw result .csv files in the form: site, S, N, ogseries_untruncated, pln, negbin, zipf."""
+    """Imports raw result .csv files in the form: site, S, N, logseries_untruncated, pln, negbin, zipf."""
     raw_results = np.genfromtxt(datafile, dtype = "S15, i8, i8, f8, f8, f8, f8", skip_header = 1, 
                                 names = ['site', 'S', 'N', 'logseries', 'pln', 'negbin', 'AICc_zipf'], delimiter = ",", missing_values = '', filling_values = '')
     return raw_results
