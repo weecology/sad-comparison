@@ -96,32 +96,24 @@ def model_comparisons(raw_data, dataset_name, data_dir, cutoff = 9):
             # Poisson lognormal
             mu, sigma = md.pln_solver(subabundance)
             L_pln = md.pln_ll(subabundance, mu,sigma) # Log-likelihood of Poisson lognormal
-            if np.isinf(L_pln) or np.isnan(L_pln):
-                pln_blank = 1  # The Poisson lognormal returned -inf
-                
-            else:
-                pln_blank = 0
-                AICc_pln = macroecotools.AICc(k2, L_pln, S) # AICc Poisson lognormal
-                relative_ll_pln = macroecotools.AICc(k1, L_pln, S) #Relative likelihood, Poisson lognormal
-                # Add to AICc list
-                AICc_list = AICc_list + [AICc_pln]
-                likelihood_list = likelihood_list +  [L_pln]
-                relative_likelihood_list = relative_likelihood_list + [relative_ll_pln]
+            pln_blank = 0
+            AICc_pln = macroecotools.AICc(k2, L_pln, S) # AICc Poisson lognormal
+            relative_ll_pln = macroecotools.AICc(k1, L_pln, S) #Relative likelihood, Poisson lognormal
+            # Add to AICc list
+            AICc_list = AICc_list + [AICc_pln]
+            likelihood_list = likelihood_list +  [L_pln]
+            relative_likelihood_list = relative_likelihood_list + [relative_ll_pln]
        
             # Negative binomial
             n0, p0 = md.nbinom_lower_trunc_solver(subabundance)
             L_negbin = md.nbinom_lower_trunc_ll(subabundance, n0, p0) # Log-likelihood of negative binomial
-            if np.isnan(L_negbin) or np.isinf(L_negbin):
-                negbin_blank = 1             
-                
-            else:
-                negbin_blank = 0
-                AICc_negbin = macroecotools.AICc(k2, L_negbin, S)# AICc negative binomial
-                relative_ll_negbin = macroecotools.AICc(k1, L_negbin, S) # Relative log-likelihood of negative binomial
-                # Add to AICc list
-                AICc_list = AICc_list + [AICc_negbin]
-                likelihood_list = likelihood_list +  [L_negbin]
-                relative_likelihood_list = relative_likelihood_list + [relative_ll_negbin]
+            negbin_blank = 0
+            AICc_negbin = macroecotools.AICc(k2, L_negbin, S)# AICc negative binomial
+            relative_ll_negbin = macroecotools.AICc(k1, L_negbin, S) # Relative log-likelihood of negative binomial
+            # Add to AICc list
+            AICc_list = AICc_list + [AICc_negbin]
+            likelihood_list = likelihood_list +  [L_negbin]
+            relative_likelihood_list = relative_likelihood_list + [relative_ll_negbin]
             
             # Zipf distribution
             par = md.zipf_solver(subabundance)
