@@ -7,6 +7,11 @@ python sad-comparisons.py
 To use a non-standard data directory:
 
 python sad-comparisons.py /path/to/data_dir
+
+To run data sets other than the default publicly available data add a file to
+the data directory (`./sad-data` by default) named `dataset_config.txt` that
+contains a list of dataset names, one on each line.
+
 This code depends on the most recent version of the macroecotools Python
 module, which can be installed directly from github using pip:
 
@@ -172,16 +177,20 @@ def model_comparisons(raw_data, dataset_name, data_dir, cutoff = 9):
 if __name__ == '__main__':
     # Set up analysis parameters
     analysis_ext = '_spab.csv' # Extension for raw species abundance files
-    
-    datasets = input("Please provide a list of dataset ID codes. ")
-    if not datasets:
-        datasets = ['bbs', 'cbc', 'fia', 'gentry', 'mcdb', 'naba'] # Dataset ID codes
-    
 
     if len(sys.argv) > 1:
         data_dir = sys.arv[1]
     else:
         data_dir = './sad-data/'
+
+    #Determine which datasets to use
+    if os.path.exists(data_dir + 'dataset_config.txt'):
+        dataset_config_file = open(data_dir + 'dataset_config.txt', 'r')
+        datasets = []
+        for line in dataset_config_file:
+            datasets.append(line.strip())
+    else:
+        datasets = ['bbs', 'fia', 'gentry', 'mcdb']
     
     # Starts actual analyses for each dataset in turn.
     for dataset in datasets:
