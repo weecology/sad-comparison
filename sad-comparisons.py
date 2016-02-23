@@ -6,7 +6,6 @@ import csv
 import numpy as np
 from math import log, exp
 
-import mete # https://github.com/weecology/METE.git
 import macroecotools # https://github.com/weecology/macroecotools.git
 import macroeco_distributions as md
 
@@ -28,44 +27,37 @@ def model_comparisons(raw_data, dataset_name, data_dir, cutoff = 9):
     cutoff: minimum number of species required to run -1.
     
     SAD models and packages used:
-    Maximum Entropy Theory of Ecology (METE) (METE)
-    
     Logseries (macroecotools/macroecodistributions)
     Poisson lognormal (macroecotools/macroecodistributions)
     Negative binomial (macroecotools/macroecodistributions)
-    Geometric series (macroecotools/macroecodistributions)
-
+    Zipf (macroecotools/macroecodistributions)
+    
     Neutral theory: Neutral theory predicts the negative binomial distribution (Connolly et al. 2014. Commonness and rarity in the marine biosphere. PNAS 111: 8524-8529. http://www.pnas.org/content/111/23/8524.abstract
     
     """
-    usites = np.sort(list(set(raw_data["site"])))
+    usites = np.sort(np.unique(raw_data["site"]))
     
     # Open output files
-    output1 = csv.writer(open(data_dir + dataset_name + '_obs_pred.csv','wb'))
-    output2 = csv.writer(open(data_dir + dataset_name + '_dist_test.csv','wb'))
-    output3 = csv.writer(open(data_dir + dataset_name + '_likelihoods.csv','wb'))
-    output4 = csv.writer(open(data_dir + dataset_name + '_relative_L.csv','wb'))
-    
+    f1 = open(data_dir + dataset_name + '_dist_test.csv','wb')
+    output1 = csv.writer(f1)
+    f2 = open(data_dir + dataset_name + '_likelihoods.csv','wb')
+    output2 = csv.writer(f2)
+    f3 = open(data_dir + dataset_name + '_relative_L.csv','wb')
+    output3 = csv.writer(f3)
+   
     # Insert header
-    output1.writerow(['site', 'observed', 'predicted'])
-    output2.writerow(['site', 'S', 'N', 'AICc_logseries', 'AICc_pln', 'AICc_negbin', 'AICc_geometric', 'AICc_zipf'])
-    output3.writerow(['site', 'S', 'N', 'likelihood_logseries', 'likelihood_pln', 'likelihood_negbin', 'likelihood_geometric', 'likelihood_zipf'])
-    output4.writerow(['site', 'S', 'N', 'relative_ll_logseries', 'relative_ll_pln', 'relative_ll_negbin', 'relative_ll_geometric', 'relative_ll_zipf'])
+    output1.writerow(['site', 'S', 'N', 'AICc_logseries', 'AICc_pln', 'AICc_negbin', 'AICc_zipf'])
+    output2.writerow(['site', 'S', 'N', 'likelihood_logseries', 'likelihood_pln', 'likelihood_negbin', 'likelihood_zipf'])
+    output3.writerow(['site', 'S', 'N', 'relative_ll_logseries', 'relative_ll_pln', 'relative_ll_negbin', 'relative_ll_zipf'])    
+    
     for site in usites:
         subsites = raw_data["site"][raw_data["site"] == site]        
         subabundance = raw_data["ab"][raw_data["site"] == site]
         N = sum(subabundance) # N = total abundance for a site
         S = len(subsites) # S = species richness at a site
-        if S > cutoff:
+        if (min(subabundance) > 0) and (S > cutoff):
             print("%s, Site %s, S=%s, N=%s" % (dataset_name, site, S, N))
-            
-            # Generate predicted values and p (e ** -beta) based on METE:
-            mete_pred = mete.get_mete_rad(int(S), int(N))
-            pred = np.array(mete_pred[0])
-            p = mete_pred[1]
-            p_untruncated = exp(-mete.get_beta(S, N, version='untruncated'))
-            obsabundance = np.sort(subabundance)[::-1]
-            
+                        
             # Calculate Akaike weight of species abundance models:
             # Parameter k is the number of fitted parameters
             k1 = 1
@@ -73,63 +65,49 @@ def model_comparisons(raw_data, dataset_name, data_dir, cutoff = 9):
             
             # Calculate log-likelihoods of species abundance models and calculate AICc values:
             # Logseries
-            L_logser_untruncated = md.logser_ll(obsabundance, p_untruncated) # Log-likelihood of untruncated logseries
+            p_untruncated = md.logser_solver(subabundance)
+            L_logser_untruncated = md.logser_ll(subabundance, p_untruncated) # Log-likelihood of untruncated logseries
             AICc_logser_untruncated = macroecotools.AICc(k1, L_logser_untruncated, S) # AICc logseries untruncated
             relative_ll_logser_untruncated = AICc_logser_untruncated# Relative likelihood untruncated logseries
             
             #Start making AICc list
             AICc_list = [AICc_logser_untruncated]
             likelihood_list = [L_logser_untruncated]
-            relative_likelihood_list = [relative_ll_logser_untruncated]
-          
+            relative_likelihood_list = [relative_ll_logser_untruncated]          
             
             # Poisson lognormal
-            mu, sigma = md.pln_solver(obsabundance)
-            L_pln = md.pln_ll(obsabundance, mu,sigma) # Log-likelihood of Poisson lognormal
-            if np.isinf(L_pln):
+            mu, sigma = md.pln_solver(subabundance)
+            L_pln = md.pln_ll(subabundance, mu,sigma) # Log-likelihood of Poisson lognormal
+            if np.isinf(L_pln) or np.isnan(L_pln):
                 pln_blank = 1  # The Poisson lognormal returned -inf
                 
             else:
+                pln_blank = 0
                 AICc_pln = macroecotools.AICc(k2, L_pln, S) # AICc Poisson lognormal
                 relative_ll_pln = macroecotools.AICc(k1, L_pln, S) #Relative likelihood, Poisson lognormal
                 # Add to AICc list
                 AICc_list = AICc_list + [AICc_pln]
-                pln_blank = 0
                 likelihood_list = likelihood_list +  [L_pln]
                 relative_likelihood_list = relative_likelihood_list + [relative_ll_pln]
        
             # Negative binomial
-            n0, p0 = md.negbin_solver(obsabundance)
-            L_negbin = md.negbin_ll(obsabundance, n0, p0) # Log-likelihood of negative binomial
-            if np.isnan(L_negbin):
-                negbin_blank = 1 # The negative binomial distribution sometimes fails to come to a solution before the maximum number of iterations.
-                
-            elif np.isinf(L_negbin):
-                negbin_blank = 1 # The negative binomial distribution returned -inf            
+            n0, p0 = md.nbinom_lower_trunc_solver(subabundance)
+            L_negbin = md.nbinom_lower_trunc_ll(subabundance, n0, p0) # Log-likelihood of negative binomial
+            if np.isnan(L_negbin) or np.isinf(L_negbin):
+                negbin_blank = 1             
                 
             else:
+                negbin_blank = 0
                 AICc_negbin = macroecotools.AICc(k2, L_negbin, S)# AICc negative binomial
                 relative_ll_negbin = macroecotools.AICc(k1, L_negbin, S) # Relative log-likelihood of negative binomial
                 # Add to AICc list
                 AICc_list = AICc_list + [AICc_negbin]
-                negbin_blank = 0
                 likelihood_list = likelihood_list +  [L_negbin]
                 relative_likelihood_list = relative_likelihood_list + [relative_ll_negbin]
-                
-
-            # Geometric series
-            p = S/N  # Solves for parameter p of the untruncated geometric series
-            L_geometric = md.geom_ll(obsabundance, p) # Log-likelihood of geometric series
-            AICc_geometric = macroecotools.AICc(k1, L_geometric, S) # AICc geometric series
-            relative_ll_geometric = AICc_geometric # Relative log-likelihood of geometric series
-            # Add to AICc list
-            AICc_list = AICc_list + [AICc_geometric]
-            likelihood_list = likelihood_list +  [L_geometric]
-            relative_likelihood_list = relative_likelihood_list + [relative_ll_geometric]
             
             # Zipf distribution
-            par = md.zipf_solver(obsabundance)
-            L_zipf = md.zipf_ll(obsabundance, par) #Log-likelihood of Zipf distribution
+            par = md.zipf_solver(subabundance)
+            L_zipf = md.zipf_ll(subabundance, par) #Log-likelihood of Zipf distribution
             AICc_zipf = macroecotools.AICc(k1, L_zipf, S)
             relative_ll_zipf = AICc_zipf
             #Add to AICc list
@@ -162,40 +140,38 @@ def model_comparisons(raw_data, dataset_name, data_dir, cutoff = 9):
                 relative_likelihoods_output.insert(2, '')
                                     
             # Format results for output
-            results = ((np.column_stack((subsites, obsabundance, pred))))
             for weight in weights_output:
-                results2 = [[site, S, N] + weights_output]
-            results3 = [[site, S, N] + likelihood_list]
-            results4 = [[site, S, N] + relative_likelihoods_output]
-
-                                            
-            # Save results to a csv file:            
-            output1.writerows(results)
+                results1 = [[site, S, N] + weights_output]
+            results2 = [[site, S, N] + likelihood_list]
+            results3 = [[site, S, N] + relative_likelihoods_output]
+                                        
+            # Save results to a csv file:
+            output1.writerows(results1)
             output2.writerows(results2)
             output3.writerows(results3)
-            output4.writerows(results4)
+    
+    f1.close()
+    f2.close()
+    f3.close()           
 
 
-""" Function to see which predicted model fits best with the empirical data for each community. """
-
-""" Plotting functions."""
-
-# Set up analysis parameters
-analysis_ext = '_spab.csv' # Extension for raw species abundance files
-
-data_dir = input("Please provide the path to the data directory. ")
-if not data_dir:
-    data_dir = './sad-data/chapter1/' # path to data directory
-
-datasets = input("Please provide a list of dataset ID codes. ")
-if not datasets:
-    datasets = ['bbs', 'cbc', 'fia', 'gentry', 'mcdb', 'naba'] # Dataset ID codes
-
-
-# Starts actual analyses for each dataset in turn.
-for dataset in datasets:
-    datafile = data_dir + dataset + analysis_ext
-        
-    raw_data = import_abundance(datafile) # Import data
-
-    model_comparisons(raw_data, dataset, data_dir, cutoff = 9) # Run analyses on data
+if __name__ == '__main__':
+    # Set up analysis parameters
+    analysis_ext = '_spab.csv' # Extension for raw species abundance files
+    
+    data_dir = input("Please provide the path to the data directory. ")
+    if not data_dir:
+        data_dir = './sad-data/chapter1/' # path to data directory
+    
+    datasets = input("Please provide a list of dataset ID codes. ")
+    if not datasets:
+        datasets = ['bbs', 'cbc', 'fia', 'gentry', 'mcdb', 'naba'] # Dataset ID codes
+    
+    
+    # Starts actual analyses for each dataset in turn.
+    for dataset in datasets:
+        datafile = data_dir + dataset + analysis_ext
+            
+        raw_data = import_abundance(datafile) # Import data
+    
+        model_comparisons(raw_data, dataset, data_dir, cutoff = 9) # Run analyses on data
