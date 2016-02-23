@@ -1,5 +1,8 @@
 """ Project code for comparing species abundance distribution (SAD) models
 
+To run this code:
+
+python sad-comparisons.py
 This code depends on the most recent version of the macroecotools Python
 module, which can be installed directly from github using pip:
 
