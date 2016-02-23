@@ -28,8 +28,7 @@ from math import log, exp
 import macroecotools
 import macroeco_distributions as md
 
-import sys # Fix for the -inf problem
-sys.float_info[3]
+import sys
 
 def import_abundance(datafile):
     """Imports raw species abundance .csv files in the form: Site, Year, Species, Abundance."""
