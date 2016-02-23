@@ -1,4 +1,11 @@
-""" Project code for performing comparisons of assorted species abundance distribution (SAD) models """
+""" Project code for comparing species abundance distribution (SAD) models
+
+This code depends on the most recent version of the macroecotools Python
+module, which can be installed directly from github using pip:
+
+pip install git+https://github.com/weecology/macroecotools.git
+
+"""
 
 from __future__ import division
 
@@ -6,7 +13,7 @@ import csv
 import numpy as np
 from math import log, exp
 
-import macroecotools # https://github.com/weecology/macroecotools.git
+import macroecotools
 import macroeco_distributions as md
 
 import sys # Fix for the -inf problem
