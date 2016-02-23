@@ -23,12 +23,12 @@ from __future__ import division
 
 import csv
 import numpy as np
+import os
+import sys
 from math import log, exp
 
 import macroecotools
 import macroeco_distributions as md
-
-import sys
 
 def import_abundance(datafile):
     """Imports raw species abundance .csv files in the form: Site, Year, Species, Abundance."""
