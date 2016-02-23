@@ -30,7 +30,7 @@ def winning_model(data_dir, dataset_name, results):
     output_processed.writerow(['dataset', 'site', 'S', 'N', "model_code", "model_name", "AICc_weight"])
    
     # Create dictionary of models and their corresponding codes
-    models = {0: 'Logseries', 1:'Poisson lognormal', 2:'Negative binomial', 3:'Negative binomial'}
+    models = {0: 'Logseries', 1:'Poisson lognormal', 2:'Negative binomial', 3:'Zipf distribution'}
    
     for site in results:
         site_results = site.tolist()
@@ -78,7 +78,7 @@ def process_results(data_dir, dataset_name, results, value_type):
         values = site_results[3:]
         counter = 0
         
-        models = {0: 'Logseries', 1:'Poisson lognormal', 2:'Negative binomial', 3:'Negative binomial'}
+        models = {0: 'Logseries', 1:'Poisson lognormal', 2:'Negative binomial', 3:'Zipf distribution'}
         for index, value in enumerate(values):
             model_name = models[index]
             processed_results = [[dataset_name] + [site_ID] + [S] + [N] + [index] + [model_name] + [value_type] + [value]]
