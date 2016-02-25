@@ -27,6 +27,8 @@ import os
 import sys
 from math import log, exp
 
+from pandas import DataFrame
+
 import macroecotools
 import macroeco_distributions as md
 
@@ -67,7 +69,8 @@ def model_comparisons(raw_data, dataset_name, data_dir, cutoff = 9):
     output1.writerow(['site', 'S', 'N', 'AICc_logseries', 'AICc_pln', 'AICc_negbin', 'AICc_zipf'])
     output2.writerow(['site', 'S', 'N', 'likelihood_logseries', 'likelihood_pln', 'likelihood_negbin', 'likelihood_zipf'])
     output3.writerow(['site', 'S', 'N', 'relative_ll_logseries', 'relative_ll_pln', 'relative_ll_negbin', 'relative_ll_zipf'])    
-    
+
+    results = []
     for site in usites:
         subsites = raw_data["site"][raw_data["site"] == site]        
         subabundance = raw_data["ab"][raw_data["site"] == site]
@@ -140,12 +143,18 @@ def model_comparisons(raw_data, dataset_name, data_dir, cutoff = 9):
                 results1 = [[site, S, N] + weights_output]
             results2 = [[site, S, N] + likelihood_list]
             results3 = [[site, S, N] + relative_likelihoods_output]
-                                        
+            results.append([site, S, N] + weights_output  + likelihood_list + relative_likelihoods_output)
+
             # Save results to a csv file:
             output1.writerows(results1)
             output2.writerows(results2)
             output3.writerows(results3)
-    
+
+    results = DataFrame(results, columns=['site', 'S', 'N', 'AICc_logseries', 'AICc_pln', 'AICc_negbin',
+                                         'AICc_zipf', 'likelihood_logseries', 'likelihood_pln',
+                                         'likelihood_negbin', 'likelihood_zipf', 'relative_ll_logseries',
+                                         'relative_ll_pln', 'relative_ll_negbin', 'relative_ll_zipf'])
+    results.to_csv(os.path.join(data_dir, dataset_name +  '_likelihood_results.csv'), index=False)
     f1.close()
     f2.close()
     f3.close()           
