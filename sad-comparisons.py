@@ -1,16 +1,36 @@
-""" Project code for performing comparisons of assorted species abundance distribution (SAD) models """
+""" Project code for comparing species abundance distribution (SAD) models
+
+To run this code:
+
+python sad-comparisons.py
+
+To use a non-standard data directory:
+
+python sad-comparisons.py /path/to/data_dir
+
+To run data sets other than the default publicly available data add a file to
+the data directory (`./sad-data` by default) named `dataset_config.txt` that
+contains a list of dataset names, one on each line.
+
+This code depends on the most recent version of the macroecotools Python
+module, which can be installed directly from github using pip:
+
+pip install git+https://github.com/weecology/macroecotools.git
+
+"""
 
 from __future__ import division
 
 import csv
 import numpy as np
+import os
+import sys
 from math import log, exp
 
-import macroecotools # https://github.com/weecology/macroecotools.git
-import macroeco_distributions as md
+from pandas import DataFrame
 
-import sys # Fix for the -inf problem
-sys.float_info[3]
+import macroecotools
+import macroeco_distributions as md
 
 def import_abundance(datafile):
     """Imports raw species abundance .csv files in the form: Site, Year, Species, Abundance."""
@@ -49,7 +69,8 @@ def model_comparisons(raw_data, dataset_name, data_dir, cutoff = 9):
     output1.writerow(['site', 'S', 'N', 'AICc_logseries', 'AICc_pln', 'AICc_negbin', 'AICc_zipf'])
     output2.writerow(['site', 'S', 'N', 'likelihood_logseries', 'likelihood_pln', 'likelihood_negbin', 'likelihood_zipf'])
     output3.writerow(['site', 'S', 'N', 'relative_ll_logseries', 'relative_ll_pln', 'relative_ll_negbin', 'relative_ll_zipf'])    
-    
+
+    results = []
     for site in usites:
         subsites = raw_data["site"][raw_data["site"] == site]        
         subabundance = raw_data["ab"][raw_data["site"] == site]
@@ -78,32 +99,22 @@ def model_comparisons(raw_data, dataset_name, data_dir, cutoff = 9):
             # Poisson lognormal
             mu, sigma = md.pln_solver(subabundance)
             L_pln = md.pln_ll(subabundance, mu,sigma) # Log-likelihood of Poisson lognormal
-            if np.isinf(L_pln) or np.isnan(L_pln):
-                pln_blank = 1  # The Poisson lognormal returned -inf
-                
-            else:
-                pln_blank = 0
-                AICc_pln = macroecotools.AICc(k2, L_pln, S) # AICc Poisson lognormal
-                relative_ll_pln = macroecotools.AICc(k1, L_pln, S) #Relative likelihood, Poisson lognormal
-                # Add to AICc list
-                AICc_list = AICc_list + [AICc_pln]
-                likelihood_list = likelihood_list +  [L_pln]
-                relative_likelihood_list = relative_likelihood_list + [relative_ll_pln]
+            AICc_pln = macroecotools.AICc(k2, L_pln, S) # AICc Poisson lognormal
+            relative_ll_pln = macroecotools.AICc(k1, L_pln, S) #Relative likelihood, Poisson lognormal
+            # Add to AICc list
+            AICc_list = AICc_list + [AICc_pln]
+            likelihood_list = likelihood_list +  [L_pln]
+            relative_likelihood_list = relative_likelihood_list + [relative_ll_pln]
        
             # Negative binomial
             n0, p0 = md.nbinom_lower_trunc_solver(subabundance)
             L_negbin = md.nbinom_lower_trunc_ll(subabundance, n0, p0) # Log-likelihood of negative binomial
-            if np.isnan(L_negbin) or np.isinf(L_negbin):
-                negbin_blank = 1             
-                
-            else:
-                negbin_blank = 0
-                AICc_negbin = macroecotools.AICc(k2, L_negbin, S)# AICc negative binomial
-                relative_ll_negbin = macroecotools.AICc(k1, L_negbin, S) # Relative log-likelihood of negative binomial
-                # Add to AICc list
-                AICc_list = AICc_list + [AICc_negbin]
-                likelihood_list = likelihood_list +  [L_negbin]
-                relative_likelihood_list = relative_likelihood_list + [relative_ll_negbin]
+            AICc_negbin = macroecotools.AICc(k2, L_negbin, S)# AICc negative binomial
+            relative_ll_negbin = macroecotools.AICc(k1, L_negbin, S) # Relative log-likelihood of negative binomial
+            # Add to AICc list
+            AICc_list = AICc_list + [AICc_negbin]
+            likelihood_list = likelihood_list +  [L_negbin]
+            relative_likelihood_list = relative_likelihood_list + [relative_ll_negbin]
             
             # Zipf distribution
             par = md.zipf_solver(subabundance)
@@ -126,30 +137,24 @@ def model_comparisons(raw_data, dataset_name, data_dir, cutoff = 9):
             
             #Convert relative likelihoods to list
             relative_likelihoods_output = relative_likelihoods.tolist() 
-            
-            # Inserts a blank in the output if the Poisson lognormal returned -inf
-            if pln_blank == 1:
-                weights_output.insert(1, '')
-                likelihood_list.insert(1, '')
-                relative_likelihoods_output.insert(1, '')
-            
-            # Inserts a blank in the output if the negative binomial exceeded the max number of iterations
-            if negbin_blank == 1:
-                weights_output.insert(2, '')
-                likelihood_list.insert(2, '')
-                relative_likelihoods_output.insert(2, '')
-                                    
+                                                
             # Format results for output
             for weight in weights_output:
                 results1 = [[site, S, N] + weights_output]
             results2 = [[site, S, N] + likelihood_list]
             results3 = [[site, S, N] + relative_likelihoods_output]
-                                        
+            results.append([site, S, N] + weights_output  + likelihood_list + relative_likelihoods_output)
+
             # Save results to a csv file:
             output1.writerows(results1)
             output2.writerows(results2)
             output3.writerows(results3)
-    
+
+    results = DataFrame(results, columns=['site', 'S', 'N', 'AICc_logseries', 'AICc_pln', 'AICc_negbin',
+                                         'AICc_zipf', 'likelihood_logseries', 'likelihood_pln',
+                                         'likelihood_negbin', 'likelihood_zipf', 'relative_ll_logseries',
+                                         'relative_ll_pln', 'relative_ll_negbin', 'relative_ll_zipf'])
+    results.to_csv(os.path.join(data_dir, dataset_name +  '_likelihood_results.csv'), index=False)
     f1.close()
     f2.close()
     f3.close()           
@@ -158,15 +163,20 @@ def model_comparisons(raw_data, dataset_name, data_dir, cutoff = 9):
 if __name__ == '__main__':
     # Set up analysis parameters
     analysis_ext = '_spab.csv' # Extension for raw species abundance files
-    
-    data_dir = input("Please provide the path to the data directory. ")
-    if not data_dir:
-        data_dir = './sad-data/chapter1/' # path to data directory
-    
-    datasets = input("Please provide a list of dataset ID codes. ")
-    if not datasets:
-        datasets = ['bbs', 'cbc', 'fia', 'gentry', 'mcdb', 'naba'] # Dataset ID codes
-    
+
+    if len(sys.argv) > 1:
+        data_dir = sys.argv[1]
+    else:
+        data_dir = './sad-data/'
+
+    #Determine which datasets to use
+    if os.path.exists(data_dir + 'dataset_config.txt'):
+        dataset_config_file = open(data_dir + 'dataset_config.txt', 'r')
+        datasets = []
+        for line in dataset_config_file:
+            datasets.append(line.strip())
+    else:
+        datasets = ['bbs', 'fia', 'gentry', 'mcdb']
     
     # Starts actual analyses for each dataset in turn.
     for dataset in datasets:
