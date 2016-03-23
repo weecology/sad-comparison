@@ -69,14 +69,6 @@ ll_long = gather(ll, key = distribution, value = log_likelihood, -(1:3))
 ll_long$S_center = ll_long$S - mean(ll_long$S)
 ll_long$N_center = ll_long$N - mean(ll_long$N)
 
-model = lmer(
-  log_likelihood ~ S_center * distribution + N_center * distribution + (1|site), 
-  data = ll_long
-)
-
-summary(model, cor = FALSE)
-
-
 ll_diff = ll
 ll_diff[ , -(1:3)] = ll[ , -(1:3)] - rowMeans(ll[ , -(1:3)])
 ll_diff_long = gather(ll_diff, key = distribution, value = log_likelihood, -(1:3))
