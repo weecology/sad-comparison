@@ -22,36 +22,43 @@ nb_nll = function(x, log_size, log_mu) {
   -sum(full_ll - log(1 - p0))
 }
 
+calculate_aicc = function(ll, k, N){
+  2 * k - 2 * ll + 2 * k * (k + 1) / (N - k - 1)
+}
 
 postprocess = function(id){
   # Import spab data
-  d = read.csv(paste0("sad-data/", id, "_spab.csv"), skip = 2, header = FALSE)
-  colnames(d) = c('site','year','sp','ab')
+  spab = read.csv(paste0("sad-data/", id, "_spab.csv"), skip = 2, header = FALSE)
+  colnames(spab) = c('site','year','sp','ab')
   
   # Log-likelihoods from Python
-  ll = read.csv(paste0("sad-data/", id, "_likelihoods.csv")) %>% arrange(site)
+  results = read.csv(paste0("sad-data/", id, "_likelihood_results.csv")) %>% arrange(site)
+  
+  # Drop relative likelihoods; they'll need to be recomputed when the
+  # negative binomial values change below.
+  results = select(results, -matches("relative"))
   
   # Negative Binomial Log-likelihoods in R
-  sites = d %>% 
+  sites = spab %>% 
     group_by(site) %>% 
     summarize(S = n(), N = sum(ab)) %>% 
     filter(S > cutoff) %>%
     arrange(site) %>%
     extract2("site")
   
-  stopifnot(all(sites == ll$site))
+  stopifnot(all(sites == results$site))
   
   nb_ll = structure(rep(NA, length(sites)), names = sites)
   
   pb = progress_bar$new(
     format = " [:bar] :percent eta: :eta",
-    total = nrow(ll), clear = FALSE, width = 60
+    total = nrow(results), clear = FALSE, width = 60
   )
   
   for (site in sites) {
     pb$tick()
     
-    ab = d[d$site == site, "ab"]
+    ab = spab[spab$site == site, "ab"]
     
     opt = optim(
       c(1, log(mean(ab))),
@@ -63,9 +70,10 @@ postprocess = function(id){
     nb_ll[as.character(site)] = -opt$value
   }
   
-  ll$likelihood_negbin = nb_ll
+  results$likelihood_negbin = nb_ll
+  results$AICc_negbin = calculate_aicc(results$likelihood_negbin, k = 2, N = results$N)
   
-  cbind(id = id, ll)
+  cbind(id = id, results)
 }
 
 # Call the postprocessing function on all the data sets
