@@ -5,73 +5,87 @@ library(tidyr)
 library(lme4)
 library(magrittr)
 
-id = "bbs"
+ids = c("bbs", "mcdb")
 cutoff = 9 # Copied from the Python processing code
-
-# Import spab data
-d = read.csv(paste0("sad-data/", id, "_spab.csv"), skip = 2, header = FALSE)
-colnames(d) = c('site','year','sp','ab')
-
-# Log-likelihoods from Python
-ll = read.csv(paste0("sad-data/", id, "_likelihoods.csv")) %>% arrange(site)
-
-# Negative Binomial Log-likelihoods in R
-sites = d %>% 
-  group_by(site) %>% 
-  summarize(S = n(), N = sum(ab)) %>% 
-  filter(S > cutoff) %>%
-  arrange(site) %>%
-  extract2("site")
-
-stopifnot(all(sites == ll$site))
 
 # Negative binomial negative log-likelihood, truncated to exclude 0
 nb_nll = function(x, log_size, log_mu) {
   size = exp(log_size)
   mu = exp(log_mu)
   
+  # Consider using log==TRUE and lower.tail==FALSE here, as opposed to
+  # log(1-p0) below
   p0 = dnbinom(0, size = size, mu = mu, log = FALSE)
+  
   full_ll = dnbinom(x, size = size, mu = mu, log = TRUE)
   
-  # Would have better numerical precision if I used logs throughout, but this is
-  # good enough as a quick check
   -sum(full_ll - log(1 - p0))
 }
 
-nb_ll = structure(rep(NA, length(sites)), names = sites)
 
-pb = progress_bar$new(
-  format = " [:bar] :percent eta: :eta",
-  total = nrow(ll), clear = FALSE, width = 60
-)
-
-for (site in sites) {
-  pb$tick()
+postprocess = function(id){
+  # Import spab data
+  d = read.csv(paste0("sad-data/", id, "_spab.csv"), skip = 2, header = FALSE)
+  colnames(d) = c('site','year','sp','ab')
   
-  ab = d[d$site == site, "ab"]
-    
-  opt = optim(
-    c(1, log(mean(ab))),
-    function(par) {
-      nb_nll(ab, par[1], par[2])
-    }
+  # Log-likelihoods from Python
+  ll = read.csv(paste0("sad-data/", id, "_likelihoods.csv")) %>% arrange(site)
+  
+  # Negative Binomial Log-likelihoods in R
+  sites = d %>% 
+    group_by(site) %>% 
+    summarize(S = n(), N = sum(ab)) %>% 
+    filter(S > cutoff) %>%
+    arrange(site) %>%
+    extract2("site")
+  
+  stopifnot(all(sites == ll$site))
+  
+  nb_ll = structure(rep(NA, length(sites)), names = sites)
+  
+  pb = progress_bar$new(
+    format = " [:bar] :percent eta: :eta",
+    total = nrow(ll), clear = FALSE, width = 60
   )
   
-  nb_ll[as.character(site)] = -opt$value
+  for (site in sites) {
+    pb$tick()
+    
+    ab = d[d$site == site, "ab"]
+    
+    opt = optim(
+      c(1, log(mean(ab))),
+      function(par) {
+        nb_nll(ab, par[1], par[2])
+      }
+    )
+    
+    nb_ll[as.character(site)] = -opt$value
+  }
+  
+  ll$likelihood_negbin = nb_ll
+  
+  cbind(id = id, ll)
 }
 
-ll$likelihood_negbin = nb_ll
+# Call the postprocessing function on all the data sets
+ll_list = lapply(ids, postprocess)
 
+ll = do.call(rbind, ll_list)
 
+is_lik = grepl("likelihood", colnames(ll))
 
-
-ll_long = gather(ll, key = distribution, value = log_likelihood, -(1:3))
+ll_long = gather(ll, key = distribution, value = log_likelihood, which(is_lik))
 ll_long$S_center = ll_long$S - mean(ll_long$S)
 ll_long$N_center = ll_long$N - mean(ll_long$N)
 
 ll_diff = ll
-ll_diff[ , -(1:3)] = ll[ , -(1:3)] - rowMeans(ll[ , -(1:3)])
-ll_diff_long = gather(ll_diff, key = distribution, value = log_likelihood, -(1:3))
+ll_diff[ , is_lik] = ll[ , is_lik] - rowMeans(ll[ , is_lik])
+ll_diff_long = gather(ll_diff, 
+                      key = distribution, 
+                      value = log_likelihood, 
+                      which(is_lik)
+)
 
 
 ggplot(ll_diff_long, aes(x = distribution, y = log_likelihood)) + 
@@ -81,8 +95,11 @@ ggplot(ll_diff_long, aes(x = distribution, y = log_likelihood)) +
   ylab("Deviation from mean log-likelihood")
 
 
-relative_likelihoods = exp(ll_diff[ , -(1:3)]) / rowSums(exp(ll_diff[ , -(1:3)]))
-relative_likelihoods_long = gather(relative_likelihoods, key = distribution, value = relative_likelihood)
+relative_likelihoods = exp(ll_diff[ , is_lik]) / rowSums(exp(ll_diff[ , is_lik]))
+relative_likelihoods_long = gather(relative_likelihoods, 
+                                   key = distribution, 
+                                   value = relative_likelihood
+)
 
 # Note: I had to tweak the bandwidth parameter for this plot, or zipf's splat at
 # zero would be so wide that the other distributions would be invisible by comparison.
@@ -91,4 +108,3 @@ ggplot(relative_likelihoods_long, aes(x = distribution, y = relative_likelihood)
   geom_violin(bw = .01) +
   theme_bw() +
   coord_cartesian(ylim = c(0, 1), expand = FALSE)
-
