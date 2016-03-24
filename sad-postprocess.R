@@ -36,9 +36,14 @@ postprocess = function(id){
   
   # Drop relative likelihoods and AICc weights; they'll need to be recomputed 
   # when the negative binomial values change below.
-  results = select(results, -matches("relative|AICc"))
+  # Then multiply the likelihoods by -2 to get deviances
+  results = select(results, -matches("relative|AICc")) %>%
+    mutate_each(funs(-2*.), matches("likelihood"))
   
-  # Negative Binomial Log-likelihoods in R
+  # Rename the columns to reflect change to deviance
+  colnames(results) = gsub("likelihood", "deviance", colnames(results))
+  
+  # Start calculating negative Binomial deviances in R
   sites = spab %>% 
     group_by(site) %>% 
     summarize(S = n(), N = sum(ab)) %>% 
@@ -48,7 +53,7 @@ postprocess = function(id){
   
   stopifnot(all(sites == results$site))
   
-  nb_ll = structure(rep(NA, length(sites)), names = sites)
+  nb_deviance = structure(rep(NA, length(sites)), names = sites)
   
   for (site in sites) {
     ab = spab[spab$site == site, "ab"]
@@ -60,18 +65,18 @@ postprocess = function(id){
       }
     )
     
-    nb_ll[as.character(site)] = -opt$value
+    nb_deviance[as.character(site)] = 2 * opt$value
   }
   
-  results$likelihood_negbin = nb_ll
+  results$deviance_negbin = nb_deviance
   
-  log_likelihoods = select(results, matches("likelihood"))
+  deviances = select(results, matches("deviance"))
   
-  distribution_names = gsub(".*_", "", colnames(log_likelihoods))
+  distribution_names = gsub(".*_", "", colnames(deviances))
   
   # Initialize AICc data with same shape as log_likelihoods and new column names
-  AICcs = NA * log_likelihoods
-  colnames(AICcs) = gsub("likelihood", "AICc", colnames(AICcs))
+  AICcs = NA * deviances
+  colnames(AICcs) = gsub("deviance", "AICc", colnames(AICcs))
   
   k = sapply(
     distribution_names,
@@ -88,40 +93,38 @@ postprocess = function(id){
   )  
   
   for (i in 1:ncol(AICcs)) {
-    AICcs[ , i] = calculate_aicc(log_likelihoods[ , i], k = k[i], N = results$S)
+    AICcs[ , i] = calculate_aicc(-1/2 * deviances[ , i], k = k[i], N = results$S)
   }
   
   cbind(id = id, results, AICcs)
 }
 
 # Call the postprocessing function on all the data sets
-ll_list = lapply(ids, postprocess)
+deviances = bind_rows(lapply(ids, postprocess))
 
-ll = do.call(rbind, ll_list)
+is_dev = grepl("deviance", colnames(deviances))
+is_AICc = grepl("AICc", colnames(deviances))
 
-is_lik = grepl("likelihood", colnames(ll))
-is_AICc = grepl("AICc", colnames(ll))
+deviance_diff = deviances[, is_dev] - rowMeans(deviances[, is_dev])
+deviance_diff_long = gather(deviance_diff, key = "distribution", value = "deviance")
 
-ll_diff = ll[, is_lik] - rowMeans(ll[, is_lik])
-ll_diff_long = gather(ll_diff, key = "distribution", value = "log_likelihood")
-
-AICc_diff = ll[, is_AICc] - rowMeans(ll[, is_AICc])
+AICc_diff = deviances[, is_AICc] - rowMeans(deviances[, is_AICc])
 AICc_diff_long = gather(AICc_diff, key = "distribution", value = "AICc")
 
-ggplot(ll_diff_long, aes(x = distribution, y = log_likelihood)) + 
+ggplot(deviance_diff_long, aes(x = distribution, y = deviance)) + 
   geom_hline(yintercept = 0) + 
   geom_violin() + 
   theme_bw() + 
-  ylab("Deviation from mean log-likelihood")
+  ylab("Deviation from mean deviance (lower is better)")
 
 ggplot(AICc_diff_long, aes(x = distribution, y = AICc)) + 
   geom_hline(yintercept = 0) + 
   geom_violin() + 
   theme_bw() + 
-  ylab("Deviation from mean AICc")
+  ylab("Deviation from mean AICc (lower is better)")
 
 
-relative_likelihoods = exp(ll_diff) / rowSums(exp(ll_diff))
+relative_likelihoods = exp(-deviance_diff / 2) / rowSums(exp(-deviance_diff / 2))
 relative_likelihoods_long = gather(relative_likelihoods, 
                                    key = distribution, 
                                    value = relative_likelihood)
@@ -137,10 +140,12 @@ AICc_weight_long = gather(AICc_weight,
 ggplot(relative_likelihoods_long, aes(x = distribution, y = relative_likelihood)) +
   geom_violin(bw = .01) +
   theme_bw() +
-  coord_cartesian(ylim = c(0, 1), expand = FALSE)
+  coord_cartesian(ylim = c(0, 1), expand = FALSE) + 
+  ylab("Relative likelihood (higher is better)")
 
 
 ggplot(AICc_weight_long, aes(x = distribution, y = AICc_weight)) +
   geom_violin(bw = .01) +
   theme_bw() +
-  coord_cartesian(ylim = c(0, 1), expand = FALSE)
+  coord_cartesian(ylim = c(0, 1), expand = FALSE) + 
+  ylab("AICc weight (higher is better)")
