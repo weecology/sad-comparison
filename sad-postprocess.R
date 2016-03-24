@@ -34,9 +34,9 @@ postprocess = function(id){
   # Log-likelihoods from Python
   results = read.csv(paste0("sad-data/", id, "_likelihood_results.csv")) %>% arrange(site)
   
-  # Drop relative likelihoods; they'll need to be recomputed when the
-  # negative binomial values change below.
-  results = select(results, -matches("relative"))
+  # Drop relative likelihoods and AICc weights; they'll need to be recomputed 
+  # when the negative binomial values change below.
+  results = select(results, -matches("relative|AICc"))
   
   # Negative Binomial Log-likelihoods in R
   sites = spab %>% 
@@ -50,14 +50,7 @@ postprocess = function(id){
   
   nb_ll = structure(rep(NA, length(sites)), names = sites)
   
-  pb = progress_bar$new(
-    format = " [:bar] :percent eta: :eta",
-    total = nrow(results), clear = FALSE, width = 60
-  )
-  
   for (site in sites) {
-    pb$tick()
-    
     ab = spab[spab$site == site, "ab"]
     
     opt = optim(
@@ -71,9 +64,34 @@ postprocess = function(id){
   }
   
   results$likelihood_negbin = nb_ll
-  results$AICc_negbin = calculate_aicc(results$likelihood_negbin, k = 2, N = results$N)
   
-  cbind(id = id, results)
+  log_likelihoods = select(results, matches("likelihood"))
+  
+  distribution_names = gsub(".*_", "", colnames(log_likelihoods))
+  
+  # Initialize AICc data with same shape as log_likelihoods and new column names
+  AICcs = NA * log_likelihoods
+  colnames(AICcs) = gsub("likelihood", "AICc", colnames(AICcs))
+  
+  k = sapply(
+    distribution_names,
+    function(name){
+      switch(
+        name,
+        logseries = 1,
+        pln = 2, 
+        negbin = 2,
+        zipf = 1,
+        NA
+      )
+    }
+  )  
+  
+  for (i in 1:ncol(AICcs)) {
+    AICcs[ , i] = calculate_aicc(log_likelihoods[ , i], k = k[i], N = results$S)
+  }
+  
+  cbind(id = id, results, AICcs)
 }
 
 # Call the postprocessing function on all the data sets
@@ -82,19 +100,13 @@ ll_list = lapply(ids, postprocess)
 ll = do.call(rbind, ll_list)
 
 is_lik = grepl("likelihood", colnames(ll))
+is_AICc = grepl("AICc", colnames(ll))
 
-ll_long = gather(ll, key = distribution, value = log_likelihood, which(is_lik))
-ll_long$S_center = ll_long$S - mean(ll_long$S)
-ll_long$N_center = ll_long$N - mean(ll_long$N)
+ll_diff = ll[, is_lik] - rowMeans(ll[, is_lik])
+ll_diff_long = gather(ll_diff, key = "distribution", value = "log_likelihood")
 
-ll_diff = ll
-ll_diff[ , is_lik] = ll[ , is_lik] - rowMeans(ll[ , is_lik])
-ll_diff_long = gather(ll_diff, 
-                      key = distribution, 
-                      value = log_likelihood, 
-                      which(is_lik)
-)
-
+AICc_diff = ll[, is_AICc] - rowMeans(ll[, is_AICc])
+AICc_diff_long = gather(AICc_diff, key = "distribution", value = "AICc")
 
 ggplot(ll_diff_long, aes(x = distribution, y = log_likelihood)) + 
   geom_hline(yintercept = 0) + 
@@ -102,17 +114,33 @@ ggplot(ll_diff_long, aes(x = distribution, y = log_likelihood)) +
   theme_bw() + 
   ylab("Deviation from mean log-likelihood")
 
+ggplot(AICc_diff_long, aes(x = distribution, y = AICc)) + 
+  geom_hline(yintercept = 0) + 
+  geom_violin() + 
+  theme_bw() + 
+  ylab("Deviation from mean AICc")
 
-relative_likelihoods = exp(ll_diff[ , is_lik]) / rowSums(exp(ll_diff[ , is_lik]))
+
+relative_likelihoods = exp(ll_diff) / rowSums(exp(ll_diff))
 relative_likelihoods_long = gather(relative_likelihoods, 
                                    key = distribution, 
-                                   value = relative_likelihood
-)
+                                   value = relative_likelihood)
+
+AICc_weight = exp(-AICc_diff / 2) / rowSums(exp(-AICc_diff / 2))
+AICc_weight_long = gather(AICc_weight, 
+                                   key = distribution, 
+                                   value = AICc_weight)
 
 # Note: I had to tweak the bandwidth parameter for this plot, or zipf's splat at
 # zero would be so wide that the other distributions would be invisible by comparison.
 # A bandwidth much less than 0.01 on a 0-1 scale is probably undersmoothed anyway.
 ggplot(relative_likelihoods_long, aes(x = distribution, y = relative_likelihood)) +
+  geom_violin(bw = .01) +
+  theme_bw() +
+  coord_cartesian(ylim = c(0, 1), expand = FALSE)
+
+
+ggplot(AICc_weight_long, aes(x = distribution, y = AICc_weight)) +
   geom_violin(bw = .01) +
   theme_bw() +
   coord_cartesian(ylim = c(0, 1), expand = FALSE)
