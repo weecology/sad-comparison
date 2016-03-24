@@ -96,7 +96,7 @@ postprocess = function(id){
     AICcs[ , i] = calculate_aicc(-1/2 * deviances[ , i], k = k[i], N = results$S)
   }
   
-  cbind(id = id, results, AICcs)
+  cbind(id = id, results, AICcs, stringsAsFactors = FALSE)
 }
 
 # Call the postprocessing function on all the data sets
