@@ -53,6 +53,7 @@ postprocess = function(id){
   
   stopifnot(all(sites == results$site))
   
+  # Initialize an empty deviance vector
   nb_deviance = structure(rep(NA, length(sites)), names = sites)
   
   for (site in sites) {
@@ -65,6 +66,18 @@ postprocess = function(id){
       }
     )
     
+    p0 = dnbinom(0, size = exp(opt$par[1]), mu = exp(opt$par[2]), log = FALSE)
+    
+    # If p0 is too close to 1, warn with the data set id and the site_name,
+    # because this can cause severe loss of precision when we truncate the 
+    # zeros off the distribution.
+    # See https://github.com/weecology/macroecotools/issues/40
+    # but note that the parameterization is different (size/mu versus size/prob)
+    if (1 - p0 < 1E-10) {
+      warning("p0 is too close to 1 in", id, " site ", site)
+    }
+    
+    # Save the deviance (2 * negative loog-likelihood)
     nb_deviance[as.character(site)] = 2 * opt$value
   }
   
