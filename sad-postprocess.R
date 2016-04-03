@@ -5,7 +5,7 @@ library(tidyr)
 library(lme4)
 library(magrittr)
 
-ids = c("bbs", "mcdb", "gentry", "fia")
+ids = c("naba")
 cutoff = 9 # Copied from the Python processing code
 
 # Negative binomial negative log-likelihood, truncated to exclude 0
@@ -28,11 +28,11 @@ calculate_aicc = function(ll, k, N){
 
 postprocess = function(id){
   # Import spab data
-  spab = read.csv(paste0("sad-data/", id, "_spab.csv"), skip = 2, header = FALSE)
+  spab = read.csv(paste0("sad-data/", id, "_spab.csv"), skip = 2, header = FALSE, stringsAsFactors = FALSE)
   colnames(spab) = c('site','year','sp','ab')
   
   # Log-likelihoods from Python
-  results = read.csv(paste0("sad-data/", id, "_likelihood_results.csv")) %>% arrange(site)
+  results = read.csv(paste0("sad-data/", id, "_likelihood_results.csv"), stringsAsFactors = FALSE) %>% arrange(site)
   
   # Drop relative likelihoods and AICc weights; they'll need to be recomputed 
   # when the negative binomial values change below.
