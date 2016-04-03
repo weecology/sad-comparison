@@ -5,7 +5,7 @@ library(tidyr)
 library(lme4)
 library(magrittr)
 
-ids = c("bbs", "mcdb")
+ids = c("bbs", "mcdb", "gentry", "fia")
 cutoff = 9 # Copied from the Python processing code
 
 # Negative binomial negative log-likelihood, truncated to exclude 0
@@ -63,19 +63,35 @@ postprocess = function(id){
       c(1, log(mean(ab))),
       function(par) {
         nb_nll(ab, par[1], par[2])
-      }
+      },
+      method = "BFGS"
     )
     
     p0 = dnbinom(0, size = exp(opt$par[1]), mu = exp(opt$par[2]), log = FALSE)
     
-    # If p0 is too close to 1, warn with the data set id and the site_name,
-    # because this can cause severe loss of precision when we truncate the 
-    # zeros off the distribution.
+    # If p0 is too close to 1, we can get a severe loss of precision when 
+    # we truncate the zeros off the distribution.
     # See https://github.com/weecology/macroecotools/issues/40
     # but note that the parameterization is different (size/mu versus size/prob)
     if (1 - p0 < 1E-10) {
-      warning("p0 is too close to 1 in", id, " site ", site)
+      # Try a different optimizer and see if we get a value that's not stuck
+      # near zero
+      opt = optim(
+        c(1, log(mean(ab))),
+        function(par) {
+          nb_nll(ab, par[1], par[2])
+        },
+        method = "Nelder-Mead"
+      )
+      
+      p0 = dnbinom(0, size = exp(opt$par[1]), mu = exp(opt$par[2]), log = FALSE)
     }
+    
+    # Test again with the new values
+    if (1 - p0 < 1E-10) {
+      warning("p0 is too close to 1 in ", id, " site ", site)
+    }
+    
     
     # Save the deviance (2 * negative loog-likelihood)
     nb_deviance[as.character(site)] = 2 * opt$value
