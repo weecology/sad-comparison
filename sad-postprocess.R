@@ -5,7 +5,7 @@ library(tidyr)
 library(lme4)
 library(magrittr)
 
-ids = c("naba")
+ids = c("naba", "cbc", "bbs", "mcdb", "gentry", "fia")
 cutoff = 9 # Copied from the Python processing code
 
 # Negative binomial negative log-likelihood, truncated to exclude 0
@@ -27,6 +27,8 @@ calculate_aicc = function(ll, k, N){
 }
 
 postprocess = function(id){
+  cat("postprocessing: ", id, "\n")
+  
   # Import spab data
   spab = read.csv(paste0("sad-data/", id, "_spab.csv"), skip = 2, header = FALSE, stringsAsFactors = FALSE)
   colnames(spab) = c('site','year','sp','ab')
@@ -125,11 +127,17 @@ postprocess = function(id){
     AICcs[ , i] = calculate_aicc(-1/2 * deviances[ , i], k = k[i], N = results$S)
   }
   
-  cbind(id = id, results, AICcs, stringsAsFactors = FALSE)
+  # make sure that all site names are character vectors so they can be
+  # fed to bind_rows with the same class
+  out = cbind(id = id, results, AICcs, stringsAsFactors = FALSE)
+  out$site = as.character(out$site)
+  
+  out
 }
 
 # Call the postprocessing function on all the data sets
-deviances = bind_rows(lapply(ids, postprocess))
+deviance_list = lapply(ids, postprocess)
+deviances = bind_rows(deviance_list)
 
 is_dev = grepl("deviance", colnames(deviances))
 is_AICc = grepl("AICc", colnames(deviances))
