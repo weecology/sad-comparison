@@ -1,6 +1,6 @@
 An extensive comparison of species-abundance distribution models
 
-Elita Baldridge, *elita.baldridge@weecology.org, Utah State University*, Xiao Xiao, *Utah State University, University of Maine*; and Ethan P. White, *Utah State University, University of Florida* 
+Elita Baldridge, *elita.baldridge@weecology.org, Utah State University*, Xiao Xiao, *Utah State University, University of Maine*; David J. Harris, *Utah State University, University of Florida*, and Ethan P. White, *Utah State University, University of Florida* 
 
 # Introduction
 
@@ -45,7 +45,7 @@ All abundances in the compiled datasets were counts of individuals.
 
 The majority of species-abundance distributions (SADs) are constructed using counts of individuals [for discussion of alternative approaches see @mcgill2007 and @morlon2009]. As such, the data are discrete and therefore the most appropriate models are discrete distributions. Therefore we used only abundance data based on individual counts and used only discrete distributions that have been used as models for SADs.
 
-McGill et al. [-@mcgill2007] classified models into five different families: purely statistical, branching process, population dynamics, niche partitioning, and spatial distribution of individuals. We evaluated models from each of the separate families, excluding the spatial distribution family, which requires spatially explicit data. Specifically, we evaluated the log-series, the Poisson log-normal, the negative binomial, the geometric distribution, and the Zipf distributions. All distributions were defined to have support defined by the positive integers (i.e., they are capable of having non-zero probability at values from 1 to infinity). We excluded models from analysis that do not have explicit likelihoods [e.g., some niche partitioning models; @sugihara1980; @tokeshi1993] so that we could use the likelihood based methods for fitting and evaluating distributions (see Analysis).
+McGill et al. [-@mcgill2007] classified models into five different families: purely statistical, branching process, population dynamics, niche partitioning, and spatial distribution of individuals. We evaluated models from each of the separate families, excluding the spatial distribution family, which requires spatially explicit data. Specifically, we evaluated the log-series, the Poisson log-normal, the negative binomial, the geometric distribution, and the Zipf distributions. All distributions were defined to have support defined by the positive integers (i.e., they are capable of having non-zero probability at values from 1 to infinity). We excluded models from analysis that do not have explicit likelihoods [e.g., some niche partitioning models; @sugihara1980; @tokeshi1993, double geometric; @alroy2015] so that we could use the likelihood based methods for fitting and evaluating distributions (see Analysis).
 
 The log-series is one of the first distributions used to describe the SAD, being derived as a purely statistical distribution by Fisher [-@fisher1943]. It has since been derived as the result of both ecological processes, the metacommunity SAD for ecological neutral theory [@hubbell2001; @volkov2003], and several different maximum entropy models [@pueyo2007; @harte2008].
 
