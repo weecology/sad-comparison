@@ -29,8 +29,8 @@ Table 1: Details of datasets used to evaluate the form of the species-abundance 
 |--------------------------------------	|--------------	|----------------------------------	|-------------	|--------------------------------------------------	|
 | Breeding Bird Survey 	                | BBS          	| Public                               	|2769             	| @pardieck2014                          	|
 | Christmas Bird Count                 	| CBC          	| Private      	|1999             	| @cbc.              	|
-| Alwyn Gentry's Forest Transects      	| Gentry       	| Public                               	|10355             	| @phillips2002                	|
-| Forest Inventory Analysis            	| FIA          	| Public                               	|220             	| @fia                   	|
+| Alwyn Gentry's Forest Transects      	| Gentry       	| Public                               	|220              	| @phillips2002                	|
+| Forest Inventory Analysis            	| FIA          	| Public                               	| 10355           	| @fia                   	|
 | Mammal Community Database            	| MCDB         	| Public                               	|103             	| @thibault2011                      	|
 | North American Butterfly Count       	| NABA         	| Private  	|400             	| @naba 	|
 | Actinopterygii      	                | Actinopterygii| Public  	|161             	| @Baldridge2013	|
