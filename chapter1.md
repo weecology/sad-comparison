@@ -1,10 +1,12 @@
 An extensive comparison of species-abundance distribution models
 
+Elita Baldridge, *elita.baldridge@weecology.org, Utah State University*, Xiao Xiao, *Utah State University, University of Maine*; David J. Harris, *Utah State University, University of Florida*, and Ethan P. White, *Utah State University, University of Florida* 
+
 # Introduction
 
 The species abundance distribution (SAD) describes the full distribution of commonness and rarity in ecological systems. It is one of the most fundamental and ubiquitous patterns in ecology, and exhibits a consistent general form with many rare species and few abundant species occurring within a community. This general shape is often referred to as a hollow curve distribution.
 
-The SAD is one of the most widely studied patterns in ecology, leading to a proliferation of models that attempt to characterize the shape of the distribution and identify potential mechanisms for the pattern [see @mcgill2007 for a recent review of SADs]. These models range from arbitrary distributions that are chosen based on providing a good fit to the data [@fisher1943], to distributions chosen based on combinatorics and the most likely state of the system, [@frank2011; @harte2011; @locey2013], to models based on ecological process [@tokeshi1993; @hubbell2001; @volkov2003].
+The SAD is one of the most widely studied patterns in ecology, leading to a proliferation of models that attempt to characterize the shape of the distribution and identify potential mechanisms for the pattern [see @mcgill2007 for a recent review of SADs]. These models range from arbitrary distributions that are chosen based on providing a good fit to the data [@fisher1943], to distributions chosen based on combinatorics and the most likely state of the system, [@frank2011; @harte2011; @locey2013], to models based on ecological process [@tokeshi1993; @hubbell2001; @volkov2003; @alroy2015].
 
 Which model or models provide the best fit to the data, and the resulting implications for the processes structuring ecological systems, has been an active area of research  [e.g., @mcgill2003; @volkov2003; @ulrich2010; @white2012; @connolly2014]. However, most comparisons of the different models: 1) use only a small subset of available models [typically two; e.g., @mcgill2003; @volkov2003; @white2012; @connolly2014]; 2) focus on a single ecosystem or taxonomic group [e.g., @mcgill2003; @volkov2003]; or 3) fail to use the most appropriate statistical methods [e.g., @ulrich2010]. This makes it difficult to draw general conclusions about which, if any, models provide the best empirical fit to species abundance distributions.
 
@@ -27,8 +29,8 @@ Table 1: Details of datasets used to evaluate the form of the species-abundance 
 |--------------------------------------	|--------------	|----------------------------------	|-------------	|--------------------------------------------------	|
 | Breeding Bird Survey 	                | BBS          	| Public                               	|2769             	| @pardieck2014                          	|
 | Christmas Bird Count                 	| CBC          	| Private      	|1999             	| @cbc.              	|
-| Alwyn Gentry's Forest Transects      	| Gentry       	| Public                               	|10355             	| @phillips2002                	|
-| Forest Inventory Analysis            	| FIA          	| Public                               	|220             	| @fia                   	|
+| Alwyn Gentry's Forest Transects      	| Gentry       	| Public                               	|220              	| @phillips2002                	|
+| Forest Inventory Analysis            	| FIA          	| Public                               	| 10355           	| @fia                   	|
 | Mammal Community Database            	| MCDB         	| Public                               	|103             	| @thibault2011                      	|
 | North American Butterfly Count       	| NABA         	| Private  	|400             	| @naba 	|
 | Actinopterygii      	                | Actinopterygii| Public  	|161             	| @Baldridge2013	|
@@ -41,19 +43,19 @@ All abundances in the compiled datasets were counts of individuals.
 
 ### Models
 
-The majority of species-abundance distributions (SADs) are constructed using counts of individuals [for discussion of alternative approaches see @mcgill2007 and @morlon2009]. As such, the data are discrete and therefore the most appropriate models are discrete distributions. Therefore we used only abundance data based on individual counts and used only discrete distributions that have been used as models for SADs.
+The majority of species-abundance distributions (SADs) are constructed using counts of individuals [for discussion of alternative approaches see @mcgill2007 and @morlon2009]. As such, the data are discrete and therefore discrete distributions are the most appropriate models. Thus, we used abundance data based on individual counts and discrete species abundance distribution models (SADs).
 
-McGill et al. [-@mcgill2007] classified models into five different families: purely statistical, branching process, population dynamics, niche partitioning, and spatial distribution of individuals. We evaluated models from each of the separate families, excluding the spatial distribution family, which requires spatially explicit data. Specifically, we evaluated the log-series, the Poisson log-normal, the negative binomial, the geometric distribution, and the Zipf distributions. All distributions were defined to have support defined by the positive integers (i.e., they are capable of having non-zero probability at values from 1 to infinity). We excluded models from analysis that do not have explicit likelihoods [e.g., some niche partitioning models; @sugihara1980; @tokeshi1993] so that we could use the likelihood based methods for fitting and evaluating distributions (see Analysis).
+McGill et al. [-@mcgill2007] classified species abundance distribution models into five different families: purely statistical, branching process, population dynamics, niche partitioning, and spatial distribution of individuals. We evaluated models from each of the separate families, excluding the spatial distribution family, which requires spatially explicit data. Specifically, we evaluated the log-series, the Poisson log-normal, the negative binomial, the geometric distribution, and the Zipf distributions. All distributions were defined to be capable of having non-zero probability at values from 1 to infinity. We excluded models from analysis that do not have explicit likelihoods [e.g., some niche partitioning models; @sugihara1980; @tokeshi1993, double geometric; @alroy2015] so we could use likelihood based methods for fitting and evaluating distributions (see Analysis).
 
-The log-series is one of the first distributions used to describe the SAD, being derived as a purely statistical distribution by Fisher [-@fisher1943]. It has since been derived as the result of both ecological processes, the metacommunity SAD for ecological neutral theory [@hubbell2001; @volkov2003], and several different maximum entropy models [@pueyo2007; @harte2008].
+The log-series is one of the first distributions used to describe the SAD, being derived as a purely statistical distribution by Fisher [-@fisher1943]. It has since been derived as the result of ecological processes, the metacommunity SAD for ecological neutral theory [@hubbell2001; @volkov2003], and several different maximum entropy models [@pueyo2007; @harte2008].
 
 The lognormal is one of the most commonly used distributions for describing the SAD [@mcgill2003] and has been derived as a null form of the distribution resulting from the central limit theorem [@may1975], population dynamics [@engen1996], and niche partitioning [@sugihara1980]. We use the Poisson lognormal because it is a discrete form of the distribution appropriate for fitting discrete abundance data [@bulmer1974].
 
 The negative-binomial (which can be derived as a mixture of the Poisson and Gamma distributions) provides a good characterization of the SAD predictions for several different ecological neutral models for the purposes of model selection [@connolly2014]. We use it to represent neutral models as a class.
 
-The geometric distribution was one of the first distributions derived as a model of the SAD and was derived based on niche partitioning [@motomura1932].
+The geometric distribution was one of the first distributions derived as a model of the SAD and was derived based on niche partitioning of a one-dimensional space with a single resource [@motomura1932].  The double geometric has recently been proposed as a successor to the geometric (among other distributions) based on a two-dimensional niche space [@alroy2015], but was not implemented due to a lack of an explicit likelihood.
 
-The Zipf (or power law) distribution was derived based on branching processes and was one of the best fitting distributions in a recent meta-analysis of SADs [@ulrich2010]
+The Zipf (or power law) distribution was derived based on branching processes and was one of the best fitting distributions in a recent meta-analysis of SADs [@ulrich2010].
 
 ### Analysis
 
