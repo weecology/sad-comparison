@@ -5,7 +5,8 @@ library(tidyr)
 library(lme4)
 library(magrittr)
 
-ids = c("naba", "cbc", "bbs", "mcdb", "gentry", "fia")
+ids = c("Actinopterygii", "Amphibia", "Arachnida", "bbs", "cbc", "Coleoptera", 
+        "fia", "gentry", "mcdb", "naba", "Reptilia")
 cutoff = 9 # Copied from the Python processing code
 
 # Negative binomial negative log-likelihood, truncated to exclude 0
@@ -30,7 +31,7 @@ postprocess = function(id){
   cat("postprocessing: ", id, "\n")
   
   # Import spab data
-  spab = read.csv(paste0("sad-data/", id, "_spab.csv"), skip = 2, header = FALSE, stringsAsFactors = FALSE)
+  spab = read.csv(paste0("sad-data/chapter1/", id, "_spab.csv"), skip = 2, header = FALSE, stringsAsFactors = FALSE)
   colnames(spab) = c('site','year','sp','ab')
   
   # Log-likelihoods from Python
