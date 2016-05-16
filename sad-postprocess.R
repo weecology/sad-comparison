@@ -187,3 +187,37 @@ ggplot(AICc_weight_long, aes(x = distribution, y = AICc_weight)) +
   theme_bw() +
   coord_cartesian(ylim = c(0, 1), expand = FALSE) + 
   ylab("AICc weight (higher is better)")
+
+
+
+# First past the post -----------------------------------------------------
+
+# Proportion of sites where distribution X has the lowest AICc
+table(apply(AICc_diff, 1, which.min)) %>%
+  structure(names = colnames(AICc_weight)) %>% 
+  divide_by(nrow(AICc_weight)) %>% 
+  round(3)
+
+
+get_names = function(x){
+  factor(gsub("^[^_]+_", "", colnames(AICc_weight)))[x]
+}
+
+par(mar =  c(5, 5, 4, 2) + 0.1, mgp = c(3.5,1,0))
+apply(AICc_diff, 1, which.min) %>%
+  get_names() %>%
+  table() %>% 
+  barplot(ylab = "Number of wins", xlab = "Species abundance distribution",
+          las = 1, space = 0)
+  
+
+for (df in deviance_list) {
+  df %>%
+    select(matches("AICc")) %>%
+    apply(1, which.min) %>% 
+    get_names() %>% 
+    table() %>% 
+    barplot(ylab = "Number of wins", xlab = "Species abundance distribution",
+            las = 1, space = 0)
+  title(df$id[[1]])
+}
