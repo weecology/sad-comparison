@@ -203,14 +203,18 @@ get_names = function(x){
   factor(gsub("^[^_]+_", "", colnames(AICc_weight)))[x]
 }
 
+pdf("total-wins.pdf")
 par(mar =  c(5, 5, 4, 2) + 0.1, mgp = c(3.5,1,0))
 apply(AICc_diff, 1, which.min) %>%
   get_names() %>%
   table() %>% 
   barplot(ylab = "Number of wins", xlab = "Species abundance distribution",
           las = 1, space = 0)
-  
+dev.off()
 
+pdf("wins-by-dataset.pdf", width = 13)
+par(mar =  c(5, 5, 4, 2) + 0.1, mgp = c(3.5,1,0))
+par(mfrow = c(3, 4))
 for (df in deviance_list) {
   df %>%
     select(matches("AICc")) %>%
@@ -221,3 +225,4 @@ for (df in deviance_list) {
             las = 1, space = 0)
   title(df$id[[1]])
 }
+dev.off()
