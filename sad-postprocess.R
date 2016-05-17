@@ -145,9 +145,12 @@ is_AICc = grepl("AICc", colnames(deviances))
 
 deviance_diff = deviances[, is_dev] - rowMeans(deviances[, is_dev])
 deviance_diff_long = gather(deviance_diff, key = "distribution", value = "deviance")
+deviance_diff_long$distribution = gsub("^[^_]+_", "", deviance_diff_long$distribution)
+
 
 AICc_diff = deviances[, is_AICc] - rowMeans(deviances[, is_AICc])
 AICc_diff_long = gather(AICc_diff, key = "distribution", value = "AICc")
+AICc_diff_long$distribution = gsub("^[^_]+_", "", AICc_diff_long$distribution)
 
 ggplot(deviance_diff_long, aes(x = distribution, y = deviance)) + 
   geom_hline(yintercept = 0) + 
@@ -166,11 +169,15 @@ relative_likelihoods = exp(-deviance_diff / 2) / rowSums(exp(-deviance_diff / 2)
 relative_likelihoods_long = gather(relative_likelihoods, 
                                    key = distribution, 
                                    value = relative_likelihood)
+relative_likelihoods_long$distribution = gsub("^[^_]+_", "", relative_likelihoods_long$distribution)
+
 
 AICc_weight = exp(-AICc_diff / 2) / rowSums(exp(-AICc_diff / 2))
 AICc_weight_long = gather(AICc_weight, 
                                    key = distribution, 
                                    value = AICc_weight)
+AICc_weight_long$distribution = gsub("^[^_]+_", "", AICc_weight_long$distribution)
+
 
 # Note: I had to tweak the bandwidth parameter for this plot, or zipf's splat at
 # zero would be so wide that the other distributions would be invisible by comparison.
