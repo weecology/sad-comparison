@@ -6,15 +6,15 @@ import matplotlib
 import matplotlib.pyplot as plt
 %matplotlib inline
 
-# BBS
+# BBS 61036
 # fia site 14057000012
 # Gentry site 95
-ab_array = np.array([[1L, 4L, 2L, 17L, 23L, 1L, 7L, 2L, 5L, 1L, 5L, 2L, 4L, 13L,
-1L, 4L, 7L, 11L, 12L, 2L, 1L, 17L, 35L, 16L, 88L, 10L, 2L, 1L,
-15L, 52L, 10L, 1L, 1L, 14L, 1L, 1L, 9L, 2L, 17L, 105L, 9L, 7L,
-45L, 14L, 2L, 7L, 24L, 15L, 4L, 2L, 3L, 9L, 7L, 10L, 3L, 29L,
-1L, 2L, 7L, 11L, 9L, 5L, 22L, 2L, 27L, 14L, 1L, 2L, 11L, 4L,
-21L, 114L, 22L, 44L, 9L, 5L, 2L, 2L, 6L, 16L, 10L],
+ab_array = np.array([[1L, 15L, 3L, 1L, 1L, 1L, 1L, 8L, 2L, 3L, 1L, 1L, 5L, 3L, 1L,
+7L, 6L, 2L, 5L, 2L, 1L, 6L, 28L, 12L, 30L, 2L, 8L, 3L, 7L, 9L,
+1L, 2L, 1L, 13L, 1L, 4L, 4L, 7L, 26L, 10L, 1L, 28L, 5L, 4L, 14L,
+11L, 3L, 4L, 2L, 4L, 1L, 20L, 1L, 4L, 17L, 1L, 2L, 5L, 3L, 2L,
+14L, 1L, 2L, 3L, 3L, 4L, 5L, 18L, 30L, 5L, 5L, 6L, 7L, 3L, 2L,
+4L],
               [2L, 1L, 1L, 2L, 1L, 2L, 1L, 5L, 1L, 1L, 1L, 4L, 7L, 2L, 1L,
 2L, 1L, 3L, 5L, 1L, 1L],
              [4L, 22L, 7L, 12L, 2L, 6L, 2L, 15L, 5L, 6L, 1L, 3L, 1L, 2L,
