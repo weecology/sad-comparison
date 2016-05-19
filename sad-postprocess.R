@@ -229,7 +229,7 @@ mean(AICc_weight$AICc_zipf < .01)
 
 median(AICc_weight$AICc_negbin)
 median(quantile(AICc_weight$AICc_pln))
-=======
+
 # First past the post -----------------------------------------------------
 
 # Proportion of sites where distribution X has the lowest AICc
