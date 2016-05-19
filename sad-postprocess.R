@@ -187,3 +187,38 @@ ggplot(AICc_weight_long, aes(x = distribution, y = AICc_weight)) +
   theme_bw() +
   coord_cartesian(ylim = c(0, 1), expand = FALSE) + 
   ylab("AICc weight (higher is better)")
+
+
+
+# Likelihoods -------------------------------------------------------------
+
+dev2lik = function(x){
+  exp(x / -2)
+}
+
+mean(deviances$deviance_negbin - deviances$deviance_pln) / 2
+
+round(mean(deviances$deviance_pln - deviances$deviance_logseries) / -2, 1)
+round(mean(deviances$deviance_negbin - deviances$deviance_logseries) / -2, 1)
+
+round(mean(deviances$deviance_pln - deviances$deviance_zipf) / -2, 1)
+round(mean(deviances$deviance_negbin - deviances$deviance_zipf) / -2, 1)
+
+
+dev2lik(mean(deviances$deviance_negbin - deviances$deviance_logseries))
+dev2lik(mean(deviances$deviance_negbin - deviances$deviance_zipf))
+
+
+
+# AICc weights ------------------------------------------------------------
+
+
+max(AICc_weight$AICc_logseries)
+
+
+median(AICc_weight$AICc_zipf)
+mean(AICc_weight$AICc_zipf < .01)
+
+
+median(AICc_weight$AICc_negbin)
+median(quantile(AICc_weight$AICc_pln))
