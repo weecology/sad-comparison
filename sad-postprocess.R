@@ -197,6 +197,39 @@ ggplot(AICc_weight_long, aes(x = distribution, y = AICc_weight)) +
 
 
 
+# Likelihoods -------------------------------------------------------------
+
+dev2lik = function(x){
+  exp(x / -2)
+}
+
+mean(deviances$deviance_negbin - deviances$deviance_pln) / 2
+
+round(mean(deviances$deviance_pln - deviances$deviance_logseries) / -2, 1)
+round(mean(deviances$deviance_negbin - deviances$deviance_logseries) / -2, 1)
+
+round(mean(deviances$deviance_pln - deviances$deviance_zipf) / -2, 1)
+round(mean(deviances$deviance_negbin - deviances$deviance_zipf) / -2, 1)
+
+
+dev2lik(mean(deviances$deviance_negbin - deviances$deviance_logseries))
+dev2lik(mean(deviances$deviance_negbin - deviances$deviance_zipf))
+
+
+
+# AICc weights ------------------------------------------------------------
+
+
+max(AICc_weight$AICc_logseries)
+
+
+median(AICc_weight$AICc_zipf)
+mean(AICc_weight$AICc_zipf < .01)
+
+
+median(AICc_weight$AICc_negbin)
+median(quantile(AICc_weight$AICc_pln))
+
 # First past the post -----------------------------------------------------
 
 # Proportion of sites where distribution X has the lowest AICc
