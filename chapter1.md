@@ -1,6 +1,6 @@
 An extensive comparison of species-abundance distribution models
 
-Elita Baldridge, *elita.baldridge@weecology.org, Utah State University*, Xiao Xiao, *Utah State University, University of Maine*; David J. Harris, *Utah State University, University of Florida*, and Ethan P. White, *Utah State University, University of Florida*
+Elita Baldridge, *elita.baldridge@weecology.org, Utah State University*, David J. Harris, *Utah State University, University of Florida*, Xiao Xiao, *Utah State University, University of Maine*, and Ethan P. White, *Utah State University, University of Florida*
 
 # Introduction
 
