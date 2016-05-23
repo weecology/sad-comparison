@@ -1,9 +1,15 @@
-library(progress)
 library(dplyr)
 library(ggplot2)
 library(tidyr)
-library(lme4)
 library(magrittr)
+
+if (!dir.exists("violins")) {
+  dir.create("violins")
+}
+
+my_ggsave = function(name, plot, width = 4, height = 4, dpi = 400){
+  ggsave(paste0("violins/", name), plot, width = width, height = height, dpi = dpi)
+}
 
 ids = c("Actinopterygii", "Amphibia", "Arachnida", "bbs", "cbc", "Coleoptera", 
         "fia", "gentry", "mcdb", "naba", "Reptilia")
@@ -152,18 +158,19 @@ AICc_diff = deviances[, is_AICc] - rowMeans(deviances[, is_AICc])
 AICc_diff_long = gather(AICc_diff, key = "distribution", value = "AICc")
 AICc_diff_long$distribution = gsub("^[^_]+_", "", AICc_diff_long$distribution)
 
-ggplot(deviance_diff_long, aes(x = distribution, y = deviance)) + 
+dev_plot = ggplot(deviance_diff_long, aes(x = distribution, y = deviance)) + 
   geom_hline(yintercept = 0) + 
   geom_violin() + 
   theme_bw() + 
   ylab("Deviation from mean deviance (lower is better)")
+my_ggsave(name = "deviance.png", dev_plot)
 
-ggplot(AICc_diff_long, aes(x = distribution, y = AICc)) + 
+aic_plot = ggplot(AICc_diff_long, aes(x = distribution, y = AICc)) + 
   geom_hline(yintercept = 0) + 
   geom_violin() + 
   theme_bw() + 
   ylab("Deviation from mean AICc (lower is better)")
-
+my_ggsave(name = "aic.png", aic_plot)
 
 relative_likelihoods = exp(-deviance_diff / 2) / rowSums(exp(-deviance_diff / 2))
 relative_likelihoods_long = gather(relative_likelihoods, 
@@ -182,19 +189,19 @@ AICc_weight_long$distribution = gsub("^[^_]+_", "", AICc_weight_long$distributio
 # Note: I had to tweak the bandwidth parameter for this plot, or zipf's splat at
 # zero would be so wide that the other distributions would be invisible by comparison.
 # A bandwidth much less than 0.01 on a 0-1 scale is probably undersmoothed anyway.
-ggplot(relative_likelihoods_long, aes(x = distribution, y = relative_likelihood)) +
+relative_plot = ggplot(relative_likelihoods_long, aes(x = distribution, y = relative_likelihood)) +
   geom_violin(bw = .01) +
   theme_bw() +
   coord_cartesian(ylim = c(0, 1), expand = FALSE) + 
   ylab("Relative likelihood (higher is better)")
+my_ggsave("relative.png", relative_plot)
 
-
-ggplot(AICc_weight_long, aes(x = distribution, y = AICc_weight)) +
+weight_plot = ggplot(AICc_weight_long, aes(x = distribution, y = AICc_weight)) +
   geom_violin(bw = .01) +
   theme_bw() +
   coord_cartesian(ylim = c(0, 1), expand = FALSE) + 
   ylab("AICc weight (higher is better)")
-
+my_ggsave("weight.png", weight_plot)
 
 
 # Likelihoods -------------------------------------------------------------
