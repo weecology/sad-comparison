@@ -37,7 +37,7 @@ All abundances in the compiled datasets were counts of individuals.
 
 ### Models
 
-The majority of species abundance distributions (SADs) are constructed using counts of individuals [for discussion of alternative approaches see @mcgill2007 and @morlon2009]. As such, the data are discrete and therefore discrete distributions are more appropriate.
+The majority of species abundance distributions (SADs) are constructed using counts of individuals [for discussion of alternative approaches see @mcgill2007 and @morlon2009]. As such, the data are discrete and discrete distributions (i.e., those that only have non-zero probabilities for positive integer values of abundance) are more appropriate.
 
 McGill et al. [-@mcgill2007] classified species abundance distribution models into five different families: purely statistical, branching process, population dynamics, niche partitioning, and spatial distribution of individuals. We evaluated models from each of the separate families, excluding the spatial distribution family, which requires spatially explicit data. Specifically, we evaluated the log-series, the Poisson lognormal, the negative binomial, and the Zipf distributions. All distributions were defined to be capable of having non-zero probability at values from 1 to infinity. We excluded models from analysis that do not have explicit likelihoods [e.g., geometric; @motomura1932, some niche partitioning models; @sugihara1980; @tokeshi1993, double geometric; @alroy2015] so we could use likelihood based methods for fitting and evaluating distributions (see Analysis).
 
