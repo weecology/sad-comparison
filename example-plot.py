@@ -25,6 +25,7 @@ ab_array = np.array([[1L, 15L, 3L, 1L, 1L, 1L, 1L, 8L, 2L, 3L, 1L, 1L, 5L, 3L, 1
 
 # Color Brewer's 3-class Dark2 colors, plus black
 colors = ["#000000", "#1b9e77", "#d95f02", "#7570b3"]
+plot_labels = ["A: BBS site 61036", "B: FIA site 14057000012", "C: Gentry site 95"]
 
 for i in range(3):
     ab = ab_array[i]
@@ -48,8 +49,8 @@ for i in range(3):
     zll = md.zipf_ll(ab, zipf_par)
 
     ab_y = np.zeros(len(x_values) + 1)
-    for i in range(len(ab)):
-        ab_y[ab[i]] = ab_y[ab[i]] + 1/len(ab)
+    for j in range(len(ab)):
+        ab_y[ab[j]] = ab_y[ab[j]] + 1/len(ab)
 
     fig= plt.figure(figsize=(12, 8), dpi=800)
     ax1 = fig.add_subplot(111)
@@ -58,6 +59,7 @@ for i in range(3):
 
     plt.ylabel('frequency')
     plt.xlabel('abundance')
+    plt.title(plot_labels[i])
 
     # Width originally set at 12 when width was 50.
     # This should be the same proportional width
@@ -67,6 +69,6 @@ for i in range(3):
     ax1.vlines(x = x_values, ymin=[0], ymax=ab_y[1:], linewidth = width, color = "#AAAAAA")
     ax1.plot(x_values, logser_values, color = colors[0], label = "log-series: " + str(round(lsll)), linewidth = 3)
     ax1.plot(x_values, nb_values, color = colors[1], label = "negative binomial: " + str(round(nbll)), linewidth = 3)
-    ax1.plot(x_values, pln_values, color = colors[2], label = "Poisson-lognormal: " + str(round(plnll)), linewidth = 3)
-    ax1.plot(x_values, zipf_values, color = colors[3], label = "zipf: " + str(round(zll)), linewidth = 3)
+    ax1.plot(x_values, pln_values, color = colors[2], label = "Poisson lognormal: " + str(round(plnll)), linewidth = 3)
+    ax1.plot(x_values, zipf_values, color = colors[3], label = "Zipf: " + str(round(zll)), linewidth = 3)
     plt.legend(loc='upper right');
