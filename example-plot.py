@@ -23,8 +23,8 @@ ab_array = np.array([[1L, 15L, 3L, 1L, 1L, 1L, 1L, 8L, 2L, 3L, 1L, 1L, 5L, 3L, 1
 4L, 1L, 1L, 9L, 3L, 8L, 3L, 2L, 10L, 4L, 14L, 4L, 2L, 3L, 1L,
 1L, 8L]])
 
-# rearranged from http://www.cookbook-r.com/Graphs/Colors_%28ggplot2%29/#a-colorblind-friendly-palette
-colors = ["#F0E442", "#D55E00", "#E69F00", "#56B4E9", "#009E73", "#0072B2", "#999999", "#CC79A7"]
+# Color Brewer's 3-class Dark2 colors, plus black
+colors = ["#000000", "#1b9e77", "#d95f02", "#7570b3"]
 
 for i in range(3):
     ab = ab_array[i]
@@ -63,10 +63,10 @@ for i in range(3):
     # This should be the same proportional width
     width = 12 / min(50, max(x_values)) * 50
 
-    ax1.vlines(x = x_values, ymin = [0], ymax = .0025, color = "#999999")
-    ax1.vlines(x = x_values, ymin=[0], ymax=ab_y[1:], linewidth = width, color = "#999999")
-    ax1.plot(x_values, logser_values, color = colors[1], label = "log-series: " + str(round(lsll)), linewidth = 1.5)
-    ax1.plot(x_values, nb_values, color = colors[3], label = "negative binomial: " + str(round(nbll)), linewidth = 1.5)
-    ax1.plot(x_values, pln_values, color = colors[7], label = "Poisson-lognormal: " + str(round(plnll)), linewidth = 1.5)
-    ax1.plot(x_values, zipf_values, color = "k", label = "zipf: " + str(round(zll)), linewidth = 1.5)
+    ax1.vlines(x = x_values, ymin = [0], ymax = .0025, color = "#AAAAAA")
+    ax1.vlines(x = x_values, ymin=[0], ymax=ab_y[1:], linewidth = width, color = "#AAAAAA")
+    ax1.plot(x_values, logser_values, color = colors[0], label = "log-series: " + str(round(lsll)), linewidth = 3)
+    ax1.plot(x_values, nb_values, color = colors[1], label = "negative binomial: " + str(round(nbll)), linewidth = 3)
+    ax1.plot(x_values, pln_values, color = colors[2], label = "Poisson-lognormal: " + str(round(plnll)), linewidth = 3)
+    ax1.plot(x_values, zipf_values, color = colors[3], label = "zipf: " + str(round(zll)), linewidth = 3)
     plt.legend(loc='upper right');
