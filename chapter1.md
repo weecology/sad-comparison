@@ -65,11 +65,11 @@ Across all data sets, the negative binomial and Poisson lognormal distributions 
 
 Although the negative binomial and Poisson lognormal distributions matched the data most closely, the likelihood provides a biased estimate of these distributions' ability to generalize to unobserved species. AICc approximately removes this bias by penalizing models with more degrees of freedom---such as the negative binomial and Poisson lognormal distributions, which have two free parameters instead of one like the log-series and Zipf distributions. After applying this penalty, the log-series distribution would be expected to make the best predictions for 69.2% of the sites. The Poisson lognormal and negative binomial distributions were each preferred in about 12% of the sites, and the Zipf distribution was preferred least often (6.0% of sites; Figure 1).
 
-![Total wins by model for all datasets combined.](./sad-data/chapter1/total_wins.png)
+![Total wins by model for all datasets combined.](./total_wins.png)
 
 Across all data sets and taxonomic groups, the log-series distribution had the highest AICc weights more often than any other model. The negative binomial performed well for BBS, but was almost never the best fitting model for plants (FIA and Gentry),  butterflies (NABA), Acintopterygii, or Coleoptera. The Poisson lognormal performed well for the bird datasets (BBS and CBC) and the Gentry tree data, but almost never won in the FIA and Coleoptera datasets (Figure 2). The Zipf distribution performed well for Arachnida, but was never the best fitting model for the bird datasets.
 
-![Total wins by model for each dataset individually.](./sad-data/chapter1/wins_by_dataset.png)
+![Total wins by model for each dataset individually.](./wins_by_dataset.png)
 
 The full distribution of AICc weights shows separation among models (Figure 3). Although the log-series distribution had the best AICc score much more often than the other models, Figure 3 shows that its lead was never decisive: across all 16,209 sites, it never had more than about 75% of the AICc weight. Most of the remaining weight was assigned to the negative binomial and Poisson lognormal distributions (each of which usually had at least 12-15% of the weight but was occasionally favored very strongly).  The Zipf distribution showed a strong mode near zero, and usually had less than 7% of the weight.
 
