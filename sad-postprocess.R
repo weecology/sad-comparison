@@ -165,6 +165,14 @@ dev_plot = ggplot(deviance_diff_long, aes(x = distribution, y = deviance)) +
   ylab("Deviation from mean deviance (lower is better)")
 my_ggsave(name = "deviance.png", dev_plot)
 
+
+ll_plot = ggplot(deviance_diff_long, aes(x = distribution, y = -deviance/2)) + 
+  geom_hline(yintercept = 0) + 
+  geom_violin() + 
+  theme_bw() + 
+  ylab("Deviation from mean log-likelihood")
+my_ggsave(name = "loglik.png", ll_plot)
+
 aic_plot = ggplot(AICc_diff_long, aes(x = distribution, y = AICc)) + 
   geom_hline(yintercept = 0) + 
   geom_violin() + 
