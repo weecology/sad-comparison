@@ -149,16 +149,30 @@ deviances = bind_rows(deviance_list)
 is_dev = grepl("deviance", colnames(deviances))
 is_AICc = grepl("AICc", colnames(deviances))
 
-deviance_diff = deviances[, is_dev] - rowMeans(deviances[, is_dev])
-deviance_diff_long = gather(deviance_diff, key = "distribution", value = "deviance")
-deviance_diff_long$distribution = gsub("^[^_]+_", "", deviance_diff_long$distribution)
+fancify = function(x){
+  x = gsub("(deviance_)|(AICc_)", "", x)
+  dict = c(logseries = "log-series", pln = "poisson\nlognormal", 
+    negbin = "negative\nbinomial", zipf = "Zipf")
+  for (i in 1:length(dict)) {
+    x[x == names(dict)[i]] = dict[i]
+  }
+  x
+}
+fancify_names = function(df){
+  colnames(df) = fancify(colnames(df))
+  df
+}
+
+deviance_diff = (deviances[, is_dev] - rowMeans(deviances[, is_dev])) %>%
+  fancify_names()
+deviance_diff_long = gather(deviance_diff, key = "Distriution", value = "deviance")
 
 
-AICc_diff = deviances[, is_AICc] - rowMeans(deviances[, is_AICc])
-AICc_diff_long = gather(AICc_diff, key = "distribution", value = "AICc")
-AICc_diff_long$distribution = gsub("^[^_]+_", "", AICc_diff_long$distribution)
+AICc_diff = (deviances[, is_AICc] - rowMeans(deviances[, is_AICc])) %>%
+  fancify_names()
+AICc_diff_long = gather(AICc_diff, key = "Distriution", value = "AICc")
 
-dev_plot = ggplot(deviance_diff_long, aes(x = distribution, y = deviance)) + 
+dev_plot = ggplot(deviance_diff_long, aes(x = Distriution, y = deviance)) + 
   geom_hline(yintercept = 0) + 
   geom_violin() + 
   theme_bw() + 
@@ -166,45 +180,46 @@ dev_plot = ggplot(deviance_diff_long, aes(x = distribution, y = deviance)) +
 my_ggsave(name = "deviance.png", dev_plot)
 
 
-ll_plot = ggplot(deviance_diff_long, aes(x = distribution, y = -deviance/2)) + 
+ll_plot = ggplot(deviance_diff_long, aes(x = Distriution, y = -deviance/2)) + 
   geom_hline(yintercept = 0) + 
   geom_violin() + 
   theme_bw() + 
   ylab("Deviation from mean log-likelihood")
 my_ggsave(name = "loglik.png", ll_plot)
 
-aic_plot = ggplot(AICc_diff_long, aes(x = distribution, y = AICc)) + 
+aic_plot = ggplot(AICc_diff_long, aes(x = Distriution, y = AICc)) + 
   geom_hline(yintercept = 0) + 
   geom_violin() + 
   theme_bw() + 
   ylab("Deviation from mean AICc (lower is better)")
 my_ggsave(name = "aic.png", aic_plot)
 
-relative_likelihoods = exp(-deviance_diff / 2) / rowSums(exp(-deviance_diff / 2))
+relative_likelihoods = (exp(-deviance_diff / 2) / rowSums(exp(-deviance_diff / 2)))  %>%
+  fancify_names()
 relative_likelihoods_long = gather(relative_likelihoods, 
-                                   key = distribution, 
+                                   key = Distriution, 
                                    value = relative_likelihood)
-relative_likelihoods_long$distribution = gsub("^[^_]+_", "", relative_likelihoods_long$distribution)
 
 
-AICc_weight = exp(-AICc_diff / 2) / rowSums(exp(-AICc_diff / 2))
+
+AICc_weight = (exp(-AICc_diff / 2) / rowSums(exp(-AICc_diff / 2))) %>%
+  fancify_names()
 AICc_weight_long = gather(AICc_weight, 
-                                   key = distribution, 
-                                   value = AICc_weight)
-AICc_weight_long$distribution = gsub("^[^_]+_", "", AICc_weight_long$distribution)
+                                   key = Distriution, 
+                                   value = AICc_weight) 
 
 
 # Note: I had to tweak the bandwidth parameter for this plot, or zipf's splat at
 # zero would be so wide that the other distributions would be invisible by comparison.
 # A bandwidth much less than 0.01 on a 0-1 scale is probably undersmoothed anyway.
-relative_plot = ggplot(relative_likelihoods_long, aes(x = distribution, y = relative_likelihood)) +
+relative_plot = ggplot(relative_likelihoods_long, aes(x = Distriution, y = relative_likelihood)) +
   geom_violin(bw = .01) +
   theme_bw() +
   coord_cartesian(ylim = c(0, 1), expand = FALSE) + 
   ylab("Relative likelihood (higher is better)")
 my_ggsave("relative.png", relative_plot)
 
-weight_plot = ggplot(AICc_weight_long, aes(x = distribution, y = AICc_weight)) +
+weight_plot = ggplot(AICc_weight_long, aes(x = Distriution, y = AICc_weight)) +
   geom_violin(bw = .01) +
   theme_bw() +
   coord_cartesian(ylim = c(0, 1), expand = FALSE) + 
@@ -235,15 +250,12 @@ dev2lik(mean(deviances$deviance_negbin - deviances$deviance_zipf))
 # AICc weights ------------------------------------------------------------
 
 
-max(AICc_weight$AICc_logseries)
+median(AICc_weight$Zipf)
+mean(AICc_weight$Zipf < .01)
 
 
-median(AICc_weight$AICc_zipf)
-mean(AICc_weight$AICc_zipf < .01)
-
-
-median(AICc_weight$AICc_negbin)
-median(quantile(AICc_weight$AICc_pln))
+median(AICc_weight$`negative\nbinomial`)
+median(quantile(AICc_weight$`poisson\nlognormal`))
 
 # First past the post -----------------------------------------------------
 
@@ -255,24 +267,29 @@ table(apply(AICc_diff, 1, which.min)) %>%
 
 
 get_names = function(x){
-  factor(gsub("^[^_]+_", "", colnames(AICc_weight)))[x]
+  factor(gsub("^[^_]+_", "", fancify(colnames(AICc_weight))))[x]
 }
 
+png("total_wins.png", width = 1500, height = 1200, res = 300)
 par(mar =  c(5, 5, 4, 2) + 0.1, mgp = c(3.5,1,0))
 apply(AICc_diff, 1, which.min) %>%
   get_names() %>%
   table() %>% 
   barplot(ylab = "Number of wins", xlab = "Species abundance distribution",
           las = 1, space = 0)
+dev.off()
   
-
+png("wins-by-dataset.png", width = 4000, height = 2100, res = 300)
+par(mar =  c(5, 5, 4, 2) + 0.1)
+par(mgp = c(3.5,1,0))
+par(mfrow = c(3, 4))
 for (df in deviance_list) {
   df %>%
     select(matches("AICc")) %>%
     apply(1, which.min) %>% 
     get_names() %>% 
     table() %>% 
-    barplot(ylab = "Number of wins", xlab = "Species abundance distribution",
-            las = 1, space = 0)
+    barplot(ylab = "Number of wins", xlab = "Species abundance distribution", las = 1, space = 0)
   title(df$id[[1]])
 }
+dev.off()
