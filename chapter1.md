@@ -51,7 +51,7 @@ The Zipf (or power law) distribution was derived based on both branching process
 
 Figure 1 shows three example sites with the empirical distribution and associated models fit to the data Zipf distributions tend to predict the most rare species followed by the log-series, the negative binomial, and Poisson lognormal.
 
-![Example species-abundance distributions including the empirical distributions (grey bars) and the best fitting log-series (black line), negative binomial (green line), Poisson lognormal (red line), and Zipf (purple line). Distributions are for (a) Breeding Bird Survey - Route 36 in New York, (b) Forest Inventory and Analysis ... and (c) Gentry - Araracuara High Campina site in Colombia. Log-likelihoods of the models are included in parenthesis in the legend](./Fig1.png)
+![Example species-abundance distributions including the empirical distributions (grey bars) and the best fitting log-series (black line), negative binomial (green line), Poisson lognormal (red line), and Zipf (purple line). Distributions are for (a) Breeding Bird Survey - Route 36 in New York, (b) Forest Inventory and Analysis - Unit 4, County 57, Plot 12 in Alabama, and (c) Gentry - Araracuara High Campina site in Colombia. Log-likelihoods of the models are included in parenthesis in the legend](./Fig1.png)
 
 
 ### Analysis
