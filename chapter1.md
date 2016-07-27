@@ -97,7 +97,7 @@ Across all data sets and taxonomic groups, the log-series distribution had the h
 
 ![Number of cases where each model provided the best fit to the data based on AICc for each dataset separately.](./wins-by-dataset.png)
 
-The full distribution of AICc weights shows separation among models (Figure 5). Although the log-series distribution had the best AICc score much more often than the other models, its lead was never decisive: across all 16,209 sites, it never had more than about 75% of the AICc weight (Figure 5). Most of the remaining weight was assigned to the negative binomial and Poisson lognormal distributions (each of which usually had at least 12-15% of the weight but was occasionally favored very strongly).  The Zipf distribution showed a strong mode near zero, and usually had less than 7% of the weight.
+The full distribution of AICc weights shows separation among models (Figure 5). Although the log-series distribution had the best AICc score much more often than the other models, its lead was never decisive: across all 16,209 sites, it never had more than about 75% of the AICc weight (Figure 5). Most of the remaining weight was assigned to the negative binomial and Poisson lognormal distributions (each of which usually had at least 12-15% of the weight but was occasionally favored very strongly). The Zipf distribution showed a strong mode near zero, and usually had less than 7% of the weight.
 
 ![Violin plots of the AICc weights for each model. Weights indicate the probability that the model is the best model for the data](./violins/weight.png)
 
