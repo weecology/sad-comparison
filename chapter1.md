@@ -1,6 +1,22 @@
-An extensive comparison of species-abundance distribution models
+# An extensive comparison of species-abundance distribution models
 
-Elita Baldridge, *elita.baldridge@weecology.org, Utah State University*, David J. Harris, *University of Florida*, Xiao Xiao, *Utah State University, University of Maine*, and Ethan P. White, *Utah State University, University of Florida*
+Elita Baldridge^1,2^, David J. Harris^3^, Xiao Xiao^1,2,4,5^, Ethan P. White^\*,1,2,3,6^
+
+^1^ Department of Biology, Utah State University, Logan, Utah, USA
+
+^2^ Ecology Center, Utah State University, Logan, Utah, USA
+
+^3^ Department of Wildlife Ecology & Conservation, University of Florida, Gainesville, Florida, USA
+
+^4^ School of Biology and Ecology, University of Maine, Orono, Maine, USA
+
+^5^ Mitchell Center for Sustainability Solutions, University of Maine, Orono, Maine, USA
+
+^6^ Informatics Institute, University of Florida, Gainesville, Florida, USA
+
+^*^ Corresponding author: ethan@weecology.org
+
+
 
 # Introduction
 
