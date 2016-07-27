@@ -17,6 +17,10 @@ Elita Baldridge^1,2^, David J. Harris^3^, Xiao Xiao^1,2,4,5^, Ethan P. White^\*,
 ^*^ Corresponding author: ethan@weecology.org
 
 
+# Abstract
+
+A number of different models have been proposed as descriptions of the species-abundance distribution (SAD). Most evaluations of these models use only one or two models, focus only a single ecosystem or taxonomic group, or fail to use appropriate statistical methods. We use likelihood and AIC to compare the fit of four of the most widely used models to data on over 16,000 communities from a diverse array of taxonomic groups and ecosystems. Across all datasets combined the log-series, Poisson lognormal, and negative binomial all yield similar overall fits to the data. Therefore, when correcting for differences in the number of parameters the log-series generally provides the best fit to data. Within individual datasets some other distributions performed nearly as well as the log-series even after correcting for the number of parameters. The Zipf distribution is generally a poor characterization of the SAD.
+
 
 # Introduction
 
