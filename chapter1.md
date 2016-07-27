@@ -35,25 +35,24 @@ Here, we evaluate the performance of four of the most widely used models for the
 
 ### Data
 
-We compiled data from citizen science projects, government surveys, and literature mining to produce a dataset with 16,209 communities, from nine taxonomic groups, representing nearly 50 million individual terrestrial, aquatic, and marine organisms. Data for trees, birds, butterflies and mammals was compiled by White et al. [-@white2012] from six data sources: the US Forest Service Forest Inventory and Analysis [FIA; @fia], the North American Butterfly Association's North American Butterfly Count [NABC; @naba], the Mammal Community Database [MCDB; @thibault2011], Alwyn Gentry's Forest Transect Data Set [Gentry; @phillips2002], the Audubon Society Christmas Bird Count [CBC; National Audubon @cbc], and the US Geological Survey's North American Breeding Bird Survey [BBS; @pardieck2014]. The publicly available datasets (FIA, MCDB, Gentry, and BBS) were acquired using the EcoData Retriever [http://ecodataretriever.org; @morris2013]. Details of the treatment of these datasets can be found in Appendix A of White et al. [-@white2012]. We modified the data slightly by removing sites 102 and 179 from the Gentry data due to issues with decimal abundances appearing in raw data due to either data entry or data structure errors. Data on Actinopterygii, Reptilia, Coleoptera, Arachnida, and Amphibia, were mined from literature by Baldridge and are publicly available [@Baldridge2013].
+We compiled data from citizen science projects, government surveys, and literature mining to produce a dataset with 16,209 communities, from nine taxonomic groups, representing nearly 50 million individual terrestrial, aquatic, and marine organisms. Data for trees, birds, butterflies and mammals was compiled by White et al. [-@white2012] from six data sources: the US Forest Service Forest Inventory and Analysis [FIA; @fia], the North American Butterfly Association's North American Butterfly Count [NABC; @naba], the Mammal Community Database [MCDB; @thibault2011], Alwyn Gentry's Forest Transect Data Set [Gentry; @phillips2002], the Audubon Society Christmas Bird Count [CBC; National Audubon @cbc], and the US Geological Survey's North American Breeding Bird Survey [BBS; @pardieck2014]. The publicly available datasets (FIA, MCDB, Gentry, and BBS) were acquired using the EcoData Retriever [http://ecodataretriever.org; @morris2013]. Details of the treatment of these datasets can be found in Appendix A of White et al. [-@white2012]. We modified the data slightly by removing sites 102 and 179 from the Gentry data due to issues with decimal abundances appearing in raw data due to either data entry or data structure errors. Data on Actinopterygii, Reptilia, Coleoptera, Arachnida, and Amphibia, were mined from literature by Baldridge and are publicly available [@Baldridge2013]. All abundances in the compiled datasets were counts of individuals.
 
 Table 1: Details of datasets used to evaluate the form of the species abundance distribution. Datasets marked as Private were obtained through data requests to the providers.
 
 | Dataset                              	| Dataset code 	| Availability                                     	| Total sites 	| Citation                                         	|
 |--------------------------------------	|--------------	|----------------------------------	|-------------	|--------------------------------------------------	|
 | Breeding Bird Survey 	                | BBS          	| Public                               	|2769             	| @pardieck2014                          	|
-| Christmas Bird Count                 	| CBC          	| Private      	|1999             	| National Audubon @cbc.              	|
-| Alwyn Gentry's Forest Transects      	| Gentry       	| Public                               	|220              	| @phillips2002                	|
+| Christmas Bird Count                 	| CBC          	| Private      	|1999             	| National Audubon @cbc              	|
+| Gentry's Forest Transects         	| Gentry       	| Public                               	|220              	| @phillips2002                	|
 | Forest Inventory Analysis            	| FIA          	| Public                               	| 10355           	| @fia                   	|
-| Mammal Community Database            	| MCDB         	| Public                               	|103             	| @thibault2011                      	|
-| North American Butterfly Count       	| NABA         	| Private  	|400             	| @naba 	|
+| Mammal Community DB               	| MCDB         	| Public                               	|103             	| @thibault2011                      	|
+| NA Butterfly Count                	| NABA         	| Private  	|400             	| @naba 	|
 | Actinopterygii      	                | Actinopterygii| Public  	|161             	| @Baldridge2013	|
 | Reptilia      	                    | Reptilia      | Public  	|129            	| @Baldridge2013 	|
 | Amphibia      	                    | Amphibia 	    | Public  	|43             	| @Baldridge2013	|
 | Coleoptera      	                    | Coleoptera    | Public  	|5             	| @Baldridge2013 	|
 | Arachnida      	                    | Arachnida     | Public  	|25             	| @Baldridge2013 	|
 
-All abundances in the compiled datasets were counts of individuals.
 
 ### Models
 
