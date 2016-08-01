@@ -14,8 +14,6 @@ Elita Baldridge^1,2^, David J. Harris^3^, Xiao Xiao^1,2,4,5^, Ethan P. White^\*,
 
 ^6^ Informatics Institute, University of Florida, Gainesville, Florida, USA
 
-^*^ Corresponding author: ethan@weecology.org
-
 
 # Abstract
 
