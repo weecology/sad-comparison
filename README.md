@@ -1,6 +1,8 @@
 sad-comparison
 ==============
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.165832.svg)](https://doi.org/10.5281/zenodo.165832)
+
 ####Repository for comparisons among species abundance distribution (SAD) models.
 
 #####Data:   
