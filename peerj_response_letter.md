@@ -97,9 +97,9 @@ and I disagree quite strongly that best practice in this space involves filling
 the methods section with lengthy descriptions of how individual functions from
 individual packages are used to analyze individual results. The appropriate
 place for that level of detail is in the openly available code associated with
-an analysis. Our code is publicly available under open source licenses:
-https://github.com/weecology/sad-comparison and we will archive this repository
-on Zenodo as part of the publication of this paper. It can be run by anyone to
+an analysis. Our code is publicly available under open source licenses at
+https://github.com/weecology/sad-comparison and we have now archived it on
+Zenodo and added a link to this archive in the paper. It can be run by anyone to
 replicate our results and read to look up individual function use if desired.
 
 > L.172-174: I do not agree with this sentence. The authors did not compare
