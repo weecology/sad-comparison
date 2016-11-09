@@ -165,14 +165,14 @@ fancify_names = function(df){
 
 deviance_diff = (deviances[, is_dev] - rowMeans(deviances[, is_dev])) %>%
   fancify_names()
-deviance_diff_long = gather(deviance_diff, key = "Distriution", value = "deviance")
+deviance_diff_long = gather(deviance_diff, key = "Distribution", value = "deviance")
 
 
 AICc_diff = (deviances[, is_AICc] - rowMeans(deviances[, is_AICc])) %>%
   fancify_names()
-AICc_diff_long = gather(AICc_diff, key = "Distriution", value = "AICc")
+AICc_diff_long = gather(AICc_diff, key = "Distribution", value = "AICc")
 
-dev_plot = ggplot(deviance_diff_long, aes(x = Distriution, y = deviance)) + 
+dev_plot = ggplot(deviance_diff_long, aes(x = Distribution, y = deviance)) + 
   geom_hline(yintercept = 0) + 
   geom_violin() + 
   theme_bw() + 
@@ -180,14 +180,14 @@ dev_plot = ggplot(deviance_diff_long, aes(x = Distriution, y = deviance)) +
 my_ggsave(name = "deviance.png", dev_plot)
 
 
-ll_plot = ggplot(deviance_diff_long, aes(x = Distriution, y = -deviance/2)) + 
+ll_plot = ggplot(deviance_diff_long, aes(x = Distribution, y = -deviance/2)) + 
   geom_hline(yintercept = 0) + 
   geom_violin() + 
   theme_bw() + 
   ylab("Deviation from mean log-likelihood")
 my_ggsave(name = "loglik.png", ll_plot)
 
-aic_plot = ggplot(AICc_diff_long, aes(x = Distriution, y = AICc)) + 
+aic_plot = ggplot(AICc_diff_long, aes(x = Distribution, y = AICc)) + 
   geom_hline(yintercept = 0) + 
   geom_violin() + 
   theme_bw() + 
@@ -197,7 +197,7 @@ my_ggsave(name = "aic.png", aic_plot)
 relative_likelihoods = (exp(-deviance_diff / 2) / rowSums(exp(-deviance_diff / 2)))  %>%
   fancify_names()
 relative_likelihoods_long = gather(relative_likelihoods, 
-                                   key = Distriution, 
+                                   key = Distribution, 
                                    value = relative_likelihood)
 
 
@@ -205,21 +205,21 @@ relative_likelihoods_long = gather(relative_likelihoods,
 AICc_weight = (exp(-AICc_diff / 2) / rowSums(exp(-AICc_diff / 2))) %>%
   fancify_names()
 AICc_weight_long = gather(AICc_weight, 
-                                   key = Distriution, 
+                                   key = Distribution, 
                                    value = AICc_weight) 
 
 
 # Note: I had to tweak the bandwidth parameter for this plot, or zipf's splat at
 # zero would be so wide that the other distributions would be invisible by comparison.
 # A bandwidth much less than 0.01 on a 0-1 scale is probably undersmoothed anyway.
-relative_plot = ggplot(relative_likelihoods_long, aes(x = Distriution, y = relative_likelihood)) +
+relative_plot = ggplot(relative_likelihoods_long, aes(x = Distribution, y = relative_likelihood)) +
   geom_violin(bw = .01) +
   theme_bw() +
   coord_cartesian(ylim = c(0, 1), expand = FALSE) + 
   ylab("Relative likelihood (higher is better)")
 my_ggsave("relative.png", relative_plot)
 
-weight_plot = ggplot(AICc_weight_long, aes(x = Distriution, y = AICc_weight)) +
+weight_plot = ggplot(AICc_weight_long, aes(x = Distribution, y = AICc_weight)) +
   geom_violin(bw = .01) +
   theme_bw() +
   coord_cartesian(ylim = c(0, 1), expand = FALSE) + 
