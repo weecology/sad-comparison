@@ -280,7 +280,7 @@ apply(AICc_diff, 1, which.min) %>%
 dev.off()
   
 winners_df = deviances %>% 
-  by_row(~names(which.min(.x[ , grepl("AICc", names(.x))])), .to = "winner", .collate = "cols") %>% 
+  purrr::by_row(~names(which.min(.x[ , grepl("AICc", names(.x))])), .to = "winner", .collate = "cols") %>% 
   group_by(id, winner) %>% 
   summarize(wins = n()) %>% 
   mutate(N = sum(wins)) %>% 
