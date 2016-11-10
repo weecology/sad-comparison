@@ -279,17 +279,22 @@ apply(AICc_diff, 1, which.min) %>%
           las = 1, space = 0)
 dev.off()
   
-png("wins-by-dataset.png", width = 4000, height = 2100, res = 300)
-par(mar =  c(5, 5, 4, 2) + 0.1)
-par(mgp = c(3.5,1,0))
-par(mfrow = c(3, 4))
-for (df in deviance_list) {
-  df %>%
-    select(matches("AICc")) %>%
-    apply(1, which.min) %>% 
-    get_names() %>% 
-    table() %>% 
-    barplot(ylab = "Number of wins", xlab = "Species abundance distribution", las = 1, space = 0)
-  title(df$id[[1]])
-}
-dev.off()
+winners_df = deviances %>% 
+  by_row(~names(which.min(.x[ , grepl("AICc", names(.x))])), .to = "winner", .collate = "cols") %>% 
+  group_by(id, winner) %>% 
+  summarize(wins = n()) %>% 
+  mutate(N = sum(wins)) %>% 
+  mutate(panel = LETTERS[1 + (N < 1E3) + (N < 1E2)]) %>% 
+  mutate(winner = fancify(winner))
+
+library(dichromat)
+
+ggplot(winners_df, aes(x = winner, y = wins, fill = factor(winner))) + 
+  geom_bar(stat = "identity") +
+  facet_wrap(~id, nrow = 4, scales = "free_y") + 
+  cowplot::theme_cowplot() + 
+  xlab("Species abundance distribution") + 
+  ylab("Number of wins") + 
+  scale_fill_manual(values = colorschemes$SteppedSequential.5[c(1, 6, 11, 16)],
+                    guide = FALSE)
+ggsave("wins-by-dataset.png", width = 11, height = 6)
