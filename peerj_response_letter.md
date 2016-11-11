@@ -8,6 +8,13 @@ We thank you and the reviewers for your kind words and helpful suggestions. We
 have worked hard to improve the manuscript in response to these
 comments. Our responses are described in detail below.
 
+In addition to the recommended changes we have also worked on improving the
+figures. We have introduced a consistent, color-blind friendly, color scheme
+throughout to help the readers quickly recognize the different distributions on
+the different figures. We have also reworked Figure 4 somewhat extensively to
+both address Reviewer 2's concerns about font size but also improve the general
+appearance and communication of the figure more broadly.
+
 Regards,
 Ethan White
 
@@ -157,8 +164,9 @@ Thanks!
 > Label sizes of Figure 4 should be increased if the plot is intended to be this
 > size in the final article.
 
-We will work with PeerJ to make sure the sizes are appropriate should the paper
-be accepted.
+We have increased the label sizes on this figure and also worked to improve it
+more generally so that it will communicate well with the readers and be easy to
+view and understand on a printed pdf.
 
 > The experimental design is transparent and simple, and well-described. The
 > knowledge gap is clearly stated, although in this case it is more of an
