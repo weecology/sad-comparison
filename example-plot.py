@@ -4,7 +4,7 @@ import macroeco_distributions as md
 from scipy.stats import zipf
 import matplotlib
 import matplotlib.pyplot as plt
-%matplotlib inline
+#%matplotlib inline
 
 # BBS 61036
 # fia site 14057000012
@@ -23,8 +23,9 @@ ab_array = np.array([[1L, 15L, 3L, 1L, 1L, 1L, 1L, 8L, 2L, 3L, 1L, 1L, 5L, 3L, 1
 4L, 1L, 1L, 9L, 3L, 8L, 3L, 2L, 10L, 4L, 14L, 4L, 2L, 3L, 1L,
 1L, 8L]])
 
-# Color Brewer's 3-class Dark2 colors, plus black
-colors = ["#000000", "#1b9e77", "#d95f02", "#7570b3"]
+# Color scheme from Dave Harris in
+# https://github.com/weecology/sad-comparison/issues/217
+colors = ["#990F0F", "#99700F", "#1F990F", "#710F99"]
 plot_labels = ["A", "B", "C"]
 
 fig_example = plt.figure(figsize = (12, 4))
@@ -74,4 +75,4 @@ for i in range(3):
     
 plt.tight_layout()
 plt.savefig('Fig1.pdf', dpi = 800)
-
+plt.savefig('Fig1.png', dpi = 800)
